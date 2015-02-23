@@ -1,6 +1,6 @@
 # FellesProsjekt
 # MMMAT
-# Fellesprosjektet
+# Fellesprøsjektet
 
 
 Martin B, Martin M, Marius, Anna, Tore 
