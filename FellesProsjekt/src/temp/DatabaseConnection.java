@@ -1,9 +1,6 @@
 package temp;
 
 import java.sql.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DatabaseConnection {
 
@@ -11,11 +8,18 @@ public class DatabaseConnection {
 		Connection con  =  null;
 		try {
 		  Class.forName("com.mysql.jdbc.Driver");
-		  String url = "jdbc:mysql://mysql.stud.ntnu.no/marbakl_test_db";
-		  String user = "marbakl_test";
-		  String pw = "123456";
+		  String url = "jdbc:mysql://mysql.stud.ntnu.no/mariuene_MMMAT";
+		  String user = "mariuene_admin";
+		  String pw = "1234";
 		  con = DriverManager.getConnection(url,user,pw);
 		  System.out.println("Tilkoblingen fungerte.");
+		  
+		  Statement myStatement = con.createStatement();
+		  ResultSet myRs = myStatement.executeQuery("select * from test2");
+		  while (myRs.next()){
+			  System.out.println(myRs.getString(2)+ " motherfucking " + myRs.getString(3));
+		  }
+		  
 		  } catch (SQLException ex) {
 		    System.out.println("Tilkobling feilet: "+ex.getMessage());
 		  } catch (ClassNotFoundException ex) {
