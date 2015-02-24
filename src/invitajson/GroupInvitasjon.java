@@ -1,6 +1,6 @@
 package invitajson;
 
-public class GroupInvitasjon {
+public class GroupInvitasjon extends Invitasjon {
 
 /*	GroupInvitajsklassen skal inneholde:
  * 

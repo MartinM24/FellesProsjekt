@@ -1,6 +1,6 @@
 package invitajson;
 
-public class MøteInvitasjon {
+public class MøteInvitasjon extends Invitasjon {
 /*
  * En konstruktør som tar inn de nødvendige attributtene: 
  * MøteID, invitasjonsender, Beskrivelse, datoStart, datoslutt, tidStart, tidSlutt, de inviterte... 
