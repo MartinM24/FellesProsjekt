@@ -68,7 +68,7 @@
             <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
               <children>
                         <BorderPane layoutX="-12.0" layoutY="182.0" prefHeight="200.0" prefWidth="200.0" />
-                        <GridPane layoutX="-1.0" layoutY="1.0" prefHeight="233.0" prefWidth="443.0">
+                        <GridPane layoutX="-1.0" layoutY="1.0" prefHeight="449.0" prefWidth="449.0">
                           <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="9.0" prefWidth="9.0" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="231.0" />
@@ -76,35 +76,33 @@
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="285.0" />
                           </columnConstraints>
                           <rowConstraints>
-                            <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
+                              <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="28.0" vgrow="NEVER" />
+                            <RowConstraints maxHeight="22.0" minHeight="15.0" prefHeight="22.0" vgrow="NEVER" />
                             <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
                               <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
                               <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
                               <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
                               <RowConstraints maxHeight="36.0" minHeight="22.0" prefHeight="27.0" vgrow="NEVER" />
                               <RowConstraints maxHeight="30.0" minHeight="6.0" prefHeight="24.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="21.0" vgrow="NEVER" />
-                              <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                            <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="4.0" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
+                              <RowConstraints maxHeight="38.0" minHeight="0.0" prefHeight="18.0" vgrow="NEVER" />
+                              <RowConstraints maxHeight="28.0" minHeight="8.0" prefHeight="28.0" vgrow="NEVER" />
                           </rowConstraints>
                            <children>
-                              <TextField GridPane.columnIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <TextField prefHeight="25.0" prefWidth="93.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagerer" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Button mnemonicParsing="false" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                              <Label text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                              <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <TextField prefHeight="25.0" prefWidth="117.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              <TextField prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagerer" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Button mnemonicParsing="false" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <Label text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                               <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Dato" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <GridPane GridPane.columnIndex="3" GridPane.rowIndex="8">
+                              <DatePicker GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Dato" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <GridPane prefHeight="46.0" prefWidth="245.0" GridPane.columnIndex="3" GridPane.rowIndex="9">
                                 <columnConstraints>
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="213.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="72.0" />
@@ -117,6 +115,12 @@
                                     <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Cancel" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
+                              <Label text="Kommer når funksjon er bestemt" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                              <Label text="Legg til møte" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </GridPane>
               </children>
