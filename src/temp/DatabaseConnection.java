@@ -1,6 +1,7 @@
 package temp;
 
 import java.sql.*;
+import java.util.Scanner;
 
 public class DatabaseConnection {
 
@@ -10,7 +11,11 @@ public class DatabaseConnection {
 		  Class.forName("com.mysql.jdbc.Driver");
 		  String url = "jdbc:mysql://mysql.stud.ntnu.no/mariuene_MMMAT";
 		  String user = "mariuene_admin";
-		  String pw = "1234";
+		  @SuppressWarnings("resource")
+		  Scanner user_input = new Scanner(System.in);
+		  System.out.println("Passord: ");
+		  String pw = user_input.next();
+		  
 		  con = DriverManager.getConnection(url,user,pw);
 		  System.out.println("Tilkoblingen fungerte.");
 		  
