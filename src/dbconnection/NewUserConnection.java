@@ -24,7 +24,7 @@ public class NewUserConnection {
 		  System.out.println("Username: ");
 		  String bn = user_input.next();
 		  
-		  con = DriverManager.getConnection(url,user,pw);
+		  con = DriverManager.getConnection(url,user,"1234");
 		  System.out.println("Tilkoblingen fungerte.");
 		  
 		  String query = "insert into test3 (firstname, lastname, passord, epost, username)" 

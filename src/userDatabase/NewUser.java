@@ -1,8 +1,8 @@
-package userDatabasekommunikasjon;
+package userDatabase;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
@@ -28,7 +28,7 @@ public class NewUser extends Application {
 	@FXML Button OKButton;
 	@FXML Button CancelButton;
 	
-	
+	@Override
 	public void start(Stage stage) throws Exception {
 	    Parent root = FXMLLoader.load(getClass().getResource("NewUserGUI.fxml"));
 	    stage.setTitle("OpprettBruker");
@@ -82,22 +82,19 @@ public class NewUser extends Application {
 	}
 	
 	private void validatePassword() {
-		if(!(PasswordPasswordField1.equals(PasswordPasswordField2))){
+		if(!(PasswordPasswordField1.getText().equals(PasswordPasswordField2.getText()))){
 			System.out.println("Passwords don't match");
 		}
 	}
 	
-	public static ArrayList<ArrayList<String>> GetSkjema() {
+	public ArrayList<ArrayList<String>> GetSkjema() {			
 		Connection con  =  null;
 		ArrayList<ArrayList<String>> userList = new ArrayList<ArrayList<String>>();
 		try {
 		  Class.forName("com.mysql.jdbc.Driver");
 		  String url = "jdbc:mysql://mysql.stud.ntnu.no/mariuene_MMMAT";
 		  String user = "mariuene_admin";
-		  @SuppressWarnings("resource")
-		  Scanner user_input = new Scanner(System.in);
-		  System.out.println("Passord: ");
-		  String pw = user_input.next();
+		  String pw = "1234";
 		  		  
 		  con = DriverManager.getConnection(url,user,pw);
 		  System.out.println("Tilkoblingen fungerte.");
@@ -111,7 +108,6 @@ public class NewUser extends Application {
 			}
 			userList.add(temp);
 		  }
-		  
 		  for (int i = 0; i<userList.size(); i++){
 			  System.out.println(userList.get(i));
 		  }
@@ -126,14 +122,10 @@ public class NewUser extends Application {
 		    } catch (SQLException ex) {
 		      System.out.println("Epic fail: "+ex.getMessage());
 		    }
-		  }
-		return userList;
-	}
-	    
+		  }		
+		return userList;    
+	} 
 	
-	
-	
-
 	public static void sendSjkema(String fn, String en, String pw, String ep, String bn) throws InstantiationException, IllegalAccessException {	
 		Connection con  =  null;
 		try {
