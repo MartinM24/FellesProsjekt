@@ -1,8 +1,6 @@
 package newuser;
 
-import java.util.ArrayList;
-import dbconnection.ReadUsersDB;
-import dbconnection.WriteUserDB;
+import usergroup.User;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -17,7 +15,7 @@ import javafx.stage.Stage;
 
 public class NewUserController extends Application {
 	
-	ArrayList<ArrayList<String>> brukere = ReadUsersDB.GetSkjema(); //f�rste som begynner. 
+
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;
 	@FXML TextField	UsernameTextField;
@@ -61,11 +59,9 @@ public class NewUserController extends Application {
 				UsernameTextField.getText().isEmpty()){
 			System.out.println("one or more empty fields");
 		} else {
-			WriteUserDB.sendSjkema(FirstnameTextField.getText(),
-				LastnameTextField.getText(), 
-				PasswordPasswordField1.getText(), 
-				MailTextField.getText(), 
-				UsernameTextField.getText());
+			User user = new User(UsernameTextField.getText(), FirstnameTextField.getText()
+					, LastnameTextField.getText(), MailTextField.getText(), PasswordPasswordField1.getText());
+			dbconnection.DatabaseConnection.addUser(user);
 		}
 	}
 	public void CancelButtonClick(ActionEvent e){
@@ -80,12 +76,7 @@ public class NewUserController extends Application {
 		validatePassword();
 	}
 	
-	
-	
-	
-	
-	
-	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
+/*	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		//sjekker om brukernavnet du har valgt er tatt. 
 		boolean foo = false;
 		for (int i = 0; i<brukere.size();i++){
@@ -96,7 +87,7 @@ public class NewUserController extends Application {
 			System.out.println("Username is taken");
 		}
 		}
-	}
+	} */
 	
 	private void validatePassword() {
 		//sammenligner passord. den er litt dum.

@@ -2,7 +2,15 @@ package dbconnection;
 
 import java.sql.*;
 
+import usergroup.User;
+
 public class DatabaseConnection {
+	
+/*	public static void main(String[] args) {
+		User user = new User("SivFanNR1","Per", "Sandberg", "per@frp.krf", "sivErPen");
+		addUser(user);
+		System.out.println("Per er i databasen vår.");
+	} */
 
 	private static Connection startCon() {	
 		Connection con  =  null;
@@ -32,19 +40,25 @@ public class DatabaseConnection {
 	
 	public static void addUser(User user) {
 		Connection con = startCon();
-/*		Her kommer det kode som bruker user
- * 		String query = "insert into test3 (firstname, lastname, passord, epost, username)"  + "values(?, ?, ?, ?, ?)";
+		try {
+		String query = "insert into users (username, firstname, lastname, email)"  + "values(?, ?, ?, ?)";
 		PreparedStatement preparedStmt = con.prepareStatement(query);
-		preparedStmt.setString (1, fn);
-		preparedStmt.setString (2, en);
-		preparedStmt.setString (3, pw);
-		preparedStmt.setString (4, ep);
-		preparedStmt.setString (5, bn);
+		preparedStmt.setString (1, user.getUsername());
+		preparedStmt.setString (2, user.getFirstname());
+		preparedStmt.setString (3, user.getLastname());
+		preparedStmt.setString (4, user.getEmail());
 		preparedStmt.execute();
 		System.out.println("Everything worked");
-*/		
-		endCon(con);
-	      
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		endCon(con);     
 	}
+	
+	
+	
+	
+	
 }
 
