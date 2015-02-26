@@ -1,4 +1,4 @@
-a@startuml
+@startuml
 
 title Klassediagram
 
@@ -32,12 +32,22 @@ List<User> getParticipants()
 }
 
 class User{
-String name
-String userID
+String userName
+String firstName
+String lastName
+String email
 List<Calender> Calenders
 List<Grups> groups
 List<Invitation> invites
 public void createInvite()
+}
+
+class LoginUser extends User {
+	byte[] salt
+	byte[] hash
+	public boolean checkPassword(String login)
+	public boolean changePassword()
+
 }
 
 class Group{
@@ -86,12 +96,13 @@ Group group
 }
 
 class DBCommunication{
-public void init() 
-public void sendInvitation(Invitation invitation)
-public void addMeeting(User user, Meeting meeting)
-public void addGroup(User user, Group group)
-public void addCalender(User user, Calender Calender)
-public void addUser(User user) 
+	public static void init() 
+	public static void sendInvitation(Invitation invitation)
+	public static void addMeeting(User user, Meeting meeting)
+	public static void addGroup(User user, Group group)
+	public static void addCalender(User user, Calender Calender)
+	public static void addUser(User user)
+	public static List<User> getAllUsers() 
 }
 
 class CalenderController
