@@ -1,7 +1,6 @@
-package meetingroom;
+package calendar;
 
 public class Meeting {
-	
 /* Møteklassen skal inneholde: 
  * 
  *  En konstruktør med de nødvendige atributtene for et møte

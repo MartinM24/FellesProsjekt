@@ -33,6 +33,19 @@ public class LogInController {
 	//public void usernameFocusedChange()
 	
 	
+	public void UsernameTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
+		validateText(newValue, loginRegex, usernameField);
+	}
+	
+	public void passwordTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
+		
+	}
+	@FXML
+	private void focusedChange() {
+		hideAllTooltips();
+	}
+	
+	@FXML
 	private void okButtonClick(ActionEvent event) {
 		if(validateText(usernameField.getText(), loginRegex , usernameField )) {
 			if (validateText(passwordField.getText(), loginRegex, passwordField)) {
@@ -43,6 +56,7 @@ public class LogInController {
 	}
 	
 	private void hideAllTooltips() {
+		
 		usernameField.getTooltip().hide(); 
 		passwordField.getTooltip().hide();  
 	}
