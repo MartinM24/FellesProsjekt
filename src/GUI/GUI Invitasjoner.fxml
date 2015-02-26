@@ -90,7 +90,7 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rom" wrappingWidth="31.68115234375" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteeier" wrappingWidth="64.7216796875" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status" GridPane.columnIndex="6" GridPane.rowIndex="1" />
-                              <ChoiceBox prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                              <ChoiceBox fx:id="statusDropdown" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invitasjonsoversikt" GridPane.columnIndex="1">
                                  <font>

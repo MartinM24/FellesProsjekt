@@ -69,9 +69,9 @@
               <children>
                         <TableView layoutY="41.0" prefHeight="506.0" prefWidth="426.0">
                           <columns>
-                            <TableColumn prefWidth="189.0" text="Navn" />
-                            <TableColumn prefWidth="140.0" text="Kapasistet" />
-                              <TableColumn prefWidth="96.0" text="Status" />
+                            <TableColumn fx:id="nameColumn" prefWidth="189.0" text="Navn" />
+                            <TableColumn fx:id="capacityColumn" prefWidth="140.0" text="Kapasistet" />
+                              <TableColumn fx:id="statusColumn" prefWidth="96.0" text="Status" />
                           </columns>
                         </TableView>
                         <Text layoutX="21.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Møteromsoversikt">
