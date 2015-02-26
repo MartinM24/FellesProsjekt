@@ -1,21 +1,20 @@
 package usergroup;
 
+import security.Password;
+
 public class User {
-	
 	
 	private String firstname;
 	private String lastname;
-	private String password;
 	private String email;
 	private String username;
 	
-	//Her skal det være felter med kalendere, grupper og møter. 
-
-	public User(String username, String fristname, String lastname, String email, String password) {
+	//Her skal det vï¿½re felter med kalendere, grupper og mï¿½ter. 
+	
+	public User(String username, String fristname, String lastname, String email) {
 		this.username = username;
 		this.firstname = fristname;
 		this.lastname = lastname;
-		this.password = password;
 		this.email = email;
 	}
 
@@ -33,14 +32,6 @@ public class User {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getEmail() {
