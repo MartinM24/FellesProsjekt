@@ -1,6 +1,10 @@
 package newuser;
 
+import java.util.ArrayList;
+
+import usergroup.LoginUser;
 import usergroup.User;
+import dbconnection.DatabaseConnection;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -24,6 +28,7 @@ public class NewUserController extends Application {
 	@FXML PasswordField PasswordPasswordField2;
 	@FXML Button OKButton;
 	@FXML Button CancelButton;
+	ArrayList<User> users;
 	
 	
 	//main metoden.
@@ -35,7 +40,8 @@ public class NewUserController extends Application {
 	public void start(Stage stage) throws Exception {
 	    Parent root = FXMLLoader.load(getClass().getResource("NewUserGUI.fxml"));
 	    stage.setTitle("OpprettBruker");
-	    stage.setScene(new Scene(root, 900, 600)); //exsempelstï¿½rellser
+	    stage.setScene(new Scene(root, 900, 600)); 
+		this.users = DatabaseConnection.getAllUsers();
 	    stage.show();
 	    }
 	
@@ -49,8 +55,6 @@ public class NewUserController extends Application {
 		//tom fordi jeg ikke har skrivet noe logikk her
 	}
 	public void OKButtonClick(ActionEvent e) throws InstantiationException, IllegalAccessException{
-		//SJekker fï¿½rst om alle felter er fylt ut for ï¿½ sï¿½ sende skjemaet. 
-		//Ingen logikk her fordi det skal skje pï¿½ hver av feltene individuelt. 
 		
 		if (FirstnameTextField.getText().isEmpty() ||
 				LastnameTextField.getText().isEmpty() || 
@@ -58,14 +62,12 @@ public class NewUserController extends Application {
 				MailTextField.getText().isEmpty() ||
 				UsernameTextField.getText().isEmpty()){
 			System.out.println("one or more empty fields");
-		} else {
-			User user = new User(UsernameTextField.getText(), FirstnameTextField.getText()
-					, LastnameTextField.getText(), MailTextField.getText(), PasswordPasswordField1.getText());
-			dbconnection.DatabaseConnection.addUser(user);
-		}
+		} else { /* TODO Dette må tas opp. Skal sende inn en hash og en salt. 
+			DatabaseConnection.addUser(new User(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText()));
+		*/}
 	}
 	public void CancelButtonClick(ActionEvent e){
-		//tom fordi jeg ikke har skrivet noe logikk her
+		//Move user back to userLogin. 
 	}
 	
 	public void Password1FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
@@ -76,21 +78,21 @@ public class NewUserController extends Application {
 		validatePassword();
 	}
 	
-/*	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
+	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		//sjekker om brukernavnet du har valgt er tatt. 
+		
 		boolean foo = false;
-		for (int i = 0; i<brukere.size();i++){
-			if (UsernameTextField.getText().equals(brukere.get(i).get(6))){
+		for (int i = 0; i<users.size();i++){
+			if (UsernameTextField.getText().equals(users.get(i).getUsername())){
 				foo = true;
 			}
 		if (foo){
 			System.out.println("Username is taken");
 		}
 		}
-	} */
+	} 
 	
 	private void validatePassword() {
-		//sammenligner passord. den er litt dum.
 		if(!(PasswordPasswordField1.getText().equals(PasswordPasswordField2.getText()))){
 			System.out.println("Passwords don't match");
 		}

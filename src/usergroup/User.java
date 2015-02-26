@@ -1,5 +1,7 @@
 package usergroup;
 
+import java.util.ArrayList;
+
 import security.Password;
 
 public class User {
@@ -8,8 +10,7 @@ public class User {
 	private String lastname;
 	private String email;
 	private String username;
-	
-	//Her skal det v�re felter med kalendere, grupper og m�ter. 
+	private ArrayList<UserGroup> groups;
 	
 	public User(String username, String fristname, String lastname, String email) {
 		this.username = username;
@@ -30,10 +31,6 @@ public class User {
 		return lastname;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -45,7 +42,16 @@ public class User {
 	public String getUsername() {
 		return username;
 	}
-
-
 	
+	public ArrayList<UserGroup> getGroups() {
+		return groups;
+	}
+	
+	public void addGroup(UserGroup group){
+		this.groups.add(group);
+	}
+	
+	public void rmGroup(UserGroup group){
+		this.groups.remove(group);
+	}
 }
