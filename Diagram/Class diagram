@@ -1,0 +1,121 @@
+@startuml
+
+title Klassediagram
+
+class Main{
+CalenderSystem calSys
+}
+
+class CalenderSystem{
+User user
+public List<Calenders> getCalenders()
+}
+
+class Calender{
+String name
+List<Meeting> meetings
+public String getName()
+public boolean addMeeting()
+public List<Meeting> getMeetings()
+}
+
+class Meeting{
+User leader
+Room room
+Time time
+String description
+List<User> participants
+User getLeader()
+Room getRoom()
+String getDescription()
+List<User> getParticipants()
+}
+
+class User{
+String name
+String userID
+List<Calender> Calenders
+List<Grups> groups
+List<Invitation> invites
+public void createInvite()
+}
+
+class Group{
+List<SubGroup> subGroup
+List<User> participants
+public List<User> getUsers()
+public boolean addUser(User user)
+public boolean addSubGroup(Group subgroup)
+}
+
+class SubGroup extends Group{
+Group parentGroup
+}
+
+
+class RoomSystem{
+List<Room> rooms
+public Room findRoom(Time time, int sizeReq)
+public boolean reserveRoom(Room room)
+public void removeReservation(Room room)
+}
+
+class Room{
+String name
+int size
+List<Time> reservations
+
+public boolean isTaken(Time time)
+}
+
+class Invitation{
+User sender
+User reveiver
+String text
+private void answer()
+public void accept()
+public void decline()
+}
+
+class MeetingInvitation extends Invitation{
+Meeting meeting
+}
+
+class GroupInvitation extends Invitation{
+Group group
+}
+
+class DBCommunication{
+public void init() 
+public void sendInvitation(Invitation invitation)
+public void addMeeting(User user, Meeting meeting)
+public void addGroup(User user, Group group)
+public void addCalender(User user, Calender Calender)
+public void addUser(User user) 
+}
+
+class CalenderController
+class AddMeetingController
+class RoomOverviewController
+class InviteController
+class AnswerInviteController
+class LogInController
+
+Calender --* User
+Meeting --* Calender 
+Meeting .|> RoomSystem
+Room -* Meeting 
+DBCommunication *-- User
+Group *--* User 
+User *-- Invitation 
+User -* CalenderSystem 
+Room -* RoomSystem
+Main ..|> LogInController
+CalenderSystem -* Main
+CalenderSystem ..|> CalenderController
+User ..|> InviteController
+User ..|> AnswerInviteController
+Calender ..|> AddMeetingController
+RoomSystem ..|> RoomOverviewController 
+
+@enduml
