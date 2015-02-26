@@ -10,6 +10,10 @@ public class Password {
 	private byte[] salt;
 	private byte[] hash;
 	
+	/**
+	 * Constructor to create new password
+	 * @param password given by user
+	 */
 	public Password(String password){
 		SecureRandom random = new SecureRandom();
 	    salt = new byte[32];
@@ -17,11 +21,20 @@ public class Password {
 	    createHash(password);
 	}
 	
+	/**
+	 * Constructor to create password from database
+	 * @param password given by user
+	 * @param salt from database
+	 */
 	public Password(String password, byte[] salt){
 		this.salt = salt;
 		createHash(password);
 	}
 	
+	/**
+	 * Creates hash from given password
+	 * @param password given by user
+	 */
 	private void createHash(String password){
 		try {
 			byte[] passwordArray = password.getBytes("UTF-8");
@@ -46,25 +59,29 @@ public class Password {
 		}
 	}
 	
+	/**
+	 * Return the hash
+	 * @return the hash
+	 */
 	public byte[] getHash(){
 		return this.hash;
 	}
 	
+	/**
+	 * Return the salt
+	 * @return the salt
+	 */
 	public byte[] getSalt(){
 		return this.salt;
 	}
 	
+	/**
+	 * Compares a this password with a given hash
+	 * @param dbHash hash from database
+	 * @return the password equals the hash
+	 */
 	public boolean comparePassword(byte[] dbHash){
 		return Arrays.equals(this.getHash(), dbHash);
 	}
 	
-	public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		Password pass = new Password("Test");
-		byte[] dbHash = pass.getHash();
-		byte[] dbSalt = pass.getSalt();
-		Password trying = new Password("Test",dbSalt);
-		System.out.println(trying.comparePassword(dbHash));
-		Password correct = new Password("test",dbSalt);
-		System.out.println(correct.comparePassword(dbHash));
-	}
 }
