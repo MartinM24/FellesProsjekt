@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 
 public class NewUserController extends Application {
 	
-	ArrayList<ArrayList<String>> brukere = ReadUsersDB.GetSkjema(); //første som begynner. 
+	ArrayList<ArrayList<String>> brukere = ReadUsersDB.GetSkjema(); //fï¿½rste som begynner. 
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;
 	@FXML TextField	UsernameTextField;
@@ -33,16 +33,16 @@ public class NewUserController extends Application {
 		launch(args);
 	}
 	
-	@Override //Start åpner veiwet
+	@Override //Start ï¿½pner veiwet
 	public void start(Stage stage) throws Exception {
 	    Parent root = FXMLLoader.load(getClass().getResource("NewUserGUI.fxml"));
 	    stage.setTitle("OpprettBruker");
-	    stage.setScene(new Scene(root, 900, 600)); //exsempelstørellser
+	    stage.setScene(new Scene(root, 900, 600)); //exsempelstï¿½rellser
 	    stage.show();
 	    }
 	
 	public void FirstnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//tom fordi jeg ikke har skrivet noe logikk her
+		//tom fordi jeg ikke har skrivet noe logikk her jaja
 	}
 	public void LastnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		//tom fordi jeg ikke har skrivet noe logikk her
@@ -51,8 +51,8 @@ public class NewUserController extends Application {
 		//tom fordi jeg ikke har skrivet noe logikk her
 	}
 	public void OKButtonClick(ActionEvent e) throws InstantiationException, IllegalAccessException{
-		//SJekker først om alle felter er fylt ut for å så sende skjemaet. 
-		//Ingen logikk her fordi det skal skje på hver av feltene individuelt. 
+		//SJekker fï¿½rst om alle felter er fylt ut for ï¿½ sï¿½ sende skjemaet. 
+		//Ingen logikk her fordi det skal skje pï¿½ hver av feltene individuelt. 
 		
 		if (FirstnameTextField.getText().isEmpty() ||
 				LastnameTextField.getText().isEmpty() || 
