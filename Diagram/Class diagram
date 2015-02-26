@@ -20,7 +20,7 @@ public List<Meeting> getMeetings()
 }
 
 class Meeting{
-User leader
+User owner
 Room room
 Time time
 String description

@@ -74,7 +74,7 @@ public class Password {
 	public byte[] getSalt(){
 		return this.salt;
 	}
-	
+		
 	/**
 	 * Compares a this password with a given hash
 	 * @param dbHash hash from database
