@@ -22,10 +22,11 @@ public List<Meeting> getMeetings()
 class Meeting{
 User owner
 Room room
+String place
 Time time
 String description
 List<User> participants
-User getLeader()
+User getOwner()
 Room getRoom()
 String getDescription()
 List<User> getParticipants()
