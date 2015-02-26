@@ -3,8 +3,10 @@ package dbconnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import usergroup.LoginUser;
 import usergroup.User;
@@ -70,9 +72,21 @@ public class DatabaseConnection {
 	 * @return List<Users>
 	 */
 
-	public static List<User> getAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+	public static ArrayList<User> getAllUsers() {
+		Connection con = startCon();
+		ArrayList<User> userList = new ArrayList<User>();
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("select * from brukere");
+			while (myRs.next()){
+				userList.add(new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4)));
+			};
+			System.out.println("Everything worked");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		endCon(con);
+		return userList;
 	}
 	
 	
