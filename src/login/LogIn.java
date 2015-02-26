@@ -1,8 +1,7 @@
 package login;
 
-import java.sql.*;
+//import java.sql.*;
 import java.util.ArrayList;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
@@ -19,15 +18,16 @@ public class LogIn {
 		return usernameProperty.getValue();
 	}
 
-	public String setUsername(String username) {
+	public void setUsername(String username) {
 		usernameProperty.setValue(username);
+		
 	}
 	
 	public String getPassword() {
 		return passwordProperty.getValue();
 	}
 
-	public String setPassword(String password) {
+	public void setPassword(String password) {
 		usernameProperty.setValue(password);
 	}
 	
@@ -35,7 +35,7 @@ public class LogIn {
 
 
 	public String toStrng() {
-	return "Username = " + getUsername()	+ "Password = " + getPassword();
+	return "Username = " + getUsername() + "Password = " + getPassword();
 	
 	}
 	
