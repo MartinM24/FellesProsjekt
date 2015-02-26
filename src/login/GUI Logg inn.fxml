@@ -83,8 +83,8 @@
                               <RowConstraints maxHeight="343.0" minHeight="10.0" prefHeight="343.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="passwordField" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <GridPane GridPane.columnIndex="3" GridPane.rowIndex="3">
@@ -97,9 +97,9 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" text="OK" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                                    <Button mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-                                    <Hyperlink text="Forgotten Password?" />
+                                    <Button fx:id="okButton" mnemonicParsing="false" text="OK" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                                    <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                                    <Hyperlink fx:id="fpHyperlink" text="Forgotten Password?" />
                                  </children>
                               </GridPane>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Logg inn" GridPane.columnIndex="3">
