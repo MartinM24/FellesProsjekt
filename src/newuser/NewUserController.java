@@ -1,9 +1,8 @@
-package userDatabase;
+package newuser;
 
-import java.sql.*;
 import java.util.ArrayList;
-
-
+import dbconnection.ReadUsersDB;
+import dbconnection.WriteUserDB;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -16,9 +15,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class NewUser extends Application {
+public class NewUserController extends Application {
 	
-	ArrayList<ArrayList<String>> brukere = GetSkjema(); //første som begynner. 
+	ArrayList<ArrayList<String>> brukere = ReadUsersDB.GetSkjema(); //første som begynner. 
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;
 	@FXML TextField	UsernameTextField;
@@ -62,7 +61,7 @@ public class NewUser extends Application {
 				UsernameTextField.getText().isEmpty()){
 			System.out.println("one or more empty fields");
 		} else {
-			sendSjkema(FirstnameTextField.getText(),
+			WriteUserDB.sendSjkema(FirstnameTextField.getText(),
 				LastnameTextField.getText(), 
 				PasswordPasswordField1.getText(), 
 				MailTextField.getText(), 
@@ -106,82 +105,5 @@ public class NewUser extends Application {
 		}
 	}
 	
-	public ArrayList<ArrayList<String>> GetSkjema() {			
-		Connection con  =  null;
-		ArrayList<ArrayList<String>> userList = new ArrayList<ArrayList<String>>(); //return listen
-		try {
-		  Class.forName("com.mysql.jdbc.Driver");
-		  String url = "jdbc:mysql://mysql.stud.ntnu.no/mariuene_MMMAT";
-		  String user = "mariuene_admin";
-		  String pw = "1234";
-		  //kobler opp på database
-		  con = DriverManager.getConnection(url,user,pw);
-		  System.out.println("Tilkoblingen fungerte.");
-		  
-		  Statement myStatement = con.createStatement();
-		  ResultSet myRs = myStatement.executeQuery("select * from test3"); //sender et query
-		  while (myRs.next()){
-			ArrayList<String> temp = new ArrayList<String>();
-			for (int i = 0; i<5; i++){
-				temp.add(i, myRs.getString(i+2));
-			}
-			userList.add(temp); //legger til liste over brukerinfo i databasen i Userlist
-		  }
-		  for (int i = 0; i<userList.size(); i++){
-			  System.out.println(userList.get(i)); //skriver ut brukerinfo (Debug)
-		  }
-		  //exceptions. 
-		  } catch (SQLException ex) {
-		    System.out.println("Tilkobling feilet: "+ex.getMessage());
-		  } catch (ClassNotFoundException ex) {
-		    System.out.println("Feilet under driverlasting: "+ex.getMessage());
-		  } finally {
-		    try {
-		      if (con !=  null) con.close();
-		    } catch (SQLException ex) {
-		      System.out.println("Epic fail: "+ex.getMessage());
-		    }
-		  }		
-		return userList;    
-	} 
-	
-	public static void sendSjkema(String fn, String en, String pw, String ep, String bn) throws InstantiationException, IllegalAccessException {	
-		Connection con  =  null;
-		try {
-			
-			//sender brukerinfo til databasen. 
-		  Class.forName("com.mysql.jdbc.Driver");
-		  String url = "jdbc:mysql://mysql.stud.ntnu.no/mariuene_MMMAT";
-		  String user = "mariuene_admin";
-		  String password = "1234";
-		  
-		  con = DriverManager.getConnection(url,user,password);
-		  System.out.println("Tilkoblingen fungerte.");
-		  
-		  String query = "insert into test3 (firstname, lastname, passord, epost, username)"  + "values(?, ?, ?, ?, ?)";
-		  
-	      PreparedStatement preparedStmt = con.prepareStatement(query);
-	      preparedStmt.setString (1, fn);
-	      preparedStmt.setString (2, en);
-	      preparedStmt.setString (3, pw);
-	      preparedStmt.setString (4, ep);
-	      preparedStmt.setString (5, bn);
-	      
-	      preparedStmt.execute();
-	      System.out.println("Everything worked");
-	      con.close();
-		  
-		  } catch (SQLException ex) {
-		    System.out.println("Tilkobling feilet: "+ex.getMessage());
-		  } catch (ClassNotFoundException ex) {
-		    System.out.println("Feilet under driverlasting: "+ex.getMessage());
-		  } finally {
-		    try {
-		      if (con !=  null) con.close();
-		    } catch (SQLException ex) {
-		      System.out.println("Epic fail: "+ex.getMessage());
-		    }
-		  }
-	}
 }
 
