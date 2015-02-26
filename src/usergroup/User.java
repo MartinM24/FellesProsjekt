@@ -1,7 +1,6 @@
 package usergroup;
 
 import java.util.ArrayList;
-
 import security.Password;
 
 public class User {
