@@ -11,7 +11,7 @@ public class Password {
 	private byte[] hash;
 	
 	/**
-	 * Constructor to create new password
+	 * Constructor to create password for new user
 	 * @param password given by user
 	 */
 	public Password(String password){
@@ -22,7 +22,7 @@ public class Password {
 	}
 	
 	/**
-	 * Constructor to create password from database
+	 * Constructor to create password for user in database
 	 * @param password given by user
 	 * @param salt from database
 	 */
@@ -76,7 +76,7 @@ public class Password {
 	}
 		
 	/**
-	 * Compares a this password with a given hash
+	 * Compares this password with a given hash
 	 * @param dbHash hash from database
 	 * @return the password equals the hash
 	 */
