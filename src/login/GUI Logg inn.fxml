@@ -107,6 +107,11 @@
                                     <Font size="18.0" />
                                  </font>
                               </Text>
+                              <Button fx:id="newUserButton" mnemonicParsing="false" prefHeight="341.0" prefWidth="306.0" text="NY BRUKER?" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="Comic Sans MS" size="32.0" />
+                                 </font>
+                              </Button>
                            </children>
                         </GridPane>
                      </children>

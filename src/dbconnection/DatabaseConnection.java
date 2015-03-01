@@ -72,14 +72,14 @@ public class DatabaseConnection {
 	 * @return List<Users>
 	 */
 
-	public static ArrayList<User> getAllUsers() {
+	public static ArrayList<LoginUser> getAllUsers() {
 		Connection con = startCon();
-		ArrayList<User> userList = new ArrayList<User>();
+		ArrayList<LoginUser> userList = new ArrayList<LoginUser>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("select * from brukere");
+			ResultSet myRs = myStatement.executeQuery("select * from users");
 			while (myRs.next()){
-				userList.add(new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4)));
+				userList.add(new LoginUser(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4), myRs.getBytes(5), myRs.getBytes(6)));
 			};
 			System.out.println("Everything worked");
 		} catch (SQLException e) {

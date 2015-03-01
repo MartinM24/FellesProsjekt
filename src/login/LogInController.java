@@ -1,34 +1,77 @@
 package login;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import usergroup.LoginUser;
+import usergroup.User;
+import dbconnection.DatabaseConnection;
+import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.stage.Stage;
+import newuser.*;
 
-public class LogInController {
+public class LogInController extends Application {
 	
 	private static final String loginRegex = "[[a-zA-ZæøåÆØÅ]+[\\-\\s]*[a-zA-ZæøåÆØÅ]+]+";
 
 	
-	LogIn login = new LogIn();
 	
 	@FXML TextField	usernameField;
 	@FXML PasswordField passwordField;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Hyperlink fpHyperlink;
+	@FXML Button newUserButton;
+	ArrayList<LoginUser> users = DatabaseConnection.getAllUsers(); //TODO Find better method. 
 	
+	public void start(Stage stage) throws Exception {
+	    Parent root = FXMLLoader.load(getClass().getResource("GUI Logg inn.fxml"));
+	    stage.setTitle("Logg Inn");
+	    stage.setScene(new Scene(root, 900, 600)); //eksempelstørrelser
+	    stage.show();
+	    }
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
 	
 	@FXML
-	public void initialize() {	
+	private void okButtonClick(ActionEvent event) {
+		if(validateText(usernameField.getText(), loginRegex , usernameField ) && validateText(passwordField.getText(), loginRegex, passwordField)) {
+			boolean foo = false;
+			int userID = 0;
+			for (int i = 0; i < users.size(); i++){
+				if (users.get(i).getUsername().equals(usernameField.getText())){
+					foo = true;
+					userID = i;
+				}
+			}
+			if (foo){
+				LoginUser user = users.get(userID);
+				//Check some info about user. 
+			
+			} else {
+				System.out.println("User does not exist");				
+			}
+		}
 	}
+
+
+//	@FXML
+//	public void initialize() {	
+//	}
 	
 	//public void usernameFocusedChange()
 	
@@ -45,15 +88,15 @@ public class LogInController {
 		hideAllTooltips();
 	}
 	
-	@FXML
-	private void okButtonClick(ActionEvent event) {
-		if(validateText(usernameField.getText(), loginRegex , usernameField )) {
-			if (validateText(passwordField.getText(), loginRegex, passwordField)) {
-				login.setUsername(usernameField.getText());
-				login.setPassword(passwordField.getText());
-			}
-		}
+/*	@FXML
+	private void newUserButtonClick(ActionEvent event){
+		Stage stage = new Stage();
+        try {
+        	//TODO FIKS!!!
+        } catch (IOException e) {
+            e.printStackTrace();
 	}
+	} */
 	
 	private void hideAllTooltips() {
 		

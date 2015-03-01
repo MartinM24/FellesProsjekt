@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends LogIn{
+public class LoginMain extends LogIn {
 	
 	public void start(Stage stage) throws Exception {
 	    Parent root = FXMLLoader.load(getClass().getResource("GUI Logg inn.fxml"));
@@ -15,8 +15,10 @@ public class Main extends LogIn{
 	    stage.show();
 	    }
 	
-	//public static void main(String[] args) {
-	//	launch(args);
-	//}
+	
+	//Can't have this method here, bc this class does not extend Application
+	public static void main(String[] args) {
+		launch(args);
+	}
 
 }

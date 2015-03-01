@@ -1,7 +1,7 @@
 package newuser;
 
 import java.util.ArrayList;
-
+import security.Password;
 import usergroup.LoginUser;
 import usergroup.User;
 import dbconnection.DatabaseConnection;
@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 
 public class NewUserController extends Application {
 	
-
+	
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;
 	@FXML TextField	UsernameTextField;
@@ -28,22 +28,19 @@ public class NewUserController extends Application {
 	@FXML PasswordField PasswordPasswordField2;
 	@FXML Button OKButton;
 	@FXML Button CancelButton;
-	ArrayList<User> users;
+	ArrayList<LoginUser> users = DatabaseConnection.getAllUsers();
 	
-	
-	//main metoden.
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
-	@Override //Start ï¿½pner veiwet
+	@Override 
 	public void start(Stage stage) throws Exception {
 	    Parent root = FXMLLoader.load(getClass().getResource("NewUserGUI.fxml"));
 	    stage.setTitle("OpprettBruker");
 	    stage.setScene(new Scene(root, 900, 600)); 
-		this.users = DatabaseConnection.getAllUsers();
 	    stage.show();
 	    }
+
+	public static void main(String[] args) {
+		launch(args);
+	}
 	
 	public void FirstnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		//tom fordi jeg ikke har skrivet noe logikk her jaja
@@ -62,9 +59,10 @@ public class NewUserController extends Application {
 				MailTextField.getText().isEmpty() ||
 				UsernameTextField.getText().isEmpty()){
 			System.out.println("one or more empty fields");
-		} else { /* TODO Dette må tas opp. Skal sende inn en hash og en salt. 
-			DatabaseConnection.addUser(new User(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText()));
-		*/}
+		} else { 
+			Password pass = new Password(PasswordPasswordField1.getText());
+			DatabaseConnection.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
+		}
 	}
 	public void CancelButtonClick(ActionEvent e){
 		//Move user back to userLogin. 
@@ -97,6 +95,5 @@ public class NewUserController extends Application {
 			System.out.println("Passwords don't match");
 		}
 	}
-	
 }
 
