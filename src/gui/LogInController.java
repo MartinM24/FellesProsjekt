@@ -26,7 +26,7 @@ public class LogInController implements ControlledScreen{
     // Saves the parent controller for this controller
 	ScreensController myController; 
 	
-	private static final String loginRegex = "[[a-zA-Z������]+[\\-\\s]*[a-zA-Z������]+]+";
+	private static final String loginRegex = "\\w*";
 	
 	// Fields from FXMLen
 	@FXML TextField	usernameField;
@@ -46,11 +46,12 @@ public class LogInController implements ControlledScreen{
 	@FXML
 	private void okButtonClick(ActionEvent event) {
 		LoginUser user = null;
-		if(validateText(usernameField.getText(), loginRegex , usernameField ) && validateText(passwordField.getText(), loginRegex, passwordField)) {
+		System.out.println("Harry er kul.");
+		if(validateText(usernameField.getText(), loginRegex , usernameField )) {
 			try{
 				
-			user = UserDB.getLoginUser(usernameField.getText());
-			
+				user = UserDB.getLoginUser(usernameField.getText());
+				System.out.println("Harry elsker Rakel");
 			} catch(Exception e){
 				//TODO grafical stuff
 				System.out.println("noe skjedde, det var ikke bra");
@@ -135,6 +136,7 @@ public class LogInController implements ControlledScreen{
 	 */
 	public void setScreenParent(ScreensController screenPage) {
 		// TODO Auto-generated method stub
+		setTooltips();
 		this.myController = screenPage;
 	}
 }
