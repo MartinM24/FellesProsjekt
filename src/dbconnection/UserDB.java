@@ -32,19 +32,17 @@ public class UserDB extends DatabaseConnection{
 		return userList;
 	}
 	
-	public static ArrayList<LoginUser> getUser(String username) {
-		ArrayList<LoginUser> userList = new ArrayList<LoginUser>();
+	public static LoginUser getUser(String username) {
+		LoginUser user = null;		
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("select * from users");
-			while (myRs.next()){
-				userList.add(new LoginUser(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4), myRs.getBytes(5), myRs.getBytes(6)));
-			};
+			ResultSet myRs = myStatement.executeQuery("select * from users where username = "+username);
+			user = new LoginUser(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4), myRs.getBytes(5), myRs.getBytes(6));
 			System.out.println("Everything worked");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return userList;
+		return user;
 	}
 
 
