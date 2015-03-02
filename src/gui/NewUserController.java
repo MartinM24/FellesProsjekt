@@ -6,6 +6,7 @@ import model.LoginUser;
 import model.Password;
 import model.User;
 import dbconnection.DatabaseConnection;
+import dbconnection.UserDB;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -29,7 +30,7 @@ public class NewUserController extends Application {
 	@FXML PasswordField PasswordPasswordField2;
 	@FXML Button OKButton;
 	@FXML Button CancelButton;
-	ArrayList<LoginUser> users = DatabaseConnection.getAllUsers();
+	ArrayList<LoginUser> users = UserDB.getAllUsers();
 	
 	@Override 
 	public void start(Stage stage) throws Exception {
@@ -62,7 +63,7 @@ public class NewUserController extends Application {
 			System.out.println("one or more empty fields");
 		} else { 
 			Password pass = new Password(PasswordPasswordField1.getText());
-			DatabaseConnection.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
+			UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
 		}
 	}
 	public void CancelButtonClick(ActionEvent e){

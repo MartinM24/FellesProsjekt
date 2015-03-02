@@ -30,7 +30,7 @@ public class LogInController implements ControlledScreen{
 	
 	// Fields from FXMLen
 	@FXML TextField	usernameField;
-	@FXML PasswordField passwordField;
+	@FXML TextField passwordField;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Hyperlink fpHyperlink;
@@ -67,7 +67,6 @@ public class LogInController implements ControlledScreen{
 			
 		}
 	}
-
 
 //	@FXML
 //	public void initialize() {	
