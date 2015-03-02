@@ -1,6 +1,6 @@
 package model;
 
-import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Meeting {
@@ -9,73 +9,75 @@ public class Meeting {
 	private User owner;
 	private Room room;
 	private String place;
-	private Time timeStart;
-	private Time timeEnd;
+	private LocalDateTime timeStart;
+	private LocalDateTime timeEnd;
 	private String description;
 	private List<User> participants;
 	
 	
+	
+	public Meeting(String meetingID, User owner, Room room, String place,
+			LocalDateTime timeStart, LocalDateTime timeEnd, String description,
+			List<User> participants) {
+		this.meetingID = meetingID;
+		this.owner = owner;
+		this.room = room;
+		this.place = place;
+		this.timeStart = timeStart;
+		this.timeEnd = timeEnd;
+		this.description = description;
+		this.participants = participants;
+	}
+	
+	public Meeting(User owner, Room room, String place,
+			LocalDateTime timeStart, LocalDateTime timeEnd, String description,
+			List<User> participants){
+		this.owner = owner;
+		this.room = room;
+		this.place = place;
+		this.timeStart = timeStart;
+		this.timeEnd = timeEnd;
+		this.description = description;
+		this.participants = participants;
+	}
+	
 	public String getPlace() {
 		return place;
 	}
-	
 	public void setPlace(String place) {
 		this.place = place;
 	}
-	
-	
-	
-	public Time getTimeStart() {
+	public LocalDateTime getTimeStart() {
 		return timeStart;
 	}
-
-	public void setTimeStart(Time timeStart) {
+	public void setTimeStart(LocalDateTime timeStart) {
 		this.timeStart = timeStart;
 	}
-
-	public Time getTimeEnd() {
+	public LocalDateTime getTimeEnd() {
 		return timeEnd;
 	}
-
-	public void setTimeEnd(Time timeEnd) {
+	public void setTimeEnd(LocalDateTime timeEnd) {
 		this.timeEnd = timeEnd;
 	}
-
-	public void setRoom(Room room) {
-		this.room = room;
+	public String getDescription() {
+		return description;
 	}
-	
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	public User getOwner(){
+	public String getMeetingID() {
+		return meetingID;
+	}
+	public User getOwner() {
 		return owner;
 	}
-	
-	public Room getRoom(){
+	public Room getRoom() {
 		return room;
 	}
-	
-	public String getDescription(){
-		return description;
-	}
-	
-	public List<User> getParticipants(){
+	public List<User> getParticipants() {
 		return participants;
 	}
-/* M�teklassen skal inneholde: 
- * 
- *  En konstrukt�r med de n�dvendige atributtene for et m�te
- *  Roomid, Beskrivelse, DatoStart, DatoSlutt, TidStart, TidSlutt
- *  
- *  Get-ere og set-ere for hver av disse atributtene.  
- * 
- *  En metode for � sende denne informasjonen til en database. 
- *   
- * 	N�r et m�te blir laget vil det f� en m�teID. Som skal v�re unik. 
- * 
- * 
- */
+	
+	
 
 }
