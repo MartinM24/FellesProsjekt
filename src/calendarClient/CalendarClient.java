@@ -6,9 +6,9 @@ import model.LoginUser;
 import model.User;
 import dbconnection.DatabaseConnection;
 
-public class CalendarSystem {
+public class CalendarClient {
 	
-	public CalendarSystem() {
+	public CalendarClient() {
 
 	}
 	

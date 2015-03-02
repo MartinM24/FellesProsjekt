@@ -13,9 +13,12 @@ public class DatabaseConnection {
 //		addUser(user);
 //		System.out.println("User added.");
 //	}
-
-	protected static Connection startCon() {	
-		Connection con  =  null;
+	protected DatabaseConnection() {
+		
+	}
+	protected static Connection con = null; 
+			
+	protected static void startCon() {	
 		try {
 		  Class.forName("com.mysql.jdbc.Driver");
 		  String url = "jdbc:mysql://mysql.stud.ntnu.no/mariuene_MMMAT";
@@ -29,10 +32,9 @@ public class DatabaseConnection {
 		  } catch (ClassNotFoundException ex) {
 		    System.out.println("Feilet under driverlasting: "+ex.getMessage());
 		  }
-		return con;
 	}
 	
-	protected static void endCon(Connection con) {
+	protected static void endCon() {
 	    try {
 		      if (con !=  null) con.close();
 		    } catch (SQLException ex) {
