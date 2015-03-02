@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 import model.LoginUser;
 
-public class UserConnection extends DatabaseConnection{
+public class UserDB extends DatabaseConnection{
 	
-	private UserConnection() {
+	private UserDB() {
 		super();
 	}
 
