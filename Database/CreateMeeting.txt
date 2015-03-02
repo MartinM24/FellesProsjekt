@@ -1,21 +1,15 @@
-create table Meeting(
+create table meeting(
 	
-MeetingID		char(10),
+meetingID		char(10),
 
-MDescription 		varchar(140),
+mDescription 		varchar(140),
 
-DateStart 		char(6),
+timeStart		datetime,
 
-DateEnd			char(6),
+timeEnd			datetime,
 
-TimeStart		char(4),
 
-TimeEnd			char(4),
 
-AlarmDate		char(6),
+sted			varchar(30),
 
-AlarmTime		char(4),
-
-Sted			varchar(30),
-
-constraint Meeting_pk primary key (MeetingID));
+PRIMARY KEY 		(meetingID));

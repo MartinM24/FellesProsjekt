@@ -1,0 +1,10 @@
+create table participant(
+	
+meetingID		char(10),
+
+userName		varchar(30),
+FOREIGN KEY (meetingID)
+	REFERENCES meeting(meetingID),
+FOREIGN KEY (userName)
+	REFERENCES user(userName));
+
