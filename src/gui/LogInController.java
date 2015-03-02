@@ -38,41 +38,50 @@ public class LogInController implements ControlledScreen{
 		if(validateText(usernameField.getText(), LOGIN_REGEX , usernameField )) {
 			try{
 				user = UserDB.getLoginUser(usernameField.getText());
-				user.toString();
 			} catch(Exception e){
-				//TODO grafical stuff
 				System.out.println("Can't fetch user with username " + usernameField.getText() + " in the database");
 			}
 			if(user != null){
 				if (user.checkPassword(passwordField.getText())){
-					//TODO log inn
+					myController.setScreen(CalendarClient.CALENDAR_SCREEN);
 					System.out.println("You have loged in");
 				} else {
-					//TODO grafiske ting
 					System.out.println("Password is wrong");
-					passwordField.tooltipProperty().setValue(new Tooltip("Passordet du skrev inn var feil"));
-					showTooltip(passwordField);
-					passwordField.setStyle("-fx-background-color: red");
+					wrongLoginFeedback();
 				}				
-			}	
+			} else {
+				wrongLoginFeedback();
+			}
 		}
+	}
+	
+	private void wrongLoginFeedback() {
+		passwordField.tooltipProperty().setValue(new Tooltip("Passordet eller bruker navnet er feil"));
+		showTooltip(passwordField);
+		passwordField.setStyle("-fx-background-color: red");
+		usernameField.setStyle("-fx-background-color: red");
 	}
 
 	@FXML public void cancelButtonClick(ActionEvent event) {
 		//TODO check if Platform.exit is the right method. I did get:
 		//Java has been detached already, but someone is still trying to use it at -[GlassRunnable run]:/HUDSON/workspace/8u25/label/macosx-universal-30/rt/modules/graphics/src/main/native-glass/mac/GlassApplication.m:92
-
 		Platform.exit();
 	}
 	
-	public void UsernameTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
-		validateText(newValue, LOGIN_REGEX, usernameField);
+	public void passwordFocusedChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue) {
+		resetGraphic();
 	}
 	
-	@FXML
-	public void passwordTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
+	public void usernameFocusedChange(ObservableValue<Boolean> o, boolean oldValue, boolean newValue) {
+		resetGraphic();
+	}
+	
+	private void resetGraphic(){
 		hideAllTooltips();
-		passwordField.setStyle("");		
+		setTooltips();
+		passwordField.setStyle("");
+		usernameField.setStyle("");
+		
 	}
 	
 	@FXML
@@ -82,7 +91,6 @@ public class LogInController implements ControlledScreen{
 	
 	@FXML
 	private void newUserButtonClick(ActionEvent event){
-		System.out.println("Printing");
 		myController.setScreen(CalendarClient.NEW_USER_SCREEN);
 	} 
 	
@@ -98,7 +106,7 @@ public class LogInController implements ControlledScreen{
 	
 	private void showTooltip(TextField textField) {
 		textField.getTooltip().show(textField, textField.getScene().getWindow().getX()
-				+ textField.getLayoutX() + textField.getWidth() + 5, 
+				+ textField.getLayoutX() + textField.getWidth() + 60, 
 				textField.getScene().getWindow().getY() 
 				+ textField.getLayoutY() + textField.getHeight());
 		textField.getTooltip().autoHideProperty().setValue(true);

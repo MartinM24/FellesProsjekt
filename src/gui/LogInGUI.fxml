@@ -83,8 +83,8 @@
                               <RowConstraints maxHeight="343.0" minHeight="10.0" prefHeight="343.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField fx:id="usernameField" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                              <PasswordField fx:id="passwordField" onTextChange="passwordTextChange" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField fx:id="usernameField" onFocusedChange="#usernameFocusedChange" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <PasswordField fx:id="passwordField"  onFocusedChange="#passwordFocusedChange" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <GridPane GridPane.columnIndex="3" GridPane.rowIndex="3">
