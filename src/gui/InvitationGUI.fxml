@@ -100,6 +100,13 @@
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
+                        <AnchorPane layoutX="6.0" layoutY="454.0" prefHeight="32.0" prefWidth="430.0">
+                           <children>
+                              <Button fx:id="okButton" layoutX="202.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="OK" />
+                              <Button fx:id="cancelButton" layoutX="276.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Cancel" />
+                              <Button fx:id="saveButton" layoutX="349.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Save" />
+                           </children>
+                        </AnchorPane>
               </children>
             </AnchorPane>
           </content>
@@ -121,16 +128,7 @@
             <Color blue="0.625" green="0.625" red="0.625" fx:id="x4" />
           </textFill>
         </Label>
-        <Pane prefHeight="60.0" prefWidth="776.0" HBox.hgrow="ALWAYS">
-               <children>
-                  <AnchorPane layoutX="179.0" layoutY="14.0" prefHeight="32.0" prefWidth="430.0">
-                     <children>
-                        <Button layoutX="202.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="OK" />
-                        <Button layoutX="276.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Cancel" />
-                        <Button layoutX="349.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Save" />
-                     </children>
-                  </AnchorPane>
-               </children></Pane>
+        <Pane prefHeight="60.0" prefWidth="776.0" HBox.hgrow="ALWAYS" />
         <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
       </children>
       <padding>

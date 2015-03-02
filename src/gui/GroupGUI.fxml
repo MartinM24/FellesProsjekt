@@ -85,7 +85,7 @@
                                  </font>
                               </Text>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medlemmer:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-                              <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              <ListView fx:id="participantsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label text="(Gruppe)Navn">
                                  <font>
                                     <Font size="18.0" />
@@ -94,8 +94,8 @@
                               <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button layoutX="241.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="Rediger" />
-                        <Button layoutX="326.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="OK" />
+                        <Button fx:id="changeButton" layoutX="241.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="Rediger" />
+                        <Button fx:id="okButton" layoutX="326.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="OK" />
               </children>
             </AnchorPane>
           </content>

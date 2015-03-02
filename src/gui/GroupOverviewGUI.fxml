@@ -74,12 +74,12 @@
                         </Text>
                         <TableView layoutX="14.0" layoutY="60.0" prefHeight="392.0" prefWidth="392.0">
                           <columns>
-                            <TableColumn prefWidth="112.0" text="Navn" />
-                            <TableColumn prefWidth="279.0" text="Medlemmer" />
+                            <TableColumn fx:id="nameColumn" prefWidth="112.0" text="Navn" />
+                            <TableColumn fx:id="membersColumn" prefWidth="279.0" text="Medlemmer" />
                           </columns>
                         </TableView>
-                        <Button layoutX="266.0" layoutY="483.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="OK" />
-                        <Button layoutX="341.0" layoutY="483.0" mnemonicParsing="false" text="Cancel" />
+                        <Button fx:id="okButton" layoutX="266.0" layoutY="483.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="OK" />
+                        <Button fx:id="cancelButton" layoutX="341.0" layoutY="483.0" mnemonicParsing="false" text="Cancel" />
                      </children>
             </AnchorPane>
           </content>
