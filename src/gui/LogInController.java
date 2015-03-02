@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import dbconnection.DatabaseConnection;
+import dbconnection.UserDB;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -20,31 +21,21 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import model.LoginUser;
 
-public class LogInController extends Application {
-	
+public class LogInController implements ControlledScreen{
+    // Saves the parent controller for this controller
+	ScreensController myController; 
+    
 	private static final String loginRegex = "[[a-zA-Z������]+[\\-\\s]*[a-zA-Z������]+]+";
-
 	
-	
+	// Fields from FXMLen
 	@FXML TextField	usernameField;
 	@FXML PasswordField passwordField;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Hyperlink fpHyperlink;
 	@FXML Button newUserButton;
-	ArrayList<LoginUser> users = DatabaseConnection.getAllUsers(); //TODO Find better method. 
-	
-	public void start(Stage stage) throws Exception {
-	    Parent root = FXMLLoader.load(getClass().getResource("GUI Logg inn.fxml"));
-	    stage.setTitle("Logg Inn");
-	    stage.setScene(new Scene(root, 900, 600)); //eksempelst�rrelser
-	    stage.show();
-	    }
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
+	ArrayList<LoginUser> users = UserDB.getAllUsers(); //TODO Find better method. 
+
 	@FXML
 	private void okButtonClick(ActionEvent event) {
 		if(validateText(usernameField.getText(), loginRegex , usernameField ) && validateText(passwordField.getText(), loginRegex, passwordField)) {
@@ -126,6 +117,15 @@ public class LogInController extends Application {
 		usernameField.tooltipProperty().setValue(new Tooltip("Her kan du skrive hva du vil (fritekst)"));
 		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke �, �, �"));
 		
+	}
+
+	@Override
+	/**
+	 * Sets parent controller
+	 */
+	public void setScreenParent(ScreensController screenPage) {
+		// TODO Auto-generated method stub
+		this.myController = screenPage;
 	}
 }
 
