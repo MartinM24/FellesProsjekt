@@ -72,7 +72,7 @@
                             <TableColumn fx:id="nameColumn" prefWidth="82.0" text="Tittel" />
                             <TableColumn fx:id="dateColumn" prefWidth="64.0" text="Dato" />
                               <TableColumn fx:id="timeColumn" prefWidth="56.0" text="Tid" />
-                              <TableColumn fx:id="roomColumn" prefWidth="79.0" text="Rom" />
+                              <TableColumn fx:id="placeColumn" prefWidth="79.0" text="Sted" />
                               <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
                               <TableColumn fx:id="moreCoulmn" prefWidth="75.0" text="Se mer" />
                           </columns>
