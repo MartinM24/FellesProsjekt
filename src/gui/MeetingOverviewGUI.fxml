@@ -70,11 +70,11 @@
                         <TableView layoutY="41.0" prefHeight="506.0" prefWidth="426.0">
                           <columns>
                             <TableColumn fx:id="nameColumn" prefWidth="82.0" text="Tittel" />
-                            <TableColumn fx:id="capacityColumn" prefWidth="64.0" text="Dato" />
-                              <TableColumn fx:id="statusColumn" prefWidth="56.0" text="Tid" />
-                              <TableColumn prefWidth="79.0" text="Rom" />
-                              <TableColumn prefWidth="75.0" text="Status" />
-                              <TableColumn prefWidth="75.0" text="Se mer" />
+                            <TableColumn fx:id="dateColumn" prefWidth="64.0" text="Dato" />
+                              <TableColumn fx:id="timeColumn" prefWidth="56.0" text="Tid" />
+                              <TableColumn fx:id="roomColumn" prefWidth="79.0" text="Rom" />
+                              <TableColumn fx:id="statusColumn" prefWidth="75.0" text="Status" />
+                              <TableColumn fx:id="moreCoulmn" prefWidth="75.0" text="Se mer" />
                           </columns>
                         </TableView>
                         <Text layoutX="21.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Møteoversikt">
