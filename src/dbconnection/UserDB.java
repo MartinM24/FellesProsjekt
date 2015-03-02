@@ -82,4 +82,14 @@ public class UserDB extends DatabaseConnection{
 			e.printStackTrace();
 		}
 	}
+	
+	public static void removeUser(LoginUser user){
+		try{
+			Statement myStatement = con.createStatement();
+			myStatement.executeUpdate("delete from users where username = "+user.getUsername());
+			System.out.println("Everything worked");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

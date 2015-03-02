@@ -22,14 +22,15 @@ import javafx.stage.Stage;
 import model.LoginUser;
 import model.User;
 
-public class LogInController extends Application {
+public class LogInController implements ControlledScreen{
+    // Saves the parent controller for this controller
+	ScreensController myController; 
 	
 	private static final String loginRegex = "[[a-zA-Z������]+[\\-\\s]*[a-zA-Z������]+]+";
-
 	
-	
+	// Fields from FXMLen
 	@FXML TextField	usernameField;
-	@FXML PasswordField passwordField;
+	@FXML TextField passwordField;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Hyperlink fpHyperlink;
@@ -41,10 +42,6 @@ public class LogInController extends Application {
 	    stage.setScene(new Scene(root, 900, 600)); //eksempelst�rrelser
 	    stage.show();
 	    }
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
 	
 	@FXML
 	private void okButtonClick(ActionEvent event) {
@@ -67,10 +64,9 @@ public class LogInController extends Application {
 				//TODO grafiske ting
 				System.out.println("Dumme mennekse, passordet ditt er feil");
 			}
-
+			
 		}
 	}
-
 
 //	@FXML
 //	public void initialize() {	
@@ -131,6 +127,15 @@ public class LogInController extends Application {
 		usernameField.tooltipProperty().setValue(new Tooltip("Her kan du skrive hva du vil (fritekst)"));
 		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke �, �, �"));
 		
+	}
+
+	@Override
+	/**
+	 * Sets parent controller
+	 */
+	public void setScreenParent(ScreensController screenPage) {
+		// TODO Auto-generated method stub
+		this.myController = screenPage;
 	}
 }
 
