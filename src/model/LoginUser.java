@@ -12,12 +12,12 @@ public class LoginUser extends User {
 		this.dbHash = dbhash; 
 	}
 	
-	public LoginUser(String username, String fristname, String lastname, String email, String password) {
+/*	public LoginUser(String username, String fristname, String lastname, String email, String password) {
 		super(username, fristname, lastname, email);
 		Password d = new Password(password); 
 		this.dbSalt = d.getSalt();
 		this.dbHash = d.getHash();
-	}
+	}*/
 	
 	/**
 	 * Check if password is correct

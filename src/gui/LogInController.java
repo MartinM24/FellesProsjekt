@@ -5,6 +5,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 import dbconnection.DatabaseConnection;
+import dbconnection.UserDB;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import model.LoginUser;
+import model.User;
 
 public class LogInController extends Application {
 	
@@ -31,8 +33,7 @@ public class LogInController extends Application {
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Hyperlink fpHyperlink;
-	@FXML Button newUserButton;
-	ArrayList<LoginUser> users = DatabaseConnection.getAllUsers(); //TODO Find better method. 
+	@FXML Button newUserButton; 
 	
 	public void start(Stage stage) throws Exception {
 	    Parent root = FXMLLoader.load(getClass().getResource("GUI Logg inn.fxml"));
@@ -47,22 +48,26 @@ public class LogInController extends Application {
 	
 	@FXML
 	private void okButtonClick(ActionEvent event) {
+		LoginUser user = null;
 		if(validateText(usernameField.getText(), loginRegex , usernameField ) && validateText(passwordField.getText(), loginRegex, passwordField)) {
-			boolean foo = false;
-			int userID = 0;
-			for (int i = 0; i < users.size(); i++){
-				if (users.get(i).getUsername().equals(usernameField.getText())){
-					foo = true;
-					userID = i;
-				}
-			}
-			if (foo){
-				LoginUser user = users.get(userID);
-				//Check some info about user. 
+			try{
+				
+			user = UserDB.getLoginUser(usernameField.getText());
 			
-			} else {
-				System.out.println("User does not exist");				
+			} catch(Exception e){
+				//TODO grafical stuff
+				System.out.println("noe skjedde, det var ikke bra");
+				e.printStackTrace();
 			}
+			
+			
+			if (user.checkPassword(passwordField.getText())){
+				//TODO log inn.
+			} else {
+				//TODO grafiske ting
+				System.out.println("Dumme mennekse, passordet ditt er feil");
+			}
+
 		}
 	}
 

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import model.LoginUser;
+import model.User;
 
 public class UserDB extends DatabaseConnection{
 	
@@ -32,7 +33,7 @@ public class UserDB extends DatabaseConnection{
 		return userList;
 	}
 	
-	public static LoginUser getUser(String username) {
+	public static LoginUser getLoginUser(String username) {
 		LoginUser user = null;		
 		try{
 			Statement myStatement = con.createStatement();
@@ -44,6 +45,20 @@ public class UserDB extends DatabaseConnection{
 		}
 		return user;
 	}
+	
+	public static User getUser(String username) {
+		User user = null;		
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("select * from users where username = "+username);
+			user = new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4));
+			System.out.println("Everything worked");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
 
 
 	/**
