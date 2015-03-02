@@ -97,7 +97,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="okButton" mnemonicParsing="false" text="OK" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                                    <Button fx:id="okButton" onAction="#okButtonClick" mnemonicParsing="false" text="OK" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
                                     <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                                     <Hyperlink fx:id="fpHyperlink" text="Forgotten Password?" />
                                  </children>
