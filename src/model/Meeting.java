@@ -1,9 +1,11 @@
 package model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -69,9 +71,9 @@ public class Meeting {
 	 * @param participants
 	 */
 	public Meeting(String meetingID, User owner, String place,
-			LocalDateTime timeStart, LocalDateTime timeEnd, String description,
+			Timestamp timeStart, Timestamp timeEnd, String description,
 			List<User> participants) {
-		this(owner,place,timeStart,timeEnd,description,participants);
+		this(owner,place,timeStart.toLocalDateTime(),timeEnd.toLocalDateTime(),description,participants);
 		this.meetingID = meetingID;
 	}
 
@@ -150,7 +152,7 @@ public class Meeting {
 		return timeStart.getHour();
 	}
 
-	public int getStartMinute() {
+	public int getMinute() {
 		return timeStart.getMinute();
 	}
 
