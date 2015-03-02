@@ -2,9 +2,9 @@ create table participant(
 	
 meetingID		char(10),
 
-userName		varchar(30),
+username		varchar(20),
 FOREIGN KEY (meetingID)
 	REFERENCES meeting(meetingID),
-FOREIGN KEY (userName)
-	REFERENCES user(userName));
+FOREIGN KEY (username)
+	REFERENCES users(username));
 
