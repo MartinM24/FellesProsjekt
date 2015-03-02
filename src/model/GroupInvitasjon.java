@@ -1,4 +1,4 @@
-package invitajson;
+package model;
 
 public class GroupInvitasjon extends Invitation {
 

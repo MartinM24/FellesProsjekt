@@ -1,4 +1,4 @@
-package usergroup;
+package model;
 
 import java.util.ArrayList;
 

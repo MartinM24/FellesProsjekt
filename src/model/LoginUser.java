@@ -1,6 +1,5 @@
-package usergroup;
+package model;
 
-import security.Password;
 
 public class LoginUser extends User {
 

@@ -1,11 +1,9 @@
-package login;
+package gui;
 
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import usergroup.LoginUser;
-import usergroup.User;
 import dbconnection.DatabaseConnection;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
@@ -20,11 +18,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
-import newuser.*;
+import model.LoginUser;
 
 public class LogInController extends Application {
 	
-	private static final String loginRegex = "[[a-zA-ZæøåÆØÅ]+[\\-\\s]*[a-zA-ZæøåÆØÅ]+]+";
+	private static final String loginRegex = "[[a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]+[\\-\\s]*[a-zA-Zï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]+]+";
 
 	
 	
@@ -39,7 +37,7 @@ public class LogInController extends Application {
 	public void start(Stage stage) throws Exception {
 	    Parent root = FXMLLoader.load(getClass().getResource("GUI Logg inn.fxml"));
 	    stage.setTitle("Logg Inn");
-	    stage.setScene(new Scene(root, 900, 600)); //eksempelstørrelser
+	    stage.setScene(new Scene(root, 900, 600)); //eksempelstï¿½rrelser
 	    stage.show();
 	    }
 	
@@ -126,7 +124,7 @@ public class LogInController extends Application {
 	
 	private void setTooltips() {
 		usernameField.tooltipProperty().setValue(new Tooltip("Her kan du skrive hva du vil (fritekst)"));
-		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke æ, ø, å"));
+		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke ï¿½, ï¿½, ï¿½"));
 		
 	}
 }

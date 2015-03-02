@@ -1,4 +1,4 @@
-package security;
+package model;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

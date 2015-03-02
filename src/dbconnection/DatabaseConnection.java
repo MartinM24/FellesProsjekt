@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import usergroup.LoginUser;
-import usergroup.User;
+import model.LoginUser;
+import model.User;
 
 public class DatabaseConnection {
 	

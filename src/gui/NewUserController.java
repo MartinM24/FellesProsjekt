@@ -1,9 +1,10 @@
-package newuser;
+package gui;
 
 import java.util.ArrayList;
-import security.Password;
-import usergroup.LoginUser;
-import usergroup.User;
+
+import model.LoginUser;
+import model.Password;
+import model.User;
 import dbconnection.DatabaseConnection;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;

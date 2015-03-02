@@ -1,10 +1,7 @@
-package calendar;
+package model;
 
 import java.sql.Time;
 import java.util.List;
-
-import meetingroom.Room;
-import usergroup.User;
 
 public class Meeting {
 
@@ -67,16 +64,16 @@ public class Meeting {
 	public List<User> getParticipants(){
 		return participants;
 	}
-/* Møteklassen skal inneholde: 
+/* Mï¿½teklassen skal inneholde: 
  * 
- *  En konstruktør med de nødvendige atributtene for et møte
+ *  En konstruktï¿½r med de nï¿½dvendige atributtene for et mï¿½te
  *  Roomid, Beskrivelse, DatoStart, DatoSlutt, TidStart, TidSlutt
  *  
  *  Get-ere og set-ere for hver av disse atributtene.  
  * 
- *  En metode for å sende denne informasjonen til en database. 
+ *  En metode for ï¿½ sende denne informasjonen til en database. 
  *   
- * 	Når et møte blir laget vil det få en møteID. Som skal være unik. 
+ * 	Nï¿½r et mï¿½te blir laget vil det fï¿½ en mï¿½teID. Som skal vï¿½re unik. 
  * 
  * 
  */

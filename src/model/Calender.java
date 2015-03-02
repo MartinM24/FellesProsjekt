@@ -1,4 +1,4 @@
-package calendar;
+package model;
 
 public class Calender {
 

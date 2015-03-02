@@ -1,4 +1,4 @@
-package meetingroom;
+package model;
 
 public class Room {
 
