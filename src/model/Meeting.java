@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.Timestamp;
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -21,30 +20,94 @@ public class Meeting {
 	
 	
 	
-	public Meeting(String meetingID, User owner, Room room, String place,
+	/**
+	 * Create meeting with room from database
+	 * @param meetingID
+	 * @param owner
+	 * @param room
+	 * @param timeStart
+	 * @param timeEnd
+	 * @param description
+	 * @param participants
+	 */
+	public Meeting(String meetingID, User owner, Room room,
 			LocalDateTime timeStart, LocalDateTime timeEnd, String description,
 			List<User> participants) {
+		this(owner,room,timeStart,timeEnd,description,participants);
 		this.meetingID = meetingID;
+	}
+
+	/**
+	 * Create new meeting with room
+	 * @param owner
+	 * @param room
+	 * @param timeStart
+	 * @param timeEnd
+	 * @param description
+	 * @param participants
+	 */
+	public Meeting(User owner, Room room, LocalDateTime timeStart,
+			LocalDateTime timeEnd, String description, List<User> participants) {
 		this.owner = owner;
 		this.room = room;
-		this.place = place;
 		this.timeStart = timeStart;
 		this.timeEnd = timeEnd;
 		this.description = description;
 		this.participants = participants;
+		this.place = "";
 	}
 	
-	public Meeting(User owner, Room room, String place,
+	
+	/**
+	 * create meeting with place from database
+	 * @param meetingID
+	 * @param owner
+	 * @param place
+	 * @param timeStart
+	 * @param timeEnd
+	 * @param description
+	 * @param participants
+	 */
+	public Meeting(String meetingID, User owner, String place,
 			LocalDateTime timeStart, LocalDateTime timeEnd, String description,
-			List<User> participants){
+			List<User> participants) {
+		this(owner,place,timeStart,timeEnd,description,participants);
+		this.meetingID = meetingID;
+	}
+
+	/**
+	 * Create new meeting with place
+	 * @param owner
+	 * @param place
+	 * @param timeStart
+	 * @param timeEnd
+	 * @param description
+	 * @param participants
+	 */
+	public Meeting(User owner, String place, LocalDateTime timeStart,
+			LocalDateTime timeEnd, String description, List<User> participants) {
 		this.owner = owner;
-		this.room = room;
 		this.place = place;
 		this.timeStart = timeStart;
 		this.timeEnd = timeEnd;
 		this.description = description;
 		this.participants = participants;
+		this.room = null;
 	}
+	
+	/**
+	 * Method to get place that will be shown in the GUI, either the room or the place.
+	 * @return
+	 */
+	public String getGUIPlace(){
+		if (room==null){
+			return place;
+		}
+		else{
+			return room.getName();
+		}
+	}
+	
 	
 	public String getPlace() {
 		return place;
@@ -82,14 +145,12 @@ public class Meeting {
 	public List<User> getParticipants() {
 		return participants;
 	}
-
 	
-	
-	public int getHour() {
+	public int getStartHour() {
 		return timeStart.getHour();
 	}
 
-	public int getMinute() {
+	public int getStartMinute() {
 		return timeStart.getMinute();
 	}
 
@@ -100,11 +161,20 @@ public class Meeting {
 	public int getEndMinute() {
 		return timeEnd.getMinute();
 	}
-	
+
+
+	/**
+	 * Return the timestamp to be saved in the database for the starttime
+	 * @return the timestamp for starttime
+	 */
 	public Timestamp getStartDB(){
 		return new Timestamp(getMillis(timeStart));
 	}
 
+	/**
+	 * Return the timestamp to be saved in the database for the endtime
+	 * @return the timestamp for endtime
+	 */
 	public Timestamp getEndDB(){
 		return new Timestamp(getMillis(timeEnd));
 	}
