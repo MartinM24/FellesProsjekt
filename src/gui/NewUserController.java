@@ -1,11 +1,8 @@
 package gui;
 
-import java.util.ArrayList;
-
 import model.LoginUser;
 import model.Password;
-import model.User;
-import dbconnection.DatabaseConnection;
+import dbconnection.UserDB;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -29,7 +26,6 @@ public class NewUserController extends Application {
 	@FXML PasswordField PasswordPasswordField2;
 	@FXML Button OKButton;
 	@FXML Button CancelButton;
-	ArrayList<LoginUser> users = DatabaseConnection.getAllUsers();
 	
 	@Override 
 	public void start(Stage stage) throws Exception {
@@ -44,13 +40,13 @@ public class NewUserController extends Application {
 	}
 	
 	public void FirstnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//tom fordi jeg ikke har skrivet noe logikk her jaja
+		//tom 
 	}
 	public void LastnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//tom fordi jeg ikke har skrivet noe logikk her
+		//tom 
 	}
 	public void MailFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//tom fordi jeg ikke har skrivet noe logikk her
+		//tom 
 	}
 	public void OKButtonClick(ActionEvent e) throws InstantiationException, IllegalAccessException{
 		
@@ -62,7 +58,7 @@ public class NewUserController extends Application {
 			System.out.println("one or more empty fields");
 		} else { 
 			Password pass = new Password(PasswordPasswordField1.getText());
-			DatabaseConnection.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
+			UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
 		}
 	}
 	public void CancelButtonClick(ActionEvent e){
@@ -78,21 +74,18 @@ public class NewUserController extends Application {
 	}
 	
 	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//sjekker om brukernavnet du har valgt er tatt. 
-		
-		boolean foo = false;
-		for (int i = 0; i<users.size();i++){
-			if (UsernameTextField.getText().equals(users.get(i).getUsername())){
-				foo = true;
-			}
-		if (foo){
-			System.out.println("Username is taken");
-		}
+		if (UserDB.getUser(UsernameTextField.getText()) == null){
+			System.out.println("Brukernavnet finnes ikke");
+			//TODO Grafisk. 
+		} else {
+			System.out.println("Brukernavnet finnes");
+
 		}
 	} 
 	
 	private void validatePassword() {
 		if(!(PasswordPasswordField1.getText().equals(PasswordPasswordField2.getText()))){
+			//TODO Grafical feedback
 			System.out.println("Passwords don't match");
 		}
 	}

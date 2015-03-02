@@ -53,10 +53,11 @@ public class UserDB extends DatabaseConnection{
 			ResultSet myRs = myStatement.executeQuery("select * from users where username = "+username);
 			user = new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4));
 			System.out.println("Everything worked");
+			return user;
 		} catch (SQLException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return user;
 	}
 
 
