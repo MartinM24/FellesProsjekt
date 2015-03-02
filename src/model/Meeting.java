@@ -1,7 +1,12 @@
 package model;
 
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.TimeZone;
 
 public class Meeting {
 
@@ -77,7 +82,37 @@ public class Meeting {
 	public List<User> getParticipants() {
 		return participants;
 	}
+
 	
+	
+	public int getHour() {
+		return timeStart.getHour();
+	}
+
+	public int getMinute() {
+		return timeStart.getMinute();
+	}
+
+	public int getEndHour() {
+		return timeEnd.getHour();
+	}
+
+	public int getEndMinute() {
+		return timeEnd.getMinute();
+	}
+	
+	public Timestamp getStartDB(){
+		return new Timestamp(getMillis(timeStart));
+	}
+
+	public Timestamp getEndDB(){
+		return new Timestamp(getMillis(timeEnd));
+	}
+	
+	private long getMillis(LocalDateTime time){
+		ZonedDateTime zdt = time.atZone(ZoneId.of(TimeZone.getDefault().getID()));
+		return zdt.toEpochSecond();
+	}
 	
 
 }
