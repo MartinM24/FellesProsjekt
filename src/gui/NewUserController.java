@@ -1,19 +1,15 @@
 package gui;
 
-import model.LoginUser;
-import model.Password;
-import dbconnection.UserDB;
-import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
+import model.LoginUser;
+import model.Password;
+import calendarClient.CalendarClient;
+import dbconnection.UserDB;
 
 public class NewUserController implements ControlledScreen {
 	ScreensController myController; 
@@ -52,6 +48,7 @@ public class NewUserController implements ControlledScreen {
 	}
 	public void CancelButtonClick(ActionEvent e){
 		//Move user back to userLogin. 
+		myController.setScreen(CalendarClient.LOG_IN_SCREEN);
 	}
 	
 	public void Password1FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){

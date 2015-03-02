@@ -27,14 +27,15 @@ public class CalendarClient extends Application{
 		// Set first screen
 		mainController.setScreen(LOG_IN_SCREEN);
 		
-		// Show first screen
-	    
-    
+		// Show first screen		
 		Group root = new Group();
 		root.getChildren().addAll(mainController);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		
+		//Set up DB conection;
+		dbconnection.DatabaseConnection.startCon();
 		
 	}
 	

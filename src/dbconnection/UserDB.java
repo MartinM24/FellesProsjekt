@@ -37,11 +37,12 @@ public class UserDB extends DatabaseConnection{
 		LoginUser user = null;		
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("select * from users where username = "+username);
+			ResultSet myRs = myStatement.executeQuery("select * from users where username = '" + username + "'");
+			myRs.first();
 			user = new LoginUser(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4), myRs.getBytes(5), myRs.getBytes(6));
 			System.out.println("Everything worked");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return user;
 	}
@@ -50,7 +51,8 @@ public class UserDB extends DatabaseConnection{
 		User user = null;		
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("select * from users where username = "+username);
+			ResultSet myRs = myStatement.executeQuery("select * from users where username = '"+ username + "'");
+			myRs.first();
 			user = new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4));
 			System.out.println("Everything worked");
 			return user;

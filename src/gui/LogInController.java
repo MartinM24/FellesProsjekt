@@ -1,72 +1,80 @@
 package gui;
 
-import java.io.IOException;
-import java.time.LocalTime;
-import java.util.ArrayList;
-
-import calendarClient.CalendarClient;
-import dbconnection.DatabaseConnection;
-import dbconnection.UserDB;
-import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.stage.Stage;
 import model.LoginUser;
-import model.User;
+import calendarClient.CalendarClient;
+import dbconnection.UserDB;
 
 public class LogInController implements ControlledScreen{
     // Saves the parent controller for this controller
 	ScreensController myController; 
 	
-	private static final String loginRegex = "\\w*";
+	private static final String LOGIN_REGEX = "^[a-zA-Z]{3,15}$";
 	
 	// Fields from FXMLen
 	@FXML TextField	usernameField;
-	@FXML TextField passwordField;
+	@FXML PasswordField passwordField;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Hyperlink fpHyperlink;
 	@FXML Button newUserButton; 
 	
 	@FXML
+	public void initialize() {	
+		setTooltips();
+	}
+	
+	@FXML
 	private void okButtonClick(ActionEvent event) {
 		LoginUser user = null;
-		if(validateText(usernameField.getText(), loginRegex , usernameField )) {
+		if(validateText(usernameField.getText(), LOGIN_REGEX , usernameField )) {
 			try{
 				user = UserDB.getLoginUser(usernameField.getText());
+				user.toString();
 			} catch(Exception e){
 				//TODO grafical stuff
-				System.out.println("Can not find user with username " + usernameField.getText() + " in the database");
-				e.printStackTrace();
+				System.out.println("Can't fetch user with username " + usernameField.getText() + " in the database");
 			}
-			
-			
-			if (user.checkPassword(passwordField.getText())){
-				//TODO log inn.
-			} else {
-				//TODO grafiske ting
-				System.out.println("Dumme mennekse, passordet ditt er feil");
-			}
-			
+			if(user != null){
+				if (user.checkPassword(passwordField.getText())){
+					//TODO log inn
+					System.out.println("You have loged in");
+				} else {
+					//TODO grafiske ting
+					System.out.println("Password is wrong");
+					passwordField.tooltipProperty().setValue(new Tooltip("Passordet du skrev inn var feil"));
+					showTooltip(passwordField);
+					passwordField.setStyle("-fx-background-color: red");
+				}				
+			}	
 		}
 	}
 
-	public void UsernameTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
-		validateText(newValue, loginRegex, usernameField);
+	@FXML public void cancelButtonClick(ActionEvent event) {
+		//TODO check if Platform.exit is the right method. I did get:
+		//Java has been detached already, but someone is still trying to use it at -[GlassRunnable run]:/HUDSON/workspace/8u25/label/macosx-universal-30/rt/modules/graphics/src/main/native-glass/mac/GlassApplication.m:92
+
+		Platform.exit();
 	}
 	
-	public void passwordTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
-		
+	public void UsernameTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
+		validateText(newValue, LOGIN_REGEX, usernameField);
 	}
+	
+	@FXML
+	public void passwordTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
+		hideAllTooltips();
+		passwordField.setStyle("");		
+	}
+	
 	@FXML
 	private void focusedChange() {
 		hideAllTooltips();
@@ -78,18 +86,10 @@ public class LogInController implements ControlledScreen{
 		myController.setScreen(CalendarClient.NEW_USER_SCREEN);
 	} 
 	
-	private void hideAllTooltips() {
-		
-		usernameField.getTooltip().hide(); 
-		passwordField.getTooltip().hide();  
-	}
 	
 	private boolean validateText(String value, String regex, TextField textField) {
 		hideAllTooltips();
 		boolean isValid = value.matches(regex);
-		if (!isValid && value.length() == 0) {
-			isValid = true;
-			}
 		String color = isValid ? "" : "-fx-background-color: red";
 		textField.setStyle(color);
 		if(!isValid) showTooltip(textField);
@@ -105,23 +105,21 @@ public class LogInController implements ControlledScreen{
 	}
 	
 	private void setTooltips() {
-		usernameField.tooltipProperty().setValue(new Tooltip("Her kan du skrive hva du vil (fritekst)"));
-		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke �, �, �"));
+		usernameField.tooltipProperty().setValue(new Tooltip("Kun bokstaver er tilat og lengden minst 3 tegn"));
+		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke ?, ?, ?"));
 		
 	}
 
+	private void hideAllTooltips() {
+		usernameField.getTooltip().hide(); 
+		passwordField.getTooltip().hide();  
+	}
+
 	@Override
-	/**
-	 * Sets parent controller
-	 */
 	public void setScreenParent(ScreensController screenPage) {
-		// TODO Auto-generated method stub
 		this.myController = screenPage;
 	}
 
-	@FXML
-	public void initialize() {	
-		setTooltips();
-	}
+
 }
 

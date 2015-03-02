@@ -106,6 +106,12 @@ class DBCommunication{
 	public static List<User> getAllUsers() 
 }
 
+interface ControlledScreen {
+	setScreenParent(); 
+}
+
+
+
 class CalenderController
 class AddMeetingController
 class RoomOverviewController

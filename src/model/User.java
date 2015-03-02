@@ -5,10 +5,18 @@ import java.util.ArrayList;
 public class User {
 	
 	private String firstname;
+
 	private String lastname;
 	private String email;
 	private String username;
 	private ArrayList<UserGroup> groups;
+
+	@Override
+	public String toString() {
+		return "User [firstname=" + firstname + ", lastname=" + lastname
+				+ ", email=" + email + ", username=" + username + ", groups="
+				+ groups + "]";
+	}
 	
 	public User(String username, String fristname, String lastname, String email) {
 		this.username = username;

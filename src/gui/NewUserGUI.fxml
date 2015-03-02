@@ -100,9 +100,9 @@
                               <TextField fx:id="FirstnameTextField" onFocusedChange="#FirstnameFocusChange" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="LastnameTextField" onFocusedChange="#LastnameFocusChange" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="UsernameTextField" onFocusedChange="#UsernameFocusChange" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="MailTextField" onFocusedChange="#MailFocusChange" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <PasswordField fx:id="PasswordPasswordField1" onFocusedChange="#Password1FocusChange" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <PasswordField fx:id="PasswordPasswordField2" onFocusedChange="#Password2FocusChange" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <TextField fx:id="MailTextField" onFocusedChange="#MailFocusChange" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                               <Button fx:id="CancelButton" onAction="#CancelButtonClick" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="9" />
                               <Button fx:id="OKButton" onAction="#OKButtonClick" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="OK" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
                            </children>

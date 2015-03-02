@@ -18,7 +18,7 @@ public class DatabaseConnection {
 	}
 	protected static Connection con = null; 
 			
-	protected static void startCon() {	
+	public static void startCon() {	
 		try {
 		  Class.forName("com.mysql.jdbc.Driver");
 		  String url = "jdbc:mysql://mysql.stud.ntnu.no/mariuene_MMMAT";
@@ -26,7 +26,6 @@ public class DatabaseConnection {
 		  String pw = "1234";		  
 		  con = DriverManager.getConnection(url,user,pw);
 		  System.out.println("Tilkoblingen fungerte.");
-		 
 		  } catch (SQLException ex) {
 		    System.out.println("Tilkobling feilet: "+ex.getMessage());
 		  } catch (ClassNotFoundException ex) {
@@ -34,7 +33,7 @@ public class DatabaseConnection {
 		  }
 	}
 	
-	protected static void endCon() {
+	public static void endCon() {
 	    try {
 		      if (con !=  null) con.close();
 		    } catch (SQLException ex) {
