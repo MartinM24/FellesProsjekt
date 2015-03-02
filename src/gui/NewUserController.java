@@ -15,8 +15,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class NewUserController extends Application {
-	
+public class NewUserController implements ControlledScreen {
+	ScreensController myController; 
 	
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;
@@ -26,18 +26,7 @@ public class NewUserController extends Application {
 	@FXML PasswordField PasswordPasswordField2;
 	@FXML Button OKButton;
 	@FXML Button CancelButton;
-	
-	@Override 
-	public void start(Stage stage) throws Exception {
-	    Parent root = FXMLLoader.load(getClass().getResource("NewUserGUI.fxml"));
-	    stage.setTitle("OpprettBruker");
-	    stage.setScene(new Scene(root, 900, 600)); 
-	    stage.show();
-	    }
 
-	public static void main(String[] args) {
-		launch(args);
-	}
 	
 	public void FirstnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		//tom 
@@ -88,6 +77,11 @@ public class NewUserController extends Application {
 			//TODO Grafical feedback
 			System.out.println("Passwords don't match");
 		}
+	}
+
+	@Override
+	public void setScreenParent(ScreensController screenPage) {
+		this.myController = screenPage;
 	}
 }
 

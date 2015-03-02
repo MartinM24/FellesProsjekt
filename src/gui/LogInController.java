@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import calendarClient.CalendarClient;
 import dbconnection.DatabaseConnection;
 import dbconnection.UserDB;
 import javafx.application.Application;
@@ -36,25 +37,15 @@ public class LogInController implements ControlledScreen{
 	@FXML Hyperlink fpHyperlink;
 	@FXML Button newUserButton; 
 	
-	public void start(Stage stage) throws Exception {
-	    Parent root = FXMLLoader.load(getClass().getResource("GUI Logg inn.fxml"));
-	    stage.setTitle("Logg Inn");
-	    stage.setScene(new Scene(root, 900, 600)); //eksempelst�rrelser
-	    stage.show();
-	    }
-	
 	@FXML
 	private void okButtonClick(ActionEvent event) {
 		LoginUser user = null;
-		System.out.println("Harry er kul.");
 		if(validateText(usernameField.getText(), loginRegex , usernameField )) {
 			try{
-				
 				user = UserDB.getLoginUser(usernameField.getText());
-				System.out.println("Harry elsker Rakel");
 			} catch(Exception e){
 				//TODO grafical stuff
-				System.out.println("noe skjedde, det var ikke bra");
+				System.out.println("Can not find user with username " + usernameField.getText() + " in the database");
 				e.printStackTrace();
 			}
 			
@@ -69,13 +60,6 @@ public class LogInController implements ControlledScreen{
 		}
 	}
 
-//	@FXML
-//	public void initialize() {	
-//	}
-	
-	//public void usernameFocusedChange()
-	
-	
 	public void UsernameTextChange(ObservableValue<String> o,  String oldValue, String newValue) {
 		validateText(newValue, loginRegex, usernameField);
 	}
@@ -88,15 +72,11 @@ public class LogInController implements ControlledScreen{
 		hideAllTooltips();
 	}
 	
-/*	@FXML
+	@FXML
 	private void newUserButtonClick(ActionEvent event){
-		Stage stage = new Stage();
-        try {
-        	//TODO FIKS!!!
-        } catch (IOException e) {
-            e.printStackTrace();
-	}
-	} */
+		System.out.println("Printing");
+		myController.setScreen(CalendarClient.NEW_USER_SCREEN);
+	} 
 	
 	private void hideAllTooltips() {
 		
@@ -136,8 +116,12 @@ public class LogInController implements ControlledScreen{
 	 */
 	public void setScreenParent(ScreensController screenPage) {
 		// TODO Auto-generated method stub
-		setTooltips();
 		this.myController = screenPage;
+	}
+
+	@FXML
+	public void initialize() {	
+		setTooltips();
 	}
 }
 

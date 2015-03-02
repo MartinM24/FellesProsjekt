@@ -107,7 +107,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Text>
-                              <Button fx:id="newUserButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" text="Ny bruker" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+                              <Button fx:id="newUserButton" onAction="#newUserButtonClick" mnemonicParsing="false" prefHeight="35.0" prefWidth="97.0" text="Ny bruker" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP" />
                            </children>
                         </GridPane>
                      </children>

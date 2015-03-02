@@ -9,8 +9,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class CalendarClient extends Application{
-	private static final String LOG_IN_SCREEN_FXML = "/gui/LogInGUI.fxml";
-	private static final String LOG_IN_SCREEN = "LogIN";
+	public static final String LOG_IN_SCREEN_FXML = "/gui/LogInGUI.fxml";
+	public static final String LOG_IN_SCREEN = "LogIN";
+	public static final String NEW_USER_SCREEN = "NewUser";
+	public static final String NEW_USER_SCREEN_FXML = "/gui/NewUserGUI.fxml";
+	
+	
 	ScreensController mainController; 
 	
 	@Override
@@ -18,6 +22,7 @@ public class CalendarClient extends Application{
 		mainController = new ScreensController();
 		// Load all Screens 
 		mainController.loadScreen(LOG_IN_SCREEN, LOG_IN_SCREEN_FXML);
+		mainController.loadScreen(NEW_USER_SCREEN, NEW_USER_SCREEN_FXML);
 		
 		// Set first screen
 		mainController.setScreen(LOG_IN_SCREEN);
