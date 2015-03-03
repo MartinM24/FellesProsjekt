@@ -17,7 +17,7 @@ public class LogInController implements ControlledScreen{
     // Saves the parent controller for this controller
 	ScreensController myController; 
 	
-	private static final String LOGIN_REGEX = "^[a-zA-Z]{3,15}$";
+	private static final String LOGIN_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
 	
 	// Fields from FXMLen
 	@FXML TextField	usernameField;
@@ -113,8 +113,8 @@ public class LogInController implements ControlledScreen{
 	}
 	
 	private void setTooltips() {
-		usernameField.tooltipProperty().setValue(new Tooltip("Kun bokstaver er tilat og lengden minst 3 tegn"));
-		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke ?, ?, ?"));
+		usernameField.tooltipProperty().setValue(new Tooltip("Bokstaver, tall og _- er  tillat. Lengden er mellom 3 og 16 tegn"));
+		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke æ, ø, å"));
 		
 	}
 

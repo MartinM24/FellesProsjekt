@@ -18,7 +18,7 @@ public class ScreensController extends StackPane {
 	 * @param name - Name of the screen
 	 * @param screen - Root node of the screen
 	 */
-	public void addScreen(String name, Node screen) { 
+	private void addScreen(String name, Node screen) { 
 	       screens.put(name, screen); 
 	} 
 	
