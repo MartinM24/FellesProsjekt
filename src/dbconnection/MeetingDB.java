@@ -22,7 +22,7 @@ public class MeetingDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT *FROM meeting INNER JOIN participant INNER JOIN users WHERE users.username='"+user.getUsername()+"'");
 			while (myRs.next()){
-				meetingList.add(new Meeting(myRs.getString(1),user,myRs.getString(5),myRs.getTimestamp(3),myRs.getTimestamp(4),myRs.getString(2),new ArrayList<User>()));
+				meetingList.add(new Meeting(Integer.parseInt(myRs.getString(1)),user,myRs.getString(5),myRs.getTimestamp(3),myRs.getTimestamp(4),myRs.getString(2),new ArrayList<User>()));
 			};
 			System.out.println("Everything worked");
 		} catch (SQLException e) {
@@ -31,17 +31,17 @@ public class MeetingDB extends DatabaseConnection{
 		return meetingList;
 	}
 	
-	public static boolean deleteMeeting(int meetingID) {
+	public static boolean removeMeeting(int meetingID) {
 		try {
 			Statement myStatement = con.createStatement(); 
-			ResultSet myRs = myStatement.executeQuery("DELETE FROM meeting WHERE meetingID = '" + meetingID + "'");
-			if(myRs.next()) {
-				System.out.println("Det kom et resultat, men hva?");
-			}	
+			int count = myStatement.executeUpdate("DELETE FROM meeting WHERE meetingID = '" + meetingID + "'");
+			if (count == 1) {
+				return true; 
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return true;
+		return false;
 	}	
 	
 }

@@ -73,8 +73,17 @@ public class UserDB extends DatabaseConnection{
 			return false;	
 		} 	
 	}
-
-
+	
+	public static void rmUser(String username){
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("delete from users where username = '"+ username + "'");
+			myRs.first();
+			System.out.println("user is deleted");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Adds a new loginUser to the Database
@@ -97,13 +106,4 @@ public class UserDB extends DatabaseConnection{
 		}
 	}
 	
-	public static void removeUser(LoginUser user){
-		try{
-			Statement myStatement = con.createStatement();
-			myStatement.executeUpdate("delete from users where username = "+user.getUsername());
-			System.out.println("Everything worked");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }
