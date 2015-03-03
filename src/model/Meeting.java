@@ -11,7 +11,7 @@ import java.util.TimeZone;
 
 public class Meeting {
 
-	private String meetingID;
+	private int meetingID;
 	private User owner;
 	private Room room;
 	private String place;
@@ -32,7 +32,7 @@ public class Meeting {
 	 * @param description
 	 * @param participants
 	 */
-	public Meeting(String meetingID, User owner, Room room,
+	public Meeting(int meetingID, User owner, Room room,
 			LocalDateTime timeStart, LocalDateTime timeEnd, String description,
 			List<User> participants) {
 		this(owner,room,timeStart,timeEnd,description,participants);
@@ -70,7 +70,7 @@ public class Meeting {
 	 * @param description
 	 * @param participants
 	 */
-	public Meeting(String meetingID, User owner, String place,
+	public Meeting(int meetingID, User owner, String place,
 			Timestamp timeStart, Timestamp timeEnd, String description,
 			List<User> participants) {
 		this(owner,place,timeStart.toLocalDateTime(),timeEnd.toLocalDateTime(),description,participants);
@@ -135,7 +135,7 @@ public class Meeting {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getMeetingID() {
+	public int getMeetingID() {
 		return meetingID;
 	}
 	public User getOwner() {
