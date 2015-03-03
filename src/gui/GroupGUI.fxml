@@ -86,12 +86,12 @@
                               </Text>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medlemmer:" GridPane.rowIndex="2" GridPane.valignment="TOP" />
                               <ListView fx:id="participantsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="(Gruppe)Navn">
+                              <Label fx:id="groupNameLabel" text="(Gruppe)Navn">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="purposeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
                         <Button fx:id="changeButton" layoutX="241.0" layoutY="492.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="Rediger" />

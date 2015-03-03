@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="940.0" prefWidth="1372.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalendarController">
+<VBox prefHeight="940.0" prefWidth="1267.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalendarController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -50,7 +50,7 @@
         </Menu>
       </menus>
     </MenuBar>
-    <SplitPane dividerPositions="0.2505567928730512, 0.7505567928730512" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+    <SplitPane dividerPositions="0.11383399209486166, 0.8063241106719368" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
       <items>
         <AnchorPane>
           <children>
@@ -1194,14 +1194,14 @@
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane prefHeight="865.0" prefWidth="248.0">
+        <AnchorPane prefHeight="884.0" prefWidth="271.0">
           <children>
             <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
                   <Button fx:id="newMeetingButton" layoutX="9.0" layoutY="133.0" mnemonicParsing="false" text="Nytt møte" />
                   <Button fx:id="MeetingOverviewButton" layoutX="9.0" layoutY="183.0" mnemonicParsing="false" text="Møteoversikt" />
                   <Button fx:id="myGroupsButton" layoutX="7.0" layoutY="231.0" mnemonicParsing="false" text="Mine grupper" />
                   <Button fx:id="ChooseCalendarButton" layoutX="9.0" layoutY="86.0" mnemonicParsing="false" text="Andre kalendere" />
-                  <Button fx:id="logOutButton" layoutX="252.0" layoutY="12.0" mnemonicParsing="false" text="Logg ut" />
+                  <Button fx:id="logOutButton" layoutX="169.0" layoutY="12.0" mnemonicParsing="false" text="Logg ut" />
           </children>
         </AnchorPane>
       </items>
