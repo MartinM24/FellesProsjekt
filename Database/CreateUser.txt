@@ -1,0 +1,10 @@
+create table users(
+	
+username		VARCHAR(30),
+firstname	 	VARCHAR(30),
+lastname		VARCHAR(30),
+email			VARCHAR(30),
+salt			BINARY(32),
+hash			BINARY(32),
+
+PRIMARY KEY 		(username));

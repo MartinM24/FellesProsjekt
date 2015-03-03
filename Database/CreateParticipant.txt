@@ -1,7 +1,7 @@
 CREATE TABLE participant (
-meetingID		char(10),
+meetingID		int,
 
-username		varchar(20),
+username		varchar(30),
 
 FOREIGN KEY (meetingID) REFERENCES meeting(meetingID) 	ON DELETE CASCADE
 														ON UPDATE CASCADE,
