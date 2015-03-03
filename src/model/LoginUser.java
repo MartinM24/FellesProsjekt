@@ -5,13 +5,18 @@ public class LoginUser extends User {
 
 	private byte[] dbSalt; 
 	private byte[] dbHash;
+	private Calendar personalCalendar;
 
 	public LoginUser(String username, String fristname, String lastname, String email, byte[] dbsalt, byte[] dbhash) {
 		super(username, fristname, lastname, email);
 		this.dbSalt = dbsalt; 
 		this.dbHash = dbhash; 
+		this.personalCalendar = new Calendar("My Calendar",this);
 	}
 	
+	
+
+
 /*	public LoginUser(String username, String fristname, String lastname, String email, String password) {
 		super(username, fristname, lastname, email);
 		Password d = new Password(password); 

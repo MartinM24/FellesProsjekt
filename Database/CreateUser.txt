@@ -6,5 +6,7 @@ lastname		VARCHAR(30),
 email			VARCHAR(30),
 salt			BINARY(32),
 hash			BINARY(32),
+calendarID		INT,
+
 
 PRIMARY KEY 		(username));

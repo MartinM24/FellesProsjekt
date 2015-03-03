@@ -1,5 +1,7 @@
 package model;
 
+import dbconnection.CalendarDB;
+
 public class Calendar {
 	
 	int calenderID;
@@ -8,6 +10,11 @@ public class Calendar {
 	public Calendar(int calenderID, String name){
 		this.calenderID = calenderID;
 		this.name = name;
+	}
+	
+	public Calendar(String name, User user){
+		this.name = name;
+		CalendarDB.addCalendar(user,this);
 	}
 
 	public int getCalenderID() {
