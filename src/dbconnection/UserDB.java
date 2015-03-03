@@ -61,6 +61,18 @@ public class UserDB extends DatabaseConnection{
 			return null;
 		}
 	}
+	
+	public static boolean checkUser(String username){
+		try{
+			Statement mysStatement = con.createStatement();
+			ResultSet myRs = mysStatement.executeQuery("select count(1) from users where username = '"+ username +"'");
+			myRs.first();
+			return (myRs.getInt(1) > 0);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;	
+		} 	
+	}
 
 
 

@@ -60,7 +60,7 @@ public class NewUserController implements ControlledScreen {
 	}
 	
 	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		if (UserDB.getUser(UsernameTextField.getText()) == null){
+		if (UserDB.checkUser(UsernameTextField.getText())){
 			System.out.println("Brukernavnet finnes ikke");
 			//TODO Grafisk. 
 		} else {
