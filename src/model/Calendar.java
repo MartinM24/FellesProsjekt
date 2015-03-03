@@ -3,11 +3,11 @@ package model;
 public class Calendar {
 	
 	int calenderID;
-	String description;
+	String name;
 	
-	public Calendar(int calenderID, String description){
+	public Calendar(int calenderID, String name){
 		this.calenderID = calenderID;
-		this.description = description;
+		this.name = name;
 	}
 
 	public int getCalenderID() {
@@ -19,12 +19,12 @@ public class Calendar {
 		//TODO DBcommunicasjon
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
 		//TODO DBcomminicasjon
 	}
 
