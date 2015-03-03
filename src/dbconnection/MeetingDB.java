@@ -35,7 +35,7 @@ public class MeetingDB extends DatabaseConnection{
 		try {
 			Statement myStatement = con.createStatement(); 
 			int count = myStatement.executeUpdate("DELETE FROM meeting WHERE meetingID = '" + meetingID + "'");
-			if (count == 1) {
+			if (count > 0) {
 				return true; 
 			}
 		} catch (Exception e) {

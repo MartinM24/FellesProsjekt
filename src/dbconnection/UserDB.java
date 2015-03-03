@@ -10,7 +10,6 @@ import model.User;
 public class UserDB extends DatabaseConnection{
 	
 	private UserDB() {
-		super();
 	}
 
 	/**
@@ -52,8 +51,9 @@ public class UserDB extends DatabaseConnection{
 		try{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("select * from users where username = '"+ username + "'");
-			myRs.first();
-			user = new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4));
+			if (myRs.first()){
+				user = new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4));				
+			}
 			System.out.println("Everything worked");
 			return user;
 		} catch (SQLException e) {
@@ -74,22 +74,25 @@ public class UserDB extends DatabaseConnection{
 		} 	
 	}
 	
-	public static void rmUser(String username){
+	public static boolean removeUser(String username){
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("delete from users where username = '"+ username + "'");
-			myRs.first();
-			System.out.println("user is deleted");
+			int res = myStatement.executeUpdate("delete from users where username = '"+ username + "'");
+			if (res > 0) {
+				System.out.println("user has been deleted");
+				return true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false; 
 	}
 
 	/**
 	 * Adds a new loginUser to the Database
 	 * @param LoginUser user
 	 */
-	public static void addUser(LoginUser user) {
+	public static boolean addUser(LoginUser user) {
 		try {
 		String query = "insert into users (username, firstname, lastname, email, salt, hash)"  + "values(?, ?, ?, ?, ?, ?)";
 		PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -99,11 +102,15 @@ public class UserDB extends DatabaseConnection{
 		preparedStmt.setString (4, user.getEmail());
 		preparedStmt.setBytes(5, user.getDBSalt());
 		preparedStmt.setBytes(6, user.getDBHash());
-		preparedStmt.execute();
-		System.out.println("Everything worked");
+		int res = preparedStmt.executeUpdate();
+		if (res > 0) {
+			System.out.println("Everything worked");
+			return true; 
+		}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false; 
 	}
 	
 }

@@ -23,15 +23,18 @@ public class CalenderDB extends DatabaseConnection {
 		}
 	}
 	
-	public static void rmCalender(int calendarID){
+	public static boolean removeCalender(int calendarID){
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("delete from calender where calenderID = '"+ calendarID + "'");
-			myRs.first();
-			System.out.println("calendar is deleted");
+			int res = myStatement.executeUpdate("delete from calender where calenderID = '"+ calendarID + "'");
+			if(res > 0) {
+				System.out.println("Calendar " + Integer.toString(calendarID) + " has been remove");
+				return true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return false;
 	}
 	
 }
