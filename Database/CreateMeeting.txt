@@ -1,10 +1,10 @@
 create table meeting(
-	
-meetingID		char(10),
 
-mDescription 		varchar(140),
+meetingID char(10),
 
-timeStart		datetime,
+mDescription varchar(140),
+
+timeStartdatetime,
 
 timeEnd			datetime,
 

@@ -1,11 +1,11 @@
 package model;
 
-public class Calender {
+public class Calendar {
 	
 	int calenderID;
 	String description;
 	
-	public Calender(int calenderID, String description){
+	public Calendar(int calenderID, String description){
 		this.calenderID = calenderID;
 		this.description = description;
 	}
@@ -27,5 +27,6 @@ public class Calender {
 		this.description = description;
 		//TODO DBcomminicasjon
 	}
+
 
 }

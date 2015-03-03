@@ -95,8 +95,8 @@
                               <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="purposeTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="addParticipantsTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                              <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="OK" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                              <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
+                              <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Save" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="7" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Formål" GridPane.rowIndex="2" />
                               <ChoiceBox fx:id="participantsChoiceBox" prefHeight="24.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                            </children>
