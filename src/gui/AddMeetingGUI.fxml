@@ -8,7 +8,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AddMeetingController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -92,11 +92,11 @@
                               <TextField fx:id="subjectField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <TextField fx:id="fromtimeField" prefHeight="25.0" prefWidth="117.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                              <TextField fx:id="fromtimeField" onFocusChange="#fromtimeFieldChange" prefHeight="25.0" prefWidth="117.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <TextField fx:id="totimeField" prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                              <TextField fx:id="totimeField" onFocusChange="#totimeFieldChange" prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagerer" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Button fx:id="findroomButton" mnemonicParsing="false" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <Button fx:id="findroomButton" onAction="#findroomButtonClick" mnemonicParsing="false" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                               <Label fx:id="chosenroomLabel" text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
                               <DatePicker fx:id="fromDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                               <DatePicker fx:id="toDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="5" />
