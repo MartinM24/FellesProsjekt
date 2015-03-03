@@ -73,6 +73,17 @@ public class UserDB extends DatabaseConnection{
 			return false;	
 		} 	
 	}
+	
+	public static void rmUser(String username){
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("delete from users where username = '"+ username + "'");
+			myRs.first();
+			System.out.println("user is deleted");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 
