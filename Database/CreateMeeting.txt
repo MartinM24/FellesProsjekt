@@ -1,15 +1,9 @@
 create table meeting(
-
-meetingID char(10),
-
-mDescription varchar(140),
-
-timeStartdatetime,
-
-timeEnd			datetime,
-
-
-
-sted			varchar(30),
+	
+meetingID		INT AUTO_INCREMENT,
+mDescription 	VARCHAR(140),
+timeStart		DATETIME,
+timeEnd			DATETIME,
+sted			VARCHAR(30),
 
 PRIMARY KEY 		(meetingID));
