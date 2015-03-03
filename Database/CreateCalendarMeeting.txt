@@ -3,7 +3,7 @@ calendarID		int,
 meetingID		int,
 
 FOREIGN KEY (calendarID) REFERENCES calendar(calendarID) 	ON DELETE CASCADE
-															ON UPDATE CASCADE;
-FOREIGN KEY (meetingID) REFERENCES meeting(meetingID) 		ON DELETE CASCADE
 															ON UPDATE CASCADE,
-)
+FOREIGN KEY (meetingID) REFERENCES meeting(meetingID) 		ON DELETE CASCADE
+															ON UPDATE CASCADE
+);
