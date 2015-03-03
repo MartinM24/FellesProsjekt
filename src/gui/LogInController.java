@@ -42,7 +42,7 @@ public class LogInController implements ControlledScreen{
 			if(user != null){
 				if (user.checkPassword(passwordField.getText())){
 					myController.setScreen(CalendarClient.CALENDAR_SCREEN);
-					System.out.println("You have loged in");
+					System.out.println("You have logged in");
 				} else {
 					System.out.println("Password is wrong");
 					wrongLoginFeedback();
