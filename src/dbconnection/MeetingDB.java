@@ -12,6 +12,9 @@ import model.User;
 
 public class MeetingDB extends DatabaseConnection{
 	
+	private MeetingDB() {
+		
+	}
 	
 	public static List<Meeting> getAllMeetings(User user){
 		List<Meeting> meetingList = new ArrayList<Meeting>();
@@ -28,5 +31,17 @@ public class MeetingDB extends DatabaseConnection{
 		return meetingList;
 	}
 	
+	public static boolean deleteMeeting(int meetingID) {
+		try {
+			Statement myStatement = con.createStatement(); 
+			ResultSet myRs = myStatement.executeQuery("DELETE FROM meeting WHERE meetingID = '" + meetingID + "'");
+			if(myRs.next()) {
+				System.out.println("Det kom et resultat, men hva?");
+			}	
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return true;
+	}	
 	
 }
