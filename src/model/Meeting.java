@@ -98,6 +98,18 @@ public class Meeting {
 	}
 	
 	/**
+	 * Methode som sjekker om bruker har tilgang
+	 * @param user
+	 * @return om bruker har tilgang
+	 */
+	public boolean hasAccess(User user){
+		if (user == owner){
+			return true;
+		}
+		return participants.contains(user);
+	}
+	
+	/**
 	 * Method to get place that will be shown in the GUI, either the room or the place.
 	 * @return
 	 */
