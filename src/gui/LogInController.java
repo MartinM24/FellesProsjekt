@@ -24,7 +24,6 @@ public class LogInController implements ControlledScreen{
 	@FXML PasswordField passwordField;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
-	@FXML Hyperlink fpHyperlink;
 	@FXML Button newUserButton; 
 	
 	@FXML
