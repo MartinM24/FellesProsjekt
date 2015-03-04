@@ -5,8 +5,6 @@ public class LoginUser extends User {
 
 	private byte[] dbSalt; 
 	private byte[] dbHash;
-	private Calendar personalCalendar;
-
 	public LoginUser(String username, String fristname, String lastname, String email, byte[] dbsalt, byte[] dbhash) {
 		super(username, fristname, lastname, email);
 		this.dbSalt = dbsalt; 
@@ -48,13 +46,5 @@ public class LoginUser extends User {
 
 	public byte[] getDBHash() {
 		return dbHash;
-	}
-	
-	public void addCalendar(Calendar calendar){
-		this.personalCalendar = calendar;
-	}
-	
-	public Calendar getCalendar(){
-		return this.personalCalendar;
 	}
 }
