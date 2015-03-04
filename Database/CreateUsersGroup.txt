@@ -1,0 +1,9 @@
+CREATE TABLE participant (
+username		INT,
+groupID			INT,
+
+FOREIGN KEY (username) REFERENCES users(username) 		ON DELETE CASCADE
+														ON UPDATE CASCADE,
+FOREIGN KEY (groupID) REFERENCES group(groupID)	 		ON DELETE CASCADE
+														ON UPDATE CASCADE
+);

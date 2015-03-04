@@ -1,0 +1,8 @@
+create table group(
+	
+groupID			INT AUTO_INCREMENT,
+groupName	 	VARCHAR(30),
+parentID		INT REFERENCES group(groupID) 		ON DELETE CASCADE
+													ON UPDATE CASCADE,
+
+PRIMARY KEY 		(roomID));

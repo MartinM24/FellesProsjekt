@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Calendar;
+import model.LoginUser;
 import model.Meeting;
 import model.User;
 
@@ -32,6 +34,18 @@ public class MeetingDB extends DatabaseConnection{
 		return meetingList;
 	}
 	
+	public static Meeting getMeeting(int meetingID){
+		try{
+			Statement sqlSelect = con.createStatement();
+			
+			
+			ResultSet myRs = myStatement.executeQuery("select * from meeting WHERE meeting.meetingID = '"+meetingID+"'");
+			if myRs.get
+				Meeting = new Meeting(myRs.getString(1), myRs.getString(2), myRs.getString(3),));
+			};
+		}
+	}
+	
 	public static boolean removeMeeting(int meetingID) {
 		try {
 			Statement myStatement = con.createStatement(); 
@@ -45,7 +59,7 @@ public class MeetingDB extends DatabaseConnection{
 		return false;
 	}	
 	
-	public static boolean addMeeting(Meeting meeting, User user){
+	public static void addMeeting(Meeting meeting, User user){
 		//TODO skal ikke kunne legge inn i meeting uten at det blir lagt inn i participant
 		try {
 			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted)"  + "values(?, ?, ?, ?)";
@@ -64,23 +78,12 @@ public class MeetingDB extends DatabaseConnection{
 			String participantQuery = "insert into participant (meetingID,username)" + "values(?, ?)";
 			PreparedStatement preparedParticipantStmt = con.prepareStatement(participantQuery);
 			tableKeys.next();
-			preparedParticipantStmt.setInt(1, tableKeys.getInt(1));
+			meeting.setMeetingID(tableKeys.getInt(1));
+			preparedParticipantStmt.setInt(1, meeting.getMeetingID());
 			preparedParticipantStmt.setString(2, user.getUsername());
 			int res2 = preparedParticipantStmt.executeUpdate();
-			if(res2 > 0){
-				System.out.println("Inserting Participant worked");
-				return true;
-			}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return false; 
+			
+			
 	}
 	
-	public static void main(String[] args) {
-		DatabaseConnection.startCon();
-		User user = UserDB.getUser("kari");
-		Meeting meeting = new Meeting(user, "somewhere under the rainbow", LocalDateTime.of(1993,2,7,14,45), LocalDateTime.of(1993,2,7,14,55), "desc", new ArrayList<User>());
-		MeetingDB.addMeeting(meeting, user);
-	}
 }
