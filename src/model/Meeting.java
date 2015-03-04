@@ -1,11 +1,9 @@
 package model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -122,6 +120,9 @@ public class Meeting {
 		}
 	}
 	
+	public void setMeetingID(int id){
+		this.meetingID = id;
+	}
 	
 	public String getPlace() {
 		return place;

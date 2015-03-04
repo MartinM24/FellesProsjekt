@@ -1,6 +1,5 @@
 package model;
 
-import dbconnection.CalendarDB;
 
 public class Calendar {
 	

@@ -13,6 +13,12 @@ import model.User;
 
 public class CalendarDB extends DatabaseConnection {
 	
+	
+	/**
+	 * returns calendar from database with the given calendarID
+	 * @param calendarID
+	 * @return
+	 */
 	public static Calendar getCalendar(int calendarID){
 		Calendar calendar = null;		
 		try{
@@ -28,6 +34,11 @@ public class CalendarDB extends DatabaseConnection {
 		}
 	}
 	
+	/**
+	 * Removes from the database, the calendar with the given calendarID 
+	 * @param calendarID
+	 * @return
+	 */
 	public static boolean removeCalender(int calendarID){
 		try{
 			Statement myStatement = con.createStatement();
@@ -41,7 +52,12 @@ public class CalendarDB extends DatabaseConnection {
 		}
 		return false;
 	}
-		
+	
+	
+	/**
+	 * Add a default calendar in the database and returns it. Connection to user is done in UserDB
+	 * @return the created calendar
+	 */
 	public static Calendar addCalendar(){
 		Calendar calendar = new Calendar("My Calendar");
 		try {
@@ -65,22 +81,41 @@ public class CalendarDB extends DatabaseConnection {
 		return calendar;
 	}
 	
+	
+	/**
+	 * Adds a connection between the given calendar and the given meeting in the database
+	 * <b> Both must be added in the database before using this method </b>
+	 * @param calendar
+	 * @param meeting
+	 */
 	public static void addMeeting(Calendar calendar, Meeting meeting){
 		try {
-			String query = "insert into calendarmeeting (calendarID, meetingID)"  + "values(?, ?)";
-			PreparedStatement preparedStmt = con.prepareStatement(query);
-			preparedStmt.setInt (1, calendar.getCalenderID());
-			preparedStmt.setInt (2, meeting.getMeetingID());
-			preparedStmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			String addMeetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted)"  + "values(?, ?, ?, ?)";
+			PreparedStatement addMeetingStmt = con.prepareStatement(addMeetingQuery, 
+				    Statement.RETURN_GENERATED_KEYS);
+			addMeetingStmt.setString (1, meeting.getDescription());
+			addMeetingStmt.setTimestamp(2, meeting.getStartDB());
+			addMeetingStmt.setTimestamp(3, meeting.getEndDB());
+			addMeetingStmt.setString (4, meeting.getPlace());
+			addMeetingStmt.executeUpdate();
+			ResultSet tableKeys = addMeetingStmt.getGeneratedKeys();
+			tableKeys.next();
+			meeting.setMeetingID(tableKeys.getInt(1));
+			
+			String addCalendarMeetingQuery = "insert into calendarmeeting (calendarID, meetingID)"  + "values(?, ?)";
+			PreparedStatement addCalendarMeetingStmt = con.prepareStatement(addCalendarMeetingQuery);
+			addCalendarMeetingStmt.setInt (1, calendar.getCalenderID());
+			addCalendarMeetingStmt.setInt (2, meeting.getMeetingID());
+			addCalendarMeetingStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 		
 	public static void main(String[] args) {
 		DatabaseConnection.startCon();
 		Calendar calendar = getCalendar(3);
-		Meeting meeting = new Meeting (UserDB.getUser("will"), "A place underneath the sun", LocalDateTime.now(), LocalDateTime.now(), "Something something", new ArrayList<User>() );
+		Meeting meeting = new Meeting (UserDB.getUser("will"), "A place underneath the moon", LocalDateTime.now(), LocalDateTime.now(), "Profit", new ArrayList<User>() );
 		addMeeting(calendar, meeting);
 	}
 }
