@@ -11,7 +11,6 @@ public class LoginUser extends User {
 		super(username, fristname, lastname, email);
 		this.dbSalt = dbsalt; 
 		this.dbHash = dbhash; 
-		this.personalCalendar = new Calendar("My Calendar",this);
 	}
 	
 	
@@ -51,5 +50,11 @@ public class LoginUser extends User {
 		return dbHash;
 	}
 	
+	public void addCalendar(Calendar calendar){
+		this.personalCalendar = calendar;
+	}
 	
+	public Calendar getCalendar(){
+		return this.personalCalendar;
+	}
 }
