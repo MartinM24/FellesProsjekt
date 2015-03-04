@@ -1,6 +1,15 @@
 CREATE TABLE participant (
-meetingID		int,
-username		varchar(30),
+username			VARCHAR(30),
+meetingID			INT,
+attendence			INT,
+viability 			INT,
+alarmtid			DATETIME,
+answerd				BOOLEAN,
+participantChange	BOOLEAN,
+timeChange			BOOLEAN,
+placeChange			BOOLEAN,
+descriptionChange	BOOLEAN,	
+
 
 FOREIGN KEY (meetingID) REFERENCES meeting(meetingID) 	ON DELETE CASCADE
 														ON UPDATE CASCADE,
