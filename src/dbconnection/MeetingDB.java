@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.LoginUser;
 import model.Meeting;
 import model.User;
 
@@ -53,8 +52,8 @@ public class MeetingDB extends DatabaseConnection{
 			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery, 
 				    Statement.RETURN_GENERATED_KEYS);
 			preparedMeetingStmt.setString (1, meeting.getDescription());
-			preparedMeetingStmt.setTimestamp(2, meeting.getStartDB());
-			preparedMeetingStmt.setTimestamp (3, meeting.getEndDB());
+			preparedMeetingStmt.setString(2, meeting.getStartDB());
+			preparedMeetingStmt.setString (3, meeting.getEndDB());
 			preparedMeetingStmt.setString(4, meeting.getPlace());
 			int res = preparedMeetingStmt.executeUpdate();
 			if (res > 0) {
@@ -80,8 +79,8 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void main(String[] args) {
 		DatabaseConnection.startCon();
-		User user = UserDB.getUser("mart");
-		Meeting meeting = new Meeting(user, "a place", LocalDateTime.now(), LocalDateTime.now(), "desc", new ArrayList<User>());
+		User user = UserDB.getUser("kari");
+		Meeting meeting = new Meeting(user, "somewhere under the rainbow", LocalDateTime.of(1993,2,7,14,45), LocalDateTime.of(1993,2,7,14,55), "desc", new ArrayList<User>());
 		MeetingDB.addMeeting(meeting, user);
 	}
 }
