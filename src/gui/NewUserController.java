@@ -1,80 +1,270 @@
 package gui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import model.LoginUser;
 import model.Password;
 import calendarClient.CalendarClient;
 import dbconnection.UserDB;
 
-public class NewUserController implements ControlledScreen {
+public class NewUserController implements ControlledScreen, Initializable {
+	private static final String NOT_VALID_FIELD_STYLE = "-fx-border-color: red";
+	private static final String MAIL_REGEX = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
+	private static final String USERNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
+	//TODO add de rare norske bokstavene i regex
+	private static final String NAME_REGEX = "^[\\p{L} .'-]+$";
 	ScreensController myController; 
-	
+	//Fields
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;
 	@FXML TextField	UsernameTextField;
+	@FXML PasswordField PasswordField1;
+	@FXML PasswordField PasswordField2;
 	@FXML TextField	MailTextField;
-	@FXML PasswordField PasswordPasswordField1;
-	@FXML PasswordField PasswordPasswordField2;
+	
+	//Status- or feedback labels 
+	@FXML Label firstnameStatus;
+	@FXML Label lastnameStatus;
+	@FXML Label usernameStatus;
+	@FXML Label password1Status;
+	@FXML Label password2Status;
+	@FXML Label mailStatus;
+	
+	//Buttons
 	@FXML Button OKButton;
 	@FXML Button CancelButton;
+	
+	// Should not have any fatal errors, but it lacks validation
 
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+	}
 	
 	public void FirstnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//tom 
-	}
-	public void LastnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//tom 
-	}
-	public void MailFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		//tom 
-	}
-	public void OKButtonClick(ActionEvent e) throws InstantiationException, IllegalAccessException{
-		
-		if (FirstnameTextField.getText().isEmpty() ||
-				LastnameTextField.getText().isEmpty() || 
-				PasswordPasswordField1.getText().isEmpty() || 
-				MailTextField.getText().isEmpty() ||
-				UsernameTextField.getText().isEmpty()){
-			System.out.println("one or more empty fields");
-		} else { 
-			Password pass = new Password(PasswordPasswordField1.getText());
-			UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
+		FirstnameTextField.setText(FirstnameTextField.getText().trim());
+		if (!newValue) {
+			//check if firstname is valid set graphic accordingly
+			isValidName(FirstnameTextField, firstnameStatus);
+		} else {
+			// remove graphic 
+			firstnameStatus.setVisible(false);
+			FirstnameTextField.setStyle("");	
 		}
 	}
+	
+	public void LastnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
+		LastnameTextField.setText(LastnameTextField.getText().trim());
+		if (!newValue) {
+			//check if firstname is valid set graphic accordingly
+			isValidName(LastnameTextField, lastnameStatus);
+		} else {
+			// remove graphic 
+			lastnameStatus.setVisible(false);
+			LastnameTextField.setStyle("");	
+		}
+	}
+	
+	/**
+	 * Checks if nameFields name isValid and sets graphic accordingly 
+	 * @param nameField with the text that is going to be validated
+	 * @param nameStatus the status label that is going to inform user what is wrong
+	 * @return true if name isValid
+	 */
+	private boolean isValidName(TextField nameField, Label nameStatus) {
+		//Checks first if name is long enough
+		if (nameField.getText().length() < 2) {
+			nameField.setStyle(NOT_VALID_FIELD_STYLE);
+			nameStatus.setText("Navnet må være minst 2 tegn langt");
+			nameStatus.setTextFill(Color.RED);
+			nameStatus.setVisible(true);
+			return false;
+		}
+		// Set first letter to be upper case
+		String value = nameField.getText().trim();
+		char firstletter = Character.toUpperCase(value.charAt(0));
+		nameField.setText(firstletter + value.substring(1));
+		// Check nameFild against regex
+		if(!nameField.getText().matches(NAME_REGEX)){
+			nameField.setStyle(NOT_VALID_FIELD_STYLE);
+			nameStatus.setText("Du kan kun ha bokstaver og bindestrek i navnet");
+			nameStatus.setTextFill(Color.RED);
+			nameStatus.setVisible(true);
+			return false; 
+		}
+		return true;
+	}
+	
+	public void MailFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
+		MailTextField.setText(MailTextField.getText().trim());
+		//TODO Add mail validation 
+		if(!newValue) {
+			isValidEmail();
+		} else {
+			MailTextField.setStyle("");
+			mailStatus.setVisible(false);
+		}
+	}
+	
+	
+	
+	private boolean isValidEmail() {
+		// TODO Auto-generated method stub
+		if (!MailTextField.getText().matches(MAIL_REGEX)) {
+			mailStatus.setText("Email addressen er ikke gyldig");
+			mailStatus.setTextFill(Color.RED);
+			mailStatus.setVisible(true);
+			MailTextField.setStyle(NOT_VALID_FIELD_STYLE);
+			return false;
+		}
+		return true; 	
+	}
+
+	public void OKButtonClick(ActionEvent e) throws InstantiationException, IllegalAccessException{
+		// checks if there is some text in all fields
+		// final validation of all fields before adding new user to the database
+		if(isValidForm()){ 
+			Password pass = new Password(PasswordField1.getText());
+			UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
+			myController.setScreen(CalendarClient.LOG_IN_SCREEN);
+		}
+	}
+	
+	public boolean isValidForm() {
+		boolean isValid = isValidName(FirstnameTextField, firstnameStatus)
+				& isValidName(LastnameTextField, lastnameStatus)
+				& isValidUsername() 
+				& isValidPassword() 
+				& isEqualPassword() 
+				& isValidEmail();
+		return isValid; 
+	}
+	
 	public void CancelButtonClick(ActionEvent e){
-		//Move user back to userLogin. 
+		//Move user back to userLogin screen 
 		myController.setScreen(CalendarClient.LOG_IN_SCREEN);
 	}
 	
 	public void Password1FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		validatePassword();
+		//Trim password
+		PasswordField1.setText(PasswordField1.getText().trim());
+		//Validates only when focus is moved away from field 
+		if(!newValue) {
+			isValidPassword();
+		} else {
+			// Hide password too short feedback
+			password1Status.setText("Passordet må være minst 6 tegn langt");
+			password1Status.setVisible(false);
+			PasswordField2.setStyle("");
+		}
+	}
+	/**
+	 * Checks if password in passwordField1 isValid. Sets graphic accordingly
+	 * @return true if password isValid
+	 */
+	private boolean isValidPassword() {
+		if(PasswordField1.getText().length() < 6) {
+			//Show password too short feedback
+			password1Status.setText("Passordet må være minst 6 tegn langt");
+			password1Status.setTextFill(Color.RED);
+			password1Status.setVisible(true);
+			PasswordField1.setStyle(NOT_VALID_FIELD_STYLE);
+			return false;
+		}
+		return true;
 	}
 
+	public void password1TextChange(ObservableValue<String> o,  String oldValue, String newValue){
+		//When password1TextChange remove text from password1 and hide notEqualFeedback
+		PasswordField2.setText("");
+		showNotEqualFeedback(false);
+	}
+
+
 	public void Password2FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		validatePassword();
+		//Trim password
+		PasswordField2.setText(PasswordField2.getText().trim());
+		//Validates only when focus is moved away from field 
+		if(!newValue) {
+			isEqualPassword(); 
+		} 	else {
+			// If user shifts focus to passwordfield2 remove feedback 
+			showNotEqualFeedback(false);
+		}
+	}
+	
+	/**
+	 * Validate that passwords are equal sets graphic accordingly 
+	 * @return true if passwords are equal
+	 */
+	private boolean isEqualPassword() {
+		//validates equality only if there is text in both fields
+		if (PasswordField1.getText().length() > 0) {
+			boolean isValid = PasswordField1.getText().equals(PasswordField2.getText());			
+			showNotEqualFeedback(!isValid);	
+			return isValid;
+		}
+		showNotEqualFeedback(true); 
+		return false;
+	}
+	
+	/**
+	 * Changes visibility for passwordEqual feedback
+	 * @param visable true: positive feedback, false: negative feedback
+	 */
+	private void showNotEqualFeedback(boolean visable) {
+		String color = visable ? NOT_VALID_FIELD_STYLE : "";
+		PasswordField2.setStyle(color);
+		password2Status.setText("Passordene er ikke like");
+		password2Status.setVisible(visable);
 	}
 	
 	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
-		if (UserDB.checkUser(UsernameTextField.getText())){
-			System.out.println("Brukernavnet finnes");
-			//TODO Grafisk. 
+		// Trim username
+		UsernameTextField.setText(UsernameTextField.getText().trim());
+		
+		//Validates only when focus is moved away from field 
+		if (!newValue) {
+			//check if username is vailid
+			isValidUsername();
 		} else {
-			System.out.println("Brukernavnet finnes ikke");
-		}
-	} 
-	
-	private void validatePassword() {
-		if(!(PasswordPasswordField1.getText().equals(PasswordPasswordField2.getText()))){
-			//TODO Grafical feedback
-			System.out.println("Passwords don't match");
+			//remove graphic 
+			usernameStatus.setVisible(false);
+			UsernameTextField.setStyle("");
 		}
 	}
-
+	
+	/**
+	 * Checks if username is valid, sets Graphic accordingly 
+	 * @return true if username is valid
+	 */
+	private boolean isValidUsername() {
+		if (!UsernameTextField.getText().matches(USERNAME_REGEX)) {
+			usernameStatus.setText("Brukernavn må ha 3-16 tegn og kan bare inneholde bokstaver og tall");
+			usernameStatus.setTextFill(Color.RED);
+			usernameStatus.setVisible(true);
+			UsernameTextField.setStyle(NOT_VALID_FIELD_STYLE);
+			return false; 
+		}
+		if (UserDB.checkUser(UsernameTextField.getText())){
+			usernameStatus.setText("Brukernavnet eksisterer allerede");
+			usernameStatus.setTextFill(Color.RED);
+			usernameStatus.setVisible(true);
+			UsernameTextField.setStyle(NOT_VALID_FIELD_STYLE);
+			return false; 
+		}
+		return true;
+	}
+	
 	@Override
 	public void setScreenParent(ScreensController screenPage) {
 		this.myController = screenPage;

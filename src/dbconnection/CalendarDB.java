@@ -94,8 +94,8 @@ public class CalendarDB extends DatabaseConnection {
 			PreparedStatement addMeetingStmt = con.prepareStatement(addMeetingQuery, 
 				    Statement.RETURN_GENERATED_KEYS);
 			addMeetingStmt.setString (1, meeting.getDescription());
-			addMeetingStmt.setTimestamp(2, meeting.getStartDB());
-			addMeetingStmt.setTimestamp(3, meeting.getEndDB());
+			addMeetingStmt.setString(2, meeting.getStartDB());
+			addMeetingStmt.setString(3, meeting.getEndDB());
 			addMeetingStmt.setString (4, meeting.getPlace());
 			addMeetingStmt.executeUpdate();
 			ResultSet tableKeys = addMeetingStmt.getGeneratedKeys();
