@@ -49,6 +49,7 @@ public class DatabaseSetup extends DatabaseConnection{
 		File[] files = finder(filepath);
 		List<String> queries = new ArrayList<String>();
 		for (int i = 0 ; i  < files.length ; i++){
+			System.out.println(files[i].getAbsolutePath());
 			queries.add(readFile(files[i].getAbsolutePath(),Charset.defaultCharset()));
 		}
 		

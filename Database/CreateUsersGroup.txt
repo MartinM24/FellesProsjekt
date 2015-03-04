@@ -1,0 +1,9 @@
+CREATE TABLE usergroups (
+username		VARCHAR(30),
+groupID			INT,
+
+FOREIGN KEY (username) REFERENCES users(username) 		ON DELETE CASCADE
+														ON UPDATE CASCADE,
+FOREIGN KEY (groupID) REFERENCES groups(groupID)	 		ON DELETE CASCADE
+														ON UPDATE CASCADE
+);

@@ -1,0 +1,9 @@
+CREATE TABLE groups(
+	
+groupID			INT AUTO_INCREMENT,
+groupName	 	VARCHAR(30),
+parentID		INT,
+FOREIGN KEY (parentID)		REFERENCES groups(groupID) 		ON DELETE CASCADE
+															ON UPDATE CASCADE,
+
+PRIMARY KEY 		(groupID));
