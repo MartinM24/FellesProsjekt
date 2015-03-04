@@ -14,6 +14,9 @@ public class CalendarClient extends Application{
 	public static final String NEW_USER_SCREEN_FXML = "/gui/NewUserGUI.fxml";
 	public static final String CALENDAR_SCREEN = "Calendar";
 	public static final String CALENDAR_SCREEN_FXML = "/gui/CalendarGUI.fxml";
+	public static final String ADD_MEETING_SCREEN = "AddMeeting";
+	public static final String ADD_MEETING_SCREEN_FXML = "/gui/AddMeetingGUI.fxml";
+	
 	
 	ScreensController mainController; 
 	
@@ -24,6 +27,7 @@ public class CalendarClient extends Application{
 		mainController.loadScreen(LOG_IN_SCREEN, LOG_IN_SCREEN_FXML);
 		mainController.loadScreen(NEW_USER_SCREEN, NEW_USER_SCREEN_FXML);
 		mainController.loadScreen(CALENDAR_SCREEN, CALENDAR_SCREEN_FXML);
+		mainController.loadScreen(ADD_MEETING_SCREEN, ADD_MEETING_SCREEN_FXML);
 		
 		// Set first screen
 		mainController.setScreen(LOG_IN_SCREEN);

@@ -1,15 +1,22 @@
 package gui;
 
+import sun.launcher.resources.launcher;
+import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.stage.Stage;
 
 public class AddMeetingController implements ControlledScreen {
 	ScreensController myController;
+	
 	public static final String LOGIN_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
 	@FXML TextField fromtimeField; 
@@ -23,34 +30,37 @@ public class AddMeetingController implements ControlledScreen {
 	public void initialize() {	
 		setTooltips();
 	}
+/*	
+ * This is a mainmethod. I use it to test. 
+ * 
+	public static void main(String[] args) {
+		launch(args);
+	}
 	
+    @Override
+    public void start(Stage stage) throws Exception {
+       Parent root = FXMLLoader.load(getClass().getResource("AddMeetingGUI.fxml")); 
+        Scene scene = new Scene(root, 800, 700);
+        stage.setTitle("FXML Welcome");
+        stage.setScene(scene);
+        stage.show();
+    }
+*/	
 	
 	public void fromtimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
-		if(newValue){
+		if (!(newValue)){
 			validateText(fromtimeField.getText(), LOGIN_REGEX, fromtimeField);
 		}
 	}
 	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
-		if(newValue){
-			if (validateText(totimeField.getText(), LOGIN_REGEX, fromtimeField)){				
-				String[] tid1 = totimeField.getText().split("\\:");
-				String[] tid2 = fromtimeField.getText().split("\\:");
-				if(Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
-						(Integer.parseInt(tid1[0]) == Integer.parseInt(tid2[0]) &&
-						Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
-					totimeField.setStyle("-fx-background-color: red");
-					fromtimeField.setStyle("-fx-background-color: red");							
-				} else {
-					totimeField.setStyle("");
-					fromtimeField.setStyle("");
-				}
+		if (!(newValue)){
+			validateText(totimeField.getText(), LOGIN_REGEX, totimeField);			
 			}
-		}
 	}
 	
 	
-	public void findrooomButtonClick(ActionEvent e){
+	public void findroomButtonClick(ActionEvent e){
 		//TODO Meetingroom list. 
 	}
 	
@@ -94,5 +104,7 @@ public class AddMeetingController implements ControlledScreen {
 	public void setScreenParent(ScreensController screenPage) {
 		this.myController = screenPage;
 	}
+
+
 
 }

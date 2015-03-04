@@ -61,6 +61,12 @@ public class UserDB extends DatabaseConnection{
 			return null;
 		}
 	}
+	/**
+	 * Checks if a username exsist in the db. 
+	 * @param username
+	 * @return true if username exsist in db. Else false. 
+	 */
+	
 	
 	public static boolean checkUser(String username){
 		try{
