@@ -1,4 +1,4 @@
-create table meeting(
+CREATE TABLE meeting(
 	
 meetingID		INT AUTO_INCREMENT,
 mDescription 	VARCHAR(140),
@@ -6,8 +6,10 @@ timeStart		DATETIME,
 timeEnd			DATETIME,
 sted			VARCHAR(30),
 nOfParticipant	INT,
-roomID			REFERENCES room(roomID) 	ON DELETE CASCADE
+roomID			INT,
+username		VARCHAR(30),
+FOREIGN KEY (roomID)		REFERENCES room(roomID) 	ON DELETE CASCADE
 											ON UPDATE CASCADE,	
-username		REFERENCES users(username) 	ON DELETE CASCADE
+FOREIGN KEY (username)		REFERENCES users(username) 	ON DELETE CASCADE
 											ON UPDATE CASCADE,	
 PRIMARY KEY 		(meetingID));

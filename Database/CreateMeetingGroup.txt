@@ -4,6 +4,6 @@ groupID			INT,
 
 FOREIGN KEY (meetingID) REFERENCES meeting(meetingID) 	ON DELETE CASCADE
 														ON UPDATE CASCADE,
-FOREIGN KEY (groupID) REFERENCES group(groupID) 		ON DELETE CASCADE
+FOREIGN KEY (groupID) REFERENCES groups(groupID) 		ON DELETE CASCADE
 														ON UPDATE CASCADE
 );
