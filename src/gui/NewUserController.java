@@ -21,7 +21,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 	private static final String NOT_VALID_FIELD_STYLE = "-fx-border-color: red";
 	private static final String MAIL_REGEX = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 	private static final String USERNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
-	//TODO add de rare norske bokstavene i regex
 	private static final String NAME_REGEX = "^[\\p{L} .'-]+$";
 	ScreensController myController; 
 	//Fields
@@ -48,6 +47,12 @@ public class NewUserController implements ControlledScreen, Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		usernameStatus.wrapTextProperty().set(true);
+		firstnameStatus.wrapTextProperty().set(true);
+		lastnameStatus.wrapTextProperty().set(true);
+		password1Status.wrapTextProperty().set(true);
+		password2Status.wrapTextProperty().set(true);
+		mailStatus.wrapTextProperty().set(true);
 	}
 	
 	public void FirstnameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
@@ -106,7 +111,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 	
 	public void MailFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		MailTextField.setText(MailTextField.getText().trim());
-		//TODO Add mail validation 
 		if(!newValue) {
 			isValidEmail();
 		} else {
@@ -118,7 +122,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 	
 	
 	private boolean isValidEmail() {
-		// TODO Auto-generated method stub
 		if (!MailTextField.getText().matches(MAIL_REGEX)) {
 			mailStatus.setText("Email addressen er ikke gyldig");
 			mailStatus.setTextFill(Color.RED);
@@ -164,7 +167,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 			// Hide password too short feedback
 			password1Status.setText("Passordet må være minst 6 tegn langt");
 			password1Status.setVisible(false);
-			PasswordField2.setStyle("");
+			PasswordField1.setStyle("");
 		}
 	}
 	/**
@@ -208,13 +211,9 @@ public class NewUserController implements ControlledScreen, Initializable {
 	 */
 	private boolean isEqualPassword() {
 		//validates equality only if there is text in both fields
-		if (PasswordField1.getText().length() > 0) {
-			boolean isValid = PasswordField1.getText().equals(PasswordField2.getText());			
-			showNotEqualFeedback(!isValid);	
-			return isValid;
-		}
-		showNotEqualFeedback(true); 
-		return false;
+		boolean isValid = PasswordField1.getText().equals(PasswordField2.getText());			
+		showNotEqualFeedback(!isValid);	
+		return isValid;
 	}
 	
 	/**
@@ -225,6 +224,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 		String color = visable ? NOT_VALID_FIELD_STYLE : "";
 		PasswordField2.setStyle(color);
 		password2Status.setText("Passordene er ikke like");
+		password2Status.setTextFill(Color.RED);
 		password2Status.setVisible(visable);
 	}
 	

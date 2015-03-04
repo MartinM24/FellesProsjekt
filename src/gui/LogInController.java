@@ -1,19 +1,26 @@
 package gui;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.paint.Color;
 import model.LoginUser;
 import calendarClient.CalendarClient;
 import dbconnection.UserDB;
 
-public class LogInController implements ControlledScreen{
-    // Saves the parent controller for this controller
+public class LogInController implements ControlledScreen, Initializable{
+    private static final String WRONG_LOGIN_STYLE = "-fx-border-color: red";
+
+	// Saves the parent controller for this controller
 	ScreensController myController; 
 	
 	private static final String LOGIN_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
@@ -21,43 +28,46 @@ public class LogInController implements ControlledScreen{
 	// Fields from FXMLen
 	@FXML TextField	usernameField;
 	@FXML PasswordField passwordField;
+	@FXML Label loginFeedback;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Button newUserButton; 
 	
 	@FXML
 	public void initialize() {	
-		setTooltips();
 	}
 	
 	@FXML
 	private void okButtonClick(ActionEvent event) {
-		LoginUser user = null;
-		if(validateText(usernameField.getText(), LOGIN_REGEX , usernameField )) {
-			try{
-				user = UserDB.getLoginUser(usernameField.getText());
-			} catch(Exception e){
-				System.out.println("Can't fetch user with username " + usernameField.getText() + " in the database");
-			}
-			if(user != null){
+		String username = usernameField.getText();
+		// Check if username is a valid one 
+		if(username.matches(LOGIN_REGEX)){
+			//Check if username is registrated
+			if (UserDB.checkUser(username)) {
+				//Fetch user with username form DB
+				LoginUser user = UserDB.getLoginUser(username);
+				//Check if password is correct
 				if (user.checkPassword(passwordField.getText())){
+					//Correct password send to calendar screen
 					myController.setScreen(CalendarClient.CALENDAR_SCREEN);
-					System.out.println("You have logged in");
 				} else {
-					System.out.println("Password is wrong");
+					//Wrong password
 					wrongLoginFeedback();
-				}				
+				}
 			} else {
+				//Wrong username
 				wrongLoginFeedback();
 			}
+		} else {
+			//Wrong username format
+			wrongLoginFeedback();
 		}
 	}
 	
 	private void wrongLoginFeedback() {
-		passwordField.tooltipProperty().setValue(new Tooltip("Passordet eller bruker navnet er feil"));
-		showTooltip(passwordField);
-		passwordField.setStyle("-fx-background-color: red");
-		usernameField.setStyle("-fx-background-color: red");
+		passwordField.setStyle(WRONG_LOGIN_STYLE);
+		usernameField.setStyle(WRONG_LOGIN_STYLE);
+		loginFeedback.setVisible(true);
 	}
 
 	@FXML public void cancelButtonClick(ActionEvent event) {
@@ -75,16 +85,9 @@ public class LogInController implements ControlledScreen{
 	}
 	
 	private void resetGraphic(){
-		hideAllTooltips();
-		setTooltips();
 		passwordField.setStyle("");
 		usernameField.setStyle("");
-		
-	}
-	
-	@FXML
-	private void focusedChange() {
-		hideAllTooltips();
+		loginFeedback.setVisible(false);
 	}
 	
 	@FXML
@@ -92,38 +95,15 @@ public class LogInController implements ControlledScreen{
 		myController.setScreen(CalendarClient.NEW_USER_SCREEN);
 	} 
 	
-	
-	private boolean validateText(String value, String regex, TextField textField) {
-		hideAllTooltips();
-		boolean isValid = value.matches(regex);
-		String color = isValid ? "" : "-fx-background-color: red";
-		textField.setStyle(color);
-		if(!isValid) showTooltip(textField);
-		return isValid;
-	}
-	
-	private void showTooltip(TextField textField) {
-		textField.getTooltip().show(textField, textField.getScene().getWindow().getX()
-				+ textField.getLayoutX() + textField.getWidth() + 60, 
-				textField.getScene().getWindow().getY() 
-				+ textField.getLayoutY() + textField.getHeight());
-		textField.getTooltip().autoHideProperty().setValue(true);
-	}
-	
-	private void setTooltips() {
-		usernameField.tooltipProperty().setValue(new Tooltip("Bokstaver, tall og _- er  tillat. Lengden er mellom 3 og 16 tegn"));
-		passwordField.tooltipProperty().setValue(new Tooltip("Her kan du ikke bruke æ, ø, å"));
-		
-	}
-
-	private void hideAllTooltips() {
-		usernameField.getTooltip().hide(); 
-		passwordField.getTooltip().hide();  
-	}
-
 	@Override
 	public void setScreenParent(ScreensController screenPage) {
 		this.myController = screenPage;
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		loginFeedback.setText("Brukernavn eller passord er feil");
+		loginFeedback.setTextFill(Color.RED);		
 	}
 
 
