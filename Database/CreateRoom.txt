@@ -2,6 +2,6 @@ create table room(
 	
 roomID			INT AUTO_INCREMENT,
 roomName	 	VARCHAR(30),
-capacity		INT
+capacity		INT,
 
 PRIMARY KEY 		(roomID));
