@@ -1,12 +1,15 @@
 package model;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+//TODO add constructors
 public class Meeting {
 
 	private int meetingID;
@@ -182,16 +185,20 @@ public class Meeting {
 	 * Return the timestamp to be saved in the database for the starttime
 	 * @return the timestamp for starttime
 	 */
-	public Timestamp getStartDB(){
-		return new Timestamp(getMillis(timeStart));
+	public String getStartDB(){
+		Date dt = Date.from(timeStart.atZone(ZoneId.systemDefault()).toInstant());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(dt);
 	}
 
 	/**
 	 * Return the timestamp to be saved in the database for the endtime
 	 * @return the timestamp for endtime
 	 */
-	public Timestamp getEndDB(){
-		return new Timestamp(getMillis(timeEnd));
+	public String getEndDB(){
+		Date dt = Date.from(timeEnd.atZone(ZoneId.systemDefault()).toInstant());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		return sdf.format(dt);
 	}
 	
 	private long getMillis(LocalDateTime time){
