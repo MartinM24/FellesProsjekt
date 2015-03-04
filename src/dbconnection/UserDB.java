@@ -1,9 +1,11 @@
 package dbconnection;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
-import model.Calendar;
 import model.LoginUser;
 import model.User;
 
@@ -100,9 +102,7 @@ public class UserDB extends DatabaseConnection{
 	 */
 	public static boolean addUser(LoginUser user) {
 		try {
-		String query = "insert into users (username, firstname, lastname, email, salt, hash, calendarID)"  + "values(?, ?, ?, ?, ?, ?, ?)";
-		Calendar calendar = CalendarDB.addCalendar();
-		user.addCalendar(calendar);
+		String query = "insert into users (username, firstname, lastname, email, salt, hash)"  + "values(?, ?, ?, ?, ?, ?)";
 		PreparedStatement preparedStmt = con.prepareStatement(query);
 		preparedStmt.setString (1, user.getUsername());
 		preparedStmt.setString (2, user.getFirstname());
@@ -110,7 +110,6 @@ public class UserDB extends DatabaseConnection{
 		preparedStmt.setString (4, user.getEmail());
 		preparedStmt.setBytes(5, user.getDBSalt());
 		preparedStmt.setBytes(6, user.getDBHash());
-		preparedStmt.setInt(7, user.getCalendar().getCalenderID());
 		int res = preparedStmt.executeUpdate();
 		if (res > 0) {
 			System.out.println("Everything worked");

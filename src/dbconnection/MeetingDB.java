@@ -4,12 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Calendar;
-import model.LoginUser;
 import model.Meeting;
 import model.User;
 
@@ -34,17 +31,17 @@ public class MeetingDB extends DatabaseConnection{
 		return meetingList;
 	}
 	
-	public static Meeting getMeeting(int meetingID){
-		try{
-			Statement sqlSelect = con.createStatement();
-			
-			
-			ResultSet myRs = myStatement.executeQuery("select * from meeting WHERE meeting.meetingID = '"+meetingID+"'");
-			if myRs.get
-				Meeting = new Meeting(myRs.getString(1), myRs.getString(2), myRs.getString(3),));
-			};
-		}
-	}
+//	public static Meeting getMeeting(int meetingID){
+//		try{
+//			Statement sqlSelect = con.createStatement();
+//			
+//			
+////			ResultSet myRs = myStatement.executeQuery("select * from meeting WHERE meeting.meetingID = '"+meetingID+"'");
+////			if myRs.get
+////				Meeting = new Meeting(myRs.getString(1), myRs.getString(2), myRs.getString(3),));
+////			};
+//		}
+//	}
 	
 	public static boolean removeMeeting(int meetingID) {
 		try {
@@ -81,9 +78,12 @@ public class MeetingDB extends DatabaseConnection{
 			meeting.setMeetingID(tableKeys.getInt(1));
 			preparedParticipantStmt.setInt(1, meeting.getMeetingID());
 			preparedParticipantStmt.setString(2, user.getUsername());
-			int res2 = preparedParticipantStmt.executeUpdate();
+			// int res2 = preparedParticipantStmt.executeUpdate();	
+		} catch (SQLException e) {
 			
+		} finally {
+		}
 			
-	}
-	
+		}
 }
+
