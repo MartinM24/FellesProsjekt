@@ -1,5 +1,16 @@
 package gui;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import model.Meeting;
+import model.User;
+import dbconnection.MeetingDB;
 import sun.launcher.resources.launcher;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
@@ -30,22 +41,6 @@ public class AddMeetingController implements ControlledScreen {
 	public void initialize() {	
 		setTooltips();
 	}
-/*	
- * This is a mainmethod. I use it to test. 
- * 
-	public static void main(String[] args) {
-		launch(args);
-	}
-	
-    @Override
-    public void start(Stage stage) throws Exception {
-       Parent root = FXMLLoader.load(getClass().getResource("AddMeetingGUI.fxml")); 
-        Scene scene = new Scene(root, 800, 700);
-        stage.setTitle("FXML Welcome");
-        stage.setScene(scene);
-        stage.show();
-    }
-*/	
 	
 	public void fromtimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
@@ -55,13 +50,52 @@ public class AddMeetingController implements ControlledScreen {
 	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
-			validateText(totimeField.getText(), LOGIN_REGEX, totimeField);			
+			if(validateText(totimeField.getText(), LOGIN_REGEX, totimeField)){	
+				String[] tid1 = fromtimeField.getText().split("\\:");
+				String[] tid2 = totimeField.getText().split("\\:");
+				if (Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
+						(Integer.parseInt(tid1[0]) == Integer.parseInt(tid2[0]) &&
+						Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
+					totimeField.setStyle("-fx-background-color: red");
+					fromtimeField.setStyle("-fx-background-color: red");
+			} else {
+				fromtimeField.setStyle("");
 			}
+				
+			}
+		}
+
 	}
 	
-	
+	public void toDatePickerChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
+		fromDatePicker.setStyle("");
+		toDatePicker.setStyle("");
+		if (!(newValue)){
+			if(fromDatePicker.getValue().isAfter(toDatePicker.getValue())){
+				fromDatePicker.setStyle("-fx-background-color: red");
+				toDatePicker.setStyle("-fx-background-color: red");				
+			}
+		}
+	}
+
 	public void findroomButtonClick(ActionEvent e){
 		//TODO Meetingroom list. 
+	}
+	
+	public LocalDateTime toLocalDateTime(LocalDate localDate, String thyme){
+		String time = localDate +  " " + thyme;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		LocalDateTime returnValue = LocalDateTime.parse(time, formatter);
+		return returnValue;
+	}
+	
+	public void saveButtonClick(ActionEvent e){
+		//TODO add meeting to database.		
+		new Meeting(new User("Karl", "Karl", "Karl", "Karl"),
+				null, "Somwhere over the rainbow",
+				toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
+				toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
+				subjectField.getText(), -1, new ArrayList<User>());
 	}
 	
 	private void showTooltip(TextField textField) {

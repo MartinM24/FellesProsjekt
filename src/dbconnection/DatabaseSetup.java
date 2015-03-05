@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLTimeoutException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,10 +75,12 @@ public class DatabaseSetup extends DatabaseConnection{
 			try {
 				myStatement = con.createStatement();
 				myStatement.executeUpdate(sql);
-			} catch (SQLException e) {
+			} catch (SQLTimeoutException e) {
+				DatabaseConnection.startCon();
+			}	catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			} 
 		}
 	}
 	

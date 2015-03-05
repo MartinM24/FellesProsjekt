@@ -56,6 +56,7 @@ public class MeetingDB extends DatabaseConnection{
 		return false;
 	}	
 	
+
 	public static boolean addParticipant(Meeting meeting, User user, int attendence){
 		if(attendence>2 || attendence < 0){
 			throw new IllegalArgumentException("Feil i attendence");
@@ -114,9 +115,8 @@ public class MeetingDB extends DatabaseConnection{
 			MeetingDB.addParticipant(meeting, meeting.getOwner(), 2);
 			return meeting.getMeetingID();
 		} catch (SQLException e) {
-			
-		} finally {
-		}
+			e.printStackTrace();
+		} 
 			return -1;
 		}
 }
