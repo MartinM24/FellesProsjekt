@@ -52,14 +52,17 @@ public class LogInController implements ControlledScreen, Initializable{
 					myController.setScreen(CalendarClient.CALENDAR_SCREEN);
 				} else {
 					//Wrong password
+					System.out.println("User exist, but worng password");
 					wrongLoginFeedback();
 				}
 			} else {
 				//Wrong username
+				System.out.println("Username " + username + " does not exict");
 				wrongLoginFeedback();
 			}
 		} else {
 			//Wrong username format
+			System.out.println("Username " + username + " is in the worng format");
 			wrongLoginFeedback();
 		}
 	}

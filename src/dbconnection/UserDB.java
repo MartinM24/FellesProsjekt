@@ -87,12 +87,13 @@ public class UserDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement();
 			int res = myStatement.executeUpdate("delete from users where username = '"+ username + "'");
 			if (res > 0) {
-				System.out.println("user has been deleted");
+				System.out.println("User " + username + "  has been deleted");
 				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("User " + username + " has not been deleted");
 		return false; 
 	}
 
@@ -102,22 +103,23 @@ public class UserDB extends DatabaseConnection{
 	 */
 	public static boolean addUser(LoginUser user) {
 		try {
-		String query = "insert into users (username, firstname, lastname, email, salt, hash)"  + "values(?, ?, ?, ?, ?, ?)";
-		PreparedStatement preparedStmt = con.prepareStatement(query);
-		preparedStmt.setString (1, user.getUsername());
-		preparedStmt.setString (2, user.getFirstname());
-		preparedStmt.setString (3, user.getLastname());
-		preparedStmt.setString (4, user.getEmail());
-		preparedStmt.setBytes(5, user.getDBSalt());
-		preparedStmt.setBytes(6, user.getDBHash());
-		int res = preparedStmt.executeUpdate();
-		if (res > 0) {
-			System.out.println("Everything worked");
-			return true; 
-		}
+			String query = "insert into users (username, firstname, lastname, email, salt, hash)"  + "values(?, ?, ?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			preparedStmt.setString (1, user.getUsername());
+			preparedStmt.setString (2, user.getFirstname());
+			preparedStmt.setString (3, user.getLastname());
+			preparedStmt.setString (4, user.getEmail());
+			preparedStmt.setBytes(5, user.getDBSalt());
+			preparedStmt.setBytes(6, user.getDBHash());
+			int res = preparedStmt.executeUpdate();
+			if (res > 0) {
+				System.out.println("User " + user.getUsername() + " was added to the database");
+				return true; 
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		System.out.println("User " + user.getUsername() + " did not get added to the database");
 		return false; 
 	}
 	
