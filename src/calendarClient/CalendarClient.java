@@ -1,5 +1,6 @@
 package calendarClient;
 
+import model.LoginUser;
 import gui.ScreensController;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -16,7 +17,7 @@ public class CalendarClient extends Application{
 	public static final String CALENDAR_SCREEN_FXML = "/gui/CalendarGUI.fxml";
 	public static final String ADD_MEETING_SCREEN = "AddMeeting";
 	public static final String ADD_MEETING_SCREEN_FXML = "/gui/AddMeetingGUI.fxml";
-	
+	private static LoginUser currentUser;
 	
 	ScreensController mainController; 
 	
@@ -44,6 +45,20 @@ public class CalendarClient extends Application{
 		
 	}
 	
+	
+	
+	public static LoginUser getCurrentUser() {
+		return currentUser;
+	}
+
+
+
+	public static void setCurrentUser(LoginUser currentUser) {
+		CalendarClient.currentUser = currentUser;
+	}
+
+
+
 	public static void main(String[] args) {
 		launch(args);
 	}

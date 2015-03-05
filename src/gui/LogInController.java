@@ -49,6 +49,7 @@ public class LogInController implements ControlledScreen, Initializable{
 				//Check if password is correct
 				if (user.checkPassword(passwordField.getText())){
 					//Correct password send to calendar screen
+					CalendarClient.setCurrentUser(user);
 					myController.setScreen(CalendarClient.CALENDAR_SCREEN);
 				} else {
 					//Wrong password
