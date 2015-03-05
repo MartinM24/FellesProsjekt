@@ -1,6 +1,5 @@
 package model;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -8,6 +7,8 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+
+import dbconnection.MeetingDB;
 
 //TODO add constructors
 public class Meeting {
@@ -19,85 +20,38 @@ public class Meeting {
 	private LocalDateTime timeStart;
 	private LocalDateTime timeEnd;
 	private String description;
+	private int nOfParticipant;
 	private List<User> participants;
 	
 	
 	
 	/**
-	 * Create meeting with room from database
-	 * @param meetingID
+	 * Constructor, used when first creating meeting. 
+	 * If nOfParticipants is not set, set it to -1.
 	 * @param owner
 	 * @param room
+	 * @param place
 	 * @param timeStart
 	 * @param timeEnd
 	 * @param description
+	 * @param nOfParticipant
 	 * @param participants
 	 */
-	public Meeting(int meetingID, User owner, Room room,
+	public Meeting(User owner, Room room, String place,
 			LocalDateTime timeStart, LocalDateTime timeEnd, String description,
-			List<User> participants) {
-		this(owner,room,timeStart,timeEnd,description,participants);
-		this.meetingID = meetingID;
-	}
-
-	/**
-	 * Create new meeting with room
-	 * @param owner
-	 * @param room
-	 * @param timeStart
-	 * @param timeEnd
-	 * @param description
-	 * @param participants
-	 */
-	public Meeting(User owner, Room room, LocalDateTime timeStart,
-			LocalDateTime timeEnd, String description, List<User> participants) {
+			int nOfParticipant, List<User> participants) {
 		this.owner = owner;
 		this.room = room;
-		this.timeStart = timeStart;
-		this.timeEnd = timeEnd;
-		this.description = description;
-		this.participants = participants;
-		this.place = "";
-	}
-	
-	
-	/**
-	 * create meeting with place from database
-	 * @param meetingID
-	 * @param owner
-	 * @param place
-	 * @param timeStart
-	 * @param timeEnd
-	 * @param description
-	 * @param participants
-	 */
-	public Meeting(int meetingID, User owner, String place,
-			Timestamp timeStart, Timestamp timeEnd, String description,
-			List<User> participants) {
-		this(owner,place,timeStart.toLocalDateTime(),timeEnd.toLocalDateTime(),description,participants);
-		this.meetingID = meetingID;
-	}
-
-	/**
-	 * Create new meeting with place
-	 * @param owner
-	 * @param place
-	 * @param timeStart
-	 * @param timeEnd
-	 * @param description
-	 * @param participants
-	 */
-	public Meeting(User owner, String place, LocalDateTime timeStart,
-			LocalDateTime timeEnd, String description, List<User> participants) {
-		this.owner = owner;
 		this.place = place;
 		this.timeStart = timeStart;
 		this.timeEnd = timeEnd;
 		this.description = description;
+		this.nOfParticipant = nOfParticipant;
 		this.participants = participants;
-		this.room = null;
+		this.meetingID = MeetingDB.addMeeting(this, owner);
+		
 	}
-	
+
 	/**
 	 * Methode som sjekker om bruker har tilgang
 	 * @param user
@@ -108,6 +62,15 @@ public class Meeting {
 			return true;
 		}
 		return participants.contains(user);
+	}
+	
+	public int getNOfParticipant(){
+		if(nOfParticipant==-1){
+			return participants.size()+1;
+		}
+		else{
+			return nOfParticipant;
+		}
 	}
 	
 	/**

@@ -56,16 +56,24 @@ public class MeetingDB extends DatabaseConnection{
 		return false;
 	}	
 	
-	public static void addMeeting(Meeting meeting, User user){
+	public static int addMeeting(Meeting meeting, User user){
 		//TODO skal ikke kunne legge inn i meeting uten at det blir lagt inn i participant
 		try {
-			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted)"  + "values(?, ?, ?, ?)";
+			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted, nOfParticipant, roomID, owner)"  + "values(?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery, 
 				    Statement.RETURN_GENERATED_KEYS);
 			preparedMeetingStmt.setString (1, meeting.getDescription());
 			preparedMeetingStmt.setString(2, meeting.getStartDB());
 			preparedMeetingStmt.setString (3, meeting.getEndDB());
 			preparedMeetingStmt.setString(4, meeting.getPlace());
+			preparedMeetingStmt.setInt(5, meeting.getNOfParticipant());
+			if(meeting.getRoom()==null){
+				preparedMeetingStmt.setNull(6, java.sql.Types.INTEGER);
+			}
+			else{
+				preparedMeetingStmt.setInt(6, meeting.getRoom().getRoomID());				
+			}
+			preparedMeetingStmt.setString(7, meeting.getOwner().getUsername());
 			int res = preparedMeetingStmt.executeUpdate();
 			if (res > 0) {
 				System.out.println("Inserting Meeting worked");
@@ -79,11 +87,12 @@ public class MeetingDB extends DatabaseConnection{
 			preparedParticipantStmt.setInt(1, meeting.getMeetingID());
 			preparedParticipantStmt.setString(2, user.getUsername());
 			// int res2 = preparedParticipantStmt.executeUpdate();	
+			return meeting.getMeetingID();
 		} catch (SQLException e) {
 			
 		} finally {
 		}
-			
+			return -1;
 		}
 }
 

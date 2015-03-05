@@ -10,6 +10,6 @@ roomID			INT,
 owner			VARCHAR(30),
 FOREIGN KEY (roomID)		REFERENCES room(roomID) 	ON DELETE CASCADE
 											ON UPDATE CASCADE,	
-FOREIGN KEY (username)		REFERENCES users(username) 	ON DELETE CASCADE
+FOREIGN KEY (owner)		REFERENCES users(username) 	ON DELETE CASCADE
 											ON UPDATE CASCADE,	
 PRIMARY KEY 		(meetingID));

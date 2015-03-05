@@ -5,4 +5,9 @@ public class Room {
 		//Write the get
 		return "";
 	}
+
+	public int getRoomID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
