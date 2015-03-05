@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
@@ -12,7 +13,7 @@ import dbconnection.MeetingDB;
 
 //TODO add constructors
 public class Meeting {
-
+	private final String dateFormat = "yyyy-MM-dd HH:mm:ss";
 	private int meetingID;
 	private User owner;
 	private Room room;
@@ -26,7 +27,7 @@ public class Meeting {
 	
 	
 	/**
-	 * Constructor, used when first creating meeting. 
+	 * Constructor, used when first creating meeting. Adds meeting in db
 	 * If nOfParticipants is not set, set it to -1.
 	 * @param owner
 	 * @param room
@@ -54,10 +55,54 @@ public class Meeting {
 
 	
 	}
+	
+	
 
-	public Meeting(int meetingID) {
+	/**
+	 * @param meetingID
+	 * @param owner
+	 * @param room
+	 * @param place
+	 * @param timeStart
+	 * @param timeEnd
+	 * @param description
+	 * @param nOfParticipant
+	 * @param participants
+	 */
+	public Meeting(int meetingID, User owner, Room room, String place,
+			String timeStart, String timeEnd, String description,
+			int nOfParticipant, List<User> participants) {
 		this.meetingID = meetingID;
+		this.owner = owner;
+		this.room = room;
+		this.place = place;
+		this.timeStart = convertStringToDate(timeStart);
+		this.timeEnd = convertStringToDate(timeEnd);
+		this.description = description;
+		this.nOfParticipant = nOfParticipant;
+		this.participants = participants;
 	}
+
+	
+	public Meeting(int meetingID) {
+		Meeting tempMeeting = MeetingDB.getMeeting(meetingID);
+		this.meetingID = tempMeeting.meetingID;
+		this.owner = tempMeeting.owner;
+		this.room = tempMeeting.room;
+		this.place = tempMeeting.place;
+		this.timeStart = tempMeeting.timeStart;
+		this.timeEnd = tempMeeting.timeEnd;
+		this.description = tempMeeting.description;
+		this.nOfParticipant = tempMeeting.nOfParticipant;
+		this.participants = tempMeeting.participants;
+	}
+
+	
+	private LocalDateTime convertStringToDate(String str){
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
+		return LocalDateTime.parse(str, formatter);
+	}
+	
 
 	/**
 	 * Methode som sjekker om bruker har tilgang
@@ -161,7 +206,7 @@ public class Meeting {
 	 */
 	public String getStartDB(){
 		Date dt = Date.from(timeStart.atZone(ZoneId.systemDefault()).toInstant());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		return sdf.format(dt);
 	}
 
@@ -171,7 +216,7 @@ public class Meeting {
 	 */
 	public String getEndDB(){
 		Date dt = Date.from(timeEnd.atZone(ZoneId.systemDefault()).toInstant());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		return sdf.format(dt);
 	}
 	

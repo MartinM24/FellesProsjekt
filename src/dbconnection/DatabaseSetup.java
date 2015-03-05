@@ -111,8 +111,11 @@ public class DatabaseSetup extends DatabaseConnection{
 	
 	public static void main(String[] args) {
 		DatabaseConnection.startCon();
-		//deleteDatabase();
-		createDatabase();
+		for (int i = 0 ; i < 5; i++){
+			//deleteDatabase();
+			createDatabase();
+			
+		}
 	}
 	
 }

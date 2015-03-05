@@ -31,17 +31,17 @@ public class MeetingDB extends DatabaseConnection{
 		return meetingList;
 	}
 	
-//	public static Meeting getMeeting(int meetingID){
-//		try{
-//			Statement sqlSelect = con.createStatement();
-//			
-//			
-////			ResultSet myRs = myStatement.executeQuery("select * from meeting WHERE meeting.meetingID = '"+meetingID+"'");
-////			if myRs.get
-////				Meeting = new Meeting(myRs.getString(1), myRs.getString(2), myRs.getString(3),));
-////			};
-//		}
-//	}
+	public static Meeting getMeeting(int meetingID){
+		try{
+			Statement sqlSelect = con.createStatement();
+			ResultSet myRs = sqlSelect.executeQuery("select * from meeting WHERE meeting.meetingID = '"+meetingID+"'");
+				return new Meeting(myRs.getInt(1), UserDB.getUser(myRs.getString(8)), null/*7*/, myRs.getString(5), myRs.getString(3), myRs.getString(4), myRs.getString(2), myRs.getInt(6), null);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	public static boolean removeMeeting(int meetingID) {
 		try {
