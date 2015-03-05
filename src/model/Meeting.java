@@ -48,8 +48,16 @@ public class Meeting {
 		this.description = description;
 		this.nOfParticipant = nOfParticipant;
 		this.participants = participants;
-		this.meetingID = MeetingDB.addMeeting(this, owner);
+		this.meetingID = MeetingDB.addMeeting(this);
+	
 		
+		
+		
+	
+	}
+
+	public Meeting(int meetingID) {
+		this.meetingID = meetingID;
 	}
 
 	/**
@@ -64,9 +72,13 @@ public class Meeting {
 		return participants.contains(user);
 	}
 	
+	public int getNOfParticipantSet(){
+		return nOfParticipant;
+	}
+	
 	public int getNOfParticipant(){
 		if(nOfParticipant==-1){
-			return participants.size()+1;
+			return participants.size();
 		}
 		else{
 			return nOfParticipant;
@@ -145,8 +157,8 @@ public class Meeting {
 
 
 	/**
-	 * Return the timestamp to be saved in the database for the starttime
-	 * @return the timestamp for starttime
+	 * Return the string to be saved in the database for the starttime
+	 * @return the string for starttime
 	 */
 	public String getStartDB(){
 		Date dt = Date.from(timeStart.atZone(ZoneId.systemDefault()).toInstant());
@@ -155,8 +167,8 @@ public class Meeting {
 	}
 
 	/**
-	 * Return the timestamp to be saved in the database for the endtime
-	 * @return the timestamp for endtime
+	 * Return the string to be saved in the database for the endtime
+	 * @return the string for endtime
 	 */
 	public String getEndDB(){
 		Date dt = Date.from(timeEnd.atZone(ZoneId.systemDefault()).toInstant());
@@ -164,10 +176,7 @@ public class Meeting {
 		return sdf.format(dt);
 	}
 	
-	private long getMillis(LocalDateTime time){
-		ZonedDateTime zdt = time.atZone(ZoneId.of(TimeZone.getDefault().getID()));
-		return zdt.toEpochSecond();
-	}
+
 	
 
 }

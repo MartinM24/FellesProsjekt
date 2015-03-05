@@ -56,7 +56,36 @@ public class MeetingDB extends DatabaseConnection{
 		return false;
 	}	
 	
-	public static int addMeeting(Meeting meeting, User user){
+	public static boolean addParticipant(Meeting meeting, User user, int attendence){
+		if(attendence>2 || attendence < 0){
+			throw new IllegalArgumentException("Feil i attendence");
+		}
+		try {
+			String participantQuery = "insert into participant (username, meetingID, attendence, visibility, alarmtid, answered, participantChange, timeChange, placeChange, descriptionChange)"  + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			PreparedStatement preparedParticipantStmt = con.prepareStatement(participantQuery);
+			preparedParticipantStmt.setString (1, user.getUsername());
+			preparedParticipantStmt.setInt(2, meeting.getMeetingID());
+			preparedParticipantStmt.setInt (3, attendence);
+			preparedParticipantStmt.setInt(4, 0);
+			preparedParticipantStmt.setNull(5,java.sql.Types.DATE);
+			preparedParticipantStmt.setBoolean(6, false);
+			preparedParticipantStmt.setBoolean(7,false);
+			preparedParticipantStmt.setBoolean(8,false);
+			preparedParticipantStmt.setBoolean(9,false);
+			preparedParticipantStmt.setBoolean(10,false);
+			int res = preparedParticipantStmt.executeUpdate();
+			if (res > 0) {
+				System.out.println("Inserting Participant worked");
+				return true;
+			}
+		}
+		catch(Exception e){
+			System.out.println("Feil i insert av participant");
+		}
+		return false;
+	}
+	
+	public static int addMeeting(Meeting meeting){
 		//TODO skal ikke kunne legge inn i meeting uten at det blir lagt inn i participant
 		try {
 			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted, nOfParticipant, roomID, owner)"  + "values(?, ?, ?, ?, ?, ?, ?)";
@@ -66,7 +95,7 @@ public class MeetingDB extends DatabaseConnection{
 			preparedMeetingStmt.setString(2, meeting.getStartDB());
 			preparedMeetingStmt.setString (3, meeting.getEndDB());
 			preparedMeetingStmt.setString(4, meeting.getPlace());
-			preparedMeetingStmt.setInt(5, meeting.getNOfParticipant());
+			preparedMeetingStmt.setInt(5, meeting.getNOfParticipantSet());
 			if(meeting.getRoom()==null){
 				preparedMeetingStmt.setNull(6, java.sql.Types.INTEGER);
 			}
@@ -80,13 +109,9 @@ public class MeetingDB extends DatabaseConnection{
 			}
 			
 			ResultSet tableKeys = preparedMeetingStmt.getGeneratedKeys();
-			String participantQuery = "insert into participant (meetingID,username)" + "values(?, ?)";
-			PreparedStatement preparedParticipantStmt = con.prepareStatement(participantQuery);
 			tableKeys.next();
 			meeting.setMeetingID(tableKeys.getInt(1));
-			preparedParticipantStmt.setInt(1, meeting.getMeetingID());
-			preparedParticipantStmt.setString(2, user.getUsername());
-			// int res2 = preparedParticipantStmt.executeUpdate();	
+			MeetingDB.addParticipant(meeting, meeting.getOwner(), 2);
 			return meeting.getMeetingID();
 		} catch (SQLException e) {
 			
