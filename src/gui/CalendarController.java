@@ -13,8 +13,8 @@ public class CalendarController implements ControlledScreen, Initializable {
 	ScreensController myController; 
 	@FXML Button newMeetingButton;
 	
-	
-	@Override
+
+@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 
@@ -25,7 +25,6 @@ public class CalendarController implements ControlledScreen, Initializable {
 		myController.setScreen(CalendarClient.ADD_MEETING_SCREEN);
 	}
 	
-
 	@Override
 	public void setScreenParent(ScreensController screenPage) {
 		this.myController = screenPage; 

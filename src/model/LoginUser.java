@@ -5,10 +5,18 @@ public class LoginUser extends User {
 
 	private byte[] dbSalt; 
 	private byte[] dbHash;
+	
 	public LoginUser(String username, String fristname, String lastname, String email, byte[] dbsalt, byte[] dbhash) {
 		super(username, fristname, lastname, email);
 		this.dbSalt = dbsalt; 
 		this.dbHash = dbhash; 
+	}
+	
+	public LoginUser(String username, String fristname, String lastname) {
+		super(username, fristname, lastname, "test@test.no");
+		Password pass = new Password("123456");
+		this.dbSalt = pass.getSalt(); 
+		this.dbHash = pass.getHash(); 
 	}
 	
 	
