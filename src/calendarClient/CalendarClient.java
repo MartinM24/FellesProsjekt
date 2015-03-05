@@ -10,13 +10,13 @@ import javafx.stage.Stage;
 public class CalendarClient extends Application{
 	// References to all screens
 	public static final String LOG_IN_SCREEN = "LogIN";
-	public static final String LOG_IN_SCREEN_FXML = "/gui/LogInGUI.fxml";
+	public static final String LOG_IN_SCREEN_FXML = "/gui/LogInGUI2.fxml";
 	public static final String NEW_USER_SCREEN = "NewUser";
-	public static final String NEW_USER_SCREEN_FXML = "/gui/NewUserGUI.fxml";
+	public static final String NEW_USER_SCREEN_FXML = "/gui/NewUserGUI2.fxml";
 	public static final String CALENDAR_SCREEN = "Calendar";
-	public static final String CALENDAR_SCREEN_FXML = "/gui/CalendarGUI.fxml";
+	public static final String CALENDAR_SCREEN_FXML = "/gui/CalendarGUI2.fxml";
 	public static final String ADD_MEETING_SCREEN = "AddMeeting";
-	public static final String ADD_MEETING_SCREEN_FXML = "/gui/AddMeetingGUI.fxml";
+	public static final String ADD_MEETING_SCREEN_FXML = "/gui/AddMeetingGUI2.fxml";
 	private static LoginUser currentUser;
 	
 	ScreensController mainController; 
@@ -38,6 +38,7 @@ public class CalendarClient extends Application{
 		root.getChildren().addAll(mainController);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
+//		primaryStage.setFullScreen(true);
 		primaryStage.show();
 		
 		//Set up DB conection;
