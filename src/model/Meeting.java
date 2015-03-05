@@ -49,14 +49,9 @@ public class Meeting {
 		this.nOfParticipant = nOfParticipant;
 		this.participants = participants;
 		this.meetingID = MeetingDB.addMeeting(this);
-<<<<<<< HEAD
-	
-		
-		
-=======
+
 		System.out.println(meetingID);
->>>>>>> 7f6d5f4e1d44d639c196f2565d8c01b347e44105
-		
+
 	
 	}
 
