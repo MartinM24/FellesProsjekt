@@ -48,7 +48,8 @@ public class Meeting {
 		this.description = description;
 		this.nOfParticipant = nOfParticipant;
 		this.participants = participants;
-		this.meetingID = MeetingDB.addMeeting(this, owner);
+		this.meetingID = MeetingDB.addMeeting(this);
+		System.out.println(meetingID);
 		
 	}
 

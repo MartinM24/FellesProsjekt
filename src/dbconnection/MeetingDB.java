@@ -56,7 +56,7 @@ public class MeetingDB extends DatabaseConnection{
 		return false;
 	}	
 	
-	public static int addMeeting(Meeting meeting, User user){
+	public static int addMeeting(Meeting meeting){
 		//TODO skal ikke kunne legge inn i meeting uten at det blir lagt inn i participant
 		try {
 			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted, nOfParticipant, roomID, owner)"  + "values(?, ?, ?, ?, ?, ?, ?)";
@@ -85,7 +85,7 @@ public class MeetingDB extends DatabaseConnection{
 			tableKeys.next();
 			meeting.setMeetingID(tableKeys.getInt(1));
 			preparedParticipantStmt.setInt(1, meeting.getMeetingID());
-			preparedParticipantStmt.setString(2, user.getUsername());
+			preparedParticipantStmt.setString(2, meeting.getOwner().getUsername());
 			// int res2 = preparedParticipantStmt.executeUpdate();	
 			return meeting.getMeetingID();
 		} catch (SQLException e) {

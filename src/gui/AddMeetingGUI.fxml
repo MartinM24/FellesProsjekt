@@ -89,17 +89,17 @@
                               <RowConstraints maxHeight="28.0" minHeight="8.0" prefHeight="28.0" vgrow="NEVER" />
                           </rowConstraints>
                            <children>
-                              <TextField fx:id="subjectField" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <TextField fx:id="subjectField" promptText="F.eks Møtebeskrivelse" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="fromtimeField" onFocusedChange="#fromtimeFieldChange" prefHeight="25.0" prefWidth="117.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <TextField fx:id="totimeField" onFocusedChange="#totimeFieldChange" prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagerer" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                              <Button fx:id="findroomButton" onAction="#findroomButtonClick" mnemonicParsing="false" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltager" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                              <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                               <Label fx:id="chosenroomLabel" text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                              <DatePicker fx:id="fromDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                              <DatePicker fx:id="toDatePicker" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                              <DatePicker fx:id="fromDatePicker" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <DatePicker fx:id="toDatePicker" promptText="DD.MM.YYYY" onFocusedChange="#toDatePickerChange" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Dato" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                               <GridPane prefHeight="46.0" prefWidth="245.0" GridPane.columnIndex="3" GridPane.rowIndex="9">
@@ -111,7 +111,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button fx:id="saveButton" mnemonicParsing="false" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                                    <Button fx:id="saveButton"  mnemonicParsing="false" onAction="#saveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                                     <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Cancel" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
