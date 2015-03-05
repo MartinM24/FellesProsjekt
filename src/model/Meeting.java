@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import dbconnection.DatabaseConnection;
 import dbconnection.MeetingDB;
 
 //TODO add constructors
@@ -100,7 +101,10 @@ public class Meeting {
 	
 	private LocalDateTime convertStringToDate(String str){
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
-		return LocalDateTime.parse(str, formatter);
+		System.out.println(str);
+		
+	
+		return LocalDateTime.parse(str.split("\\.")[0], formatter);
 	}
 	
 
@@ -219,8 +223,22 @@ public class Meeting {
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		return sdf.format(dt);
 	}
-	
 
+
+
+	@Override
+	public String toString() {
+		return "Meeting [dateFormat=" + dateFormat + ", meetingID=" + meetingID
+				+ ", owner=" + owner + ", room=" + room + ", place=" + place
+				+ ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
+				+ ", description=" + description + ", nOfParticipant="
+				+ nOfParticipant + ", participants=" + participants + "]";
+	}
+	
+public static void main(String[] args) {
+	DatabaseConnection.startCon();
+	System.out.println(new Meeting(2));
+}
 	
 
 }

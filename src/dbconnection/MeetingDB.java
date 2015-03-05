@@ -35,7 +35,8 @@ public class MeetingDB extends DatabaseConnection{
 		try{
 			Statement sqlSelect = con.createStatement();
 			ResultSet myRs = sqlSelect.executeQuery("select * from meeting WHERE meeting.meetingID = '"+meetingID+"'");
-				return new Meeting(myRs.getInt(1), UserDB.getUser(myRs.getString(8)), null/*7*/, myRs.getString(5), myRs.getString(3), myRs.getString(4), myRs.getString(2), myRs.getInt(6), null);
+			myRs.next();
+			return new Meeting(myRs.getInt(1), UserDB.getUser(myRs.getString(8)), null/*7*/, myRs.getString(5), myRs.getString(3), myRs.getString(4), myRs.getString(2), myRs.getInt(6), null);
 		}
 		catch(Exception e){
 			e.printStackTrace();
