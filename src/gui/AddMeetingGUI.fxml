@@ -112,7 +112,7 @@
                                 </rowConstraints>
                                  <children>
                                     <Button fx:id="saveButton"  mnemonicParsing="false" onAction="#saveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                                    <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="56.0" text="Cancel" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+                                    <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="56.0" text="Cancel" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
                                  </children>
                               </GridPane>
                               <Label text="Kommer når funksjon er bestemt" GridPane.columnIndex="3" GridPane.rowIndex="6" />

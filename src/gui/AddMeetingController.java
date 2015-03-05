@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import calendarClient.CalendarClient;
 import model.Meeting;
 import model.User;
 import dbconnection.MeetingDB;
@@ -48,6 +49,15 @@ public class AddMeetingController implements ControlledScreen {
 		}
 	}
 	
+	/**
+	 * Sjekker om verdiene skrevet inn i 
+	 * fromtimeField og totimeField er skrevet
+	 * på riktig måte
+	 * @param o
+	 * @param oldValue
+	 * @param newValue
+	 */
+	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
 			if(validateText(totimeField.getText(), LOGIN_REGEX, totimeField)){	
@@ -56,8 +66,8 @@ public class AddMeetingController implements ControlledScreen {
 				if (Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
 						(Integer.parseInt(tid1[0]) == Integer.parseInt(tid2[0]) &&
 						Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
-					totimeField.setStyle("-fx-background-color: red");
-					fromtimeField.setStyle("-fx-background-color: red");
+					totimeField.setStyle("-fx-border-color: red");
+					fromtimeField.setStyle("-fx-border-color: red");
 			} else {
 				fromtimeField.setStyle("");
 			}
@@ -67,13 +77,19 @@ public class AddMeetingController implements ControlledScreen {
 
 	}
 	
+	/**
+	 * Sjekker om møtet ender før det ender.
+	 * @param o
+	 * @param oldValue
+	 * @param newValue
+	 */
 	public void toDatePickerChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		fromDatePicker.setStyle("");
 		toDatePicker.setStyle("");
 		if (!(newValue)){
 			if(fromDatePicker.getValue().isAfter(toDatePicker.getValue())){
-				fromDatePicker.setStyle("-fx-background-color: red");
-				toDatePicker.setStyle("-fx-background-color: red");				
+				fromDatePicker.setStyle("-fx-border-color: red");
+				toDatePicker.setStyle("-fx-border-color: red");				
 			}
 		}
 	}
@@ -82,6 +98,12 @@ public class AddMeetingController implements ControlledScreen {
 		//TODO Meetingroom list. 
 	}
 	
+	/**
+	 * Gjør om fra localdate og string (HH:MM) til localdatetime
+	 * @param localDate
+	 * @param thyme
+	 * @return
+	 */
 	public LocalDateTime toLocalDateTime(LocalDate localDate, String thyme){
 		String time = localDate +  " " + thyme;
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -90,12 +112,21 @@ public class AddMeetingController implements ControlledScreen {
 	}
 	
 	public void saveButtonClick(ActionEvent e){
-		//TODO add meeting to database.		
-		new Meeting(new User("Karl", "Karl", "Karl", "Karl"),
-				null, "Somwhere over the rainbow",
-				toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
-				toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
-				subjectField.getText(), -1, new ArrayList<User>());
+		if (!(toDatePicker.getValue().toString().isEmpty() || fromDatePicker.getValue().toString().isEmpty() ||
+				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty())){
+				new Meeting(new User("Karl", "Karl", "Karl", "Karl"),
+						null, "Somwhere over the rainbow",
+						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
+						toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
+						subjectField.getText(), -1, new ArrayList<User>());
+				
+				myController.setScreen(CalendarClient.CALENDAR_SCREEN);				
+		}
+			
+	}
+	
+	public void cancelButtonClick(ActionEvent e){
+		myController.setScreen(CalendarClient.CALENDAR_SCREEN);				
 	}
 	
 	private void showTooltip(TextField textField) {
@@ -126,7 +157,7 @@ public class AddMeetingController implements ControlledScreen {
 	private boolean validateText(String value, String regex, TextField textField) {
 		hideAllTooltips();
 		boolean isValid = value.matches(regex);
-		String color = isValid ? "" : "-fx-background-color: red";
+		String color = isValid ? "" : "-fx-border-color: red";
 		textField.setStyle(color);
 		if(!isValid) showTooltip(textField);
 		return isValid;
