@@ -7,7 +7,7 @@ timeEnd			DATETIME,
 sted			VARCHAR(30),
 nOfParticipant	INT,
 roomID			INT,
-username		VARCHAR(30),
+owner			VARCHAR(30),
 FOREIGN KEY (roomID)		REFERENCES room(roomID) 	ON DELETE CASCADE
 											ON UPDATE CASCADE,	
 FOREIGN KEY (username)		REFERENCES users(username) 	ON DELETE CASCADE
