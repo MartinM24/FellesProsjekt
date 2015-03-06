@@ -21,7 +21,7 @@ public class LogInController implements ControlledScreen, Initializable{
     private static final String WRONG_LOGIN_STYLE = "-fx-border-color: red";
 
 	// Saves the parent controller for this controller
-	ScreensController myController; 
+	MainController myController;
 	
 	private static final String LOGIN_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
 	
@@ -50,7 +50,7 @@ public class LogInController implements ControlledScreen, Initializable{
 				if (user.checkPassword(passwordField.getText())){
 					//Correct password send to calendar screen
 					CalendarClient.setCurrentUser(user);
-					myController.setScreen(CalendarClient.CALENDAR_SCREEN);
+					myController.setCenter(CalendarClient.CALENDAR_SCREEN);
 				} else {
 					//Wrong password
 					System.out.println("User exist, but worng password");
@@ -96,11 +96,11 @@ public class LogInController implements ControlledScreen, Initializable{
 	
 	@FXML
 	private void newUserButtonClick(ActionEvent event){
-		myController.setScreen(CalendarClient.NEW_USER_SCREEN);
+		myController.setCenter(CalendarClient.NEW_USER_SCREEN);
 	} 
 	
 	@Override
-	public void setScreenParent(ScreensController screenPage) {
+	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
 	}
 

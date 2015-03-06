@@ -1,33 +1,23 @@
 package gui;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import calendarClient.CalendarClient;
 import model.Meeting;
 import model.User;
-import dbconnection.MeetingDB;
-import sun.launcher.resources.launcher;
-import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-import javafx.stage.Stage;
 
 public class AddMeetingController implements ControlledScreen {
-	ScreensController myController;
+	MainController myController;
 	
 	public static final String LOGIN_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
@@ -52,7 +42,7 @@ public class AddMeetingController implements ControlledScreen {
 	/**
 	 * Sjekker om verdiene skrevet inn i 
 	 * fromtimeField og totimeField er skrevet
-	 * på riktig måte
+	 * pï¿½ riktig mï¿½te
 	 * @param o
 	 * @param oldValue
 	 * @param newValue
@@ -78,7 +68,7 @@ public class AddMeetingController implements ControlledScreen {
 	}
 	
 	/**
-	 * Sjekker om møtet ender før det ender.
+	 * Sjekker om mï¿½tet ender fï¿½r det ender.
 	 * @param o
 	 * @param oldValue
 	 * @param newValue
@@ -99,7 +89,7 @@ public class AddMeetingController implements ControlledScreen {
 	}
 	
 	/**
-	 * Gjør om fra localdate og string (HH:MM) til localdatetime
+	 * Gjï¿½r om fra localdate og string (HH:MM) til localdatetime
 	 * @param localDate
 	 * @param thyme
 	 * @return
@@ -120,13 +110,13 @@ public class AddMeetingController implements ControlledScreen {
 						toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
 						subjectField.getText(), -1, new ArrayList<User>());
 				
-				myController.setScreen(CalendarClient.CALENDAR_SCREEN);				
+				myController.setCenter(CalendarClient.CALENDAR_SCREEN);
 		}
 			
 	}
 	
 	public void cancelButtonClick(ActionEvent e){
-		myController.setScreen(CalendarClient.CALENDAR_SCREEN);				
+		myController.setCenter(CalendarClient.CALENDAR_SCREEN);
 	}
 	
 	private void showTooltip(TextField textField) {
@@ -166,7 +156,7 @@ public class AddMeetingController implements ControlledScreen {
 	
 	
 	@Override
-	public void setScreenParent(ScreensController screenPage) {
+	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
 	}
 

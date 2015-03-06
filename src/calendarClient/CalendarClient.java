@@ -1,9 +1,8 @@
 package calendarClient;
 
 import model.LoginUser;
-import gui.ScreensController;
+import gui.MainController;
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -20,13 +19,13 @@ public class CalendarClient extends Application{
 	public static final String ADD_MEETING_SCREEN_FXML = "/gui/AddMeetingGUI2.fxml";
 	private static LoginUser currentUser;
 	
-	ScreensController mainController; 
+	MainController mainController;
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = new AnchorPane();
 		
-		mainController = new ScreensController();
+		mainController = new MainController();
 		// Load all Screens 
 		mainController.loadScreen(LOG_IN_SCREEN, LOG_IN_SCREEN_FXML);
 		mainController.loadScreen(NEW_USER_SCREEN, NEW_USER_SCREEN_FXML);
@@ -34,8 +33,9 @@ public class CalendarClient extends Application{
 		mainController.loadScreen(ADD_MEETING_SCREEN, ADD_MEETING_SCREEN_FXML);
 		
 		// Set first screen
-		mainController.setScreen(LOG_IN_SCREEN);
-		
+		mainController.setCenter(LOG_IN_SCREEN);
+        mainController.setLeft(NEW_USER_SCREEN);
+
 		// Show first screen
 		root.getChildren().addAll(mainController);
         AnchorPane.setTopAnchor(mainController, 0.0);
