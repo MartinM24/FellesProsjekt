@@ -4,53 +4,59 @@ import java.util.ArrayList;
 
 public class UserGroup {
 	
-	ArrayList<UserGroup> subGroup;
+    String name;
+    String purpose;
+
 	ArrayList<User> participants;
-	User owner;
-	String name;
-	
-	
-	public UserGroup (User owner, String name){
-		this.owner = owner;
+
+    // Subgrup fields
+    private ArrayList<UserGroup> subGroups;
+
+
+    UserGroup parentGroup;
+
+
+    public UserGroup getParentGroup() {
+        return parentGroup;
+    }
+
+    public void setParentGroup(UserGroup parentGroup) {
+        this.parentGroup = parentGroup;
+    }
+
+    public UserGroup (User owner, String name){
 		this.name = name;
 	}
 
-
 	public ArrayList<User> getParticipants() {
-		return participants;
+        return participants;
 	}
-
 
 	public void addParticipants(User participants) {
 		this.participants.add(participants);
 	}
 	
-	public void rmParticipant(User participant){
-		if (participant == owner){
-			System.out.println("Can't delete owner");
-		} else {
-			this.participants.remove(participant);						
-		}
+	public void removeParticipant(User participant){
+		this.participants.remove(participant);
 	}
 
-
-	public ArrayList<UserGroup> getSubGroup() {
-		return subGroup;
+	public ArrayList<UserGroup> getSubGroups() {
+        
+        return subGroups;
 	}
 	
 	public void addSubGroup(UserGroup subGroup) {
-		this.subGroup.add(subGroup);
+		if (!subGroups.contains(subGroup)) {
+            this.subGroups.add(subGroup);
+            subGroup.setParentGroup(this);
+        } else {
+            throw new IllegalArgumentException("Group is allready a subgrupe");
+        }
 	}
 	
-	public void rmSubGroup(UserGroup subGroup){
-		this.subGroup.remove(subGroup);						
+	public void removeSubGroup(UserGroup subGroup){
+		this.subGroups.remove(subGroup);
 	}
-
-
-	public User getOwner() {
-		return owner;
-	}
-
 
 	public String getName() {
 		return name;

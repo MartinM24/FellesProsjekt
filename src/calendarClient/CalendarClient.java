@@ -37,10 +37,15 @@ public class CalendarClient extends Application{
 		mainController.setScreen(LOG_IN_SCREEN);
 		
 		// Show first screen
-		root.getChildren().addAll(mainController);		
+		root.getChildren().addAll(mainController);
+        AnchorPane.setTopAnchor(mainController, 0.0);
+        AnchorPane.setBottomAnchor(mainController, 0.0);
+        AnchorPane.setRightAnchor(mainController, 0.0);
+        AnchorPane.setLeftAnchor(mainController, 0.0);
+        root.setPrefSize(900,600);
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
-//		primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(true);
 		primaryStage.show();
 		
 		//Set up DB conection;

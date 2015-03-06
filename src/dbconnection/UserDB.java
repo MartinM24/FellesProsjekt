@@ -77,9 +77,10 @@ public class UserDB extends DatabaseConnection{
 			myRs.first();
 			return (myRs.getInt(1) > 0);
 		} catch (SQLException e) {
+            System.out.println("LOLOLOLOLOLO");
 			e.printStackTrace();
-			return false;	
-		} 	
+		}
+        return false;
 	}
 	
 	public static boolean removeUser(String username){
