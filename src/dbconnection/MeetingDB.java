@@ -20,7 +20,7 @@ public class MeetingDB extends DatabaseConnection{
 		List<Meeting> meetingList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> -1");
 			while (myRs.next()){
 				meetingList.add(getMeeting(myRs.getInt(1)));
 			};
@@ -87,7 +87,7 @@ public class MeetingDB extends DatabaseConnection{
 	private static boolean removeParticipant(int meetingID, User user) {
 		try {
 			Statement myStatement = con.createStatement(); 
-			int count = myStatement.executeUpdate("DELETE FROM participant WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
+			int count = myStatement.executeUpdate("UPDATE participant SET visibility = -1 WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
 			if (count > 0) {
 				return true; 
 			}
