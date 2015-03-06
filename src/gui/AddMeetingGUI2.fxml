@@ -8,96 +8,48 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="862.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="gui.AddMeetingController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
-      <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane>
+      <GridPane layoutX="-1.0" layoutY="1.0" prefHeight="449.0" prefWidth="449.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
+            <TextField fx:id="subjectField" promptText="F.eks Møtebeskrivelse" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="fromtimeField" onFocusedChange="#fromtimeFieldChange" prefHeight="25.0" prefWidth="117.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="totimeField" onFocusedChange="#totimeFieldChange" prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltager" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label fx:id="chosenroomLabel" text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <DatePicker fx:id="fromDatePicker" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <DatePicker fx:id="toDatePicker" onFocusedChange="#toDatePickerChange" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Dato" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label text="Kommer når funksjon er bestemt" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Label text="Legg til møte" GridPane.columnIndex="3">
                <font>
-                  <Font size="18.0" fx:id="x1" />
+                  <Font size="18.0" />
                </font>
-               <textFill>
-                  <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
-               </textFill>
             </Label>
          </children>
-      </AnchorPane>
-      <ScrollPane prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="1">
-         <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
-               <children>
-                  <BorderPane layoutX="-12.0" layoutY="182.0" prefHeight="200.0" prefWidth="200.0" />
-                  <GridPane layoutX="-1.0" layoutY="1.0" prefHeight="449.0" prefWidth="449.0">
-                     <children>
-                        <TextField fx:id="subjectField" promptText="F.eks Møtebeskrivelse" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <TextField fx:id="fromtimeField" onFocusedChange="#fromtimeFieldChange" prefHeight="25.0" prefWidth="117.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <TextField fx:id="totimeField" onFocusedChange="#totimeFieldChange" prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltager" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-                        <Label fx:id="chosenroomLabel" text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-                        <DatePicker fx:id="fromDatePicker" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <DatePicker fx:id="toDatePicker" onFocusedChange="#toDatePickerChange" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Dato" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <GridPane prefHeight="46.0" prefWidth="245.0" GridPane.columnIndex="3" GridPane.rowIndex="9">
-                           <children>
-                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveButtonClick" text="Save" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                              <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="25.0" prefWidth="56.0" text="Cancel" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="213.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="72.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <Label text="Kommer når funksjon er bestemt" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                        <Label text="Legg til møte" GridPane.columnIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" minWidth="9.0" prefWidth="9.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="231.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="261.0" minWidth="5.0" prefWidth="10.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="285.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="28.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="22.0" minHeight="15.0" prefHeight="22.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="36.0" minHeight="22.0" prefHeight="27.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="30.0" minHeight="6.0" prefHeight="24.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="25.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="38.0" minHeight="0.0" prefHeight="18.0" vgrow="NEVER" />
-                        <RowConstraints maxHeight="28.0" minHeight="8.0" prefHeight="28.0" vgrow="NEVER" />
-                     </rowConstraints>
-                  </GridPane>
-               </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <AnchorPane GridPane.columnIndex="2">
-         <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-         </children>
-      </AnchorPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="231.0" minWidth="10.0" prefWidth="231.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="5.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="15.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="10.0" vgrow="NEVER" />
+            <RowConstraints minHeight="22.0" vgrow="NEVER" />
+            <RowConstraints minHeight="6.0" vgrow="NEVER" />
+            <RowConstraints minHeight="9.0" vgrow="NEVER" />
+            <RowConstraints maxHeight="215.0" minHeight="0.0" prefHeight="94.0" vgrow="NEVER" />
+         </rowConstraints>
+      </GridPane>
    </children>
-</GridPane>
+</AnchorPane>
