@@ -5,6 +5,7 @@ import java.util.HashMap;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 
 public class ScreensController extends StackPane {
@@ -29,7 +30,10 @@ public class ScreensController extends StackPane {
 	       Parent loadScreen = (Parent) myLoader.load(); 
 	       ControlledScreen myScreenControler = 
 	              ((ControlledScreen) myLoader.getController()); 
-	       myScreenControler.setScreenParent(this); 
+	       myScreenControler.setScreenParent(this);
+	       
+	       
+	       
 	       addScreen(name, loadScreen); 
 	       return true; 
 	     }catch(Exception e) { 
@@ -41,17 +45,23 @@ public class ScreensController extends StackPane {
 	
 	
 	 public boolean setScreen(final String name) { 
-	     if(screens.get(name) != null) { //screen loaded 
+	     Node node = screens.get(name);
+		if(node != null) { //screen loaded 
 	       //Is there is more than one screen 
 	       if(!getChildren().isEmpty()){ 
 	    	   //remove displayed screen 
 	           getChildren().remove(0); 
 	           //add new screen 
-	           getChildren().add(0, screens.get(name));  
+	           getChildren().add(0, node);  
 	       } else { 
 	         //no one else been displayed, then just show 
-	         getChildren().add(screens.get(name)); 
+	         getChildren().add(node); 
+	         
 	       } 
+	       AnchorPane.setTopAnchor(node, 0.0);
+	       AnchorPane.setBottomAnchor(node, 0.0);
+	       AnchorPane.setLeftAnchor(node, 0.0);
+	       AnchorPane.setRightAnchor(node, 0.0);
 	       return true; 
 	     } else { 
 	         System.out.println("screen hasn't been loaded!\n"); 
