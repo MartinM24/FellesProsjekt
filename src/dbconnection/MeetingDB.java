@@ -20,9 +20,9 @@ public class MeetingDB extends DatabaseConnection{
 		List<Meeting> meetingList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT *FROM meeting INNER JOIN participant INNER JOIN users WHERE users.username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"'");
 			while (myRs.next()){
-				meetingList.add(new Meeting(Integer.parseInt(myRs.getString(1)),user,myRs.getString(5),myRs.getTimestamp(3),myRs.getTimestamp(4),myRs.getString(2),new ArrayList<User>()));
+				meetingList.add(getMeeting(myRs.getInt(1)));
 			};
 			System.out.println("Everything worked");
 		} catch (SQLException e) {
@@ -119,6 +119,8 @@ public class MeetingDB extends DatabaseConnection{
 			e.printStackTrace();
 		} 
 			return -1;
-		}
+	
+	}
+	
 }
 
