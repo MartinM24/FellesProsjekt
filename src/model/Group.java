@@ -12,12 +12,29 @@ public class Group {
 	private List<User> members;
 	
 	
+	/**
+	 * Constructor when getting group from database
+	 * @param name
+	 */
 	public Group (String name){
 		this.name = name;
 		members = new ArrayList<User>();
 		subGroups = new ArrayList<Group>();
-		GroupDB.addGroup(name);
 		makeChildren();
+	}
+	
+	
+	/**
+	 * Constructor when making a new group
+	 * @param name
+	 * @param parentGroup
+	 */
+	public Group (String name, Group parentGroup){
+		this(name);
+		GroupDB.addGroup(name);
+		if(parentGroup==null){
+			GroupDB.addParent(parentGroup, this);
+		}
 	}
 
 	private void makeChildren(){
@@ -33,7 +50,7 @@ public class Group {
 		}
 	}
 	
-
+	
 	
 	public List<User> getMembers() {
 		return members;
