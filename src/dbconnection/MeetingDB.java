@@ -44,10 +44,50 @@ public class MeetingDB extends DatabaseConnection{
 		return null;
 	}
 	
-	public static boolean removeMeeting(int meetingID) {
+	/**
+	 * Deletes 
+	 * @param meetingId
+	 * @param user
+	 * @return
+	 */
+	public static void deleteMeeting(int meetingID, User user){
+		try {
+			Meeting meeting = MeetingDB.getMeeting(meetingID);
+			if(meeting.getOwner().getUsername().equals(user.getUsername())){
+				MeetingDB.deleteMeeting(meetingID);
+			}
+			else{
+				MeetingDB.removeParticipant(meetingID, user);
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Only meetingowner is allowed to invoke this method. Must check this before calling this method.
+	 * @param meetingID
+	 * @return
+	 */
+	private static boolean deleteMeeting(int meetingID) {
 		try {
 			Statement myStatement = con.createStatement(); 
 			int count = myStatement.executeUpdate("DELETE FROM meeting WHERE meetingID = '" + meetingID + "'");
+			if (count > 0) {
+				return true; 
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}	
+	
+	
+	private static boolean removeParticipant(int meetingID, User user) {
+		try {
+			Statement myStatement = con.createStatement(); 
+			int count = myStatement.executeUpdate("DELETE FROM participant WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
 			if (count > 0) {
 				return true; 
 			}
