@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 	
@@ -9,7 +10,7 @@ public class User {
 	private String lastname;
 	private String email;
 	private String username;
-	private ArrayList<UserGroup> groups;
+	private List<Group> groups;
 
 	@Override
 	public String toString() {
@@ -23,6 +24,7 @@ public class User {
 		this.firstname = fristname;
 		this.lastname = lastname;
 		this.email = email;
+		groups = new ArrayList<Group>();
 	}
 
 	public String getFirstname() {
@@ -49,15 +51,15 @@ public class User {
 		return username;
 	}
 	
-	public ArrayList<UserGroup> getGroups() {
+	public List<Group> getGroups() {
 		return groups;
 	}
 	
-	public void addGroup(UserGroup group){
+	public void addGroup(Group group){
 		this.groups.add(group);
 	}
 	
-	public void rmGroup(UserGroup group){
+	public void removeGroup(Group group){
 		this.groups.remove(group);
 	}
 }
