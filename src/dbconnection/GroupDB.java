@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
 
 import model.Group;
@@ -99,16 +98,21 @@ public class GroupDB extends DatabaseConnection{
 		return null;
 	}
 
-	public static Group getGroup(String name) {
+	public static List<User> getAllMembers(String groupName) {
 		try {
 			Statement myStatement = con.createStatement(); 
-			ResultSet myRs = myStatement.executeQuery("SELECT * FROM groups WHERE groupName = '" + name + "'");
-			myRs.next();
-			return new Group
+			ResultSet myRs = myStatement.executeQuery("SELECT username FROM usergroups WHERE groupName = '" + groupName + "'");
+			List<User> returnList = new ArrayList<User>();
+			while(myRs.next()){
+				returnList.add(UserDB.getUser((myRs.getString(1))));
+			}
+			return returnList;
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		return null;
 	}
+	
 	
 	
 }

@@ -18,7 +18,7 @@ public class Group {
 	 */
 	public Group (String name){
 		this.name = name;
-		members = new ArrayList<User>();
+		members = GroupDB.getAllMembers(name);
 		subGroups = new ArrayList<Group>();
 		makeChildren();
 	}
@@ -43,13 +43,12 @@ public class Group {
 		currentParent.add(this.getName());
 		while(!currentParent.isEmpty() || groupMap.containsKey(currentParent.get(0))){
 			for(String s: groupMap.get(currentParent.remove(0))){
-				subGroups.add(GroupDB.getGroup(s));
+				subGroups.add( new Group(s));
 				currentParent.add(s);
 			}
 			
 		}
 	}
-	
 	
 	
 	public List<User> getMembers() {
