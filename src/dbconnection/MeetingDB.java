@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Group;
 import model.Meeting;
 import model.User;
 
@@ -160,6 +161,12 @@ public class MeetingDB extends DatabaseConnection{
 		} 
 			return -1;
 	
+	}
+	
+	public static void addGroup(Group group, Meeting meeting){
+		for(User user: group){
+			addParticipant(meeting, user, 0);
+		}
 	}
 	
 }

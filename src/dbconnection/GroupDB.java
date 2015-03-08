@@ -44,10 +44,19 @@ public class GroupDB extends DatabaseConnection{
 		} 
 	}
 
-	public static void addParent(Group group, Group subGroup) {
+	public static void addParent(Group parentGroup, Group group) {
 		try {
 			Statement myStatement = con.createStatement(); 
-			myStatement.executeUpdate("UPDATE groups SET parentID = '"+group.getName()+"' WHERE groupName = '" + subGroup.getName() + "'");
+			myStatement.executeUpdate("UPDATE groups SET parentID = '"+parentGroup.getName()+"' WHERE groupName = '" + group.getName() + "'");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public static void removeParent(Group group){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE groups SET parentID = 'NULL' WHERE groupName = '" + group.getName() + "'");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

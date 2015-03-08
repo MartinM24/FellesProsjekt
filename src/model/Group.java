@@ -2,11 +2,12 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import dbconnection.GroupDB;
 
-public class Group {
+public class Group implements Iterable<User>{
 	private String name;
 	private List<Group> subGroups;
 	private List<User> members;
@@ -74,6 +75,7 @@ public class Group {
 	}
 	
 	public void addSubGroup(Group subGroup) {
+		//TODO Check if subGroup is parent to group, or subgroup already has a parent
 		this.subGroups.add(subGroup);
 		GroupDB.addParent(this, subGroup);
 	}
@@ -84,5 +86,11 @@ public class Group {
 
 	public String getName() {
 		return name;
+	}
+
+
+	@Override
+	public Iterator<User> iterator() {
+		return members.iterator();
 	}
 }
