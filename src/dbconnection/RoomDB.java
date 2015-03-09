@@ -45,7 +45,7 @@ public class RoomDB extends DatabaseConnection {
             Statement myStatement = con.createStatement();
             ResultSet myRs = myStatement.executeQuery("SELECT room.roomID FROM room");
             while (myRs.next()){
-                roomList.add(getRoom(myRs.getInt(1)));
+                roomList.add(getRoom(myRs.getString(1)));
             }
             System.out.println("Everything worked");
         } catch (SQLException e) {
@@ -54,12 +54,12 @@ public class RoomDB extends DatabaseConnection {
         return roomList;
     }
 
-    public static Room getRoom(int roomID){
+    public static Room getRoom(String name){
         try{
             Statement sqlSelect = con.createStatement();
-            ResultSet myRs = sqlSelect.executeQuery("select * from room WHERE room.meetingID = '"+roomID+"'");
+            ResultSet myRs = sqlSelect.executeQuery("select * from room WHERE roomName = '"+name+"'");
             myRs.next();
-            return new Room(myRs.getInt(1), myRs.getString(2), myRs.getInt(3));
+            return new Room( myRs.getString(1), myRs.getInt(2));
         }
         catch(Exception e){
             e.printStackTrace();
