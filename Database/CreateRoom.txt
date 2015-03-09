@@ -1,6 +1,5 @@
 create table room(
-	
-roomID			INT AUTO_INCREMENT,
+
 roomName	 	VARCHAR(30),
 capacity		INT,
 
