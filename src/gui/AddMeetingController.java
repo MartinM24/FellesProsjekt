@@ -26,6 +26,8 @@ public class AddMeetingController implements ControlledScreen {
 	@FXML Button findroomButton;
 	@FXML DatePicker fromDatePicker;
 	@FXML DatePicker toDatePicker;
+	@FXML Button saveButton;
+	@FXML Button cancelButton;
 	
 	
 	@FXML
@@ -115,9 +117,11 @@ public class AddMeetingController implements ControlledScreen {
 			
 	}
 	
+	@FXML
 	public void cancelButtonClick(ActionEvent e){
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
+	
 	
 	private void showTooltip(TextField textField) {
 		textField.getTooltip().show(textField, textField.getScene().getWindow().getX()
