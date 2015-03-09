@@ -20,16 +20,16 @@ import calendarClient.CalendarClient;
 public class CalendarLeftMenuController implements Initializable, ControlledScreen {
     private MainController myController;
     
-    @FXML Button choosenCalendarsButton;
+    @FXML Button chooseCalendarsButton;
     @FXML Button myGroupsButton;
     @FXML Button meetingOverviewButton;
     @FXML Button addMeetingButton;
  
 
     @FXML
-    public void choosenCalendarsButtonClick(ActionEvent e){
+    public void chooseCalendarsButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
-		myController.setView(CalendarClient.CHOOSEN_CALENDARS_VIEW);
+		myController.setView(CalendarClient.CHOOSE_CALENDARS_VIEW);
 	}
    
     @FXML

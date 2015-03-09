@@ -18,7 +18,7 @@ import calendarClient.CalendarClient;
  * Created by Anna on 09.03.15.
  */
 
-public class ChoosenCalendarsController implements ControlledScreen, Initializable {
+public class ChooseCalendarsController implements ControlledScreen, Initializable {
 	MainController myController;
 	
 	@FXML Button okButton;
