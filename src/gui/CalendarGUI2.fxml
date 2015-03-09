@@ -21,6 +21,7 @@
             <RowConstraints maxHeight="11.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+         	
             <Label text="Min kalender" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
