@@ -101,8 +101,6 @@ public class Meeting {
     private LocalDateTime convertStringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
         System.out.println(str);
-
-
         return LocalDateTime.parse(str.split("\\.")[0], formatter);
     }
 
