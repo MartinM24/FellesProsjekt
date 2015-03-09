@@ -23,7 +23,7 @@ public class ChoosenCalendarsController implements ControlledScreen, Initializab
 	
 	@FXML Button okButton;
 	@FXML Button cancelButton;
-//	@FXML Button saveButton;
+//	@FXML Button saveButton;	
 	
 	@FXML
     public void okButtonClick(ActionEvent e){

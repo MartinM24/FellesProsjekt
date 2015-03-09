@@ -16,9 +16,9 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="chooseCalendarsButton" mnemonicParsing="false" text="Velg kalender" />
-      <Button fx:id="myGroupsButton" mnemonicParsing="false" text="Mine grupper" GridPane.rowIndex="1" />
-      <Button fx:id="meetingOverviewButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="111.0" text="Møteoversikt" GridPane.rowIndex="2" />
+      <Button fx:id="choosenCalendarsButton" mnemonicParsing="false" onAction="#choosenCalendarsButtonClick" text="Velg kalender" />
+      <Button fx:id="myGroupsButton" mnemonicParsing="false" onAction="#myGroupsButtonClick" text="Mine grupper" GridPane.rowIndex="1" />
+      <Button fx:id="meetingOverviewButton" mnemonicParsing="false" onAction="#meetingOverviewButtonClick" prefHeight="31.0" prefWidth="111.0" text="Møteoversikt" GridPane.rowIndex="2" />
       <Button fx:id="addMeetingButton" mnemonicParsing="false" onAction="#addMeetingButtonClick" prefHeight="31.0" prefWidth="111.0" text="Nytt møte" GridPane.rowIndex="3" />
    </children>
 </GridPane>

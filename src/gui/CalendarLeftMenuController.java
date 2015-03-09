@@ -20,22 +20,21 @@ import calendarClient.CalendarClient;
 public class CalendarLeftMenuController implements Initializable, ControlledScreen {
     private MainController myController;
     
-    @FXML Button chooseCalendarsButton;
+    @FXML Button choosenCalendarsButton;
     @FXML Button myGroupsButton;
     @FXML Button meetingOverviewButton;
     @FXML Button addMeetingButton;
-    @FXML Button calendarButton;
  
-/*
+
     @FXML
-    public void chooseCalendarsButtonClick(ActionEvent e){
+    public void choosenCalendarsButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
-		myController.setView(CalendarClient.CHOOSE_CALENDARS_VIEW);
+		myController.setView(CalendarClient.CHOOSEN_CALENDARS_VIEW);
 	}
-    
+   
     @FXML
     public void myGroupsButtonClick(ActionEvent e){
-		//Move user back to myGroups. 
+		//Move user to myGroups. 
 		myController.setView(CalendarClient.MY_GROUPS_VIEW);
 	}
     
@@ -44,7 +43,7 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
 		//Move user back to meetingOverview. 
 		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
 	}
- */   
+   
     
     @FXML
     private void addMeetingButtonClick(ActionEvent e){
@@ -52,11 +51,6 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
 		myController.setView(CalendarClient.ADD_MEETING_VIEW);
 	}
    
-    @FXML
-    private void calendarButtonClick(ActionEvent e){
-		//Move user back to addMeetign. 
-		myController.setView(CalendarClient.CALENDAR_VIEW);
-	}
     
     @Override
     public void setScreenParent(MainController screenPage) {

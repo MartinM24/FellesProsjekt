@@ -23,18 +23,18 @@ public class CalendarClient extends Application{
 	private static final String CALENDAR_LEFT_MENU_SCREEN_FXML = "/gui/CalendarLeftMenuGUI2.fxml";
 	private static final String CHOOSEN_CALENDARS_SCREEN = "ChoosenCalendars";
 	private static final String CHOOSEN_CALENDARS_SCREEN_FXML = "/gui/ChoosenCalendarsGUI2.fxml";
-	//private static final String MEETING_OVERVIEW_SCREEN = "MeetingOverview";
-	//private static final String MEETING_OVERVIEW_SCREEN_FXML = "/gui/MeetingOverviewGUI2.fxml";
-	//private static final String MY_GROUPS_SCREEN = "MyGroups";
-	//private static final String MY_GROUPS_SCREEN_FXML = "/gui/MyGroupsGUI2.fxml";
+	private static final String MEETING_OVERVIEW_SCREEN = "MeetingOverview";
+	private static final String MEETING_OVERVIEW_SCREEN_FXML = "/gui/MeetingOverviewGUI2.fxml";
+	private static final String MY_GROUPS_SCREEN = "MyGroups";
+	private static final String MY_GROUPS_SCREEN_FXML = "/gui/MyGroupsGUI2.fxml";
 
     public static final String LOG_IN_VIEW = "LogIN";
     public static final String NEW_USER_VIEW = "NewUser";
     public static final String CALENDAR_VIEW = "Calendar";
     public static final String ADD_MEETING_VIEW = "AddMeeting";
     public static final String CHOOSEN_CALENDARS_VIEW = "ChoosenCalendars";
-    //public static final String MEETING_OVERVIEW_VIEW = "MeetingOverview";
-    //public static final String MY_GROUPS_VIEW = "MyGroups";
+    public static final String MEETING_OVERVIEW_VIEW = "MeetingOverview";
+    public static final String MY_GROUPS_VIEW = "MyGroups";
 	private static LoginUser currentUser;
 
 	private MainController mainController;
@@ -52,8 +52,8 @@ public class CalendarClient extends Application{
         mainController.loadScreen(GLOBAL_MENU_SCREEN, GLOBAL_MENU_SCREEN_FXML);
         mainController.loadScreen(CALENDAR_LEFT_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN_FXML);
         mainController.loadScreen(CHOOSEN_CALENDARS_SCREEN, CHOOSEN_CALENDARS_SCREEN_FXML);
-        //mainController.loadScreen(MEETING_OVERVIEW_SCREEN, MEETING_OVERVIEW_SCREEN_FXML);
-        //mainController.loadScreen(MY_GROUPS_SCREEN, MY_GROUPS_SCREEN_FXML);
+        mainController.loadScreen(MEETING_OVERVIEW_SCREEN, MEETING_OVERVIEW_SCREEN_FXML);
+        mainController.loadScreen(MY_GROUPS_SCREEN, MY_GROUPS_SCREEN_FXML);
 
         // Make view form loaded screens
 		System.out.println("Load screens");
@@ -62,8 +62,8 @@ public class CalendarClient extends Application{
         mainController.makeView(NEW_USER_VIEW, NEW_USER_SCREEN);
         mainController.makeView(CALENDAR_VIEW, CALENDAR_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(CHOOSEN_CALENDARS_VIEW, CHOOSEN_CALENDARS_SCREEN, GLOBAL_MENU_SCREEN);
-        //mainController.makeView(MEETING_OVERVIEW_VIEW, MEETING_OVERVIEW_SCREEN, GLOBAL_MENU_SCREEN);
-        //mainController.makeView(MY_GROUPS_VIEW, MY_GROUPS_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(MEETING_OVERVIEW_VIEW, MEETING_OVERVIEW_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(MY_GROUPS_VIEW, MY_GROUPS_SCREEN, GLOBAL_MENU_SCREEN);
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);
 
