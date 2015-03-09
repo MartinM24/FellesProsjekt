@@ -7,7 +7,7 @@
 
 <VBox prefHeight="623.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalendarController">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="90.0" prefWidth="720.0">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="103.0" prefWidth="720.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -17,7 +17,8 @@
           <RowConstraints />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="27.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="11.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Min kalender" GridPane.rowIndex="1">
@@ -25,16 +26,46 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="nextWeekButton" mnemonicParsing="false" text="Neste uke" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Button fx:id="lastWeekButton" mnemonicParsing="false" text="Forrige uke" GridPane.rowIndex="3" />
-            <Label text="dato - dato år (uke)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="todayButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" text="I dag" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="nextWeekButton" mnemonicParsing="false" text="Neste uke" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button fx:id="lastWeekButton" mnemonicParsing="false" text="Forrige uke" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Label prefHeight="26.0" prefWidth="104.0" text="dato - dato år (uke)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="todayButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" text="I dag" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+         </children>
+      </GridPane>
+      <GridPane>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="95.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="85.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="86.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="91.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="88.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="87.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="87.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="16.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Klokkeslett" GridPane.halignment="CENTER" />
+            <Label text="Mandag" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label text="Tirsdag" GridPane.columnIndex="2" GridPane.halignment="CENTER" /> 
+            <Label text="Onsdag" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+            <Label text="Torsdag" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+            <Label text="Fredag" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
+            <Label text="Lørdag" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
+            <Label text="Søndag" GridPane.columnIndex="7" GridPane.halignment="CENTER" />
+            
+            
          </children>
       </GridPane>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="546.0" prefViewportHeight="791.0" prefViewportWidth="671.0" prefWidth="720.0" GridPane.rowIndex="1">
          <content>
             <GridPane fx:id="calendarGrid" gridLinesVisible="true">
               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -70,6 +101,36 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <Label contentDisplay="CENTER" text="00:00" GridPane.halignment="CENTER" />
+                  <Label contentDisplay="CENTER" text="01:00" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label contentDisplay="CENTER" text="02:00" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Label contentDisplay="CENTER" text="03:00" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <Label contentDisplay="CENTER" text="04:00" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Label contentDisplay="CENTER" text="05:00" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <Label contentDisplay="CENTER" text="06:00" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Label contentDisplay="CENTER" text="07:00" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <Label contentDisplay="CENTER" text="08:00" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
+                  <Label contentDisplay="CENTER" text="09:00" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
+                  <Label contentDisplay="CENTER" text="10:00" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
+                  <Label contentDisplay="CENTER" text="11:00" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
+                  <Label contentDisplay="CENTER" text="12:00" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+                  <Label contentDisplay="CENTER" text="13:00" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+                  <Label contentDisplay="CENTER" text="14:00" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
+                  <Label contentDisplay="CENTER" text="15:00" GridPane.halignment="CENTER" GridPane.rowIndex="15" />
+                  <Label contentDisplay="CENTER" text="16:00" GridPane.halignment="CENTER" GridPane.rowIndex="16" />
+                  <Label contentDisplay="CENTER" text="17:00" GridPane.halignment="CENTER" GridPane.rowIndex="17" />
+                  <Label contentDisplay="CENTER" text="18:00" GridPane.halignment="CENTER" GridPane.rowIndex="18" />
+                  <Label contentDisplay="CENTER" text="19:00" GridPane.halignment="CENTER" GridPane.rowIndex="19" />
+                  <Label contentDisplay="CENTER" text="20:00" GridPane.halignment="CENTER" GridPane.rowIndex="20" />
+                  <Label contentDisplay="CENTER" text="21:00" GridPane.halignment="CENTER" GridPane.rowIndex="21" />
+                  <Label contentDisplay="CENTER" text="22:00" GridPane.halignment="CENTER" GridPane.rowIndex="22" />
+                  <Label contentDisplay="CENTER" text="23:00" GridPane.halignment="CENTER" GridPane.rowIndex="23" />
+                  
+                  
+                  
+                  
+               </children>
             </GridPane>
          </content>
       </ScrollPane>
