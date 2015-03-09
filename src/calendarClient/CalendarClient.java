@@ -21,12 +21,15 @@ public class CalendarClient extends Application{
 	private static final String GLOBAL_MENU_SCREEN_FXML = "/gui/GlobalMenuGUI2.fxml";
 	private static final String CALENDAR_LEFT_MENU_SCREEN = "CalendarLeftMenu";
 	private static final String CALENDAR_LEFT_MENU_SCREEN_FXML = "/gui/CalendarLeftMenuGUI2.fxml";
+	private static final String ADD_GROUP_SCREEN = "AddGroup";
+	private static final String ADD_GROUP_SCREEN_FXML = "/gui/NewGroupGUI2.fxml";
 
 
     public static final String LOG_IN_VIEW = "LogIN";
     public static final String NEW_USER_VIEW = "NewUser";
     public static final String CALENDAR_VIEW = "Calendar";
     public static final String NEW_MEETING_VIEW = "NewMeeting";
+    public static final String ADD_GROUP_VIEW = "AddGroup";
 	private static LoginUser currentUser;
 
 	private MainController mainController;
@@ -43,15 +46,17 @@ public class CalendarClient extends Application{
         mainController.loadScreen(ADD_MEETING_SCREEN, ADD_MEETING_SCREEN_FXML);
         mainController.loadScreen(GLOBAL_MENU_SCREEN, GLOBAL_MENU_SCREEN_FXML);
         mainController.loadScreen(CALENDAR_LEFT_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN_FXML);
-
+        mainController.loadScreen(ADD_GROUP_SCREEN, ADD_GROUP_SCREEN_FXML);
+        
         // Make view form loaded screens
 		System.out.println("Load screens");
 		mainController.makeView(NEW_MEETING_VIEW, ADD_MEETING_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(LOG_IN_VIEW, LOG_IN_SCREEN);
         mainController.makeView(NEW_USER_VIEW, NEW_USER_SCREEN);
         mainController.makeView(CALENDAR_VIEW, CALENDAR_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
+        mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN);
 		// Set first screen
-		mainController.setView(LOG_IN_VIEW);
+		mainController.setView(ADD_GROUP_VIEW);
 
 		// Show first screen
 		root.getChildren().addAll(mainController);

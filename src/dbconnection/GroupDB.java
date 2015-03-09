@@ -105,7 +105,7 @@ public class GroupDB extends DatabaseConnection{
 		HashMap<String, List<String>> groupMap = new HashMap<String,List<String>>();
 		try {
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT * FROM groups");
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName parentID FROM groups");
 			while (myRs.next()){
 				if(groupMap.containsKey(myRs.getString(2))){
 					groupMap.get(myRs.getString(2)).add(myRs.getString(1));

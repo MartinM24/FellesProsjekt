@@ -24,6 +24,18 @@ public class Group implements Iterable<User>{
 		members = GroupDB.getAllMembers(name);
 		members.addAll(getAllMembers(this, members));
 	}
+	
+	public Group(String name, Group parent, List<User> members){
+		this.name = name;
+		GroupDB.addGroup(name);
+		if(parent!=null){
+			GroupDB.addParent(parent, this);
+		}
+		subGroups = new ArrayList<Group>();
+		for(int i = 0 ; i < members.size() ; i++){
+			addMember(members.get(i));
+		}
+	}
 
 	public List<User> getAllMembers(Group group, List<User> listAllMembers){
 		for(int i = 0; i < subGroups.size(); i++){
