@@ -3,4 +3,4 @@ create table room(
 roomName	 	VARCHAR(30),
 capacity		INT,
 
-PRIMARY KEY 		(roomID));
+PRIMARY KEY 		(roomName));
