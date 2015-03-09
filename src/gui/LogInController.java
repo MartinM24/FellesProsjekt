@@ -1,8 +1,7 @@
 package gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import calendarClient.CalendarClient;
+import dbconnection.UserDB;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -14,8 +13,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import model.LoginUser;
-import calendarClient.CalendarClient;
-import dbconnection.UserDB;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LogInController implements ControlledScreen, Initializable{
     private static final String WRONG_LOGIN_STYLE = "-fx-border-color: red";

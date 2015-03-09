@@ -5,10 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import sun.tools.tree.Node;
 
-
-import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -24,7 +21,6 @@ public class GlobalMenuController implements ControlledScreen, Initializable {
 
     @FXML
     private void logOutClick(ActionEvent event) {
-        System.out.println("Her er jeg");
         myController.setView(CalendarClient.LOG_IN_VIEW);
     }
 

@@ -1,13 +1,13 @@
 package gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import calendarClient.CalendarClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class CalendarController implements ControlledScreen, Initializable {
 	MainController myController;

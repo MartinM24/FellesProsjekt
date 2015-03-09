@@ -1,11 +1,11 @@
 package gui;
 
-import java.util.HashMap;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+
+import java.util.HashMap;
 
 public class MainController extends BorderPane {
 	/**

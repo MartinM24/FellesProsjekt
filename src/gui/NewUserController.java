@@ -1,8 +1,7 @@
 package gui;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
+import calendarClient.CalendarClient;
+import dbconnection.UserDB;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,8 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import model.LoginUser;
 import model.Password;
-import calendarClient.CalendarClient;
-import dbconnection.UserDB;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class NewUserController implements ControlledScreen, Initializable {
 	private static final String NOT_VALID_FIELD_STYLE = "-fx-border-color: red";
