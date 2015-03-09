@@ -143,7 +143,7 @@ public class MeetingDB extends DatabaseConnection{
 				preparedMeetingStmt.setNull(6, java.sql.Types.INTEGER);
 			}
 			else{
-				preparedMeetingStmt.setInt(6, meeting.getRoom().getRoomID());				
+				preparedMeetingStmt.setString(6, meeting.getRoom().getName());				
 			}
 			preparedMeetingStmt.setString(7, meeting.getOwner().getUsername());
 			int res = preparedMeetingStmt.executeUpdate();
