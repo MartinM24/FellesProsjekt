@@ -28,6 +28,19 @@ public class GroupDB extends DatabaseConnection{
 		} 
 	}
 	
+	public static String getParent(Group group){
+		try {
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT parentID FROM groups WHERE groupName = '"+group.getName()+"'");
+			myRs.next();
+			return myRs.getString(1);
+		}
+			catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
 	public static void addMember(User user, Group group){
 		try {
 			String addGroupQuery = "insert into usergroup (username, groupName)"  + "values(?, ?)";

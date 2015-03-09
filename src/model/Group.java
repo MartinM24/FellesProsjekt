@@ -74,10 +74,27 @@ public class Group implements Iterable<User>{
 		return subGroups;
 	}
 	
-	public void addSubGroup(Group subGroup) {
-		//TODO Check if subGroup is parent to group, or subgroup already has a parent
+	
+	/**
+	 * Method to add subgroup
+	 * @param subGroup
+	 * @return False if the subgroup is one of this group's ancestors
+	 */
+	public boolean addSubGroup(Group subGroup) {
+		Group currentGroup = this;
+		while(currentGroup.getParent()!=null){
+			currentGroup = currentGroup.getParent();
+			if (currentGroup.getName()==subGroup.getName()){
+				return false;
+			}
+		}
 		this.subGroups.add(subGroup);
 		GroupDB.addParent(this, subGroup);
+		return true;
+	}
+	
+	private Group getParent(){
+		return new Group(GroupDB.getParent(this));
 	}
 	
 	public void removeSubGroup(Group subGroup){
