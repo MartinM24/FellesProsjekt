@@ -19,10 +19,20 @@ public class Group implements Iterable<User>{
 	 */
 	public Group (String name){
 		this.name = name;
-		members = GroupDB.getAllMembers(name);
 		subGroups = new ArrayList<Group>();
 		makeChildren();
+		members = GroupDB.getAllMembers(name);
+		members.addAll(getAllMembers(this, members));
 	}
+
+	public List<User> getAllMembers(Group group, List<User> listAllMembers){
+		for(int i = 0; i < subGroups.size(); i++){
+			listAllMembers.addAll(getAllMembers(subGroups.get(i), listAllMembers));
+		}
+		return listAllMembers;
+		
+	}
+		
 	
 	
 	/**
