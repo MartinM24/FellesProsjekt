@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ChoosenCalendarsController">
    <children>
       <GridPane layoutX="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -18,8 +18,8 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppe" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ansatte" GridPane.rowIndex="3" />
             <ChoiceBox fx:id="employeeChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="OK" GridPane.rowIndex="5" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="66.0" text="OK" GridPane.rowIndex="5" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="66.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="Save" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
          <columnConstraints>
