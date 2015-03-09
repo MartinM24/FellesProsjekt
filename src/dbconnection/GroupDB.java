@@ -33,6 +33,9 @@ public class GroupDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT parentID FROM groups WHERE groupName = '"+group.getName()+"'");
 			myRs.next();
+			if(myRs.wasNull()){
+				return null;
+			}
 			return myRs.getString(1);
 		}
 			catch (Exception e) {
@@ -51,6 +54,7 @@ public class GroupDB extends DatabaseConnection{
 			if (res > 0) {
 				System.out.println("Inserting Meeting worked");
 			}
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -136,5 +140,16 @@ public class GroupDB extends DatabaseConnection{
 	}
 	
 	
-	
+	public static boolean groupExist(String groupName){
+		try{
+			Statement mysStatement = con.createStatement();
+			ResultSet myRs = mysStatement.executeQuery("select count(1) from groups where username = '"+ groupName +"'");
+			myRs.first();
+			return (myRs.getInt(1) > 0);
+		} catch (SQLException e) {
+            System.out.println("LOLOLOLOLOLO");
+			e.printStackTrace();
+		}
+        return false;
+	}
 }
