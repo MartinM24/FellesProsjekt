@@ -8,93 +8,80 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane prefHeight="600" prefWidth="900" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewUserController">
+
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewUserController">
    <children>
-      <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0">
-         <children>
-            <GridPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opprett bruker">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etternavn" GridPane.rowIndex="3" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" GridPane.rowIndex="5" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" GridPane.rowIndex="7" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bekreft passord" GridPane.rowIndex="9" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost" GridPane.rowIndex="11" />
-                  <TextField fx:id="FirstnameTextField" onFocusedChange="#FirstnameFocusChange" prefHeight="26.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <TextField fx:id="LastnameTextField" onFocusedChange="#LastnameFocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                  <TextField fx:id="UsernameTextField" onFocusedChange="#UsernameFocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                  <PasswordField fx:id="PasswordField1" onFocusedChange="#Password1FocusChange" onTextChange="#password1TextChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-                  <PasswordField fx:id="PasswordField2" onFocusedChange="#Password2FocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-                  <TextField fx:id="MailTextField" onFocusedChange="#MailFocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-                  <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#CancelButtonClick" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="13" />
-                  <Button fx:id="OKButton" mnemonicParsing="false" onAction="#OKButtonClick" prefHeight="31.0" prefWidth="64.0" text="OK" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
-                  <Label fx:id="firstnameStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lastnameStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="usernameStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="password1Status" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="password2Status" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="10">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="mailStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="12">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="formStatus" prefHeight="32.0" prefWidth="289.0" text="Label" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14" />
-               </children>
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="122.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="140.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="101.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="270.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="360.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="390.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-            </GridPane>
-         </children>
-      </AnchorPane>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opprett bruker">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn" GridPane.rowIndex="1" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etternavn" GridPane.rowIndex="3" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" GridPane.rowIndex="5" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" GridPane.rowIndex="7" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bekreft passord" GridPane.rowIndex="9" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost" GridPane.rowIndex="11" />
+      <TextField fx:id="FirstnameTextField" onFocusedChange="#FirstnameFocusChange" prefHeight="26.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+      <TextField fx:id="LastnameTextField" onFocusedChange="#LastnameFocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+      <TextField fx:id="UsernameTextField" onFocusedChange="#UsernameFocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+      <PasswordField fx:id="PasswordField1" onFocusedChange="#Password1FocusChange" onTextChange="#password1TextChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+      <PasswordField fx:id="PasswordField2" onFocusedChange="#Password2FocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+      <TextField fx:id="MailTextField" onFocusedChange="#MailFocusChange" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="11" />
+      <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#CancelButtonClick" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+      <Button fx:id="OKButton" mnemonicParsing="false" onAction="#OKButtonClick" prefHeight="31.0" prefWidth="64.0" text="OK" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
+      <Label fx:id="firstnameStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="lastnameStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="usernameStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="password1Status" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="password2Status" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="10">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="mailStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="12">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Label>
+      <Label fx:id="formStatus" prefHeight="32.0" prefWidth="289.0" text="Label" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14" />
    </children>
    <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="600.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="122.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="140.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="101.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="270.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="360.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="390.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
    </rowConstraints>
 </GridPane>

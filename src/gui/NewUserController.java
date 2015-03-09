@@ -148,7 +148,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 			boolean beenAdded = UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
 			if (beenAdded) {
 				emptyForm(); 
-				myController.setCenter(CalendarClient.LOG_IN_SCREEN);
+				myController.setView(CalendarClient.LOG_IN_VIEW);
 			} else {
 				formStatus.setText("Brukeren kunne ikke blitt lagt til sjekk internett tilkoblingen din og prøv igjen");
 				formStatus.setTextFill(Color.RED);
@@ -179,7 +179,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 	
 	public void CancelButtonClick(ActionEvent e){
 		//Move user back to userLogin screen 
-		myController.setCenter(CalendarClient.LOG_IN_SCREEN);
+		myController.setView(CalendarClient.LOG_IN_VIEW);
 	}
 	
 	public void Password1FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){

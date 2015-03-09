@@ -110,13 +110,13 @@ public class AddMeetingController implements ControlledScreen {
 						toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
 						subjectField.getText(), -1, new ArrayList<User>());
 				
-				myController.setCenter(CalendarClient.CALENDAR_SCREEN);
+				myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
 			
 	}
 	
 	public void cancelButtonClick(ActionEvent e){
-		myController.setCenter(CalendarClient.CALENDAR_SCREEN);
+		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
 	
 	private void showTooltip(TextField textField) {

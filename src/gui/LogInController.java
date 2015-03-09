@@ -50,7 +50,7 @@ public class LogInController implements ControlledScreen, Initializable{
 				if (user.checkPassword(passwordField.getText())){
 					//Correct password send to calendar screen
 					CalendarClient.setCurrentUser(user);
-					myController.setCenter(CalendarClient.CALENDAR_SCREEN);
+					myController.setView(CalendarClient.CALENDAR_VIEW);
 				} else {
 					//Wrong password
 					System.out.println("User exist, but worng password");
@@ -96,7 +96,7 @@ public class LogInController implements ControlledScreen, Initializable{
 	
 	@FXML
 	private void newUserButtonClick(ActionEvent event){
-		myController.setCenter(CalendarClient.NEW_USER_SCREEN);
+		myController.setView(CalendarClient.NEW_USER_VIEW);
 	} 
 	
 	@Override

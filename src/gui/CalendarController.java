@@ -22,7 +22,7 @@ public class CalendarController implements ControlledScreen, Initializable {
 	
 	public void newMeetingButtonClick(ActionEvent e){
 		//Move user back to userLogin. 
-		myController.setCenter(CalendarClient.ADD_MEETING_SCREEN);
+		myController.setView(CalendarClient.NEW_MEETING_VIEW);
 	}
 	
 	@Override

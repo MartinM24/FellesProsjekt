@@ -1,78 +1,102 @@
 package gui;
 
-import java.net.URL;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 
 public class MainController extends BorderPane {
 	/**
 	 * Controller to control multiple screens
 	 */
-	HashMap<String, Node> screens = new HashMap<String, Node>();
-
+	private HashMap<String, View> views = new HashMap<String, View>();
+    private HashMap<String, Node> screens = new HashMap<>();
 	/**
-	 * Adds screen
-	 * @param name - Name of the screen
-	 * @param screen - Root node of the screen
+	 * Adds view
+	 * @param name - Name of the view
+	 * @param view - Root node of the view
 	 */
-	private void addScreen(String name, Node screen) {
-	       screens.put(name, screen);
+
+	private void addView(String name, View view) {
+	       views.put(name, view);
 	}
 
-	public boolean loadScreen(String name, String resource) {
-	     try {
-	       FXMLLoader myLoader = new
-	               FXMLLoader(getClass().getResource(resource));
-	       Parent loadScreen = (Parent) myLoader.load();
-	       ControlledScreen myScreenControler =
-	              ((ControlledScreen) myLoader.getController());
-	       myScreenControler.setScreenParent(this);
-	       addScreen(name, loadScreen);
-	       return true;
-	     }catch(Exception e) {
-             System.out.println(e.getMessage());
-             e.printStackTrace();
-             return false;
-         }
+    private void addScreen(String name, Node screen) {
+        screens.put(name,screen);
+    }
+
+    private Node getScreen(String name) {
+        return screens.get(name);
+    }
+
+    public boolean loadScreen(String name, String resource) {
+        try {
+            FXMLLoader myLoader = new FXMLLoader(getClass().getResource(resource));
+            Parent loadScreen = myLoader.load();
+            ControlledScreen controller =  myLoader.getController();
+            controller.setScreenParent(this);
+            addScreen(name, loadScreen);
+            System.out.println("Loading " + name + " from " + resource);
+            return true;
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+	public void makeView(String name, String centerName, String bottomName, String leftName) {
+        Node center = getScreen(centerName);
+        Node bottom = getScreen(bottomName);
+        Node left = getScreen(leftName);
+        if (center != null & bottom != null & left != null) {
+            View view = new View(center, bottom, left);
+            addView(name, view);
+        } else {
+            throw new IllegalArgumentException("One or more screens has't been loaded");
+        }
 	}
 
-    public void setCenter(final String name) {
-        setCenter(getScreen(name));
-    }
+    public void makeView(String name, String centerName, String bottomName) {
+        Node center = getScreen(centerName);
+        Node bottom = getScreen(bottomName);
+        if (center != null & bottom != null) {
+            View view = new View(center, bottom);
+            addView(name, view);
+        } else {
+            throw new IllegalArgumentException("One or more screens has't been loaded");
+        }
+	}
 
-    public void setBottom(final String name) {
-        setLeft(getScreen(name));
-    }
+    public void makeView(String name, String centerName) {
+        if (centerName != null) {
+            View view = new View(getScreen(centerName));
+            addView(name, view);
+        } else {
+            throw new IllegalArgumentException("One or more screens has't been loaded");
+        }
+	}
 
-    public void setLeft(final String name) {
-        setLeft(getScreen(name));
-    }
-
-
-
-	 private Node getScreen(final String name) {
-	     Node node = screens.get(name);
-		if(node != null) { //screen loaded
-            return node;
+	public boolean setView(final String name) {
+	     View view = views.get(name);
+		if(view != null) { //view loaded
+            setCenter(view.getCenter());
+            setBottom(view.getBottom());
+            setLeft(view.getLeft());
+            return true;
 	     } else {
-            System.out.println("screen hasn't been loaded!\n");
+            System.out.println("View hasn't been loaded!\n");
             //TODO add fail to load screen?
-	        return null;
+	        return false;
 	     }
 	 }
 
 	 public boolean unloadScreen(String name) {
-	     if(screens.remove(name) == null) {
-	       System.out.println("Screen didn't exist");
+	     if(views.remove(name) == null) {
+	       System.out.println("View didn't exist");
 	       return false;
 	     } else {
              return true;
