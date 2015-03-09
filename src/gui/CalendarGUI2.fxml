@@ -15,10 +15,10 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="27.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="11.0" minHeight="8.0" prefHeight="8.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="28.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="19.0" minHeight="8.0" prefHeight="18.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
          	
@@ -35,19 +35,18 @@
       </GridPane>
       <GridPane>
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="96.0" minWidth="10.0" prefWidth="95.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="85.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="86.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="91.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="93.0" minWidth="10.0" prefWidth="88.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="99.0" minWidth="10.0" prefWidth="88.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="87.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="87.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="16.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="89.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="84.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="88.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="86.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="87.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="92.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="87.0" />
+          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="104.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="16.0" minHeight="9.0" prefHeight="11.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="11.0" minHeight="3.0" prefHeight="8.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Klokkeslett" GridPane.halignment="CENTER" />
@@ -59,7 +58,7 @@
             <Label text="Lørdag" GridPane.columnIndex="6" GridPane.halignment="CENTER" />
             <Label text="Søndag" GridPane.columnIndex="7" GridPane.halignment="CENTER" />
             
-            
+                                                                                                      
          </children>
       </GridPane>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="546.0" prefViewportHeight="791.0" prefViewportWidth="671.0" prefWidth="720.0" GridPane.rowIndex="1">
