@@ -10,7 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 public class CalendarController implements ControlledScreen, Initializable {
-	ScreensController myController; 
+	MainController myController;
 	@FXML Button newMeetingButton;
 	
 
@@ -22,11 +22,11 @@ public class CalendarController implements ControlledScreen, Initializable {
 	
 	public void newMeetingButtonClick(ActionEvent e){
 		//Move user back to userLogin. 
-		myController.setScreen(CalendarClient.ADD_MEETING_SCREEN);
+		myController.setView(CalendarClient.NEW_MEETING_VIEW);
 	}
 	
 	@Override
-	public void setScreenParent(ScreensController screenPage) {
+	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage; 
 	}
 

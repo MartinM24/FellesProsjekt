@@ -22,7 +22,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 	private static final String MAIL_REGEX = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,})$";
 	private static final String USERNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
 	private static final String NAME_REGEX = "^[\\p{L} .'-]+$";
-	ScreensController myController; 
+	MainController myController;
 	//Fields
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;
@@ -148,7 +148,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 			boolean beenAdded = UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
 			if (beenAdded) {
 				emptyForm(); 
-				myController.setScreen(CalendarClient.LOG_IN_SCREEN);				
+				myController.setView(CalendarClient.LOG_IN_VIEW);
 			} else {
 				formStatus.setText("Brukeren kunne ikke blitt lagt til sjekk internett tilkoblingen din og prøv igjen");
 				formStatus.setTextFill(Color.RED);
@@ -179,7 +179,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 	
 	public void CancelButtonClick(ActionEvent e){
 		//Move user back to userLogin screen 
-		myController.setScreen(CalendarClient.LOG_IN_SCREEN);
+		myController.setView(CalendarClient.LOG_IN_VIEW);
 	}
 	
 	public void Password1FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
@@ -294,7 +294,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 	}
 	
 	@Override
-	public void setScreenParent(ScreensController screenPage) {
+	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
 	}
 }

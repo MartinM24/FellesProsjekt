@@ -8,53 +8,46 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="869.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
-  <columnConstraints>
-    <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
-      <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane>
+      <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
+            <TableView prefHeight="392.0" prefWidth="392.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <columns>
+                  <TableColumn fx:id="nameColumn" prefWidth="112.0" text="Navn" />
+                  <TableColumn fx:id="membersColumn" prefWidth="279.0" text="Medlemmer" />
+               </columns>
+            </TableView>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppeoversikt">
                <font>
-                  <Font size="18.0" fx:id="x1" />
+                  <Font size="18.0" />
                </font>
-               <textFill>
-                  <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
-               </textFill>
-            </Label>
-         </children>
-      </AnchorPane>
-      <ScrollPane prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="1">
-         <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
+            </Text>
+            <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppeoversikt">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <TableView layoutX="14.0" layoutY="60.0" prefHeight="392.0" prefWidth="392.0">
-                     <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="112.0" text="Navn" />
-                        <TableColumn fx:id="membersColumn" prefWidth="279.0" text="Medlemmer" />
-                     </columns>
-                  </TableView>
-                  <Button fx:id="okButton" layoutX="266.0" layoutY="483.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="OK" />
-                  <Button fx:id="cancelButton" layoutX="341.0" layoutY="483.0" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="66.0" text="OK" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" />
                </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <AnchorPane GridPane.columnIndex="2">
-         <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+            </GridPane>
          </children>
-      </AnchorPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="25.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="575.0" minWidth="10.0" prefWidth="575.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="145.0" minHeight="0.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="524.0" minHeight="10.0" prefHeight="479.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="133.0" minHeight="0.0" prefHeight="19.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="78.0" minHeight="3.0" prefHeight="3.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
    </children>
-</GridPane>
+</AnchorPane>

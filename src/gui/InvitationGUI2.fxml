@@ -8,83 +8,57 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="848.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
   <columnConstraints>
-    <ColumnConstraints hgrow="NEVER" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
-      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="200.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <AnchorPane>
+      <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0">
          <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="Master" textAlignment="CENTER" wrapText="false">
-               <font>
-                  <Font size="18.0" fx:id="x1" />
-               </font>
-               <textFill>
-                  <Color blue="0.624" green="0.624" red="0.624" fx:id="x2" />
-               </textFill>
-            </Label>
-         </children>
-      </AnchorPane>
-      <ScrollPane prefHeight="-1.0" prefWidth="-1.0" GridPane.columnIndex="1">
-         <content>
-            <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="545.0" prefWidth="430.0">
+            <GridPane layoutX="11.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <GridPane layoutX="2.0" prefHeight="537.0" prefWidth="443.0">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tid" wrappingWidth="27.6708984375" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beskrivelse" wrappingWidth="86.6708984375" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rom" wrappingWidth="31.68115234375" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteeier" wrappingWidth="64.7216796875" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Status" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="statusDropdown" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invitasjonsoversikt" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type" GridPane.rowIndex="1" />
+                  <AnchorPane prefHeight="32.0" prefWidth="430.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                      <children>
-                        <TextField fx:id="usernameField" onFocusedChange="#usernameFocusedChange" prefHeight="25.0" prefWidth="201.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <PasswordField fx:id="passwordField" onFocusedChange="#passwordFocusedChange" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <GridPane GridPane.columnIndex="3" GridPane.rowIndex="3">
-                           <children>
-                              <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" text="Logg in" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                              <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="26.0" prefWidth="66.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-                              <Button fx:id="newUserButton" mnemonicParsing="false" onAction="#newUserButtonClick" prefHeight="26.0" prefWidth="87.0" text="Ny bruker" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
-                              <Label fx:id="loginFeedback" prefHeight="16.0" prefWidth="295.0" text="Label" visible="false" GridPane.columnSpan="3" />
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="125.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="103.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="144.0" minWidth="10.0" prefWidth="69.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Logg inn" GridPane.columnIndex="3">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
+                        <Button fx:id="okButton" layoutX="202.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="OK" />
+                        <Button fx:id="cancelButton" layoutX="276.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Cancel" />
+                        <Button fx:id="saveButton" layoutX="349.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="67.0" text="Save" />
                      </children>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="5.0" prefWidth="25.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="217.0" minWidth="10.0" prefWidth="96.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="269.0" minWidth="0.0" prefWidth="17.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.0" minWidth="10.0" prefWidth="309.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.0" minWidth="10.0" prefWidth="62.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="102.0" minHeight="0.0" prefHeight="49.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="274.0" minHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="347.0" minHeight="0.0" prefHeight="29.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="382.0" minHeight="10.0" prefHeight="58.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="343.0" minHeight="10.0" prefHeight="343.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                  </GridPane>
+                  </AnchorPane>
                </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
-      <AnchorPane GridPane.columnIndex="2">
-         <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="52.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="65.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="124.0" minWidth="10.0" prefWidth="45.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="137.0" minWidth="10.0" prefWidth="96.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="10.0" prefWidth="43.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="10.0" prefWidth="87.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="10.0" prefWidth="82.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="244.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="466.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="433.0" minHeight="0.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="455.0" minHeight="10.0" prefHeight="416.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
          </children>
       </AnchorPane>
    </children>
