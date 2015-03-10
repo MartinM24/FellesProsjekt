@@ -283,4 +283,11 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
 	}
+
+
+
+	@Override
+	public void viewRefresh() {
+		memberList.clear();
+	}
 }
