@@ -59,6 +59,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 			chooseParentComboBox.setVisible(true);
 		}
 		else{
+			chooseParentComboBox.setValue("");
 			chooseParentComboBox.setVisible(false);
 		}
 		System.out.println("CheckBox: "+hasParentCheckBox.isSelected());
