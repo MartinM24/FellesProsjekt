@@ -24,13 +24,14 @@ public class MeetingDB extends DatabaseConnection{
 	}
 	
 	public static List<Meeting> getAllMeetings(User user){
-		List<Meeting> meetingList = new ArrayList<Meeting>();
+		List<Meeting> meetingList = new ArrayList<>();
 		try{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> -1");
-			while (myRs.next()){
-				meetingList.add(getMeeting(myRs.getInt(1)));
-			};
+            while (myRs.next()){
+                int id = myRs.getInt(1);
+				meetingList.add(getMeeting(id));
+			}
 			System.out.println("Everything worked");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -104,7 +105,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingTimeStart(int meetingID, LocalDateTime timeStart){
 		try {
-			//TODO denne metoden skal booke møteromet på nytt. 
+			//TODO denne metoden skal booke mï¿½teromet pï¿½ nytt. 
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeStart)+"' WHERE meetingID='"+meetingID+"'");
 		}
@@ -115,7 +116,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingTimeEnd(int meetingID, LocalDateTime timeEnd){
 		try {
-			//TODO denne metoden skal booke møteromet på nytt. 
+			//TODO denne metoden skal booke mï¿½teromet pï¿½ nytt. 
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeEnd)+"' WHERE meetingID='"+meetingID+"'");
 		}

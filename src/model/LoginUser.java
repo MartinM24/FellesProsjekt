@@ -18,8 +18,13 @@ public class LoginUser extends User {
 		this.dbSalt = pass.getSalt(); 
 		this.dbHash = pass.getHash(); 
 	}
-	
-	
+
+    public LoginUser(String username, String fristname, String lastname, String passw) {
+        super(username, fristname, lastname, "test@test.no");
+        Password pass = new Password(passw);
+        this.dbSalt = pass.getSalt();
+        this.dbHash = pass.getHash();
+    }
 
 
 /*	public LoginUser(String username, String fristname, String lastname, String email, String password) {

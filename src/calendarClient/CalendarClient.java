@@ -84,14 +84,10 @@ public class CalendarClient extends Application{
 		dbconnection.DatabaseConnection.startCon();
 		
 	}
-	
-	
-	
+
 	public static LoginUser getCurrentUser() {
 		return currentUser;
 	}
-
-
 
 	public static void setCurrentUser(LoginUser currentUser) {
 		CalendarClient.currentUser = currentUser;

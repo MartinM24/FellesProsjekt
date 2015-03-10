@@ -24,7 +24,13 @@ public class AddMeetingController implements ControlledScreen {
 	@FXML TextField fromtimeField; 
 	@FXML TextField totimeField;
 	@FXML Button findroomButton;
-	@FXML DatePicker fromDatePicker;
+
+    @Override
+    public void viewRefresh() {
+
+    }
+
+    @FXML DatePicker fromDatePicker;
 	@FXML DatePicker toDatePicker;
 	@FXML Button saveButton;
 	@FXML Button cancelButton;

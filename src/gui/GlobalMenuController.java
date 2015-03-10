@@ -25,6 +25,11 @@ public class GlobalMenuController implements ControlledScreen, Initializable {
     }
 
     @Override
+    public void viewRefresh() {
+
+    }
+
+    @Override
     public void setScreenParent(MainController screenPage) {
         this.myController = screenPage;
     }

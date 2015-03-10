@@ -21,8 +21,13 @@ import calendarClient.CalendarClient;
 public class MeetingOverviewController implements ControlledScreen, Initializable {
 	MainController myController;
 	@FXML Button okButton;
-	
-	@FXML
+
+    @Override
+    public void viewRefresh() {
+
+    }
+
+    @FXML
     public void okButtonClick(ActionEvent e){
 		//Move user back to calendar. 
 		myController.setView(CalendarClient.CALENDAR_VIEW);
