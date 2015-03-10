@@ -41,4 +41,11 @@ public class MeetingInfoController implements ControlledScreen, Initializable {
 
     }
 
+
+	@Override
+	public void viewRefresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

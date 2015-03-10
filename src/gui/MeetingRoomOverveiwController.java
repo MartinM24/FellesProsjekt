@@ -93,4 +93,10 @@ public class MeetingRoomOverveiwController implements ControlledScreen, Initiali
 		this.myController = screenPage;
 	}
 
+	@Override
+	public void viewRefresh() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

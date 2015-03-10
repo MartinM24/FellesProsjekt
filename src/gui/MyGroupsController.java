@@ -39,10 +39,10 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
 
-	@FXML
-    public void newGroupButtonClick(ActionEvent e){
-		//Move user to new group. 
-		myController.setView(CalendarClient.ADD_GROUP_VIEW);
+//	@FXML
+//    public void newGroupButtonClick(ActionEvent e){
+//		//Move user to new group. 
+//		myController.setView(CalendarClient.ADD_GROUP_VIEW);
 
 
 	@Override
