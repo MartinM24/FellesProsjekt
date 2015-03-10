@@ -51,7 +51,6 @@ public class Meeting {
         this.nOfParticipant = nOfParticipant;
         this.participants = participants;
         this.meetingID = MeetingDB.addMeeting(this);
-
         System.out.println(meetingID);
 
 
@@ -213,6 +212,17 @@ public class Meeting {
         return timeEnd.getMinute();
     }
 
+    public int getStartDayOfWeek() {
+        return timeStart.getDayOfWeek().getValue();
+    }
+
+    public String getStartString(){
+        return getStartHour() + ":" + getMinute();
+    }
+
+    public String getEndString(){
+        return getEndHour() + ":" + getEndMinute();
+    }
 
     /**
      * Return the string to be saved in the database for the starttime
