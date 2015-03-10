@@ -7,47 +7,37 @@ import javafx.scene.Node;
  */
 
 public class View {
-    private Node center = null;
-    private Node bottom = null;
-    private Node left = null;
 
-    public View(Node center, Node bottom, Node left) {
+    private String center = null;
+    private String bottom = null;
+    private String left = null;
+
+    public View(String center, String bottom, String left) {
         this.center = center;
         this.bottom = bottom;
         this.left = left;
     }
 
-    public View(Node center, Node bottom) {
+    public View(String center, String bottom) {
         this.center = center;
         this.bottom = bottom;
     }
 
-    public View(Node center) {
+    public View(String center) {
         this.center = center;
     }
 
-    public Node getCenter() {
+    public String getCenter() {
         return center;
     }
 
-    public Node getBottom() {
+    public String getBottom() {
         return bottom;
     }
 
-    public Node getLeft() {
+    public String getLeft() {
         return left;
     }
 
-    public void setCenter(Node center) {
-        this.center = center;
-    }
-
-    public void setBottom(Node bottom) {
-        this.bottom = bottom;
-    }
-
-    public void setLeft(Node left) {
-        this.left = left;
-    }
 }
 

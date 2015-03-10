@@ -182,8 +182,13 @@ public class NewUserController implements ControlledScreen, Initializable {
 		//Move user back to userLogin screen 
 		myController.setView(CalendarClient.LOG_IN_VIEW);
 	}
-	
-	public void Password1FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
+
+    @Override
+    public void viewRefresh() {
+
+    }
+
+    public void Password1FocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		//Trim password
 		PasswordField1.setText(PasswordField1.getText().trim());
 		//Validates only when focus is moved away from field 

@@ -11,13 +11,16 @@ public class MainController extends BorderPane {
 	/**
 	 * Controller to control multiple screens
 	 */
-	private HashMap<String, View> views = new HashMap<String, View>();
+	private HashMap<String, View> views = new HashMap<>();
     private HashMap<String, Node> screens = new HashMap<>();
+    private HashMap<String, ControlledScreen> controllers = new HashMap<>();
 	/**
 	 * Adds view
 	 * @param name - Name of the view
 	 * @param view - Root node of the view
 	 */
+
+
 
 	private void addView(String name, View view) {
 	       views.put(name, view);
@@ -27,8 +30,16 @@ public class MainController extends BorderPane {
         screens.put(name,screen);
     }
 
+    private void addController(String name, ControlledScreen ctrl ) {
+        controllers.put(name, ctrl);
+    }
+
     private Node getScreen(String name) {
         return screens.get(name);
+    }
+
+    private ControlledScreen getController(String name){
+        return controllers.get(name);
     }
 
     public boolean loadScreen(String name, String resource) {
@@ -38,6 +49,7 @@ public class MainController extends BorderPane {
             ControlledScreen controller =  myLoader.getController();
             controller.setScreenParent(this);
             addScreen(name, loadScreen);
+            addController(name, controller);
             System.out.println("Loading " + name + " from " + resource);
             return true;
         }catch(Exception e) {
@@ -49,43 +61,26 @@ public class MainController extends BorderPane {
     }
 
 	public void makeView(String name, String centerName, String bottomName, String leftName) {
-        Node center = getScreen(centerName);
-        Node bottom = getScreen(bottomName);
-        Node left = getScreen(leftName);
-        if (center != null & bottom != null & left != null) {
-            View view = new View(center, bottom, left);
-            addView(name, view);
-        } else {
-            throw new IllegalArgumentException("One or more screens has't been loaded");
-        }
+        View view = new View(centerName, bottomName, leftName);
+        addView(name, view);
 	}
 
     public void makeView(String name, String centerName, String bottomName) {
-        Node center = getScreen(centerName);
-        Node bottom = getScreen(bottomName);
-        if (center != null & bottom != null) {
-            View view = new View(center, bottom);
-            addView(name, view);
-        } else {
-            throw new IllegalArgumentException("One or more screens has't been loaded");
-        }
+        View view = new View(centerName, bottomName);
+        addView(name, view);
 	}
 
     public void makeView(String name, String centerName) {
-        if (centerName != null) {
-            View view = new View(getScreen(centerName));
-            addView(name, view);
-        } else {
-            throw new IllegalArgumentException("One or more screens has't been loaded");
-        }
+        View view = new View(centerName);
+        addView(name, view);
 	}
 
 	public boolean setView(final String name) {
 	     View view = views.get(name);
 		if(view != null) { //view loaded
-            setCenter(view.getCenter());
-            setBottom(view.getBottom());
-            setLeft(view.getLeft());
+            setCenterScreen(view.getCenter());
+            setBottomScreen(view.getBottom());
+            setLeftScreen(view.getLeft());
             return true;
 	     } else {
             System.out.println("View hasn't been loaded!\n");
@@ -94,14 +89,46 @@ public class MainController extends BorderPane {
 	     }
 	 }
 
-	 public boolean unloadScreen(String name) {
-	     if(views.remove(name) == null) {
-	       System.out.println("View didn't exist");
-	       return false;
-	     } else {
-             return true;
-         }
-	 }
+    private void setCenterScreen(String name){
+        if (name != null) {
+            setCenter(getScreen(name));
+            getController(name).viewRefresh();
+        } else {
+            setCenter(null);
+        }
+    }
 
+    private void setBottomScreen(String name){
+        if (name != null) {
+            setBottom(getScreen(name));
+            getController(name).viewRefresh();
+        } else {
+            setBottom(null);
+        }
+    }
+
+    private void setLeftScreen(String name){
+        if (name != null) {
+            setLeft(getScreen(name));
+            getController(name).viewRefresh();
+        } else {
+            setBottom(null);
+        }
+    }
+
+    /**
+     * Gets controller for screen with name
+      * @param name of the screen
+     * @return Controller for screen
+     */
+
+    public ControlledScreen getControllerForScreen(String name) {
+        ControlledScreen ctrl = controllers.get(name);
+        if(ctrl != null) {
+            return ctrl;
+        } else {
+            throw new IllegalArgumentException("Screen with string name does't excict");
+        }
+    }
 
 }

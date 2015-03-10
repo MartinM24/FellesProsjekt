@@ -4,14 +4,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import model.Group;
 import model.Meeting;
+import model.Room;
 import model.User;
 
 public class MeetingDB extends DatabaseConnection{
+    private final static String dateFormat = "yyyy-MM-dd HH:mm:ss";
 	
 	private MeetingDB() {
 		
@@ -22,9 +28,10 @@ public class MeetingDB extends DatabaseConnection{
 		try{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> -1");
-			while (myRs.next()){
-				meetingList.add(getMeeting(myRs.getInt(1)));
-			};
+            while (myRs.next()){
+                int id = myRs.getInt(1);
+				meetingList.add(getMeeting(id));
+			}
 			System.out.println("Everything worked");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -84,7 +91,80 @@ public class MeetingDB extends DatabaseConnection{
 		return false;
 	}	
 	
+	public static void updateMeetingDescription(int meetingID, String description){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE meeting SET mDescription='"+description+"' WHERE meetingID='"+meetingID+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 	
+	
+	
+	public static void updateMeetingTimeStart(int meetingID, LocalDateTime timeStart){
+		try {
+			//TODO denne metoden skal booke m�teromet p� nytt. 
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeStart)+"' WHERE meetingID='"+meetingID+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateMeetingTimeEnd(int meetingID, LocalDateTime timeEnd){
+		try {
+			//TODO denne metoden skal booke m�teromet p� nytt. 
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeEnd)+"' WHERE meetingID='"+meetingID+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateMeetingPlace(int meetingID, String place){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE meeting SET place='"+place+"' WHERE meetingID='"+meetingID+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}	
+	
+	public static void updateMeetingNofParticipants(int meetingID, int nOfParticipant){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE meeting SET nOfParticipant='"+nOfParticipant+"' WHERE meetingID='"+meetingID+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateMeetingRoom(int meetingID, Room room){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE meeting SET roomName='"+room.getName()+"' WHERE meetingID='"+meetingID+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	public static void updateMeetingOwner(int meetingID, User owner){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE meeting SET owner='"+owner.getUsername()+"' WHERE meetingID='"+meetingID+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+		
 	private static boolean removeParticipant(int meetingID, User user) {
 		try {
 			Statement myStatement = con.createStatement(); 
@@ -168,6 +248,12 @@ public class MeetingDB extends DatabaseConnection{
 			addParticipant(meeting, user, 0);
 		}
 	}
+	
+    public static String getDBTime(LocalDateTime time) {
+        Date dt = Date.from(time.atZone(ZoneId.systemDefault()).toInstant());
+        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        return sdf.format(dt);
+    }
 	
 }
 
