@@ -23,7 +23,7 @@ public class MeetingDB extends DatabaseConnection{
 		
 	}
 	
-	/*public static List<Meeting> getAllMeetings(User user){
+	public static List<Meeting> getAllMeetings(User user){
 		List<Meeting> meetingList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
@@ -36,7 +36,7 @@ public class MeetingDB extends DatabaseConnection{
 			e.printStackTrace();
 		}
 		return meetingList;
-	}*/
+	}
 	
 	public static Meeting getMeeting(int meetingID){
 		try{
