@@ -27,10 +27,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="nextWeekButton" mnemonicParsing="false" text="Neste uke" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Button fx:id="lastWeekButton" mnemonicParsing="false" text="Forrige uke" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-            <Label prefHeight="26.0" prefWidth="104.0" text="dato - dato år (uke)" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-            <Button fx:id="todayButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" text="I dag" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+            <Button onAction="#nextWeekClick" fx:id="nextWeekButton" mnemonicParsing="false" text="Neste uke" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button onAction="#lastWeekClick" fx:id="lastWeekButton" mnemonicParsing="false" text="Forrige uke" GridPane.rowIndex="3" />
+            <Label text="dato - dato år (uke)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="todayButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="58.0" text="I dag" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
       <GridPane>

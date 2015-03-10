@@ -13,11 +13,14 @@ public class AddTestSet {
 	private static ArrayList<Meeting> meetings; 
 	
 	public static void main(String[] args) {
-		users = new ArrayList<>();
+        LoginUser user = new LoginUser("", "Test", "Test", "");
+        System.out.println(user);
+        UserDB.addUser(user);
+		/*users = new ArrayList<>();
 		meetings = new ArrayList<>();
 		DatabaseConnection.startCon();
 		addTestUsers();
-		addTestMeetigs();
+		addTestMeetigs();*/
 	}
 
 	private static void addTestUsers() {

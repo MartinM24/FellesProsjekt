@@ -58,6 +58,11 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     }
 
     @Override
+    public void viewRefresh() {
+
+    }
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }

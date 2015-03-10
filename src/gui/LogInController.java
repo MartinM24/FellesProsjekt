@@ -36,8 +36,13 @@ public class LogInController implements ControlledScreen, Initializable{
 	@FXML
 	public void initialize() {	
 	}
-	
-	@FXML
+
+    @Override
+    public void viewRefresh() {
+
+    }
+
+    @FXML
 	private void okButtonClick(ActionEvent event) {
 		String username = usernameField.getText();
 		// Check if username is a valid one 
@@ -51,6 +56,7 @@ public class LogInController implements ControlledScreen, Initializable{
 					//Correct password send to calendar screen
 					CalendarClient.setCurrentUser(user);
 					myController.setView(CalendarClient.CALENDAR_VIEW);
+
 				} else {
 					//Wrong password
 					System.out.println("User exist, but worng password");
