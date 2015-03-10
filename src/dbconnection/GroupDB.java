@@ -20,7 +20,7 @@ public class GroupDB extends DatabaseConnection{
 			preparedStmt.setString (1, name);
 			int res = preparedStmt.executeUpdate();
 			if (res > 0) {
-				System.out.println("Inserting Meeting worked");
+				System.out.println("Inserting Group worked");
 			}
 			
 		} catch (SQLException e) {
@@ -101,7 +101,23 @@ public class GroupDB extends DatabaseConnection{
 		}
 	}
 	
-	public static HashMap<String, List<String>> getAllGroups(){
+	public static List<String> getallGroups(){
+		List<String> rList = new ArrayList<String>();
+		try {
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName FROM groups");
+			while (myRs.next()){
+				rList.add(myRs.getString(1));
+			} 
+			return rList;
+		}
+			catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	public static HashMap<String, List<String>> getAllGroupsHash(){
 		HashMap<String, List<String>> groupMap = new HashMap<String,List<String>>();
 		try {
 			Statement myStatement = con.createStatement();
@@ -143,13 +159,14 @@ public class GroupDB extends DatabaseConnection{
 	public static boolean groupExist(String groupName){
 		try{
 			Statement mysStatement = con.createStatement();
-			ResultSet myRs = mysStatement.executeQuery("select count(1) from groups where username = '"+ groupName +"'");
+			ResultSet myRs = mysStatement.executeQuery("select count(*) from groups where groupName = '"+ groupName +"'");
 			myRs.first();
+			System.out.println(myRs.getInt(1));
 			return (myRs.getInt(1) > 0);
 		} catch (SQLException e) {
             System.out.println("LOLOLOLOLOLO");
 			e.printStackTrace();
 		}
-        return false;
+        return true;
 	}
 }

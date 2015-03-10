@@ -2,14 +2,13 @@ package gui;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import model.Group;
 import model.LoginUser;
 import model.User;
-import calendarClient.CalendarClient;
+import dbconnection.DatabaseConnection;
 import dbconnection.GroupDB;
 import dbconnection.UserDB;
 import javafx.application.Platform;
@@ -26,10 +25,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 public class AddGroupController implements ControlledScreen, Initializable{
 
 	private static final String GROUPNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
+	private List<String> memberList = new ArrayList<String>();
+	private List<String> usernames = new ArrayList<String>();
 	MainController myController;
 	
 	//Button
@@ -49,9 +51,14 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	//TextField
 	@FXML TextField nameTextField;
 	
+	//Status- or feedback labels 
+	@FXML Label groupNameStatus;
+	
 	@FXML
 	public void initialize() {	
 	}
+	
+	
 	
 	
 	public void hasParentChange(ActionEvent e){
@@ -65,21 +72,41 @@ public class AddGroupController implements ControlledScreen, Initializable{
 		System.out.println("CheckBox: "+hasParentCheckBox.isSelected());
 	}
 	
+	
+	public void groupNameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
+		if(oldValue){
+			nameTextField.setText(nameTextField.getText().trim());
+			String groupName = nameTextField.getText();
+			if(groupName.matches(GROUPNAME_REGEX)){
+				if(!GroupDB.groupExist(groupName)){
+					groupNameStatus.setText("");
+				}
+				else{
+					groupNameStatus.setText("Gruppenavn er tatt");
+				}					
+			}
+			else{
+				groupNameStatus.setText("Feil format");
+			}
+			
+		}
+	}
+	
 	@FXML
 	private void okButtonClick(ActionEvent event) {
+		System.out.println("OK");
 		String groupName = nameTextField.getText();
 		// Check if groupName is a valid one 
 		if(groupName.matches(GROUPNAME_REGEX)){
 			//Check if groupName is registrated
-			if (GroupDB.groupExist(groupName)) {
-				@SuppressWarnings("unused")
-				Group group = new Group(groupName, getParent(), getMembers());
+			if (!GroupDB.groupExist(groupName)) {
+				//@SuppressWarnings("unused")
+				//Group group = new Group(groupName, getParent(), getMembers());
+				GroupDB.addGroup(groupName);
 				
-				//Check if password is correct
 			} else {
 				//Wrong groupName
 				System.out.println("GroupName " + groupName + " does not exist");
-				//wrongLoginFeedback();
 			}
 		} else {
 			//Wrong groupName format
@@ -89,11 +116,15 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	}
 
 	private Group getParent(){
-		return null;
+		return new Group(chooseParentComboBox.getValue());
 	}
 	
 	private List<User> getMembers(){
-		return null;
+		List<User> userList = new ArrayList<User>();
+		for(String str : memberList){
+			userList.add(UserDB.getUser(str));
+		}
+		return userList;
 	}
 	
 	private <T> void filterItems(String filter, ComboBox<T> comboBox,List<T> items) {
@@ -106,23 +137,57 @@ public class AddGroupController implements ControlledScreen, Initializable{
 		comboBox.setItems(FXCollections.observableArrayList(filteredItems));
 	}
 	
+	private void addMember(String member){
+		memberList.add(member);
+		usernames.remove(member);
+		removeMemberListView.setItems(FXCollections.observableList(memberList));
+		addMemberComboBox.setItems(FXCollections.observableArrayList(usernames));
+	}
+	
+	private void removeMember(String member){
+		memberList.remove(member);
+		usernames.add(member);
+		removeMemberListView.setItems(FXCollections.observableList(memberList));
+		addMemberComboBox.setItems(FXCollections.observableArrayList(usernames));
+	}
+	
+	
+	@FXML
+	public void handleMouseClick(MouseEvent e){
+		removeMember(removeMemberListView.getSelectionModel().getSelectedItem());
+		removeMemberListView.getSelectionModel().clearSelection();
+	}
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		//Remove when done
+		DatabaseConnection.startCon();
+		//
+		
+		memberList.clear();
+		
+		//textProperty().bind(
+		  //      comboBox.getSelectionModel().selectedItemProperty());
+		
+		groupNameStatus.wrapTextProperty().set(true);
 		chooseParentComboBox.setVisible(false);
 		chooseParentComboBox.setEditable(true);
+		removeMemberListView.setEditable(true);
 		
-		//HashMap<String, List<String>> groups = GroupDB.getAllGroups();
-		List<String> groupNames = new ArrayList<String>();
-		//groupNames.addAll(groups.keySet());
+		List<String> groupNames = GroupDB.getallGroups();
 		
-		groupNames.add("TestGroup");
+		//groupNames.add("TestGroup");
 		chooseParentComboBox.setItems(FXCollections.observableArrayList(groupNames));
 		
 		
 		addMemberComboBox.setEditable(true);
-		/*
+		
 		List<LoginUser> users = UserDB.getAllUsers();
-		List<String> usernames = new ArrayList<String>();
+		for(User u: users){
+			System.out.println(u.getUsername());
+		}
+		
 		for (int i = 0 ; i < users.size(); i++){
 			//if(users.get(i).getUsername() == CalendarClient.getCurrentUser().getUsername()){
 			if(users.get(i).getUsername() == ""){
@@ -132,10 +197,10 @@ public class AddGroupController implements ControlledScreen, Initializable{
 				usernames.add(users.get(i).getUsername());
 			}
 		}
-		*/
-		List<String> usernames = new ArrayList<String>();
-		usernames.add("Yay");
-		usernames.add("trav");
+		
+		//usernames = new ArrayList<String>();
+		//usernames.add("Yay");
+		//usernames.add("trav");
 		addMemberComboBox.setItems(FXCollections.observableArrayList(usernames));
 		
 		chooseParentComboBox.getEditor().textProperty().addListener(new ChangeListener<String>() {
@@ -149,6 +214,8 @@ public class AddGroupController implements ControlledScreen, Initializable{
             }
           }
         });
+		
+	
 		
     chooseParentComboBox.setOnAction(new EventHandler<ActionEvent>() {
       @Override
@@ -183,6 +250,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
         }
       });
     
+    
     addMemberComboBox.setOnAction(new EventHandler<ActionEvent>() {
     	@Override
     	public void handle(ActionEvent event) {
@@ -191,6 +259,10 @@ public class AddGroupController implements ControlledScreen, Initializable{
     			@Override
     			public void run() {
     				String selected = addMemberComboBox.getSelectionModel().getSelectedItem();
+    				if(selected!=null){
+    					addMember(selected);
+    				}
+    				
     				if (addMemberComboBox.getItems().size() < usernames.size()) {
     					addMemberComboBox.setItems(FXCollections.observableArrayList(usernames));
     					String newSelected = chooseParentComboBox.getSelectionModel()

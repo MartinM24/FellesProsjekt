@@ -1,9 +1,9 @@
-CREATE TABLE meetinggroup (
+CREATE TABLE meetinggrouplink (
 meetingID		INT,
-groupID			INT,
+groupName		VARCHAR(30),
 
 FOREIGN KEY (meetingID) REFERENCES meeting(meetingID) 	ON DELETE CASCADE
 														ON UPDATE CASCADE,
-FOREIGN KEY (groupID) REFERENCES groups(groupID) 		ON DELETE CASCADE
+FOREIGN KEY (groupName) REFERENCES groups(groupName) 		ON DELETE CASCADE
 														ON UPDATE CASCADE
 );

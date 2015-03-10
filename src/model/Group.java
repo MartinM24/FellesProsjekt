@@ -61,7 +61,7 @@ public class Group implements Iterable<User>{
 	}
 
 	private void makeChildren(){
-		HashMap<String, List<String>> groupMap = GroupDB.getAllGroups();
+		HashMap<String, List<String>> groupMap = GroupDB.getAllGroupsHash();
 		List<String> currentParent = new ArrayList<String>();
 		currentParent.add(this.getName());
 		while(!currentParent.isEmpty() || groupMap.containsKey(currentParent.get(0))){
