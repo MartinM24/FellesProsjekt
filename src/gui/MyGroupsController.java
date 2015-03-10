@@ -21,7 +21,7 @@ import calendarClient.CalendarClient;
 public class MyGroupsController implements ControlledScreen, Initializable {
 	MainController myController;
 	@FXML Button okButton;
-//	@FXML Button newGroupButton;
+	@FXML Button newGroupButton;
 	
 	
 	@FXML
@@ -32,8 +32,8 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 	
 /*	@FXML
     public void newGroupButtonClick(ActionEvent e){
-		//Move user back to chooseCalendars. 
-		myController.setView(CalendarClient.NEW_GROUP_VIEW);
+		//Move user to new group. 
+		myController.setView(CalendarClient.ADD_GROUP_VIEW);
 	}
 */	
 
@@ -47,6 +47,6 @@ public class MyGroupsController implements ControlledScreen, Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
+// onAction="#newGroupButtonClick"
 
 }
