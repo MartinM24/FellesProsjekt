@@ -112,7 +112,7 @@ public class MainController extends BorderPane {
             setLeft(getScreen(name));
             getController(name).viewRefresh();
         } else {
-            setBottom(null);
+            setLeft(null);
         }
     }
 

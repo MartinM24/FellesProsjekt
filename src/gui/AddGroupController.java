@@ -14,6 +14,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class AddGroupController implements ControlledScreen, Initializable{
 
 	private static final String GROUPNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
@@ -58,7 +61,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 					System.out.println("User exist, but worng password");
 					wrongLoginFeedback();
 				}
-			} else {
+			} else {Before launch
 				//Wrong groupName
 				System.out.println("GroupName " + groupName + " does not exict");
 				wrongLoginFeedback();
@@ -69,4 +72,19 @@ public class AddGroupController implements ControlledScreen, Initializable{
 			wrongGroupNameFeedback();
 		}
 	}
+
+    @Override
+    public void setScreenParent(MainController screenPage) {
+
+    }
+
+    @Override
+    public void viewRefresh() {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 }

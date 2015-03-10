@@ -211,7 +211,7 @@ public class MeetingDB extends DatabaseConnection{
 	public static int addMeeting(Meeting meeting){
 		//TODO skal ikke kunne legge inn i meeting uten at det blir lagt inn i participant
 		try {
-			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted, nOfParticipant, roomID, owner)"  + "values(?, ?, ?, ?, ?, ?, ?)";
+			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, place, nOfParticipant, roomID, owner)"  + "values(?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery, 
 				    Statement.RETURN_GENERATED_KEYS);
 			preparedMeetingStmt.setString (1, meeting.getDescription());
