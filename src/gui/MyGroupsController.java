@@ -22,27 +22,32 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 	MainController myController;
 	@FXML Button okButton;
 //	@FXML Button newGroupButton;
-	
-	
-	@FXML
+
+
+    @Override
+    public void viewRefresh() {
+
+    }
+
+    @FXML
     public void okButtonClick(ActionEvent e){
-		//Move user back to calendars. 
+		//Move user back to calendars.
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
-	
+
 /*	@FXML
     public void newGroupButtonClick(ActionEvent e){
-		//Move user back to chooseCalendars. 
+		//Move user back to chooseCalendars.
 		myController.setView(CalendarClient.NEW_GROUP_VIEW);
 	}
-*/	
+*/
 
 	@Override
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
-		
+
 	}
-	
+
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
 

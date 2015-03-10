@@ -24,8 +24,13 @@ public class ChooseCalendarsController implements ControlledScreen, Initializabl
 	@FXML Button okButton;
 	@FXML Button cancelButton;
 //	@FXML Button saveButton;	
-	
-	@FXML
+
+
+    @Override
+    public void viewRefresh() {
+    }
+
+    @FXML
     public void okButtonClick(ActionEvent e){
 		//Move user back to calendar. 
 		myController.setView(CalendarClient.CALENDAR_VIEW);
