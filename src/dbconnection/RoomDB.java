@@ -1,6 +1,8 @@
 package dbconnection;
 
+import model.Meeting;
 import model.Room;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,6 +37,17 @@ public class RoomDB extends DatabaseConnection {
             e.printStackTrace();
         }
     }
+    
+	public static void deleteRoom(Room room){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("DELETE FROM room WHERE roomName = '" + room.getName() + "'");
+			}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 
     public static List<Room> getAllRooms(){
         List<Room> roomList = new ArrayList<>();

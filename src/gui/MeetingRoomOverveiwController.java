@@ -45,6 +45,7 @@ public class MeetingRoomOverveiwController implements ControlledScreen, Initiali
 		//TODO Get info from make meeting class. 
 		Room room = (Room)roomTable.getSelectionModel().getSelectedItem();
 		if (room.getAvalibility().equals("Ledig")) {
+			//TODO kommunikasjon mellom screens
 			myController.setView(CalendarClient.ADD_MEETING_VIEW);			
 		} else {
 			if (warning.getText().equals("Venligst velg et ledig rom.")){

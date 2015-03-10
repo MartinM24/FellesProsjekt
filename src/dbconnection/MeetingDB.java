@@ -12,6 +12,8 @@ import java.util.Date;
 import java.util.List;
 
 import model.Group;
+import model.Invitation;
+import model.InvitationVeiw;
 import model.Meeting;
 import model.Room;
 import model.User;
@@ -36,6 +38,24 @@ public class MeetingDB extends DatabaseConnection{
 			e.printStackTrace();
 		}
 		return meetingList;
+	}
+	
+	public static List<InvitationVeiw> getAllInvitations(User user){
+		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.attendence = 0");
+			while (myRs.next()){
+				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2)) );
+			};
+			System.out.println("Got all invitations");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return invitationlist;
+		
+		
 	}
 	
 	public static Meeting getMeeting(int meetingID){
