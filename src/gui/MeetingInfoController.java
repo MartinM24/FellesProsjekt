@@ -18,43 +18,34 @@ import calendarClient.CalendarClient;
  * Created by Anna on 09.03.15.
  */
 
-public class MyGroupsController implements ControlledScreen, Initializable {
+public class MeetingInfoController implements ControlledScreen, Initializable {
 	MainController myController;
-	@FXML Button okButton;
-	@FXML Button newGroupButton;
 	
+	@FXML Button okButton;	
 	
 	@FXML
-//	@FXML Button newGroupButton;
-
-
-    @Override
-    public void viewRefresh() {
-
-    }
-
-    @FXML
     public void okButtonClick(ActionEvent e){
-		//Move user back to calendars.
+		//Move user back to calendar. 
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
-
-//	@FXML
-//    public void newGroupButtonClick(ActionEvent e){
-//		//Move user to new group. 
-//		myController.setView(CalendarClient.ADD_GROUP_VIEW);
-
+    
 
 	@Override
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
-
+		
 	}
-
+	
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-// onAction="#newGroupButtonClick"
+
+
+	@Override
+	public void viewRefresh() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

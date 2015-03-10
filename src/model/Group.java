@@ -24,6 +24,18 @@ public class Group implements Iterable<User>{
 		members = GroupDB.getAllMembers(name);
 		members.addAll(getAllMembers(this, members));
 	}
+	
+	public Group(String name, Group parent, List<User> members){
+		this.name = name;
+		GroupDB.addGroup(name);
+		if(parent!=null){
+			GroupDB.addParent(parent, this);
+		}
+		subGroups = new ArrayList<Group>();
+		for(int i = 0 ; i < members.size() ; i++){
+			addMember(members.get(i));
+		}
+	}
 
 	public List<User> getAllMembers(Group group, List<User> listAllMembers){
 		for(int i = 0; i < subGroups.size(); i++){
@@ -49,7 +61,7 @@ public class Group implements Iterable<User>{
 	}
 
 	private void makeChildren(){
-		HashMap<String, List<String>> groupMap = GroupDB.getAllGroups();
+		HashMap<String, List<String>> groupMap = GroupDB.getAllGroupsHash();
 		List<String> currentParent = new ArrayList<String>();
 		currentParent.add(this.getName());
 		while(!currentParent.isEmpty() || groupMap.containsKey(currentParent.get(0))){

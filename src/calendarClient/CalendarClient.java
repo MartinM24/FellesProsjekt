@@ -8,25 +8,33 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CalendarClient extends Application{
-	// References to all screens
-	private static final String LOG_IN_SCREEN = "LogIN";
+
+    // Important note: View consists of multiple screens.
+    // It is the screens that has controllers
+    // It is the views that is used to change the whole application view
+
+	// Name and ResourcePath to all screens
+	public static final String LOG_IN_SCREEN = "LogIN";
 	private static final String LOG_IN_SCREEN_FXML = "/gui/LogInGUI2.fxml";
-	private static final String NEW_USER_SCREEN = "NewUser";
+	public static final String NEW_USER_SCREEN = "NewUser";
 	private static final String NEW_USER_SCREEN_FXML = "/gui/NewUserGUI2.fxml";
-	private static final String CALENDAR_SCREEN = "Calendar";
+	public static final String CALENDAR_SCREEN = "Calendar";
 	private static final String CALENDAR_SCREEN_FXML = "/gui/CalendarGUI2.fxml";
-	private static final String ADD_MEETING_SCREEN = "AddMeeting";
+	public static final String ADD_MEETING_SCREEN = "AddMeeting";
 	private static final String ADD_MEETING_SCREEN_FXML = "/gui/AddMeetingGUI2.fxml";
-	private static final String GLOBAL_MENU_SCREEN = "GlobalMenu";
+	public static final String GLOBAL_MENU_SCREEN = "GlobalMenu";
 	private static final String GLOBAL_MENU_SCREEN_FXML = "/gui/GlobalMenuGUI2.fxml";
-	private static final String CALENDAR_LEFT_MENU_SCREEN = "CalendarLeftMenu";
+	public static final String CALENDAR_LEFT_MENU_SCREEN = "CalendarLeftMenu";
 	private static final String CALENDAR_LEFT_MENU_SCREEN_FXML = "/gui/CalendarLeftMenuGUI2.fxml";
-	private static final String CHOOSE_CALENDARS_SCREEN = "ChooseCalendars";
+	public static final String CHOOSE_CALENDARS_SCREEN = "ChooseCalendars";
 	private static final String CHOOSE_CALENDARS_SCREEN_FXML = "/gui/ChooseCalendarsGUI2.fxml";
-	private static final String MEETING_OVERVIEW_SCREEN = "MeetingOverview";
+	public static final String MEETING_OVERVIEW_SCREEN = "MeetingOverview";
 	private static final String MEETING_OVERVIEW_SCREEN_FXML = "/gui/MeetingOverviewGUI2.fxml";
-	private static final String MY_GROUPS_SCREEN = "MyGroups";
+	public static final String MY_GROUPS_SCREEN = "MyGroups";
 	private static final String MY_GROUPS_SCREEN_FXML = "/gui/MyGroupsGUI2.fxml";
+	private static final String ADD_GROUP_SCREEN = "AddGroup";
+	private static final String ADD_GROUP_SCREEN_FXML = "/gui/NewGroupGUI2.fxml";
+
 
     public static final String LOG_IN_VIEW = "LogIN";
     public static final String NEW_USER_VIEW = "NewUser";
@@ -35,6 +43,8 @@ public class CalendarClient extends Application{
     public static final String CHOOSE_CALENDARS_VIEW = "ChooseCalendars";
     public static final String MEETING_OVERVIEW_VIEW = "MeetingOverview";
     public static final String MY_GROUPS_VIEW = "MyGroups";
+    public static final String NEW_MEETING_VIEW = "NewMeeting";
+    public static final String ADD_GROUP_VIEW = "AddGroup";
 	private static LoginUser currentUser;
 
 	private MainController mainController;
@@ -54,7 +64,8 @@ public class CalendarClient extends Application{
         mainController.loadScreen(CHOOSE_CALENDARS_SCREEN, CHOOSE_CALENDARS_SCREEN_FXML);
         mainController.loadScreen(MEETING_OVERVIEW_SCREEN, MEETING_OVERVIEW_SCREEN_FXML);
         mainController.loadScreen(MY_GROUPS_SCREEN, MY_GROUPS_SCREEN_FXML);
-
+        mainController.loadScreen(ADD_GROUP_SCREEN, ADD_GROUP_SCREEN_FXML);
+        
         // Make view form loaded screens
 		System.out.println("Load screens");
 		mainController.makeView(ADD_MEETING_VIEW, ADD_MEETING_SCREEN, GLOBAL_MENU_SCREEN);
@@ -64,6 +75,8 @@ public class CalendarClient extends Application{
         mainController.makeView(CHOOSE_CALENDARS_VIEW, CHOOSE_CALENDARS_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(MEETING_OVERVIEW_VIEW, MEETING_OVERVIEW_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(MY_GROUPS_VIEW, MY_GROUPS_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN);
+
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);
 
@@ -84,14 +97,10 @@ public class CalendarClient extends Application{
 		dbconnection.DatabaseConnection.startCon();
 		
 	}
-	
-	
-	
+
 	public static LoginUser getCurrentUser() {
 		return currentUser;
 	}
-
-
 
 	public static void setCurrentUser(LoginUser currentUser) {
 		CalendarClient.currentUser = currentUser;
