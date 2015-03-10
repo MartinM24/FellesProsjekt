@@ -20,15 +20,9 @@ import calendarClient.CalendarClient;
 
 public class MyGroupsController implements ControlledScreen, Initializable {
 	MainController myController;
-	@FXML Button cancelButton;
 	@FXML Button okButton;
 //	@FXML Button newGroupButton;
 	
-	@FXML
-    public void cancelButtonClick(ActionEvent e){
-		//Move user back to calendars. 
-		myController.setView(CalendarClient.CALENDAR_VIEW);
-	}
 	
 	@FXML
     public void okButtonClick(ActionEvent e){

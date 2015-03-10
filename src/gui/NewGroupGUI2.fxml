@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="556.0" prefWidth="768.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
@@ -26,8 +28,9 @@
                   <TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="purposeTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="addParticipantsTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-                  <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" text="Avbryt" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="OK" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+                  <Button fx:id="saveButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="68.0" text="Lagre" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Formål" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="participantsChoiceBox" prefHeight="24.0" prefWidth="136.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>

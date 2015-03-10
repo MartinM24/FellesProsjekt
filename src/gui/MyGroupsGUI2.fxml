@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MyGroupsController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
@@ -30,7 +33,7 @@
                   <TableView prefHeight="409.0" prefWidth="395.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
                         <TableColumn fx:id="nameTableColumn" prefWidth="75.0" text="Navn" />
-                        <TableColumn fx:id="participantsTableColumn" prefWidth="319.0" text="Medlemmer" />
+                        <TableColumn fx:id="participantsTableColumn" prefWidth="326.0" text="Medlemmer" />
                      </columns>
                   </TableView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mine grupper">
@@ -48,9 +51,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="cancelButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#cancelButtonClick" text="Cancel" GridPane.columnIndex="2" />
-                        <Button fx:id="okButton" alignment="CENTER" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="26.0" prefWidth="65.0" text="OK" />
-                        <Button fx:id="newGroupButton" mnemonicParsing="false" text="Ny gruppe" GridPane.columnIndex="1" />
+                        <Button fx:id="okButton" alignment="CENTER" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="26.0" prefWidth="65.0" text="OK" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <Button fx:id="newGroupButton" mnemonicParsing="false" text="Ny gruppe" />
                      </children>
                   </GridPane>
                </children>

@@ -28,6 +28,7 @@ public class AddMeetingController implements ControlledScreen {
 	@FXML DatePicker toDatePicker;
 	@FXML Button saveButton;
 	@FXML Button cancelButton;
+	@FXML Button okButton;
 	
 	
 	@FXML
@@ -111,12 +112,23 @@ public class AddMeetingController implements ControlledScreen {
 						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
 						toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
 						subjectField.getText(), -1, new ArrayList<User>());
+		}
+			
+	}
+	
+	public void okButtonClick(ActionEvent e){
+		if (!(toDatePicker.getValue().toString().isEmpty() || fromDatePicker.getValue().toString().isEmpty() ||
+				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty())){
+				new Meeting(new User("Karl", "Karl", "Karl", "Karl"),
+						null, "Somwhere over the rainbow",
+						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
+						toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
+						subjectField.getText(), -1, new ArrayList<User>());
 				
 				myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
 			
 	}
-	
 	@FXML
 	public void cancelButtonClick(ActionEvent e){
 		myController.setView(CalendarClient.CALENDAR_VIEW);
