@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="799.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MeetingOverviewController">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
   </columnConstraints>
@@ -29,7 +32,7 @@
                <children>
                   <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button mnemonicParsing="false" text="OK" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="69.0" text="OK" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="332.0" minWidth="10.0" prefWidth="208.0" />
@@ -41,14 +44,16 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <TableView prefHeight="448.0" prefWidth="426.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView prefHeight="487.0" prefWidth="497.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="nameColumn" prefWidth="189.0" text="Navn" />
-                        <TableColumn fx:id="capacityColumn" prefWidth="140.0" text="Kapasistet" />
-                        <TableColumn fx:id="statusColumn" prefWidth="96.0" text="Status" />
+                        <TableColumn fx:id="nameColumn" prefWidth="64.0" text="Dato" />
+                        <TableColumn fx:id="capacityColumn" prefWidth="54.0" text="Tid" />
+                        <TableColumn fx:id="statusColumn" prefWidth="148.0" text="Tittel" />
+                        <TableColumn prefWidth="85.0" text="Sted" />
+                        <TableColumn prefWidth="79.0" text="Status" />
                      </columns>
                   </TableView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteromsoversikt">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteoversikt">
                      <font>
                         <Font size="18.0" />
                      </font>
