@@ -23,6 +23,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 	private static final String USERNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
 	private static final String NAME_REGEX = "^[\\p{L} .'-]+$";
 	MainController myController;
+	
 	//Fields
 	@FXML TextField FirstnameTextField;
 	@FXML TextField	LastnameTextField;

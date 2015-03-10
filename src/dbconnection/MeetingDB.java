@@ -24,7 +24,7 @@ public class MeetingDB extends DatabaseConnection{
 	}
 	
 	public static List<Meeting> getAllMeetings(User user){
-		List<Meeting> meetingList = new ArrayList<>();
+		List<Meeting> meetingList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> -1");

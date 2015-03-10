@@ -32,6 +32,9 @@ public class CalendarClient extends Application{
 	private static final String MEETING_OVERVIEW_SCREEN_FXML = "/gui/MeetingOverviewGUI2.fxml";
 	public static final String MY_GROUPS_SCREEN = "MyGroups";
 	private static final String MY_GROUPS_SCREEN_FXML = "/gui/MyGroupsGUI2.fxml";
+	private static final String ADD_GROUP_SCREEN = "AddGroup";
+	private static final String ADD_GROUP_SCREEN_FXML = "/gui/NewGroupGUI2.fxml";
+
 
     public static final String LOG_IN_VIEW = "LogIN";
     public static final String NEW_USER_VIEW = "NewUser";
@@ -40,6 +43,8 @@ public class CalendarClient extends Application{
     public static final String CHOOSE_CALENDARS_VIEW = "ChooseCalendars";
     public static final String MEETING_OVERVIEW_VIEW = "MeetingOverview";
     public static final String MY_GROUPS_VIEW = "MyGroups";
+    public static final String NEW_MEETING_VIEW = "NewMeeting";
+    public static final String ADD_GROUP_VIEW = "AddGroup";
 	private static LoginUser currentUser;
 
 	private MainController mainController;
@@ -59,7 +64,8 @@ public class CalendarClient extends Application{
         mainController.loadScreen(CHOOSE_CALENDARS_SCREEN, CHOOSE_CALENDARS_SCREEN_FXML);
         mainController.loadScreen(MEETING_OVERVIEW_SCREEN, MEETING_OVERVIEW_SCREEN_FXML);
         mainController.loadScreen(MY_GROUPS_SCREEN, MY_GROUPS_SCREEN_FXML);
-
+        mainController.loadScreen(ADD_GROUP_SCREEN, ADD_GROUP_SCREEN_FXML);
+        
         // Make view form loaded screens
 		System.out.println("Load screens");
 		mainController.makeView(ADD_MEETING_VIEW, ADD_MEETING_SCREEN, GLOBAL_MENU_SCREEN);
@@ -69,6 +75,8 @@ public class CalendarClient extends Application{
         mainController.makeView(CHOOSE_CALENDARS_VIEW, CHOOSE_CALENDARS_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(MEETING_OVERVIEW_VIEW, MEETING_OVERVIEW_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(MY_GROUPS_VIEW, MY_GROUPS_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN);
+
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);
 
