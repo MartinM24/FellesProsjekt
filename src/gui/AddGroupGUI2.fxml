@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -11,15 +13,16 @@
 </Text>
 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Navn" GridPane.rowIndex="1" />
 <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.rowIndex="2" />
-<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltaker" GridPane.rowIndex="3" />
-<TextField fx:id="nameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-<Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-<Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
-<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Parent" GridPane.rowIndex="2" />
-<ComboBox fx:id="chooseParentComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-<CheckBox fx:id="hasParentCheckBox" onAction="#hasParentChange" mnemonicParsing="false" text="Har forelder" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-<ComboBox fx:id="addMemberComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-<ListView fx:id="removeMemberListView" prefHeight="44.0" prefWidth="256.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="3" />
+<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltaker" GridPane.rowIndex="5" />
+<TextField fx:id="nameTextField" onFocusedChange="#groupNameFocusChange" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+<Button fx:id="cancelButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+<Button fx:id="okButton" onAction="#okButtonClick" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="8" />
+<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Parent" GridPane.rowIndex="3" />
+<ComboBox fx:id="chooseParentComboBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+<CheckBox fx:id="hasParentCheckBox" onAction="#hasParentChange" mnemonicParsing="false"  text="Har forelder" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+<ComboBox fx:id="addMemberComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+<ListView fx:id="removeMemberListView" onMouseClicked="#handleMouseClick" prefHeight="44.0" prefWidth="256.0" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3" />
+<Label fx:id="groupNameStatus" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 </children>
 <columnConstraints>
 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -35,6 +38,7 @@
 <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
 <RowConstraints maxHeight="377.0" minHeight="0.0" prefHeight="64.0" vgrow="SOMETIMES" />
 <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+<RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
 <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
 </rowConstraints>
 </GridPane>

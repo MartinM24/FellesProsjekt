@@ -28,9 +28,10 @@ public class MeetingDB extends DatabaseConnection{
 		try{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> -1");
-			while (myRs.next()){
-				meetingList.add(getMeeting(myRs.getInt(1)));
-			};
+            while (myRs.next()){
+                int id = myRs.getInt(1);
+				meetingList.add(getMeeting(id));
+			}
 			System.out.println("Everything worked");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -104,7 +105,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingTimeStart(int meetingID, LocalDateTime timeStart){
 		try {
-			//TODO denne metoden skal booke møteromet på nytt. 
+			//TODO denne metoden skal booke mï¿½teromet pï¿½ nytt. 
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeStart)+"' WHERE meetingID='"+meetingID+"'");
 		}
@@ -115,7 +116,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingTimeEnd(int meetingID, LocalDateTime timeEnd){
 		try {
-			//TODO denne metoden skal booke møteromet på nytt. 
+			//TODO denne metoden skal booke mï¿½teromet pï¿½ nytt. 
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeEnd)+"' WHERE meetingID='"+meetingID+"'");
 		}
@@ -210,7 +211,7 @@ public class MeetingDB extends DatabaseConnection{
 	public static int addMeeting(Meeting meeting){
 		//TODO skal ikke kunne legge inn i meeting uten at det blir lagt inn i participant
 		try {
-			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, sted, nOfParticipant, roomID, owner)"  + "values(?, ?, ?, ?, ?, ?, ?)";
+			String meetingQuery = "insert into meeting (mDescription, timeStart, timeEnd, place, nOfParticipant, roomName, owner)"  + "values(?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery, 
 				    Statement.RETURN_GENERATED_KEYS);
 			preparedMeetingStmt.setString (1, meeting.getDescription());
@@ -219,7 +220,7 @@ public class MeetingDB extends DatabaseConnection{
 			preparedMeetingStmt.setString(4, meeting.getPlace());
 			preparedMeetingStmt.setInt(5, meeting.getNOfParticipantSet());
 			if(meeting.getRoom()==null){
-				preparedMeetingStmt.setNull(6, java.sql.Types.INTEGER);
+				preparedMeetingStmt.setNull(6, java.sql.Types.VARCHAR);
 			}
 			else{
 				preparedMeetingStmt.setString(6, meeting.getRoom().getName());				

@@ -41,8 +41,14 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 //	public MeetingOverveiwController(Meeting meeting){
 //		this.meeting = meeting;
 //	}
-	
-	@FXML
+
+
+    @Override
+    public void viewRefresh() {
+
+    }
+
+    @FXML
     public void okButtonClick(ActionEvent e){
 		//Move user back to calendar. 
 		myController.setView(CalendarClient.CALENDAR_VIEW);
