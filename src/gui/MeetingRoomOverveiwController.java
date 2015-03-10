@@ -5,7 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import dbconnection.MeetingDB;
 import dbconnection.RoomDB;
+import model.Meeting;
 import model.Room;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -18,12 +20,17 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MeetingRoomOverveiwController implements ControlledScreen, Initializable {
 	MainController myController;
+	private Meeting meeting;
 
 	@FXML TableView<Room> roomTable;
 	@FXML TableColumn<Room, String> nameColumn;
 	@FXML TableColumn<Room, String> capacityColumn;
 	@FXML TableColumn<Room, String> statusColumn;
 	@FXML Button chooseButton;
+	
+	public MeetingRoomOverveiwController(Meeting meeting){
+		this.meeting = meeting;
+	}
 	
 	public void initialize(URL location, ResourceBundle resources) {	
 		nameColumn.setCellValueFactory(new PropertyValueFactory<Room, String>("Navn"));   		
@@ -32,7 +39,10 @@ public class MeetingRoomOverveiwController implements ControlledScreen, Initiali
 	}
 	
 	public void chooseButtonClick(ActionEvent e){
-		//TODO take out chosen value from table 
+		//TODO Get info from make meeting class. 
+		Room room = (Room)roomTable.getSelectionModel().getSelectedItem();
+		
+		
 	}
 	
 	
@@ -46,21 +56,21 @@ public class MeetingRoomOverveiwController implements ControlledScreen, Initiali
 	 */
 	
 	@SuppressWarnings("unused")
-	private void tableSetup(LocalDateTime start, LocalDateTime end){
+	private void tableSetup(){
 		ArrayList<Room> roomsDB = (ArrayList<Room>) RoomDB.getAllRooms();
 		ArrayList<ArrayList<ArrayList<LocalDateTime>>> availability = new ArrayList<ArrayList<ArrayList<LocalDateTime>>>();
 		ArrayList<String> status = new ArrayList<String>();
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		for (int i = 0; i<roomsDB.size(); i++){
-			availability.add(RoomDB.getAvailability(roomsDB.get(1).getName()));
+			availability.add(RoomDB.getAvailability(roomsDB.get(i).getName()));
 			status.add("Ledig");
 		} 
 		for (int i = 0; i<roomsDB.size(); i++){
 			for (int j = 0; j<availability.get(i).size(); j++){
-				if ((availability.get(i).get(j).get(0).isAfter(start) && availability.get(i).get(j).get(0).isBefore(end)) || 
-					(availability.get(i).get(j).get(1).isAfter(start) && availability.get(i).get(j).get(1).isBefore(end)) ||
-					(availability.get(i).get(j).get(0).isBefore(start) && availability.get(i).get(j).get(1).isAfter(end)) ||
-					(availability.get(i).get(j).get(0).isEqual(start) || availability.get(i).get(j).get(1).isEqual(end)) 
+				if ((availability.get(i).get(j).get(0).isAfter(meeting.getTimeStart()) && availability.get(i).get(j).get(0).isBefore(meeting.getTimeEnd())) || 
+					(availability.get(i).get(j).get(1).isAfter(meeting.getTimeStart()) && availability.get(i).get(j).get(1).isBefore(meeting.getTimeEnd())) ||
+					(availability.get(i).get(j).get(0).isBefore(meeting.getTimeStart()) && availability.get(i).get(j).get(1).isAfter(meeting.getTimeEnd())) ||
+					(availability.get(i).get(j).get(0).isEqual(meeting.getTimeStart()) || availability.get(i).get(j).get(1).isEqual(meeting.getTimeEnd())) 
 					){
 					status.set(i, "Opptatt");
 				}
