@@ -11,7 +11,7 @@ public class MainController extends BorderPane {
 	/**
 	 * Controller to control multiple screens
 	 */
-	private HashMap<String, View> views = new HashMap<String, View>();
+	private HashMap<String, View> views = new HashMap<>();
     private HashMap<String, Node> screens = new HashMap<>();
     private HashMap<String, ControlledScreen> controllers = new HashMap<>();
 	/**
@@ -89,15 +89,6 @@ public class MainController extends BorderPane {
 	     }
 	 }
 
-	public boolean unloadScreen(String name) {
-	     if(views.remove(name) == null) {
-	       System.out.println("View didn't exist");
-	       return false;
-	     } else {
-             return true;
-         }
-	 }
-
     private void setCenterScreen(String name){
         if (name != null) {
             setCenter(getScreen(name));
@@ -122,6 +113,21 @@ public class MainController extends BorderPane {
             getController(name).viewRefresh();
         } else {
             setBottom(null);
+        }
+    }
+
+    /**
+     * Gets controller for screen with name
+      * @param name of the screen
+     * @return Controller for screen
+     */
+
+    public ControlledScreen getControllerForScreen(String name) {
+        ControlledScreen ctrl = controllers.get(name);
+        if(ctrl != null) {
+            return ctrl;
+        } else {
+            throw new IllegalArgumentException("Screen with string name does't excict");
         }
     }
 

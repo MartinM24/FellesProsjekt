@@ -8,24 +8,29 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class CalendarClient extends Application{
-	// References to all screens
-	private static final String LOG_IN_SCREEN = "LogIN";
+
+    // Important note: View consists of multiple screens.
+    // It is the screens that has controllers
+    // It is the views that is used to change the whole application view
+
+	// Name and ResourcePath to all screens
+	public static final String LOG_IN_SCREEN = "LogIN";
 	private static final String LOG_IN_SCREEN_FXML = "/gui/LogInGUI2.fxml";
-	private static final String NEW_USER_SCREEN = "NewUser";
+	public static final String NEW_USER_SCREEN = "NewUser";
 	private static final String NEW_USER_SCREEN_FXML = "/gui/NewUserGUI2.fxml";
-	private static final String CALENDAR_SCREEN = "Calendar";
+	public static final String CALENDAR_SCREEN = "Calendar";
 	private static final String CALENDAR_SCREEN_FXML = "/gui/CalendarGUI2.fxml";
-	private static final String ADD_MEETING_SCREEN = "AddMeeting";
+	public static final String ADD_MEETING_SCREEN = "AddMeeting";
 	private static final String ADD_MEETING_SCREEN_FXML = "/gui/AddMeetingGUI2.fxml";
-	private static final String GLOBAL_MENU_SCREEN = "GlobalMenu";
+	public static final String GLOBAL_MENU_SCREEN = "GlobalMenu";
 	private static final String GLOBAL_MENU_SCREEN_FXML = "/gui/GlobalMenuGUI2.fxml";
-	private static final String CALENDAR_LEFT_MENU_SCREEN = "CalendarLeftMenu";
+	public static final String CALENDAR_LEFT_MENU_SCREEN = "CalendarLeftMenu";
 	private static final String CALENDAR_LEFT_MENU_SCREEN_FXML = "/gui/CalendarLeftMenuGUI2.fxml";
-	private static final String CHOOSE_CALENDARS_SCREEN = "ChooseCalendars";
+	public static final String CHOOSE_CALENDARS_SCREEN = "ChooseCalendars";
 	private static final String CHOOSE_CALENDARS_SCREEN_FXML = "/gui/ChooseCalendarsGUI2.fxml";
-	private static final String MEETING_OVERVIEW_SCREEN = "MeetingOverview";
+	public static final String MEETING_OVERVIEW_SCREEN = "MeetingOverview";
 	private static final String MEETING_OVERVIEW_SCREEN_FXML = "/gui/MeetingOverviewGUI2.fxml";
-	private static final String MY_GROUPS_SCREEN = "MyGroups";
+	public static final String MY_GROUPS_SCREEN = "MyGroups";
 	private static final String MY_GROUPS_SCREEN_FXML = "/gui/MyGroupsGUI2.fxml";
 
     public static final String LOG_IN_VIEW = "LogIN";
