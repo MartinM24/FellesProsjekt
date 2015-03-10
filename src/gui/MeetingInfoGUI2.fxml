@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="921.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="600.0" />
@@ -42,7 +44,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="editButton" mnemonicParsing="false" prefHeight="30.0" prefWidth="61.0" text="Rediger" GridPane.columnIndex="4" />
+                        <Button fx:id="editButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" text="Rediger" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
                         <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="55.0" text="OK" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
                      </children>
                   </GridPane>

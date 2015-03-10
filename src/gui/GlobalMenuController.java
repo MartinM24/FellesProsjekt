@@ -16,11 +16,11 @@ import java.util.ResourceBundle;
 
 
 public class GlobalMenuController implements ControlledScreen, Initializable {
-    @FXML Button logOut;
+    @FXML Button logOutButton;
     private MainController myController;
 
     @FXML
-    private void logOutClick(ActionEvent event) {
+    private void logOutButtonClick(ActionEvent event) {
         myController.setView(CalendarClient.LOG_IN_VIEW);
     }
 
