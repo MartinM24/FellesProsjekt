@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import calendarClient.CalendarClient;
 import model.Group;
 import model.LoginUser;
 import model.User;
@@ -32,6 +33,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	private static final String GROUPNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
 	private List<String> memberList = new ArrayList<String>();
 	private List<String> usernames = new ArrayList<String>();
+	private List<String> groupNames = new ArrayList<String>();
 	MainController myController;
 	
 	//Button
@@ -93,6 +95,11 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	}
 	
 	@FXML
+	private void cancelButtonClick(ActionEvent e){
+		myController.setView(CalendarClient.MY_GROUPS_VIEW);
+	}
+	
+	@FXML
 	private void okButtonClick(ActionEvent event) {
 		System.out.println("OK");
 		String groupName = nameTextField.getText();
@@ -100,8 +107,9 @@ public class AddGroupController implements ControlledScreen, Initializable{
 		if(groupName.matches(GROUPNAME_REGEX)){
 			//Check if groupName is registrated
 			if (!GroupDB.groupExist(groupName)) {
-				//@SuppressWarnings("unused")
+				@SuppressWarnings("unused")
 				Group group = new Group(groupName, getParent(), getMembers());
+				myController.setView(CalendarClient.MY_GROUPS_VIEW);
 				//GroupDB.addGroup(groupName);
 				
 			} else {
@@ -160,28 +168,18 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	}
 	
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		//Remove when done
-		DatabaseConnection.startCon();
-		//
-		
+	private void initAll(){
 		memberList.clear();
 		
-		//textProperty().bind(
-		  //      comboBox.getSelectionModel().selectedItemProperty());
 		
 		groupNameStatus.wrapTextProperty().set(true);
 		chooseParentComboBox.setVisible(false);
 		chooseParentComboBox.setEditable(true);
 		removeMemberListView.setEditable(true);
-		
-		List<String> groupNames = GroupDB.getallGroups();
-		
-		//groupNames.add("TestGroup");
+		groupNames = GroupDB.getallGroups();
 		chooseParentComboBox.setItems(FXCollections.observableArrayList(groupNames));
-		
-		
+		hasParentCheckBox.setSelected(false);
+		nameTextField.setText("");
 		addMemberComboBox.setEditable(true);
 		
 		List<LoginUser> users = UserDB.getAllUsers();
@@ -199,10 +197,12 @@ public class AddGroupController implements ControlledScreen, Initializable{
 			}
 		}
 		
-		//usernames = new ArrayList<String>();
-		//usernames.add("Yay");
-		//usernames.add("trav");
 		addMemberComboBox.setItems(FXCollections.observableArrayList(usernames));
+		removeMemberListView.setItems(null);
+	}
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		
 		chooseParentComboBox.getEditor().textProperty().addListener(new ChangeListener<String>() {
           @Override
@@ -289,6 +289,8 @@ public class AddGroupController implements ControlledScreen, Initializable{
 
 	@Override
 	public void viewRefresh() {
-		memberList.clear();
+//		chooseParentComboBox.getSelectionModel().clearSelection();
+//		memberList.clear();
+		initAll();
 	}
 }

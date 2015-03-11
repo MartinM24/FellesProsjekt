@@ -52,7 +52,7 @@
                     </rowConstraints>
                      <children>
                         <Button fx:id="okButton" alignment="CENTER" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="26.0" prefWidth="65.0" text="OK" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                        <Button fx:id="newGroupButton" mnemonicParsing="false" text="Ny gruppe" />
+                        <Button fx:id="newGroupButton" onAction="#newGroupButtonClick" mnemonicParsing="false" text="Ny gruppe" />
                      </children>
                   </GridPane>
                </children>

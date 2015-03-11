@@ -26,6 +26,12 @@ public class Group implements Iterable<User>{
 		members.addAll(getAllMembers(this, members));
 	}
 	
+	/**
+	 * Constructor that adds group to the database
+	 * @param name
+	 * @param parent
+	 * @param members
+	 */
 	public Group(String name, Group parent, List<User> members){
 		this.name = name;
 		GroupDB.addGroup(name);
