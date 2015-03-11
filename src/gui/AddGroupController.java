@@ -101,8 +101,8 @@ public class AddGroupController implements ControlledScreen, Initializable{
 			//Check if groupName is registrated
 			if (!GroupDB.groupExist(groupName)) {
 				//@SuppressWarnings("unused")
-				//Group group = new Group(groupName, getParent(), getMembers());
-				GroupDB.addGroup(groupName);
+				Group group = new Group(groupName, getParent(), getMembers());
+				//GroupDB.addGroup(groupName);
 				
 			} else {
 				//Wrong groupName
@@ -122,6 +122,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	private List<User> getMembers(){
 		List<User> userList = new ArrayList<User>();
 		for(String str : memberList){
+			System.out.println("AddGroupController-getMembers(): "+UserDB.getUser(str));
 			userList.add(UserDB.getUser(str));
 		}
 		return userList;

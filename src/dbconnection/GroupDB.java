@@ -46,7 +46,8 @@ public class GroupDB extends DatabaseConnection{
 	
 	public static void addMember(User user, Group group){
 		try {
-			String addGroupQuery = "insert into usergroup (username, groupName)"  + "values(?, ?)";
+			System.out.println("User: "+user.getUsername()+", Group: "+group.getName());
+			String addGroupQuery = "insert into usergrouplink (username, groupName)"  + "values(?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
 			preparedStmt.setString (1, user.getUsername());
 			preparedStmt.setString (2, group.getName());
@@ -82,7 +83,7 @@ public class GroupDB extends DatabaseConnection{
 	public static void removeMember(User user, Group group){
 		try {
 			Statement myStatement = con.createStatement(); 
-			myStatement.executeUpdate("DELETE FROM usergroup WHERE username = '" + user.getUsername() + "' AND groupName =  '"+group.getName()+"'");
+			myStatement.executeUpdate("DELETE FROM usergrouplink WHERE username = '" + user.getUsername() + "' AND groupName =  '"+group.getName()+"'");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -120,9 +121,11 @@ public class GroupDB extends DatabaseConnection{
 	public static HashMap<String, List<String>> getAllGroupsHash(){
 		HashMap<String, List<String>> groupMap = new HashMap<String,List<String>>();
 		try {
+			System.out.println("1337");
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT groupName parentID FROM groups");
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName, parentID FROM groups");
 			while (myRs.next()){
+				System.out.println("myRs.next");
 				if(groupMap.containsKey(myRs.getString(2))){
 					groupMap.get(myRs.getString(2)).add(myRs.getString(1));
 				}
@@ -143,7 +146,7 @@ public class GroupDB extends DatabaseConnection{
 	public static List<User> getAllMembers(String groupName) {
 		try {
 			Statement myStatement = con.createStatement(); 
-			ResultSet myRs = myStatement.executeQuery("SELECT username FROM usergroups WHERE groupName = '" + groupName + "'");
+			ResultSet myRs = myStatement.executeQuery("SELECT username FROM usergrouplink WHERE groupName = '" + groupName + "'");
 			List<User> returnList = new ArrayList<User>();
 			while(myRs.next()){
 				returnList.add(UserDB.getUser((myRs.getString(1))));
