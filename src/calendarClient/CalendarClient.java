@@ -33,7 +33,7 @@ public class CalendarClient extends Application{
 	public static final String MY_GROUPS_SCREEN = "MyGroups";
 	private static final String MY_GROUPS_SCREEN_FXML = "/gui/MyGroupsGUI2.fxml";
 	private static final String ADD_GROUP_SCREEN = "AddGroup";
-	private static final String ADD_GROUP_SCREEN_FXML = "/gui/NewGroupGUI2.fxml";
+	private static final String ADD_GROUP_SCREEN_FXML = "/gui/AddGroupGUI2.fxml";
 
 
     public static final String LOG_IN_VIEW = "LogIN";
@@ -52,6 +52,7 @@ public class CalendarClient extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = new AnchorPane();
+		dbconnection.DatabaseConnection.startCon();
 		
 		mainController = new MainController();
 		// Load all Screens 
@@ -94,7 +95,6 @@ public class CalendarClient extends Application{
 		primaryStage.show();
 		
 		//Set up DB conection;
-		dbconnection.DatabaseConnection.startCon();
 		
 	}
 
