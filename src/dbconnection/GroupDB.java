@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import model.Group;
 import model.User;
@@ -102,6 +104,31 @@ public class GroupDB extends DatabaseConnection{
 		}
 	}
 	
+	public static List<String> getAllGroups(String user){
+		Set<String> rSet = new HashSet<String>();
+		try {
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName FROM usergrouplink WHERE username = '"+user+"'");
+			while (myRs.next()){
+				rSet.add(myRs.getString(1));
+				Group temp = new Group(myRs.getString(1));
+				List<Group> subGroups = temp.getSubGroup();
+				for(int i = 0; i < subGroups.size() ; i++){
+					if(!rSet.contains(subGroups.get(i).getName())){
+						rSet.add(subGroups.get(i).getName());
+					}
+				}
+			} 
+			List<String> rList = new ArrayList<String>();
+			rList.addAll(rSet);
+			return rList;
+		}
+			catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
+	}
+	
 	public static List<String> getallGroups(){
 		List<String> rList = new ArrayList<String>();
 		try {
@@ -121,11 +148,9 @@ public class GroupDB extends DatabaseConnection{
 	public static HashMap<String, List<String>> getAllGroupsHash(){
 		HashMap<String, List<String>> groupMap = new HashMap<String,List<String>>();
 		try {
-			System.out.println("1337");
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT groupName, parentID FROM groups");
 			while (myRs.next()){
-				System.out.println("myRs.next");
 				if(groupMap.containsKey(myRs.getString(2))){
 					groupMap.get(myRs.getString(2)).add(myRs.getString(1));
 				}

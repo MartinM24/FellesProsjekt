@@ -2,8 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import dbconnection.GroupDB;
 
@@ -41,14 +43,27 @@ public class Group implements Iterable<User>{
 		this.members = new ArrayList<User>();
 		subGroups = new ArrayList<Group>();
 		for(int i = 0 ; i < members.size() ; i++){
-			System.out.println("Group(name, parent, members) : Member: "+members.get(i).getUsername());
+			//System.out.println("Group(name, parent, members) : Member: "+members.get(i).getUsername());
 			addMember(members.get(i));
 		}
 	}
+	
+	public List<User> getAllMembers(){
+		List<User> directMembers = GroupDB.getAllMembers(this.getName());
+		//System.out.println("Group : getAllMembers()"+directMembers);
+		Set<User> directMembersSet = new HashSet<User>();
+		directMembersSet.addAll(directMembers);
+		for(int i = 0 ; i < subGroups.size() ; i++){
+			directMembersSet.addAll(subGroups.get(i).getAllMembers());
+		}
+		//directMembers.clear();
+		directMembers.addAll(directMembersSet);
+		return directMembers;
+	}
 
 	public List<User> getAllMembers(Group group, List<User> listAllMembers){
+		listAllMembers.addAll(GroupDB.getAllMembers(group.getName()));
 		for(int i = 0; i < group.subGroups.size(); i++){
-			
 			listAllMembers.addAll(getAllMembers(group.subGroups.get(i), listAllMembers));
 		}
 		return listAllMembers;
@@ -96,7 +111,7 @@ public class Group implements Iterable<User>{
 	public void addMember(User member) {
 		System.out.println("Group-addMember : member = "+member.getUsername());
 		if(!this.members.contains(member)){
-			System.out.println("Group-addMember : In the if");
+			//System.out.println("Group-addMember : In the if");
 			this.members.add(member);
 			GroupDB.addMember(member, this);
 		}
@@ -104,7 +119,7 @@ public class Group implements Iterable<User>{
 	
 	public void removeMember(User member){
 		this.members.remove(member);	
-		System.out.println("Group-removeMember(member):member = "+member.getUsername());
+		//System.out.println("Group-removeMember(member):member = "+member.getUsername());
 		GroupDB.removeMember(member, this);
 	}
 

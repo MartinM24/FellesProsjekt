@@ -181,7 +181,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 		hasParentCheckBox.setSelected(false);
 		nameTextField.setText("");
 		addMemberComboBox.setEditable(true);
-		
+		chooseParentComboBox.getSelectionModel().clearSelection();
 		List<LoginUser> users = UserDB.getAllUsers();
 		for(User u: users){
 			System.out.println(u.getUsername());
