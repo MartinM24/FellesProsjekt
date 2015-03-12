@@ -53,7 +53,7 @@ public class RoomDB extends DatabaseConnection {
         List<Room> roomList = new ArrayList<>();
         try{
             Statement myStatement = con.createStatement();
-            ResultSet myRs = myStatement.executeQuery("SELECT room.roomName FROM room");
+            ResultSet myRs = myStatement.executeQuery("SELECT roomName FROM room");
             while (myRs.next()){
                 roomList.add(getRoom(myRs.getString(1)));
             }
@@ -81,7 +81,7 @@ public class RoomDB extends DatabaseConnection {
     	ArrayList<ArrayList<LocalDateTime>> availability = new ArrayList<ArrayList<LocalDateTime>>();
         try{
             Statement sqlSelect = con.createStatement();
-            ResultSet myRs = sqlSelect.executeQuery("select meeting.timeStart, meeting.timeEnd from meeting INNER JOIN room ON meeting.roomName = room.roomName WHERE roomName = '"+name+"'");
+            ResultSet myRs = sqlSelect.executeQuery("SELECT timeStart, timeEnd FROM meeting WHERE roomName = '"+name+"'");
             while(myRs.next()){
             	ArrayList<LocalDateTime> temp = new ArrayList<LocalDateTime>();
             	temp.add(0, convertStringToDate(myRs.getString(1)));

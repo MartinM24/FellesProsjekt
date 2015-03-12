@@ -39,12 +39,8 @@ public class InvitationMeetingController implements ControlledScreen, Initializa
 	@SuppressWarnings("unused")
 	private void tableSetup(){
 		//TODO aktive brukeren er objektet user
-		ArrayList<Invitation> inviteDB = MeetingDB.getAllInvitations(user);
-		ArrayList<InvitationVeiw> invite = new ArrayList<InvitationVeiw>();
-		for (int i = 0; i<inviteDB.size(); i++){
-			invite.add(Invitation.makeInvitationVeiwMeeting(inviteDB.get(i)));
-		}
-		table.setItems(FXCollections.observableArrayList(invite));
+		ArrayList<InvitationVeiw> inviteDB = (ArrayList<InvitationVeiw>) MeetingDB.getAllInvitations(calendarClient.CalendarClient.getCurrentUser());
+		table.setItems(FXCollections.observableArrayList(inviteDB));
 	}
 	
 	
@@ -52,6 +48,13 @@ public class InvitationMeetingController implements ControlledScreen, Initializa
 	@Override
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
+	}
+
+
+	@Override
+	public void viewRefresh() {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -45,7 +45,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 
     @Override
     public void viewRefresh() {
-
+    	tableSetup();
     }
 
     @FXML

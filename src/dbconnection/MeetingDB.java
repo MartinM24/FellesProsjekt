@@ -14,6 +14,7 @@ import java.util.List;
 import model.Group;
 import model.Invitation;
 import model.InvitationVeiw;
+import model.LoginUser;
 import model.Meeting;
 import model.Room;
 import model.User;
@@ -41,7 +42,7 @@ public class MeetingDB extends DatabaseConnection{
 		return meetingList;
 	}
 	
-	public static List<InvitationVeiw> getAllInvitations(User user){
+	public static List<InvitationVeiw> getAllInvitations(LoginUser user){
 		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
 		try{
 			Statement myStatement = con.createStatement();

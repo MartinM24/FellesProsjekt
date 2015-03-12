@@ -13,12 +13,6 @@ public class Room {
         this.capacity = capacity;
     }
 
-    public Room(String name, String capacity, String avalibility) {
-    	this.name = name;
-    	this.capacityString = capacity;
-    	this.avalibility = avalibility;
-    	this.capacity = Integer.parseInt(capacity);
-    }
 
 
     public String getName() {

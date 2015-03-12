@@ -4,30 +4,42 @@ import calendarClient.CalendarClient;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import model.Meeting;
+import model.Room;
 import model.User;
 
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class AddMeetingController implements ControlledScreen {
+public class AddMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
-	
-	public static final String LOGIN_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
+	public Room room;	
+	public static final String TIME_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
 	@FXML TextField fromtimeField; 
 	@FXML TextField totimeField;
 	@FXML Button findroomButton;
+	private ControlledScreen meetingRoomOverview;
 
     @Override
     public void viewRefresh() {
-
+		this.meetingRoomOverview = myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
+		try{
+			this.room = ((MeetingRoomOverviewController) meetingRoomOverview).getRoom();			
+			chosenroomLabel.setText(room.getName());
+		} catch (Exception e) {
+			System.out.println("Ja, dette var vel ikke planlagt");
+		}
     }
 
     @FXML DatePicker fromDatePicker;
@@ -35,16 +47,28 @@ public class AddMeetingController implements ControlledScreen {
 	@FXML Button saveButton;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
-	
+	@FXML Label label;
+	@FXML Label chosenroomLabel;
 	
 	@FXML
 	public void initialize() {	
 		setTooltips();
 	}
 	
+	
+	public void findroomButtonClick(ActionEvent e){
+		if (toDatePicker.getValue().toString().isEmpty() || fromDatePicker.getValue().toString().isEmpty() ||
+				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty()){
+			label.setText("Ikke alle verdier er fyllt inn");
+		} else {
+			myController.setView(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
+		}
+		
+	}
+	
 	public void fromtimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
-			validateText(fromtimeField.getText(), LOGIN_REGEX, fromtimeField);
+			validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField);
 		}
 	}
 	
@@ -59,7 +83,7 @@ public class AddMeetingController implements ControlledScreen {
 	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
-			if(validateText(totimeField.getText(), LOGIN_REGEX, totimeField)){	
+			if(validateText(totimeField.getText(), TIME_REGEX, totimeField)){	
 				String[] tid1 = fromtimeField.getText().split("\\:");
 				String[] tid2 = totimeField.getText().split("\\:");
 				if (Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
@@ -92,10 +116,6 @@ public class AddMeetingController implements ControlledScreen {
 			}
 		}
 	}
-
-	public void findroomButtonClick(ActionEvent e){
-		//TODO Meetingroom list. 
-	}
 	
 	/**
 	 * Gj�r om fra localdate og string (HH:MM) til localdatetime
@@ -125,11 +145,9 @@ public class AddMeetingController implements ControlledScreen {
 	public void okButtonClick(ActionEvent e){
 		if (!(toDatePicker.getValue().toString().isEmpty() || fromDatePicker.getValue().toString().isEmpty() ||
 				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty())){
-				new Meeting(new User("Karl", "Karl", "Karl", "Karl"),
-						null, "Somwhere over the rainbow",
-						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
-						toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
-						subjectField.getText(), -1, new ArrayList<User>());
+			new Meeting(calendarClient.CalendarClient.getCurrentUser(), room
+						, "Somwhere over the rainbow", getStartTime(), 
+						getEndTime(),subjectField.getText(), -1, new ArrayList<User>());
 				
 				myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
@@ -181,7 +199,21 @@ public class AddMeetingController implements ControlledScreen {
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
 	}
+	
+	
+	public LocalDateTime getStartTime(){
+		return toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText());
+	}
+	
+	public LocalDateTime getEndTime(){
+		return toLocalDateTime(toDatePicker.getValue(), totimeField.getText());
+	}
 
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub	
+	}
 
 
 }

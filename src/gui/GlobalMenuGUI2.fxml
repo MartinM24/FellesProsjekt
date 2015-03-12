@@ -18,7 +18,7 @@
   </rowConstraints>
    <children>
       <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonClick" text="Logg ut" GridPane.columnIndex="1" />
-      <Label prefHeight="16.0" prefWidth="128.0" text="User: Username" />
+      <Label fx:id="usernameLabel" prefHeight="16.0" prefWidth="128.0" text="User: Username" />
       <Button mnemonicParsing="false" text="Reconect" GridPane.columnIndex="2" />
    </children>
 </GridPane>
