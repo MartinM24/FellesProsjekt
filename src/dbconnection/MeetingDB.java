@@ -46,9 +46,9 @@ public class MeetingDB extends DatabaseConnection{
 		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.attendence = 0");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.attendence = 0");
 			while (myRs.next()){
-				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2)) );
+				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2),""+myRs.getInt(3)) );
 			};
 			System.out.println("Got all invitations");
 		} catch (SQLException e) {
@@ -56,8 +56,16 @@ public class MeetingDB extends DatabaseConnection{
 		}
 		
 		return invitationlist;
-		
-		
+	}
+	
+	public static void updateInvitation(String meetingID, int attendence){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE participant SET attendence='"+attendence+"' WHERE meetingID='"+meetingID+"' AND username='"+calendarClient.CalendarClient.getCurrentUser().getUsername()+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public static Meeting getMeeting(int meetingID){
@@ -255,7 +263,7 @@ public class MeetingDB extends DatabaseConnection{
 			ResultSet tableKeys = preparedMeetingStmt.getGeneratedKeys();
 			tableKeys.next();
 			meeting.setMeetingID(tableKeys.getInt(1));
-			MeetingDB.addParticipant(meeting, meeting.getOwner(), 2);
+			MeetingDB.addParticipant(meeting, meeting.getOwner(), 0);
 			return meeting.getMeetingID();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -275,6 +283,21 @@ public class MeetingDB extends DatabaseConnection{
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
         return sdf.format(dt);
     }
+
+	public static String getAttendence(LoginUser user, Meeting meeting) {
+		try {
+			Statement myStatement = con.createStatement(); 
+			ResultSet myRs = myStatement.executeQuery("SELECT participant.attendence FROM participant INNER JOIN meeting WHERE user='"+user.getUsername()+"' AND meeting.meetingID='"+meeting.getMeetingID()+"'");
+			myRs.next();
+			return (""+myRs.getInt(1));
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 }
 

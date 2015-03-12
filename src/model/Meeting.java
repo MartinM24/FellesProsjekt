@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import calendarClient.CalendarClient;
 import dbconnection.DatabaseConnection;
 import dbconnection.MeetingDB;
 
@@ -95,9 +96,10 @@ public class Meeting {
         this.nOfParticipant = tempMeeting.nOfParticipant;
         this.participants = tempMeeting.participants;
     }
+    
 
 
-    private LocalDateTime convertStringToDate(String str) {
+    public LocalDateTime convertStringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
         System.out.println(str);
         return LocalDateTime.parse(str.split("\\.")[0], formatter);
