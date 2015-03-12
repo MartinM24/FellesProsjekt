@@ -36,6 +36,8 @@ public class CalendarClient extends Application{
 	private static final String ADD_GROUP_SCREEN_FXML = "/gui/AddGroupGUI2.fxml";
 	public static final String MEETING_ROOM_OVERVIEW_SCREEN ="MeetingRoomOverview";
 	private static final String MEETING_ROOM_OVERVIEW_SCREEN_FXML ="/gui/MeetingRoomOverviewGUI2.fxml";
+	public static final String NOTIFICATION_SCREEN = "Notification";
+	private static final String NOTIFICATION_SCREEN_FXML = "/gui/MeetingRoomOverviewGUI2.fxml";
 	public static final String INVITATION_MEETING_SCREEN = "InvitationMeeting";
 	private static final String INVITATION_MEETING_SCREEN_FXML = "/gui/InvitationMeetingGUI2.fxml";
 	
@@ -50,6 +52,7 @@ public class CalendarClient extends Application{
     public static final String NEW_MEETING_VIEW = "NewMeeting";
     public static final String ADD_GROUP_VIEW = "AddGroup";
     public static final String MEETING_ROOM_OVERVIEW_VIEW = "MeetingRoomOverview";
+    public static final String NOTIFICATION_VIEW = "Notification";
     public static final String INVITATION_MEETING_VIEW = "InvitationMeeting";
 	private static LoginUser currentUser;
 
@@ -73,6 +76,7 @@ public class CalendarClient extends Application{
         mainController.loadScreen(MY_GROUPS_SCREEN, MY_GROUPS_SCREEN_FXML);
         mainController.loadScreen(ADD_GROUP_SCREEN, ADD_GROUP_SCREEN_FXML);
         mainController.loadScreen(MEETING_ROOM_OVERVIEW_SCREEN, MEETING_ROOM_OVERVIEW_SCREEN_FXML);
+        mainController.loadScreen(NOTIFICATION_SCREEN, NOTIFICATION_SCREEN_FXML);
         mainController.loadScreen(INVITATION_MEETING_SCREEN, INVITATION_MEETING_SCREEN_FXML);
         
         // Make view form loaded screens
@@ -86,6 +90,7 @@ public class CalendarClient extends Application{
         mainController.makeView(MY_GROUPS_VIEW, MY_GROUPS_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(MEETING_ROOM_OVERVIEW_VIEW, MEETING_ROOM_OVERVIEW_SCREEN);
+        mainController.makeView(NOTIFICATION_VIEW, NOTIFICATION_SCREEN);
         mainController.makeView(INVITATION_MEETING_VIEW, INVITATION_MEETING_SCREEN);
 
 		// Set first screen
