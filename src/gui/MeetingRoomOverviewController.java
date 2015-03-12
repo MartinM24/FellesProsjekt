@@ -38,8 +38,8 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	public void initialize(URL location, ResourceBundle resources) {	
 		roomTable.setEditable(true);
 		nameColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("name"));
-		capacityColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("capacity"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("avalibility"));
+		capacityColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("capacityString"));
 
 	}
 	
@@ -77,6 +77,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 			data.add(new RoomVeiw(roomsDB.get(i).getName(), ""+roomsDB.get(i).getCapacity(), status.get(i)));
 		}
 		roomTable.setItems(data);
+//		roomTable.getColumns().addAll(nameColumn, capacityColumn, statusColumn);
 	}
 	
 	private boolean checkAvailability(ArrayList<LocalDateTime> availability) {

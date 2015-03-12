@@ -38,7 +38,7 @@
                   <TableView fx:id="roomTable" prefHeight="448.0" prefWidth="426.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
                         <TableColumn fx:id="nameColumn" prefWidth="258.0" text="Navn" />
-                        <TableColumn fx:id="capacityCollumn" prefWidth="89.0" text="Kapasitet" />
+                        <TableColumn fx:id="capacityColumn" prefWidth="89.0" text="Kapasitet" />
                         <TableColumn fx:id="statusColumn" prefWidth="147.0" text="Ledighet" />
                      </columns>
                   </TableView>
