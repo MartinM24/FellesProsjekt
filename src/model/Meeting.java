@@ -248,9 +248,11 @@ public class Meeting implements Comparable<Meeting>{
 
     @Override
     public String toString() {
-        return "Meeting [meetingID=" + meetingID
-                + ", description=" + description
-                + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd + "]";
+        return "Meeting [dateFormat=" + dateFormat + ", meetingID=" + meetingID
+                + ", owner=" + owner + ", room=" + room + ", place=" + place
+                + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
+                + ", description=" + description + ", nOfParticipant="
+                + nOfParticipant + ", participants=" + participants + "]";
     }
 
     public static void main(String[] args) {

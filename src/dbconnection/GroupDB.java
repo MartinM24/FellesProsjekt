@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import model.Group;
 import model.User;
@@ -46,7 +48,8 @@ public class GroupDB extends DatabaseConnection{
 	
 	public static void addMember(User user, Group group){
 		try {
-			String addGroupQuery = "insert into usergroup (username, groupName)"  + "values(?, ?)";
+			System.out.println("User: "+user.getUsername()+", Group: "+group.getName());
+			String addGroupQuery = "insert into usergrouplink (username, groupName)"  + "values(?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
 			preparedStmt.setString (1, user.getUsername());
 			preparedStmt.setString (2, group.getName());
@@ -82,7 +85,7 @@ public class GroupDB extends DatabaseConnection{
 	public static void removeMember(User user, Group group){
 		try {
 			Statement myStatement = con.createStatement(); 
-			myStatement.executeUpdate("DELETE FROM usergroup WHERE username = '" + user.getUsername() + "' AND groupName =  '"+group.getName()+"'");
+			myStatement.executeUpdate("DELETE FROM usergrouplink WHERE username = '" + user.getUsername() + "' AND groupName =  '"+group.getName()+"'");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -99,6 +102,31 @@ public class GroupDB extends DatabaseConnection{
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public static List<String> getAllGroups(String user){
+		Set<String> rSet = new HashSet<String>();
+		try {
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName FROM usergrouplink WHERE username = '"+user+"'");
+			while (myRs.next()){
+				rSet.add(myRs.getString(1));
+				Group temp = new Group(myRs.getString(1));
+				List<Group> subGroups = temp.getSubGroup();
+				for(int i = 0; i < subGroups.size() ; i++){
+					if(!rSet.contains(subGroups.get(i).getName())){
+						rSet.add(subGroups.get(i).getName());
+					}
+				}
+			} 
+			List<String> rList = new ArrayList<String>();
+			rList.addAll(rSet);
+			return rList;
+		}
+			catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 	
 	public static List<String> getallGroups(){
@@ -121,7 +149,7 @@ public class GroupDB extends DatabaseConnection{
 		HashMap<String, List<String>> groupMap = new HashMap<String,List<String>>();
 		try {
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT groupName parentID FROM groups");
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName, parentID FROM groups");
 			while (myRs.next()){
 				if(groupMap.containsKey(myRs.getString(2))){
 					groupMap.get(myRs.getString(2)).add(myRs.getString(1));
@@ -143,7 +171,7 @@ public class GroupDB extends DatabaseConnection{
 	public static List<User> getAllMembers(String groupName) {
 		try {
 			Statement myStatement = con.createStatement(); 
-			ResultSet myRs = myStatement.executeQuery("SELECT username FROM usergroups WHERE groupName = '" + groupName + "'");
+			ResultSet myRs = myStatement.executeQuery("SELECT username FROM usergrouplink WHERE groupName = '" + groupName + "'");
 			List<User> returnList = new ArrayList<User>();
 			while(myRs.next()){
 				returnList.add(UserDB.getUser((myRs.getString(1))));

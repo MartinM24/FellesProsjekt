@@ -27,7 +27,6 @@ public class UserDB extends DatabaseConnection{
 			while (myRs.next()){
 				userList.add(new LoginUser(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4), myRs.getBytes(5), myRs.getBytes(6)));
 			};
-			System.out.println("Everything worked");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +40,6 @@ public class UserDB extends DatabaseConnection{
 			ResultSet myRs = myStatement.executeQuery("select * from users where username = '" + username + "'");
 			myRs.first();
 			user = new LoginUser(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4), myRs.getBytes(5), myRs.getBytes(6));
-			System.out.println("Everything worked");
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
@@ -56,7 +54,6 @@ public class UserDB extends DatabaseConnection{
 			if (myRs.first()){
 				user = new User(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4));				
 			}
-			System.out.println("Everything worked");
 			return user;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,4 +121,5 @@ public class UserDB extends DatabaseConnection{
 		return false; 
 	}
 	
+
 }

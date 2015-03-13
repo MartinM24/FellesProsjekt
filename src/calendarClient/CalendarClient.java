@@ -33,8 +33,14 @@ public class CalendarClient extends Application{
 	public static final String MY_GROUPS_SCREEN = "MyGroups";
 	private static final String MY_GROUPS_SCREEN_FXML = "/gui/MyGroupsGUI2.fxml";
 	private static final String ADD_GROUP_SCREEN = "AddGroup";
-	private static final String ADD_GROUP_SCREEN_FXML = "/gui/NewGroupGUI2.fxml";
-
+	private static final String ADD_GROUP_SCREEN_FXML = "/gui/AddGroupGUI2.fxml";
+	public static final String MEETING_ROOM_OVERVIEW_SCREEN ="MeetingRoomOverview";
+	private static final String MEETING_ROOM_OVERVIEW_SCREEN_FXML ="/gui/MeetingRoomOverviewGUI2.fxml";
+	public static final String NOTIFICATION_SCREEN = "Notification";
+	private static final String NOTIFICATION_SCREEN_FXML = "/gui/Notification.fxml";
+	public static final String INVITATION_MEETING_SCREEN = "InvitationMeeting";
+	private static final String INVITATION_MEETING_SCREEN_FXML = "/gui/InvitationMeetingGUI2.fxml";
+	
 
     public static final String LOG_IN_VIEW = "LogIN";
     public static final String NEW_USER_VIEW = "NewUser";
@@ -45,6 +51,9 @@ public class CalendarClient extends Application{
     public static final String MY_GROUPS_VIEW = "MyGroups";
     public static final String NEW_MEETING_VIEW = "NewMeeting";
     public static final String ADD_GROUP_VIEW = "AddGroup";
+    public static final String MEETING_ROOM_OVERVIEW_VIEW = "MeetingRoomOverview";
+    public static final String NOTIFICATION_VIEW = "Notification";
+    public static final String INVITATION_MEETING_VIEW = "InvitationMeeting";
 	private static LoginUser currentUser;
 
 	private MainController mainController;
@@ -52,6 +61,7 @@ public class CalendarClient extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = new AnchorPane();
+		dbconnection.DatabaseConnection.startCon();
 		
 		mainController = new MainController();
 		// Load all Screens 
@@ -65,6 +75,9 @@ public class CalendarClient extends Application{
         mainController.loadScreen(MEETING_OVERVIEW_SCREEN, MEETING_OVERVIEW_SCREEN_FXML);
         mainController.loadScreen(MY_GROUPS_SCREEN, MY_GROUPS_SCREEN_FXML);
         mainController.loadScreen(ADD_GROUP_SCREEN, ADD_GROUP_SCREEN_FXML);
+        mainController.loadScreen(MEETING_ROOM_OVERVIEW_SCREEN, MEETING_ROOM_OVERVIEW_SCREEN_FXML);
+        mainController.loadScreen(NOTIFICATION_SCREEN, NOTIFICATION_SCREEN_FXML);
+        mainController.loadScreen(INVITATION_MEETING_SCREEN, INVITATION_MEETING_SCREEN_FXML);
         
         // Make view form loaded screens
 		System.out.println("Load screens");
@@ -76,6 +89,9 @@ public class CalendarClient extends Application{
         mainController.makeView(MEETING_OVERVIEW_VIEW, MEETING_OVERVIEW_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(MY_GROUPS_VIEW, MY_GROUPS_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(MEETING_ROOM_OVERVIEW_VIEW, MEETING_ROOM_OVERVIEW_SCREEN);
+        mainController.makeView(NOTIFICATION_VIEW, NOTIFICATION_SCREEN);
+        mainController.makeView(INVITATION_MEETING_VIEW, INVITATION_MEETING_SCREEN);
 
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);
@@ -94,7 +110,6 @@ public class CalendarClient extends Application{
 		primaryStage.show();
 		
 		//Set up DB conection;
-		dbconnection.DatabaseConnection.startCon();
 		
 	}
 
