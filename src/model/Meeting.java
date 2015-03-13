@@ -3,18 +3,18 @@ package model;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import dbconnection.DatabaseConnection;
 import dbconnection.MeetingDB;
 
 //TODO add constructors
-public class Meeting {
-    private final String dateFormat = "yyyy-MM-dd HH:mm:ss";
+public class Meeting implements Comparable<Meeting>{
+
+    private static final String DATABASE_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    private static final String PRINT_TIME_FORMAT = "HH:mm";
     private int meetingID;
     private User owner;
     private Room room;
@@ -98,7 +98,7 @@ public class Meeting {
 
 
     private LocalDateTime convertStringToDate(String str) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATABASE_DATE_FORMAT);
         System.out.println(str);
         return LocalDateTime.parse(str.split("\\.")[0], formatter);
     }
@@ -215,11 +215,12 @@ public class Meeting {
     }
 
     public String getStartString(){
-        return getStartHour() + ":" + getMinute();
+        return this.getTimeStart().format(DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT));
     }
 
     public String getEndString(){
-        return getEndHour() + ":" + getEndMinute();
+        return this.getTimeEnd().format(DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT));
+
     }
 
     /**
@@ -229,7 +230,7 @@ public class Meeting {
      */
     public String getStartDB() {
         Date dt = Date.from(timeStart.atZone(ZoneId.systemDefault()).toInstant());
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATABASE_DATE_FORMAT);
         return sdf.format(dt);
     }
 
@@ -240,23 +241,60 @@ public class Meeting {
      */
     public String getEndDB() {
         Date dt = Date.from(timeEnd.atZone(ZoneId.systemDefault()).toInstant());
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATABASE_DATE_FORMAT);
         return sdf.format(dt);
     }
 
 
     @Override
     public String toString() {
-        return "Meeting [dateFormat=" + dateFormat + ", meetingID=" + meetingID
-                + ", owner=" + owner + ", room=" + room + ", place=" + place
-                + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
-                + ", description=" + description + ", nOfParticipant="
-                + nOfParticipant + ", participants=" + participants + "]";
+        return "Meeting [meetingID=" + meetingID
+                + ", description=" + description
+                + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd + "]";
     }
 
     public static void main(String[] args) {
         DatabaseConnection.startCon();
         System.out.println(new Meeting(2));
+    }
+
+
+    @Override
+    public int compareTo(Meeting o) {
+        if (o.getTimeStart().isAfter(this.getTimeStart()))
+            return 1;
+        if (o.getTimeStart().isEqual(this.getTimeStart()))
+            return 0;
+        return -1;
+    }
+
+    public boolean doesOverlap(Meeting m) {
+        boolean o1 = m.getTimeStart().isBefore(this.getTimeEnd()) && this.getTimeStart().isBefore(m.getTimeEnd()) ;
+        System.out.println("o1 " + o1 + " :" + m + " - " + this);
+        //boolean o2 = this.getTimeStart().isBefore(m.getTimeStart()) && this.getTimeEnd().isAfter(m.getTimeStart());
+        //boolean o3 = m.getTimeStart().equals(this.getTimeStart());
+        //System.out.println("o3 " + o3 + " :" + m + " - " + this);
+        return o1;
+    }
+
+    public int numberOfOverlap(List<Meeting> meetings) {
+        int overlap = 0;
+        for (Meeting m : meetings) {
+            if (this != m) {
+                if (this.doesOverlap(m)) {
+                    overlap++;
+                }
+            }
+        }
+        return overlap;
+    }
+
+    public int getDayOfWeek(){
+        return timeStart.getDayOfWeek().getValue();
+    }
+
+    public String getFXStyle() {
+        return "-fx-background-color: #4986e7";
     }
 
 

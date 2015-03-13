@@ -1,15 +1,12 @@
 package gui;
 
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import calendarClient.CalendarClient;
 import dbconnection.MeetingDB;
-import dbconnection.RoomDB;
 import model.Meeting;
-import model.Room;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,7 +54,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 	public void seeMoreButtonClick(ActionEvent e){
 		//TODO Mye. 
 		Meeting meeting = (Meeting)meetingOverviewTableView.getSelectionModel().getSelectedItem();
-		myController.setView(CalendarClient.MEETING_INFO_VIEW);
+		//myController.setView(CalendarClient.MEETING_INFO_VIEW);
 	}
 	
 	@Override
