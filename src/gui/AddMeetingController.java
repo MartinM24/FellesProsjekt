@@ -1,8 +1,12 @@
 package gui;
 
 import calendarClient.CalendarClient;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -13,6 +17,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import model.Group;
+import model.LoginUser;
 import model.Meeting;
 import model.Room;
 import model.User;
@@ -25,14 +30,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import dbconnection.GroupDB;
 import dbconnection.MeetingDB;
+import dbconnection.RoomDB;
 import dbconnection.UserDB;
 
 public class AddMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
 	public Room room;
-	private List<User> users = new ArrayList<User>();
-	private List<Group> groups = new ArrayList<Group>();
+	private List<String> users = new ArrayList<String>();
+	private List<String> groups = new ArrayList<String>();
+	private List<String> participantNames = new ArrayList<String>();
+	public boolean cameFromRoomOverview;
 	public static final String TIME_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
 	@FXML TextField fromtimeField; 
@@ -40,21 +49,11 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	@FXML TextField placeField;
 	@FXML TextField nOfParticipantTextField;
 	@FXML Button findroomButton;
-	@FXML ComboBox participantComboBox;
+	@FXML ComboBox<String> participantComboBox;
 	@FXML ListView<String> participantListView;
 	
 	private ControlledScreen meetingRoomOverview;
 
-    @Override
-    public void viewRefresh() {
-		this.meetingRoomOverview = myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
-		try{
-			this.room = ((MeetingRoomOverviewController) meetingRoomOverview).getRoom();			
-			chosenroomLabel.setText(room.getName());
-		} catch (Exception e) {
-			System.out.println("se, ikke rød tekst. #smart (for å unngå nullpointer)");
-		}
-    }
 
     @FXML DatePicker fromDatePicker;
 	@FXML Button cancelButton;
@@ -64,6 +63,20 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	@FXML
 	public void initialize() {	
+	}
+
+	
+	private void gotoView(){
+		cameFromRoomOverview = false;
+	}
+
+	
+	@Override
+	public void viewRefresh() {
+		this.meetingRoomOverview = myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
+		if(!cameFromRoomOverview){
+			refreshLists();
+		}
 	}
 	
 	@FXML
@@ -159,7 +172,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		//Valider antall participants og place
 		//
 		if (!(fromDatePicker.getValue().toString().isEmpty() ||
-				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || validateNOfParticipant() ||subjectField.getText().isEmpty())){
+				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || !validateNOfParticipant() ||subjectField.getText().isEmpty())){
 
 			List<User> participants = new ArrayList<User>();
 			List<Group> partakingGroups = new ArrayList<Group>();
@@ -172,8 +185,13 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 					participants.add(UserDB.getUser(parts[1].trim()));
 				}
 			}
+			room = null; 
+			if (chosenroomLabel.getText().trim().length() > 0)
+				room = RoomDB.getRoom(chosenroomLabel.getText());
+		
+			
 			Meeting meeting = new Meeting(CalendarClient.getCurrentUser(),
-						null, placeField.getText(),
+						room , placeField.getText(),
 						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
 						toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()),
 						subjectField.getText(), getNOfParticipants(), participants);
@@ -183,6 +201,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			}
 			myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
+		System.out.println("If not true in AddMeetingController");
 			
 	}
 	
@@ -215,11 +234,82 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	public LocalDateTime getEndTime(){
 		return toLocalDateTime(fromDatePicker.getValue(), totimeField.getText());
 	}
+	
+	private void refreshLists(){
+		groups = GroupDB.getallGroups();
+		List<LoginUser> userList = UserDB.getAllUsers();
+		for(int i = 0 ; i < userList.size() ; i++){
+			System.out.println(i);
+			System.out.println(userList.get(i));
+			userList.get(i).getUsername();
+					
+			if(userList.get(i).getUsername().equals(CalendarClient.getCurrentUser().getUsername())){
+				groups.remove(i);
+			}
+			else{
+				users.add(userList.get(i).getUsername());
+			}
+		}
+		for(String str : groups){
+			participantNames.add("Gruppe: "+str);
+		}
+		for(String str : users){
+			participantNames.add("Bruker: "+str);
+		}
+		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+	}
 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub	
+		cameFromRoomOverview = false;
+		participantComboBox.setEditable(true);
+		participantComboBox.getSelectionModel().clearSelection();
+		//refreshLists();
+		participantComboBox.getEditor().textProperty().addListener(new ChangeListener<String>() {
+	          @Override
+	          public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+	            final TextField editor = participantComboBox.getEditor();
+	            final String selected = participantComboBox.getSelectionModel().getSelectedItem();
+	            if (selected == null || !selected.equals(editor.getText())) {
+	              filterItems(newValue, participantComboBox, participantNames);
+	              participantComboBox.show();
+	            }
+	          }
+	        });
+			
+		
+			
+	    participantComboBox.setOnAction(new EventHandler<ActionEvent>() {
+	      @Override
+	      public void handle(ActionEvent event) {
+	        // Reset so all options are available:
+	        Platform.runLater(new Runnable() {
+	          @Override
+	          public void run() {
+	            String selected = participantComboBox.getSelectionModel().getSelectedItem();
+	            if (participantComboBox.getItems().size() < participantNames.size()) {
+	              participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+	              String newSelected = participantComboBox.getSelectionModel()
+	                  .getSelectedItem();
+	              if (newSelected == null || !newSelected.equals(selected)) {
+	                participantComboBox.getSelectionModel().select(selected);
+	              }
+	            }
+	          }
+	        });
+	      }
+	    });	
+	}
+	
+	private <T> void filterItems(String filter, ComboBox<T> comboBox,List<T> items) {
+		List<T> filteredItems = new ArrayList<>();
+		for (T item : items) {
+			if (item.toString().toLowerCase().startsWith(filter.toLowerCase())) {
+				filteredItems.add(item);
+			}
+		}
+		comboBox.setItems(FXCollections.observableArrayList(filteredItems));
 	}
 
 

@@ -44,6 +44,8 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	public void chooseButtonClick(ActionEvent e){
 		this.room = (RoomVeiw)roomTable.getSelectionModel().getSelectedItem();
 		if (room.getAvalibility().equals("Ledig")) {
+			((AddMeetingController) addMeetingCtrl).chosenroomLabel.setText(room.getName());
+			((AddMeetingController) addMeetingCtrl).cameFromRoomOverview = true;
 			myController.setView(CalendarClient.ADD_MEETING_VIEW);			
 		} else {
 			if (warning.getText().equals("Venligst velg et ledig rom.")){

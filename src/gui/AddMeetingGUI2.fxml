@@ -17,7 +17,7 @@
             <TextField fx:id="totimeField" onFocusedChange="#totimeFieldChange" prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagere/grupper" GridPane.columnIndex="1" GridPane.rowIndex="7" />
             <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-            <Label fx:id="chosenroomLabel" text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <Label fx:id="chosenroomLabel" text="" GridPane.columnIndex="3" GridPane.rowIndex="9" />
             <DatePicker fx:id="fromDatePicker" prefHeight="25.0" prefWidth="150.0" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Legg til møte" GridPane.columnIndex="1">
