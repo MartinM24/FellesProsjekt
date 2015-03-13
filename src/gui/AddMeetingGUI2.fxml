@@ -15,20 +15,17 @@
             <TextField fx:id="fromtimeField" onFocusedChange="#fromtimeFieldChange" prefHeight="25.0" prefWidth="117.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="totimeField" onFocusedChange="#totimeFieldChange" prefHeight="25.0" prefWidth="213.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltager" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <Label fx:id="chosenroomLabel" text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-            <DatePicker fx:id="fromDatePicker" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <DatePicker fx:id="toDatePicker" onFocusedChange="#toDatePickerChange" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Dato" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label text="Kommer når funksjon er bestemt" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagere/grupper" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" text="Finn Møterom" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <Label fx:id="chosenroomLabel" text=" Valgt møterom" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+            <DatePicker fx:id="fromDatePicker" prefHeight="25.0" prefWidth="150.0" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Legg til møte" GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <GridPane prefHeight="139.0" prefWidth="236.0" GridPane.columnIndex="3" GridPane.rowIndex="9">
+            <GridPane prefHeight="139.0" prefWidth="236.0" GridPane.columnIndex="3" GridPane.rowIndex="10">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="88.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="88.0" />
@@ -45,6 +42,10 @@
                   <Label fx:id="label" prefHeight="41.0" prefWidth="90.0" />
                </children>
             </GridPane>
+            <ComboBox fx:id="participantComboBox" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <ListView fx:id="participantListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Text layoutX="85.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plass" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="placeField" layoutX="428.0" layoutY="68.0" onFocusedChange="#fromtimeFieldChange" prefHeight="25.0" prefWidth="117.0" promptText="F.eks. Somewhere over the rainbow" GridPane.columnIndex="3" GridPane.rowIndex="5" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" />
@@ -58,8 +59,9 @@
             <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
             <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
             <RowConstraints minHeight="10.0" vgrow="NEVER" />
-            <RowConstraints minHeight="10.0" vgrow="NEVER" />
             <RowConstraints minHeight="22.0" vgrow="NEVER" />
+            <RowConstraints minHeight="22.0" prefHeight="30.0" vgrow="NEVER" />
+            <RowConstraints minHeight="22.0" prefHeight="30.0" vgrow="NEVER" />
             <RowConstraints minHeight="6.0" vgrow="NEVER" />
             <RowConstraints minHeight="9.0" vgrow="NEVER" />
             <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="121.0" vgrow="NEVER" />
