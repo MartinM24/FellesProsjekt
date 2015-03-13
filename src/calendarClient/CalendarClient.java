@@ -6,6 +6,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.User;
+
+import java.util.List;
 
 public class CalendarClient extends Application{
 
@@ -56,8 +59,10 @@ public class CalendarClient extends Application{
     public static final String INVITATION_MEETING_VIEW = "InvitationMeeting";
 	private static LoginUser currentUser;
 
-	private MainController mainController;
-	
+	public static MainController mainController;
+
+    public List<User> calendars;
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = new AnchorPane();
@@ -121,10 +126,7 @@ public class CalendarClient extends Application{
 		CalendarClient.currentUser = currentUser;
 	}
 
-
-
 	public static void main(String[] args) {
 		launch(args);
 	}
-
 }

@@ -6,12 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -39,53 +34,43 @@ public class ChooseCalendarsController implements ControlledScreen, Initializabl
 	@FXML Button okButton;
 	@FXML Button cancelButton;
 	//	@FXML Button saveButton;	
-	@FXML CheckBox myCalendarCheckBox;
+	@FXML
+    CheckBox myCalendarCheckBox;
 	//ComboBox
-	@FXML ComboBox<String> groupComboBox;
-	@FXML ComboBox<String> employeeComboBox;
+	@FXML ChoiceBox<String> groupChoiceBox;
+	@FXML ChoiceBox<String> employeeChoiceBox;
 	
 	//ListViews
 	@FXML ListView<String> employeeList;
 	@FXML ListView<String> groupList;
 	
-	private List<String> usernames = new ArrayList<String>();
-	private List<String> selectedGroupnames = new ArrayList<String>();
-	private List<String> allGroupnames = new ArrayList<String>();
-	@Override
-	public void viewRefresh() {
-		initAll();
-	}
+	private List<String> usernames = new ArrayList<>();
+	private List<String> selectedGroupnames = new ArrayList<>();
+	private List<String> allGroupnames = new ArrayList<>();
 
-	private void addGroupToList(String group){
-		selectedGroupnames.add(group);	
-		groupComboBox.setItems(FXCollections.observableArrayList(selectedGroupnames));
-	}
-	private void addUsernameToList(String username){
-		usernames.add(username);
-		
-		employeeList.setItems(FXCollections.observableArrayList(usernames));
-	}
-	
+    @Override
+	public void viewRefresh() {
+        initAll();
+    }
 	
 	private void initAll(){
-	usernames.clear();
-	selectedGroupnames.clear();
-	
-	//Fill usernameComboBox
-	List<LoginUser> users = UserDB.getAllUsers();
-	
-	for (int i = 0 ; i < users.size(); i++){
-		
-			usernames.add(users.get(i).getUsername());
-		}
-	
-	
-	employeeComboBox.setItems(FXCollections.observableArrayList(usernames));
-	
-	//Fill groupnameComboBox
-	
-	allGroupnames = GroupDB.getallGroups();
-	groupComboBox.setItems(FXCollections.observableArrayList(allGroupnames));
+        usernames.clear();
+        selectedGroupnames.clear();
+
+        //Fill usernameComboBox
+        List<LoginUser> users = UserDB.getAllUsers();
+
+        for (int i = 0 ; i < users.size(); i++){
+            System.out.println(users.get(i).getUsername());
+            usernames.add(users.get(i).getUsername());
+        }
+
+        employeeChoiceBox.getItems().addAll(usernames);
+
+        //Fill groupnameComboBox
+
+        allGroupnames = GroupDB.getallGroups();
+        groupChoiceBox.getItems().addAll(allGroupnames);
 	}
 	
 		
@@ -111,8 +96,6 @@ public class ChooseCalendarsController implements ControlledScreen, Initializabl
 
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-			
-			
 			
 		}
 

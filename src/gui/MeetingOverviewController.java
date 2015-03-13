@@ -1,6 +1,7 @@
 package gui;
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -60,9 +61,9 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     		room = meeting.getRoom().getName();
     	}
     	System.out.println(room);
-    	return new MeetingVeiw(meeting.getTimeStart().getDayOfMonth() +"."+meeting.getTimeStart().getMonthValue(),
-    			meeting.getTimeStart().getHour()+":"+meeting.getTimeStart().getMinute(),
-    			meeting.getTimeEnd().getHour()+":"+meeting.getTimeEnd().getMinute(),
+    	return new MeetingVeiw(meeting.getTimeStart().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+    			meeting.getStartString(),
+    			meeting.getEndString(),
     			meeting.getDescription(),
     			meeting.getPlace(),
     			room,
