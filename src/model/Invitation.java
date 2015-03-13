@@ -20,13 +20,9 @@ public class Invitation {
 	}
 	
 	public static InvitationVeiw makeInvitationVeiwMeeting(Invitation inv){
-		return new InvitationVeiw(inv.getReciver().getFirstname() +" "+ inv.getReciver().getLastname(),inv.getMeeting().getDescription());
+		return new InvitationVeiw(inv.getReciver().getFirstname() +" "+ inv.getReciver().getLastname(),inv.getMeeting().getDescription(), ""+inv.getMeeting().getMeetingID());
 	}
 	
-	public static InvitationVeiw makeInvitationVeiwGroup(Invitation inv){
-		return new InvitationVeiw(inv.getReciver().getFirstname() +" "+ inv.getReciver().getLastname(), inv.getGroup().getName());
-	}
-
 	public User getSender() {
 		return sender;
 	}

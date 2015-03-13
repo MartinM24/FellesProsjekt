@@ -52,9 +52,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 				warning.setText("Ledig rom er rom med status ledig.");
 			}
 			warning.setText("Venligst velg et ledig rom.");
-		}
-		
-		
+		}		
 	}
 	
 	/** 
@@ -77,7 +75,6 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 			data.add(new RoomVeiw(roomsDB.get(i).getName(), ""+roomsDB.get(i).getCapacity(), status.get(i)));
 		}
 		roomTable.setItems(data);
-//		roomTable.getColumns().addAll(nameColumn, capacityColumn, statusColumn);
 	}
 	
 	private boolean checkAvailability(ArrayList<LocalDateTime> availability) {

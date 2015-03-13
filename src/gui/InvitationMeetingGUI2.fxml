@@ -26,10 +26,9 @@
                   </Text>
                   <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn minWidth="0.0" prefWidth="0.0" />
-                        <TableColumn fx:id="sendColumn" prefWidth="215.0" text="Sender" />
-                        <TableColumn fx:id="descColumn" prefWidth="439.0" text="Beskrivelse" />
-                        <TableColumn minWidth="0.0" prefWidth="1.0" />
+                        <TableColumn fx:id="idColumn" prefWidth="64.0" text="ID" />
+                        <TableColumn fx:id="sendColumn" prefWidth="88.0" text="Sender" />
+                        <TableColumn fx:id="descColumn" prefWidth="577.0" text="Beskrivelse" />
                      </columns>
                   </TableView>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -37,13 +36,16 @@
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.0" minWidth="10.0" prefWidth="400.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.0" minWidth="10.0" prefWidth="135.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="130.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="130.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="130.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="115.0" prefWidth="370.0" text="Godta" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="149.0" text="Avslå" GridPane.columnIndex="2" />
+                        <Button fx:id="agree" mnemonicParsing="false" onAction="#agreeButtonClick" prefHeight="21.0" prefWidth="72.0" text="Godta" GridPane.columnIndex="1" />
+                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="28.0" prefWidth="66.0" text="Avslå" GridPane.columnIndex="2" />
+                        <Button fx:id="done" mnemonicParsing="false" onAction="#doneButtonClick" prefHeight="25.0" prefWidth="61.0" text="Ferdig" GridPane.columnIndex="4" />
                      </children>
                   </GridPane>
                </children>

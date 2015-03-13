@@ -38,13 +38,12 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			this.room = ((MeetingRoomOverviewController) meetingRoomOverview).getRoom();			
 			chosenroomLabel.setText(room.getName());
 		} catch (Exception e) {
-			System.out.println("Ja, dette var vel ikke planlagt");
+			System.out.println("se, ikke rød tekst. #smart (for å unngå nullpointer)");
 		}
     }
 
     @FXML DatePicker fromDatePicker;
 	@FXML DatePicker toDatePicker;
-	@FXML Button saveButton;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Label label;
@@ -68,7 +67,11 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	public void fromtimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
-			validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField);
+			try{
+				validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField);				
+			} catch (Exception e) {
+				System.out.println("Check is not able to be made");
+			}
 		}
 	}
 	
@@ -83,18 +86,22 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
-			if(validateText(totimeField.getText(), TIME_REGEX, totimeField)){	
-				String[] tid1 = fromtimeField.getText().split("\\:");
-				String[] tid2 = totimeField.getText().split("\\:");
-				if (Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
-						(Integer.parseInt(tid1[0]) == Integer.parseInt(tid2[0]) &&
-						Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
-					totimeField.setStyle("-fx-border-color: red");
-					fromtimeField.setStyle("-fx-border-color: red");
-			} else {
-				fromtimeField.setStyle("");
-			}
-				
+			try{
+				if(validateText(totimeField.getText(), TIME_REGEX, totimeField)){	
+					String[] tid1 = fromtimeField.getText().split("\\:");
+					String[] tid2 = totimeField.getText().split("\\:");
+					if (Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
+							(Integer.parseInt(tid1[0]) == Integer.parseInt(tid2[0]) &&
+							Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
+						totimeField.setStyle("-fx-border-color: red");
+						fromtimeField.setStyle("-fx-border-color: red");
+					} else {
+						fromtimeField.setStyle("");
+					}
+					
+				}
+			} catch (Exception e) {
+				System.out.println("Check is not able to be made");
 			}
 		}
 
