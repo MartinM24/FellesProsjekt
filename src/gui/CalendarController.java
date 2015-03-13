@@ -5,17 +5,21 @@ import dbconnection.MeetingDB;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import model.Meeting;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CalendarController implements ControlledScreen, Initializable {
     MainController myController;
     @FXML
-    CalendarPane calendarGrid;
+    private CalendarPane calendarGrid;
+    @FXML
+    private Label rageLabel;
     private int diffWeeksFromToday = 0;
     private LocalDateTime today;
     private HashMap<Meeting, Integer> meetingOverlapMap = new HashMap<>();
@@ -46,6 +50,9 @@ public class CalendarController implements ControlledScreen, Initializable {
     public void viewRefresh() {
         this.today = LocalDateTime.now();
         showMeetings(MeetingDB.getAllMeetings(CalendarClient.getCurrentUser()));
+        String start = getStartWeekDate(today).plusWeeks(diffWeeksFromToday).format(DateTimeFormatter.ofPattern("dd.MM"));
+        String end = getEndWeekDate(today).plusWeeks(diffWeeksFromToday).format(DateTimeFormatter.ofPattern("dd.MM"));
+        rageLabel.setText(start + " - " + end);
         //List<Meeting> meetings = MeetingDB.getAllMeetings(CalendarClient.getCurrentUser());
         //showMeetings(meetings);
     }
@@ -68,6 +75,12 @@ public class CalendarController implements ControlledScreen, Initializable {
     @FXML
     private void lastWeekClick(ActionEvent e) {
         diffWeeksFromToday--;
+        viewRefresh();
+    }
+
+    @FXML
+    private void thisWeekClick(ActionEvent e) {
+        diffWeeksFromToday = 0;
         viewRefresh();
     }
 
