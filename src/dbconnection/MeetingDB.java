@@ -293,6 +293,18 @@ public class MeetingDB extends DatabaseConnection{
 	}
 	
 	public static void addGroup(Group group, Meeting meeting){
+		try {
+			String meetingQuery = "insert into meetinggrouplink (meetingID, groupName)"  + "values(?, ?)";
+			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery);
+			preparedMeetingStmt.setInt (1, meeting.getMeetingID());
+			preparedMeetingStmt.setString(2, group.getName());
+			int res = preparedMeetingStmt.executeUpdate();
+			if (res > 0) {
+				System.out.println("Inserting Meeting worked");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 		for(User user: group){
 			addParticipant(meeting, user, 0);
 		}
