@@ -6,10 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import model.Group;
 import model.Meeting;
 import model.Room;
 import model.User;
@@ -19,16 +22,27 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import dbconnection.MeetingDB;
+import dbconnection.UserDB;
 
 public class AddMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
-	public Room room;	
+	public Room room;
+	private List<User> users = new ArrayList<User>();
+	private List<Group> groups = new ArrayList<Group>();
 	public static final String TIME_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
 	@FXML TextField fromtimeField; 
 	@FXML TextField totimeField;
+	@FXML TextField placeField;
+	@FXML TextField nOfParticipantTextField;
 	@FXML Button findroomButton;
+	@FXML ComboBox participantComboBox;
+	@FXML ListView<String> participantListView;
+	
 	private ControlledScreen meetingRoomOverview;
 
     @Override
@@ -43,7 +57,6 @@ public class AddMeetingController implements ControlledScreen, Initializable {
     }
 
     @FXML DatePicker fromDatePicker;
-	@FXML DatePicker toDatePicker;
 	@FXML Button cancelButton;
 	@FXML Button okButton;
 	@FXML Label label;
@@ -51,12 +64,11 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	@FXML
 	public void initialize() {	
-		setTooltips();
 	}
 	
-	
+	@FXML
 	public void findroomButtonClick(ActionEvent e){
-		if (toDatePicker.getValue().toString().isEmpty() || fromDatePicker.getValue().toString().isEmpty() ||
+		if (fromDatePicker.getValue().toString().isEmpty() ||
 				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty()){
 			label.setText("Ikke alle verdier er fyllt inn");
 		} else {
@@ -107,22 +119,6 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 
 	}
 	
-	/**
-	 * Sjekker om m�tet ender f�r det ender.
-	 * @param o
-	 * @param oldValue
-	 * @param newValue
-	 */
-	public void toDatePickerChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
-		fromDatePicker.setStyle("");
-		toDatePicker.setStyle("");
-		if (!(newValue)){
-			if(fromDatePicker.getValue().isAfter(toDatePicker.getValue())){
-				fromDatePicker.setStyle("-fx-border-color: red");
-				toDatePicker.setStyle("-fx-border-color: red");				
-			}
-		}
-	}
 	
 	/**
 	 * Gj�r om fra localdate og string (HH:MM) til localdatetime
@@ -137,66 +133,70 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		return returnValue;
 	}
 	
-	public void saveButtonClick(ActionEvent e){
-		if (!(toDatePicker.getValue().toString().isEmpty() || fromDatePicker.getValue().toString().isEmpty() ||
-				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty())){
-				new Meeting(new User("Karl", "Karl", "Karl", "Karl"),
-						null, "Somwhere over the rainbow",
+	private boolean validateNOfParticipant(){
+		if(nOfParticipantTextField.getText().trim().length()==0){
+			return true;
+		}
+		try{
+			int number = Integer.parseInt(nOfParticipantTextField.getText());
+			return number>0;
+		}
+		catch(NumberFormatException e){
+			return false;
+		}
+	}
+	
+	private int getNOfParticipants(){
+		if(nOfParticipantTextField.getText().trim().length()==0){
+			return -1;
+		}
+		return Integer.parseInt(nOfParticipantTextField.getText());
+		
+	}
+	
+	public void okButtonClick(ActionEvent e){
+		//
+		//Valider antall participants og place
+		//
+		if (!(fromDatePicker.getValue().toString().isEmpty() ||
+				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || validateNOfParticipant() ||subjectField.getText().isEmpty())){
+
+			List<User> participants = new ArrayList<User>();
+			List<Group> partakingGroups = new ArrayList<Group>();
+			for(String str : participantListView.getItems()){
+				String[] parts = str.split(":", 2);
+				if (parts[0].trim().equalsIgnoreCase("Gruppe")){
+					partakingGroups.add(new Group(parts[1].trim()));
+				}
+				else{
+					participants.add(UserDB.getUser(parts[1].trim()));
+				}
+			}
+			Meeting meeting = new Meeting(CalendarClient.getCurrentUser(),
+						null, placeField.getText(),
 						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
-						toLocalDateTime(toDatePicker.getValue(), totimeField.getText()),
-						subjectField.getText(), -1, new ArrayList<User>());
+						toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()),
+						subjectField.getText(), getNOfParticipants(), participants);
+			
+			for(Group group : partakingGroups){
+				MeetingDB.addGroup(group, meeting);
+			}
+			myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
 			
 	}
 	
-	public void okButtonClick(ActionEvent e){
-		if (!(toDatePicker.getValue().toString().isEmpty() || fromDatePicker.getValue().toString().isEmpty() ||
-				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty())){
-			new Meeting(calendarClient.CalendarClient.getCurrentUser(), room
-						, "Somwhere over the rainbow", getStartTime(), 
-						getEndTime(),subjectField.getText(), -1, new ArrayList<User>());
-				
-				myController.setView(CalendarClient.CALENDAR_VIEW);
-		}
-			
-	}
 	@FXML
 	public void cancelButtonClick(ActionEvent e){
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
 	
 	
-	private void showTooltip(TextField textField) {
-		textField.getTooltip().show(textField, textField.getScene().getWindow().getX()
-				+ textField.getLayoutX() + textField.getWidth() + 60, 
-				textField.getScene().getWindow().getY() 
-				+ textField.getLayoutY() + textField.getHeight());
-		textField.getTooltip().autoHideProperty().setValue(true);
-	}
-	
-	private void setTooltips() {
-		subjectField.tooltipProperty().setValue(new Tooltip("Hva er bakgrunnen til avtalen?"));
-		fromDatePicker.tooltipProperty().setValue(new Tooltip("Skrive TT:MM"));
-		toDatePicker.tooltipProperty().setValue(new Tooltip("Skriv TT:MM"));
-	}
-
-	private void hideAllTooltips() {
-		subjectField.getTooltip().hide();
-		fromDatePicker.getTooltip().hide();
-		toDatePicker.getTooltip().hide();  
-	}
-	
-	@FXML
-	private void focusedChange() {
-		hideAllTooltips();
-	}
 	
 	private boolean validateText(String value, String regex, TextField textField) {
-		hideAllTooltips();
 		boolean isValid = value.matches(regex);
 		String color = isValid ? "" : "-fx-border-color: red";
 		textField.setStyle(color);
-		if(!isValid) showTooltip(textField);
 		return isValid;
 	}
 	
@@ -213,7 +213,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	}
 	
 	public LocalDateTime getEndTime(){
-		return toLocalDateTime(toDatePicker.getValue(), totimeField.getText());
+		return toLocalDateTime(fromDatePicker.getValue(), totimeField.getText());
 	}
 
 
