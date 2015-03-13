@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -15,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-import java.awt.Checkbox;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class ChooseCalendarsController implements ControlledScreen, Initializabl
 	@FXML Button okButton;
 	@FXML Button cancelButton;
 	//	@FXML Button saveButton;	
-	@FXML Checkbox myCalendarCheckBox;
+	@FXML CheckBox myCalendarCheckBox;
 	//ComboBox
 	@FXML ComboBox<String> groupComboBox;
 	@FXML ComboBox<String> employeeComboBox;
@@ -53,6 +53,7 @@ public class ChooseCalendarsController implements ControlledScreen, Initializabl
 	private List<String> allGroupnames = new ArrayList<String>();
 	@Override
 	public void viewRefresh() {
+		initAll();
 	}
 
 	private void addGroupToList(String group){
