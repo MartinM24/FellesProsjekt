@@ -25,6 +25,7 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     @FXML Button meetingOverviewButton;
     @FXML Button addMeetingButton;
     @FXML Button myInvitation;
+    @FXML Button notificationButton;
  
 
     @FXML
@@ -37,6 +38,12 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     public void myInvitationButtonClick(ActionEvent e){
 		//Move user to invitationoverview. 
 		myController.setView(CalendarClient.INVITATION_MEETING_VIEW);
+	}
+    
+    @FXML
+    public void notificationButtonClick(ActionEvent e){
+		//Move user to invitationoverview. 
+		myController.setView(CalendarClient.NOTIFICATION_VIEW);
 	}
    
     @FXML

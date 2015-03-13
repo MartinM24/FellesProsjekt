@@ -37,7 +37,7 @@ public class CalendarClient extends Application{
 	public static final String MEETING_ROOM_OVERVIEW_SCREEN ="MeetingRoomOverview";
 	private static final String MEETING_ROOM_OVERVIEW_SCREEN_FXML ="/gui/MeetingRoomOverviewGUI2.fxml";
 	public static final String NOTIFICATION_SCREEN = "Notification";
-	private static final String NOTIFICATION_SCREEN_FXML = "/gui/MeetingRoomOverviewGUI2.fxml";
+	private static final String NOTIFICATION_SCREEN_FXML = "/gui/Notification.fxml";
 	public static final String INVITATION_MEETING_SCREEN = "InvitationMeeting";
 	private static final String INVITATION_MEETING_SCREEN_FXML = "/gui/InvitationMeetingGUI2.fxml";
 	

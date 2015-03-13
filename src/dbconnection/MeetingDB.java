@@ -199,6 +199,20 @@ public class MeetingDB extends DatabaseConnection{
 			e.printStackTrace();
 		}
 	}
+	
+	private static void updateParticipant(int meetingID, User user, String field, boolean value){
+		int sqlBool = 0;
+		if(value){
+			sqlBool = 1;
+		}
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE participant SET "+field+"='"+sqlBool+"' WHERE meetingID='"+meetingID+"' AND username = '"+user.getUsername()+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 		
 	private static boolean removeParticipant(int meetingID, User user) {
 		try {
@@ -289,7 +303,31 @@ public class MeetingDB extends DatabaseConnection{
         SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
         return sdf.format(dt);
     }
-
+    
+    
+    /**
+     * Return list with changes(participantChange, timeChange, placeChange, descriptionChange) in meeting
+     * @param meeting
+     * @param user
+     * @return
+     */
+    public static List<Boolean> getChanges(Meeting meeting, User user){
+    	List<Boolean> changes = new ArrayList<Boolean>();
+    	try{
+			Statement sqlSelect = con.createStatement();
+			
+			ResultSet myRs = sqlSelect.executeQuery("select participantChange, timeChange, placeChange, descriptionChange from participant WHERE participant.meetingID = '"+meeting.getMeetingID()+"' AND participant.username = '"+user.getUsername()+"'");
+			myRs.next();
+			for(int i = 1; i <= 4 ; i++){
+				changes.add(myRs.getBoolean(i));
+			}
+    	}
+    	
+    	catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	return changes;
+}
 	public static int getAttendence(LoginUser user, Meeting meeting) {
 		try {
 			Statement myStatement = con.createStatement(); 
@@ -302,6 +340,71 @@ public class MeetingDB extends DatabaseConnection{
 		
 		return -2;
 	}
-	
+    
+    public static void resetChanged(User user){
+    	List<Meeting> meetings = getAllMeetings(user);
+    	for(Meeting meeting:meetings){
+    		updateParticipant(meeting.getMeetingID(), user, "participantChange", false);
+    		updateParticipant(meeting.getMeetingID(), user, "timeChange", false);
+    		updateParticipant(meeting.getMeetingID(), user, "placeChange", false);
+    		updateParticipant(meeting.getMeetingID(), user, "descriptionChange", false);
+    	}
+    	
+    }
+    
+    public static List<String> getAllChanges(User user){
+    	List<List<Boolean>> changes = new ArrayList<List<Boolean>>();
+    	List<Meeting> meetings = getAllMeetings(user);
+    	for(int i = 0 ; i < meetings.size() ; i++){
+    		List<Boolean> temp = getChanges(meetings.get(i), user);
+    		boolean changed = false;
+    		for(boolean b : temp){
+    			if(b){
+    				changed = true;
+    				break;
+    			}
+    		}
+    		if(changed){
+    			changes.add(temp);
+    		}
+    		else{
+    			meetings.remove(i);
+    			i--;
+    		}
+    	}
+    	List<String> changeMessages = new ArrayList<String>();
+    	for(int i = 0 ; i < changes.size() ; i++){
+    		changeMessages.add(getMessage(meetings.get(i), changes.get(i)));
+    	}
+    	return changeMessages;
+    }
+    
+    private static String getMessage(Meeting meeting, List<Boolean> changes){
+    	List<String> changesString = new ArrayList<String>();
+    	if(changes.get(0)){
+    		changesString.add("Deltagerliste");
+    	}
+    	if(changes.get(1)){
+    		changesString.add("Tid");
+    	}
+    	if(changes.get(2)){
+    		changesString.add("Sted");
+    	}
+    	if(changes.get(3)){
+    		changesString.add("Beskrivelse");
+    	}
+    	
+    	String str = "Møte "+ meeting.getDescription()+" er endret. ";
+    	for(int i = 0 ; i < changesString.size() ; i++){
+    		if(i==0){
+    			str+=changesString.get(i);
+    		}
+    		else{
+    			str+=" ,"+changesString.get(i).toLowerCase();
+    		}
+    	}
+    	str+=" er blitt endret";
+    	return str;
+	}
 }
 

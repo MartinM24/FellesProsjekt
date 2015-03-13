@@ -1,14 +1,12 @@
 package gui;
 
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import calendarClient.CalendarClient;
 import dbconnection.MeetingDB;
-import dbconnection.RoomDB;
 import model.Meeting;
 import model.MeetingVeiw;
 import model.Room;

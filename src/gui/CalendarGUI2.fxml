@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import gui.CalendarPane?>
 <VBox prefHeight="623.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalendarController">
    <children>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="103.0" prefWidth="720.0">
@@ -63,75 +64,8 @@
       </GridPane>
       <ScrollPane fitToWidth="true" hbarPolicy="NEVER" prefHeight="546.0" prefViewportHeight="791.0" prefViewportWidth="671.0" prefWidth="720.0" GridPane.rowIndex="1">
          <content>
-            <GridPane fx:id="calendarGrid" gridLinesVisible="true">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label contentDisplay="CENTER" text="00:00" GridPane.halignment="CENTER" />
-                  <Label contentDisplay="CENTER" text="01:00" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Label contentDisplay="CENTER" text="02:00" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <Label contentDisplay="CENTER" text="03:00" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Label contentDisplay="CENTER" text="04:00" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <Label contentDisplay="CENTER" text="05:00" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Label contentDisplay="CENTER" text="06:00" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <Label contentDisplay="CENTER" text="07:00" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
-                  <Label contentDisplay="CENTER" text="08:00" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
-                  <Label contentDisplay="CENTER" text="09:00" GridPane.halignment="CENTER" GridPane.rowIndex="9" />
-                  <Label contentDisplay="CENTER" text="10:00" GridPane.halignment="CENTER" GridPane.rowIndex="10" />
-                  <Label contentDisplay="CENTER" text="11:00" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-                  <Label contentDisplay="CENTER" text="12:00" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
-                  <Label contentDisplay="CENTER" text="13:00" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-                  <Label contentDisplay="CENTER" text="14:00" GridPane.halignment="CENTER" GridPane.rowIndex="14" />
-                  <Label contentDisplay="CENTER" text="15:00" GridPane.halignment="CENTER" GridPane.rowIndex="15" />
-                  <Label contentDisplay="CENTER" text="16:00" GridPane.halignment="CENTER" GridPane.rowIndex="16" />
-                  <Label contentDisplay="CENTER" text="17:00" GridPane.halignment="CENTER" GridPane.rowIndex="17" />
-                  <Label contentDisplay="CENTER" text="18:00" GridPane.halignment="CENTER" GridPane.rowIndex="18" />
-                  <Label contentDisplay="CENTER" text="19:00" GridPane.halignment="CENTER" GridPane.rowIndex="19" />
-                  <Label contentDisplay="CENTER" text="20:00" GridPane.halignment="CENTER" GridPane.rowIndex="20" />
-                  <Label contentDisplay="CENTER" text="21:00" GridPane.halignment="CENTER" GridPane.rowIndex="21" />
-                  <Label contentDisplay="CENTER" text="22:00" GridPane.halignment="CENTER" GridPane.rowIndex="22" />
-                  <Label contentDisplay="CENTER" text="23:00" GridPane.halignment="CENTER" GridPane.rowIndex="23" />
-                  
-                  
-                  
-                  
-               </children>
-            </GridPane>
+            <CalendarPane fx:id="calendarGrid" gridLinesVisible="true">
+            </CalendarPane>
          </content>
       </ScrollPane>
    </children>
