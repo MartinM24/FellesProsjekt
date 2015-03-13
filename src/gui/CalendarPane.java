@@ -2,10 +2,7 @@ package gui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.RowConstraints;
+import javafx.scene.layout.*;
 import model.Meeting;
 
 import java.time.LocalTime;
@@ -25,8 +22,9 @@ public class CalendarPane extends GridPane {
             "-fx-background-color: transparent;" +
             "-fx-border-width: 1;";
 
-    //Holds meetings first dimention weekDay second colunm number
+    //Holds meetings first dimention weekDay second column number
     private ArrayList<Day> days;
+
 
 
     /**
@@ -47,7 +45,7 @@ public class CalendarPane extends GridPane {
         drawWeek(overlaps);
         styleRows();
         styleColumns(overlaps);
-        this.setPrefHeight(1000.0);
+        this.setPrefHeight(1500.0);
     }
 
     private int getNumberOfColumns(int weekDay){

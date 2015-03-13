@@ -69,7 +69,9 @@ public class InvitationMeetingController implements ControlledScreen, Initializa
 	
 	
 	private void tableSetup(){
-		ArrayList<InvitationVeiw> inviteDB = (ArrayList<InvitationVeiw>) MeetingDB.getAllInvitations(calendarClient.CalendarClient.getCurrentUser());
+		data = FXCollections.observableArrayList();
+		table.getSelectionModel().clearSelection();
+		ArrayList<InvitationVeiw> inviteDB = (ArrayList<InvitationVeiw>) MeetingDB.getAllInvitationViews(calendarClient.CalendarClient.getCurrentUser());
 		data.addAll(inviteDB);
 		table.setItems(data);
 	}
@@ -84,6 +86,7 @@ public class InvitationMeetingController implements ControlledScreen, Initializa
 
 	@Override
 	public void viewRefresh() {
+		data = FXCollections.observableArrayList();
 		tableSetup();
 	}
 

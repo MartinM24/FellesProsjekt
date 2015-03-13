@@ -11,7 +11,16 @@ public class InvitationVeiw {
 		this.meetingID = meetingID;
 	}
 	
+	public String getInvitationName() {
+		return invitationName;
+	}
+
+
 	public String getMeetingID(){
 		return meetingID;
+	}
+	
+	public String getSender() {
+		return sender;
 	}
 }
