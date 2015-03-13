@@ -52,9 +52,6 @@ public class Meeting {
         this.nOfParticipant = nOfParticipant;
         this.participants = participants;
         this.meetingID = MeetingDB.addMeeting(this);
-        System.out.println(meetingID);
-
-
     }
 
 
@@ -101,7 +98,6 @@ public class Meeting {
 
     public LocalDateTime convertStringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
-        System.out.println(str);
         return LocalDateTime.parse(str.split("\\.")[0], formatter);
     }
 

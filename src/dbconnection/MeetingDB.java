@@ -73,7 +73,13 @@ public class MeetingDB extends DatabaseConnection{
 			Statement sqlSelect = con.createStatement();
 			ResultSet myRs = sqlSelect.executeQuery("select * from meeting WHERE meeting.meetingID = '"+meetingID+"'");
 			myRs.next();
-			return new Meeting(myRs.getInt(1), UserDB.getUser(myRs.getString(8)), null/*7*/, myRs.getString(5), myRs.getString(3), myRs.getString(4), myRs.getString(2), myRs.getInt(6), null);
+			String roomName = myRs.getString(7);
+			Room room;
+			if (myRs.wasNull())
+				room = null;
+			else
+				room = RoomDB.getRoom(roomName);
+			return new Meeting(myRs.getInt(1), UserDB.getUser(myRs.getString(8)), room, myRs.getString(5), myRs.getString(3), myRs.getString(4), myRs.getString(2), myRs.getInt(6), null);
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -284,19 +290,17 @@ public class MeetingDB extends DatabaseConnection{
         return sdf.format(dt);
     }
 
-	public static String getAttendence(LoginUser user, Meeting meeting) {
+	public static int getAttendence(LoginUser user, Meeting meeting) {
 		try {
 			Statement myStatement = con.createStatement(); 
-			ResultSet myRs = myStatement.executeQuery("SELECT participant.attendence FROM participant INNER JOIN meeting WHERE user='"+user.getUsername()+"' AND meeting.meetingID='"+meeting.getMeetingID()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT attendence FROM participant WHERE username= '"+user.getUsername()+"' AND meetingID= '"+meeting.getMeetingID()+"'");
 			myRs.next();
-			return (""+myRs.getInt(1));
-			
-		}
-		catch(Exception e){
+			return (myRs.getInt(1));
+		} catch(Exception e){
 			e.printStackTrace();
 		}
 		
-		return null;
+		return -2;
 	}
 	
 }

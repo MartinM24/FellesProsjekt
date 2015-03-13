@@ -69,7 +69,7 @@ public class RoomDB extends DatabaseConnection {
             Statement sqlSelect = con.createStatement();
             ResultSet myRs = sqlSelect.executeQuery("SELECT * FROM room WHERE roomName = '"+name+"'");
             myRs.next();
-            return new Room( myRs.getString(1), myRs.getInt(2));
+            return new Room(myRs.getString(1), myRs.getInt(2));
         }
         catch(Exception e){
             e.printStackTrace();

@@ -18,5 +18,38 @@ public class MeetingVeiw {
 		this.room = room;
 		this.status = status;
 	}
+	
+	public String getDate() {
+		return date;
+	}
+
+	public String getTimeFrom() {
+		return timeFrom;
+	}
+
+	public String getTimeToo() {
+		return timeToo;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public String getPlace() {
+		return place;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	@Override
+	public String toString() {
+		return (date+" "+timeFrom+" "+timeToo+" "+title+" "+place+" "+room+" "+status);
+	}
 
 }

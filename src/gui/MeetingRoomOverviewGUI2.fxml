@@ -44,16 +44,18 @@
                   </TableView>
                   <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Label fx:id="warning" prefHeight="123.0" prefWidth="416.0">
+                        <Label fx:id="warning" prefHeight="43.0" prefWidth="291.0">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#chooseButtonClick" prefHeight="44.0" prefWidth="85.0" text="Velg" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#chooseButtonClick" prefHeight="44.0" prefWidth="85.0" text="Velg" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="44.0" prefWidth="84.0" text="Avbryt" GridPane.columnIndex="1" />
                      </children>
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="416.0" minWidth="10.0" prefWidth="416.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="89.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="416.0" minWidth="10.0" prefWidth="305.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="416.0" minWidth="10.0" prefWidth="81.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="121.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

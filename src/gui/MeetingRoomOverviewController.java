@@ -23,25 +23,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MeetingRoomOverviewController implements ControlledScreen, Initializable {
 	MainController myController;
+	private ControlledScreen addMeetingCtrl;
+	
 	private LocalDateTime start;
 	private LocalDateTime end;
+	
 	@FXML TableView<RoomVeiw> roomTable;
 	@FXML TableColumn<RoomVeiw, String> nameColumn;
 	@FXML TableColumn<RoomVeiw, String> capacityColumn;
 	@FXML TableColumn<RoomVeiw, String> statusColumn;
+	
 	@FXML Label warning;
 	@FXML Button chooseButton;
-	private ControlledScreen addMeetingCtrl;
+	@FXML Button cancelButton;
+	
 	private RoomVeiw room;
 	private ObservableList<RoomVeiw> data = FXCollections.observableArrayList();
 	
-	public void initialize(URL location, ResourceBundle resources) {	
-		roomTable.setEditable(true);
-		nameColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("name"));
-		statusColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("avalibility"));
-		capacityColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("capacityString"));
-
-	}
 	
 	public void chooseButtonClick(ActionEvent e){
 		this.room = (RoomVeiw)roomTable.getSelectionModel().getSelectedItem();
@@ -55,9 +53,30 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 		}		
 	}
 	
+	public void cancelButtonClick(ActionEvent e){
+		myController.setView(CalendarClient.ADD_MEETING_VIEW);				
+	}
+	
 	/** 
 	 * Setter inn verdier i tabellen. 
 	 */
+	
+	
+	private boolean checkAvailability(ArrayList<LocalDateTime> availability) {
+		return  (availability.get(0).isAfter(start) && availability.get(0).isBefore(end)) || 
+				(availability.get(1).isAfter(start) && availability.get(1).isBefore(end)) ||
+				(availability.get(0).isBefore(start) && availability.get(1).isAfter(end)) ||
+				(availability.get(0).isEqual(start) || availability.get(1).isEqual(end));
+	}
+
+	
+	public Room getRoom(){
+		if (room.getAvalibility().equals("Ledig")){
+			return new Room(room.getName(), room.getCapacity());			
+		} else {
+			return null;
+		}
+	}
 	
 	public void tableSetup(){
 		List<Room> roomsDB = RoomDB.getAllRooms();
@@ -76,33 +95,26 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 		}
 		roomTable.setItems(data);
 	}
-	
-	private boolean checkAvailability(ArrayList<LocalDateTime> availability) {
-		return  (availability.get(0).isAfter(start) && availability.get(0).isBefore(end)) || 
-				(availability.get(1).isAfter(start) && availability.get(1).isBefore(end)) ||
-				(availability.get(0).isBefore(start) && availability.get(1).isAfter(end)) ||
-				(availability.get(0).isEqual(start) || availability.get(1).isEqual(end));
-	}
 
 	@Override
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
 	}
 	
-	public Room getRoom(){
-		if (room.getAvalibility().equals("Ledig")){
-			return new Room(room.getName(), room.getCapacity());			
-		} else {
-			return null;
-		}
-	}
-
 	@Override
 	public void viewRefresh() {
+		data = FXCollections.observableArrayList();
 		this.addMeetingCtrl = myController.getControllerForScreen(CalendarClient.ADD_MEETING_SCREEN);
 		this.start = ((AddMeetingController)addMeetingCtrl).getStartTime();
 		this.end = ((AddMeetingController)addMeetingCtrl).getEndTime();
 		tableSetup();
 	}
 
+	public void initialize(URL location, ResourceBundle resources) {	
+		roomTable.setEditable(true);
+		nameColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("name"));
+		statusColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("avalibility"));
+		capacityColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("capacityString"));
+		
+	}
 }

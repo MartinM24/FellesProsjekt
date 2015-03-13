@@ -24,14 +24,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- * Created by Anna on 09.03.15.
- */
 
 public class MeetingOverviewController implements ControlledScreen, Initializable {
 	MainController myController;
 	
-	@FXML Button okButton;
 	@FXML TableView<MeetingVeiw> meetingOverviewTableView;
 	@FXML TableColumn<MeetingVeiw, String> dateColumn;
 	@FXML TableColumn<MeetingVeiw, String> timeFromColumn;
@@ -40,26 +36,12 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     @FXML TableColumn<MeetingVeiw, String> placeColumn;
     @FXML TableColumn<MeetingVeiw, String> roomColumn;    
     @FXML TableColumn<MeetingVeiw, String> statusColumn;
+    
+    @FXML Button okButton;
     @FXML Button seeMoreButton;
     @FXML Label warning;
     
-
-    private MeetingVeiw meeting;
 	private ObservableList<MeetingVeiw> data = FXCollections.observableArrayList();
-
-    
-
-
-    @Override
-    public void viewRefresh() {
-    	try{
-    		data.removeAll(meetingOverviewTableView.getSelectionModel().getSelectedItems());
-            meetingOverviewTableView.getSelectionModel().clearSelection();
-    	} catch (Exception e){
-    		System.out.println("Kunne ikke oppdatere");
-    	}
-    	tableSetup();
-    }
 
     @FXML
     public void okButtonClick(ActionEvent e){
@@ -68,13 +50,55 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 	}
 	
 	public void seeMoreButtonClick(ActionEvent e){
-		//TODO Mye. 
 		MeetingVeiw meeting = (MeetingVeiw)meetingOverviewTableView.getSelectionModel().getSelectedItem();
 		myController.setView(null);
 	}
 	
+    public MeetingVeiw fromMeetingToView(Meeting meeting){
+    	String room;
+    	if (meeting.getRoom() == null){
+    		room = "ikke valgt";
+    	} else {
+    		room = meeting.getRoom().getName();
+    	}
+    	System.out.println(room);
+    	return new MeetingVeiw(meeting.getTimeStart().getDayOfMonth() +"."+meeting.getTimeStart().getMonthValue(),
+    			meeting.getTimeStart().getHour()+":"+meeting.getTimeStart().getMinute(),
+    			meeting.getTimeEnd().getHour()+":"+meeting.getTimeEnd().getMinute(),
+    			meeting.getDescription(),
+    			meeting.getPlace(),
+    			room,
+    			MeetingDB.getAttendence(CalendarClient.getCurrentUser(), meeting)+"");
+    }
+	
+    private void tableSetup(){
+    	ArrayList<Meeting> meetingDB = (ArrayList<Meeting>) MeetingDB.getAllMeetings(CalendarClient.getCurrentUser());
+    	MeetingVeiw veiw;
+    	for (int i = 0; i<meetingDB.size(); i++){
+    		System.out.println(i);
+    		if(MeetingDB.getAttendence(CalendarClient.getCurrentUser(), meetingDB.get(i)) >= 0){
+    			System.out.println("ja");
+    			veiw = fromMeetingToView(meetingDB.get(i));
+    			data.add(veiw);
+    			System.out.println(veiw);
+    		}
+    	}
+    	meetingOverviewTableView.setItems(data);
+    }
+    
 	@Override
-    public void initialize(URL location, ResourceBundle resources) { 
+	public void setScreenParent(MainController screenPage) {
+		this.myController = screenPage;
+	}
+
+	@Override
+	public void viewRefresh() {
+		data = FXCollections.observableArrayList();
+		tableSetup();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) { 
 		meetingOverviewTableView.setEditable(true);
 		dateColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("date"));
 		timeFromColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("timeFrom"));
@@ -83,29 +107,5 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 		placeColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("place"));
 		roomColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("room"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("status"));
-    }
-	
-	@SuppressWarnings("unused")
-	private void tableSetup(){
-		ArrayList<Meeting> meetingDB = (ArrayList<Meeting>) MeetingDB.getAllMeetings(CalendarClient.getCurrentUser());
-		boolean temp;
-		for (int i = 0; i<meetingDB.size(); i++){
-			if(Integer.parseInt(MeetingDB.getAttendence(CalendarClient.getCurrentUser(), meetingDB.get(i)))>= 0){
-				data.add(fromMeetingToView(meetingDB.get(i)));				
-			}
-		}
-		meetingOverviewTableView.setItems(data);
 	}
-	
-    public MeetingVeiw fromMeetingToView(Meeting meeting){
-    	return new MeetingVeiw(meeting.getTimeStart().getDayOfMonth() +"."+meeting.getTimeStart().getMonthValue(), meeting.getTimeStart().getHour()+":"+meeting.getTimeStart().getMinute(), meeting.getTimeEnd().getHour()+":"+meeting.getTimeEnd().getMinute(), meeting.getDescription(), meeting.getPlace(), meeting.getRoom().getName(), MeetingDB.getAttendence(CalendarClient.getCurrentUser(), meeting));
-    }
-	
-	@Override
-	public void setScreenParent(MainController screenPage) {
-		this.myController = screenPage;
-	}
-
-	
-
 }
