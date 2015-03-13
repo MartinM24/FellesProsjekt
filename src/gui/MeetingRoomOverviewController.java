@@ -79,6 +79,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	}
 	
 	public void tableSetup(){
+		roomTable.getSelectionModel().clearSelection();
 		List<Room> roomsDB = RoomDB.getAllRooms();
 		ArrayList<ArrayList<ArrayList<LocalDateTime>>> availability = new ArrayList<ArrayList<ArrayList<LocalDateTime>>>();
 		ArrayList<String> status = new ArrayList<String>();

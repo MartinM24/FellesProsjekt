@@ -42,7 +42,7 @@ public class MeetingDB extends DatabaseConnection{
 		return meetingList;
 	}
 	
-	public static List<InvitationVeiw> getAllInvitations(LoginUser user){
+	public static List<InvitationVeiw> getAllInvitationViews(LoginUser user){
 		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
 		try{
 			Statement myStatement = con.createStatement();

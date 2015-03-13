@@ -70,6 +70,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     }
 	
     private void tableSetup(){
+		meetingOverviewTableView.getSelectionModel().clearSelection();
     	ArrayList<Meeting> meetingDB = (ArrayList<Meeting>) MeetingDB.getAllMeetings(CalendarClient.getCurrentUser());
     	MeetingVeiw veiw;
     	for (int i = 0; i<meetingDB.size(); i++){
