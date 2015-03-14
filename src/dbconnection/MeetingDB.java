@@ -351,6 +351,15 @@ public class MeetingDB extends DatabaseConnection{
 		}
 	}
 	
+	public static void removeGroup(Group group, Meeting meeting){
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("DELETE FROM meetinggrouplink WHERE groupName = '" + group.getName()+"' AND meetingID="+meeting.getMeetingID()+"'");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 	public static List<Group> getAllGroups(Meeting meeting){
 		List<Group> groupList = new ArrayList<Group>();
 		try{
