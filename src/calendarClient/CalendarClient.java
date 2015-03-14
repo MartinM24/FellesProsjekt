@@ -114,7 +114,7 @@ public class CalendarClient extends Application{
 //		primaryStage.setFullScreen(true);
 		primaryStage.show();
 		
-		//Set up DB conection;
+		//Set up DB connection;
 		
 	}
 

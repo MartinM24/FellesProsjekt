@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -34,13 +35,20 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 	@FXML ListView<String> groupsListView;
 	@FXML ListView<String> membersListView;
 
+	@FXML CheckBox showAllGroupsCheckBox;
+	
+	
     @Override
     public void viewRefresh() {
     	//groups = GroupDB.getallGroups();
-    	groups = GroupDB.getAllGroups(CalendarClient.getCurrentUser().getUsername());
+    	update();
+    }
+
+	private void update() {
+		groups = GroupDB.getAllGroups(CalendarClient.getCurrentUser().getUsername());
     	System.out.println(groups);
     	groupsListView.setItems(FXCollections.observableArrayList(groups));
-    }
+	}
 
     @FXML
     public void okButtonClick(ActionEvent e){
@@ -52,6 +60,13 @@ public class MyGroupsController implements ControlledScreen, Initializable {
     public void newGroupButtonClick(ActionEvent e){
 		//Move user to new group. 
 		myController.setView(CalendarClient.ADD_GROUP_VIEW);
+	}
+	
+	@FXML
+	public void deleteGroupAction(ActionEvent e){
+		String groupName = groupsListView.getSelectionModel().getSelectedItem();
+		GroupDB.deleteGroup(new Group(groupName));
+		update();
 	}
 	
 	@FXML

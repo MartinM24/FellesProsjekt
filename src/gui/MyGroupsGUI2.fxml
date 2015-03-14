@@ -45,7 +45,7 @@
               </rowConstraints>
                <children>
                   <Button fx:id="newGroupButton" mnemonicParsing="false" onAction="#newGroupButtonClick" text="Ny gruppe" />
-                  <Button fx:id="deleteGroupButton" mnemonicParsing="false" text="Slett Gruppe" GridPane.columnIndex="2" />
+                  <Button fx:id="deleteGroupButton" onAction="#deleteGroupAction" mnemonicParsing="false" text="Slett Gruppe" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <ListView fx:id="groupsListView" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
