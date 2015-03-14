@@ -37,6 +37,7 @@ import dbconnection.UserDB;
 
 public class AddMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
+
 	public Room room;
 	private List<String> users = new ArrayList<String>();
 	private List<String> groups = new ArrayList<String>();

@@ -8,6 +8,7 @@ public class MeetingVeiw {
 	String place; 
 	String room;
 	String status;
+	String user;
 	
 	public MeetingVeiw(String date, String timeFrom,String timeToo, String title, String place, String room, String status){
 		this.date = date;
@@ -16,6 +17,15 @@ public class MeetingVeiw {
 		this.title = title;
 		this.place = place;
 		this.room = room;
+		this.status = status;
+	}
+	
+	public MeetingVeiw(String date, String timeFrom,String timeToo, String title, String user, String status){
+		this.date = date;
+		this.timeFrom = timeFrom;
+		this.timeToo = timeToo;		
+		this.title = title;
+		this.user = user;
 		this.status = status;
 	}
 	
@@ -47,9 +57,8 @@ public class MeetingVeiw {
 		return status;
 	}
 
-	@Override
-	public String toString() {
-		return (date+" "+timeFrom+" "+timeToo+" "+title+" "+place+" "+room+" "+status);
+	public String getUser() {
+		return user; 
 	}
-
+	
 }
