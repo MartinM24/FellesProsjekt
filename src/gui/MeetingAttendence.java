@@ -31,14 +31,11 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
 	MainController myController;
 	
 	@FXML TableView<MeetingVeiw> meetingAttendence;
-	@FXML TableColumn<MeetingVeiw, String> dateColumn;
-	@FXML TableColumn<MeetingVeiw, String> timeFromColumn;
-	@FXML TableColumn<MeetingVeiw, String> timeTooColumn;
-    @FXML TableColumn<MeetingVeiw, String> titleColumn;   
+    @FXML TableColumn<MeetingVeiw, String> userColumn;   
     @FXML TableColumn<MeetingVeiw, String> statusColumn;
     
     @FXML Button okButton;
-    
+  
     Meeting meeting;
     
 	private ObservableList<MeetingVeiw> data = FXCollections.observableArrayList();
@@ -69,10 +66,7 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) { 
 		meetingAttendence.setEditable(true);
-		dateColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("date"));
-		timeFromColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("timeFrom"));
-		timeTooColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("timeToo"));
-		titleColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("title"));
+		userColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("user"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("status"));
 	}
 }

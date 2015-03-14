@@ -20,11 +20,7 @@ public class MeetingVeiw {
 		this.status = status;
 	}
 	
-	public MeetingVeiw(String date, String timeFrom,String timeToo, String title, String user, String status){
-		this.date = date;
-		this.timeFrom = timeFrom;
-		this.timeToo = timeToo;		
-		this.title = title;
+	public MeetingVeiw(String user, String status){
 		this.user = user;
 		this.status = status;
 	}
