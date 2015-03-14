@@ -109,7 +109,6 @@ public class CalendarController implements ControlledScreen, Initializable {
                 if (m1 != m) {
                     if (m1.doesOverlap(m)) {
                         overlap++;
-                        System.out.println("Overlapper " + overlap + " : " + m.toString() + " - " + m1.toString());
                     }
                 }
             }
