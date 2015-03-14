@@ -30,7 +30,7 @@ public class MeetingDB extends DatabaseConnection{
 		List<Meeting> meetingList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> -1");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.meetingID FROM meeting INNER JOIN participant ON meeting.meetingID = participant.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> -1 AND participant.attendence <> 0");
             while (myRs.next()){
                 int id = myRs.getInt(1);
 				meetingList.add(getMeeting(id));
@@ -283,7 +283,9 @@ public class MeetingDB extends DatabaseConnection{
 			ResultSet tableKeys = preparedMeetingStmt.getGeneratedKeys();
 			tableKeys.next();
 			meeting.setMeetingID(tableKeys.getInt(1));
-			MeetingDB.addParticipant(meeting, meeting.getOwner(), 0);
+			for(User user : meeting.getParticipants()){
+				MeetingDB.addParticipant(meeting, user, 0);
+			}
 			return meeting.getMeetingID();
 		} catch (SQLException e) {
 			e.printStackTrace();

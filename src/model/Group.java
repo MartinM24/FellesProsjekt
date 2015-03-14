@@ -64,7 +64,7 @@ public class Group implements Iterable<User>{
 	public List<User> getAllMembers(Group group, List<User> listAllMembers){
 		listAllMembers.addAll(GroupDB.getAllMembers(group.getName()));
 		for(int i = 0; i < group.subGroups.size(); i++){
-			listAllMembers.addAll(getAllMembers(group.subGroups.get(i), listAllMembers));
+			//listAllMembers.addAll(getAllMembers(group.subGroups.get(i), listAllMembers));
 		}
 		return listAllMembers;
 		

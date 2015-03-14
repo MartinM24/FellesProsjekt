@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseEvent;
 import model.Group;
 import model.LoginUser;
 import model.Meeting;
@@ -27,8 +28,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import dbconnection.GroupDB;
 import dbconnection.MeetingDB;
@@ -41,6 +44,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	private List<String> users = new ArrayList<String>();
 	private List<String> groups = new ArrayList<String>();
 	private List<String> participantNames = new ArrayList<String>();
+	private List<String> addedParticipants = new ArrayList<String>();
 	public boolean cameFromRoomOverview;
 	public static final String TIME_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
@@ -49,6 +53,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	@FXML TextField placeField;
 	@FXML TextField nOfParticipantTextField;
 	@FXML Button findroomButton;
+	@FXML Button removeRoomButton;
 	@FXML ComboBox<String> participantComboBox;
 	@FXML ListView<String> participantListView;
 	
@@ -70,13 +75,32 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		cameFromRoomOverview = false;
 	}
 
+	private void disablePlace(){
+		placeField.setEditable(false);
+		placeField.setText("");
+		placeField.disableProperty().set(true);
+	}
 	
 	@Override
 	public void viewRefresh() {
+		if(chosenroomLabel.getText().trim().length()!=0){
+			disablePlace();
+		}
+		else{
+			placeField.disableProperty().set(false);
+			placeField.setEditable(true);
+		}
+		
 		this.meetingRoomOverview = myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
 		if(!cameFromRoomOverview){
 			refreshLists();
 		}
+	}
+	
+	@FXML
+	public void handleMouseClick(MouseEvent e){
+		removeParticipant(participantListView.getSelectionModel().getSelectedItem());
+		participantListView.getSelectionModel().clearSelection();
 	}
 	
 	@FXML
@@ -92,6 +116,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	public void fromtimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
+			disablePlace();
 			try{
 				validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField);				
 			} catch (Exception e) {
@@ -109,8 +134,15 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	 * @param newValue
 	 */
 	
+	public void datePickerChange(ObservableValue<Boolean> o, boolean oldValue, boolean newValue){
+		if(!newValue){
+			disablePlace();
+		}
+	}
+	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
+			disablePlace();
 			try{
 				if(validateText(totimeField.getText(), TIME_REGEX, totimeField)){	
 					String[] tid1 = fromtimeField.getText().split("\\:");
@@ -210,7 +242,33 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
 	
+	@FXML
+	public void removeRoomButtonClick(ActionEvent e){
+		chosenroomLabel.setText("");
+		placeField.setEditable(true);
+		placeField.disableProperty().set(false);
+	}
 	
+	public int getCapacity(){
+		int i = getNOfParticipants();
+		if(i==-1){
+			Set<String> userNames = new HashSet<String>();
+			userNames.add(CalendarClient.getCurrentUser().getUsername());
+			for(String str : participantListView.getItems()){
+				String[] parts = str.split(":", 2);
+				if (parts[0].trim().equalsIgnoreCase("Gruppe")){
+					for(User user : GroupDB.getAllMembers(parts[1].trim())){
+						userNames.add(user.getUsername());
+					}
+				}
+				else{
+					userNames.add(parts[1].trim());
+				}
+			}
+			return userNames.size();
+		}
+		return i;
+	}
 	
 	private boolean validateText(String value, String regex, TextField textField) {
 		boolean isValid = value.matches(regex);
@@ -259,7 +317,23 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
 	}
 
-
+	private void addParticipant(String name){
+		
+		participantNames.remove(name);
+		addedParticipants.add(name);
+		participantListView.setItems(null);
+		participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
+		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+	}
+	
+	private void removeParticipant(String name){
+		participantNames.add(name);
+		addedParticipants.remove(name);
+		participantListView.setItems(null);
+		participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
+		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		cameFromRoomOverview = false;
@@ -288,6 +362,10 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	          @Override
 	          public void run() {
 	            String selected = participantComboBox.getSelectionModel().getSelectedItem();
+	            if(selected!=null){
+	            	System.out.println("selected = "+selected);
+					addParticipant(selected);
+				}
 	            if (participantComboBox.getItems().size() < participantNames.size()) {
 	              participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
 	              String newSelected = participantComboBox.getSelectionModel()
