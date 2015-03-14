@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class AddMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
 	public Room room;	
-	public static final String TIME_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
+	public static final String TIME_REGEX = "[0-2]\\d\\:[0-5]\\d";
 	@FXML TextField subjectField;
 	@FXML TextField fromtimeField; 
 	@FXML TextField totimeField;
