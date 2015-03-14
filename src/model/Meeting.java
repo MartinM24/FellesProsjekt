@@ -51,9 +51,10 @@ public class Meeting implements Comparable<Meeting>{
         this.nOfParticipant = nOfParticipant;
         this.participants = participants;
         this.meetingID = MeetingDB.addMeeting(this);
-        for(User user : participants){
-        	MeetingDB.addParticipant(this, user, 0);
-        }
+        MeetingDB.addParticipant(this, owner, 1);
+        //for(User user : participants){
+        //	MeetingDB.addParticipant(this, user, 0);
+        //}
     }
 
 

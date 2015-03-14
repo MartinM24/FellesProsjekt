@@ -17,6 +17,8 @@ import calendarClient.CalendarClient;
 /**
  * Created by Martin on 06.03.15.
  */
+
+
 public class CalendarLeftMenuController implements Initializable, ControlledScreen {
     private MainController myController;
     

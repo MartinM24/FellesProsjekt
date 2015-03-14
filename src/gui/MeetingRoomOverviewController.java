@@ -27,6 +27,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	
 	private LocalDateTime start;
 	private LocalDateTime end;
+	private int capacity;
 	
 	@FXML TableView<RoomVeiw> roomTable;
 	@FXML TableColumn<RoomVeiw, String> nameColumn;
@@ -51,7 +52,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 			if (warning.getText().equals("Venligst velg et ledig rom.")){
 				warning.setText("Ledig rom er rom med status ledig.");
 			}
-			warning.setText("Venligst velg et ledig rom.");
+			warning.setText("Vennligst velg et ledig / stort nok rom.");
 		}		
 	}
 	
@@ -93,6 +94,9 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 				if (checkAvailability(availability.get(i).get(j))){
 					status.set(i, "Opptatt");
 				}
+				else if(roomsDB.get(i).getCapacity()<this.capacity){
+					status.set(i, "For lite");
+				}
 			}
 			data.add(new RoomVeiw(roomsDB.get(i).getName(), ""+roomsDB.get(i).getCapacity(), status.get(i)));
 		}
@@ -106,8 +110,10 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	
 	@Override
 	public void viewRefresh() {
+		System.out.println("Capacity = "+capacity);
 		data = FXCollections.observableArrayList();
 		this.addMeetingCtrl = myController.getControllerForScreen(CalendarClient.ADD_MEETING_SCREEN);
+		this.capacity = ((AddMeetingController) addMeetingCtrl).getCapacity();
 		this.start = ((AddMeetingController)addMeetingCtrl).getStartTime();
 		this.end = ((AddMeetingController)addMeetingCtrl).getEndTime();
 		tableSetup();
