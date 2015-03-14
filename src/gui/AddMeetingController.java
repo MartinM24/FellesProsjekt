@@ -115,7 +115,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	public void fromtimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
-			disablePlace();
+			chosenroomLabel.setText("");
 			try{
 				validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField);				
 			} catch (Exception e) {
@@ -135,13 +135,13 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	public void datePickerChange(ObservableValue<Boolean> o, boolean oldValue, boolean newValue){
 		if(!newValue){
-			disablePlace();
+			chosenroomLabel.setText("");
 		}
 	}
 	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
-			disablePlace();
+			chosenroomLabel.setText("");
 			try{
 				if(validateText(totimeField.getText(), TIME_REGEX, totimeField)){	
 					String[] tid1 = fromtimeField.getText().split("\\:");
