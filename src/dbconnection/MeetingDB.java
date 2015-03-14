@@ -252,9 +252,23 @@ public class MeetingDB extends DatabaseConnection{
 	}	
 	
 
+	public static boolean participantExist(Meeting meeting, User user){
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT * FROM participant WHERE username='"+user.getUsername()+"' AND meetingID='"+meeting.getMeetingID()+"'");
+			return (myRs.next());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public static boolean addParticipant(Meeting meeting, User user, int attendence){
 		if(attendence>2 || attendence < 0){
 			throw new IllegalArgumentException("Feil i attendence");
+		}
+		if(participantExist(meeting, user)){
+			return false;
 		}
 		try {
 			String participantQuery = "insert into participant (username, meetingID, attendence, visibility, alarmtid, answered, participantChange, timeChange, placeChange, descriptionChange)"  + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
