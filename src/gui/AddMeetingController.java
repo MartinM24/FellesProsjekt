@@ -51,9 +51,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	@FXML Button findroomButton;
 	@FXML ComboBox<String> participantComboBox;
 	@FXML ListView<String> participantListView;
-	
 	private ControlledScreen meetingRoomOverview;
-
 
     @FXML DatePicker fromDatePicker;
 	@FXML Button cancelButton;
@@ -209,17 +207,13 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	public void cancelButtonClick(ActionEvent e){
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
-	
-	
-	
+
 	private boolean validateText(String value, String regex, TextField textField) {
 		boolean isValid = value.matches(regex);
 		String color = isValid ? "" : "-fx-border-color: red";
 		textField.setStyle(color);
 		return isValid;
 	}
-	
-	
 	
 	@Override
 	public void setScreenParent(MainController screenPage) {
@@ -258,7 +252,6 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		}
 		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
 	}
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
