@@ -43,6 +43,8 @@ public class CalendarClient extends Application{
 	private static final String NOTIFICATION_SCREEN_FXML = "/gui/Notification.fxml";
 	public static final String INVITATION_MEETING_SCREEN = "InvitationMeeting";
 	private static final String INVITATION_MEETING_SCREEN_FXML = "/gui/InvitationMeetingGUI2.fxml";
+	public static final String CHANGE_ATTENDENCE_SCREEN = "ChangeAttendence";
+	private static final String CHANGE_ATTENDENCE_SCREEN_FXML = "/gui/ChangeAttendenceGUI2.fxml";
 	
 
     public static final String LOG_IN_VIEW = "LogIN";
@@ -57,6 +59,7 @@ public class CalendarClient extends Application{
     public static final String MEETING_ROOM_OVERVIEW_VIEW = "MeetingRoomOverview";
     public static final String NOTIFICATION_VIEW = "Notification";
     public static final String INVITATION_MEETING_VIEW = "InvitationMeeting";
+    public static final String CHANGE_ATTENDENCE_VIEW = "ChangeAttendence";
 	private static LoginUser currentUser;
 
 	public static MainController mainController;
@@ -83,6 +86,7 @@ public class CalendarClient extends Application{
         mainController.loadScreen(MEETING_ROOM_OVERVIEW_SCREEN, MEETING_ROOM_OVERVIEW_SCREEN_FXML);
         mainController.loadScreen(NOTIFICATION_SCREEN, NOTIFICATION_SCREEN_FXML);
         mainController.loadScreen(INVITATION_MEETING_SCREEN, INVITATION_MEETING_SCREEN_FXML);
+        mainController.loadScreen(CHANGE_ATTENDENCE_SCREEN, CHANGE_ATTENDENCE_SCREEN_FXML);
         
         // Make view form loaded screens
 		System.out.println("Load screens");
@@ -94,9 +98,10 @@ public class CalendarClient extends Application{
         mainController.makeView(MEETING_OVERVIEW_VIEW, MEETING_OVERVIEW_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(MY_GROUPS_VIEW, MY_GROUPS_SCREEN, GLOBAL_MENU_SCREEN);
         mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN);
-        mainController.makeView(MEETING_ROOM_OVERVIEW_VIEW, MEETING_ROOM_OVERVIEW_SCREEN);
-        mainController.makeView(NOTIFICATION_VIEW, NOTIFICATION_SCREEN);
-        mainController.makeView(INVITATION_MEETING_VIEW, INVITATION_MEETING_SCREEN);
+        mainController.makeView(MEETING_ROOM_OVERVIEW_VIEW, MEETING_ROOM_OVERVIEW_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(NOTIFICATION_VIEW, NOTIFICATION_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(INVITATION_MEETING_VIEW, INVITATION_MEETING_SCREEN, GLOBAL_MENU_SCREEN);
+        mainController.makeView(CHANGE_ATTENDENCE_VIEW, CHANGE_ATTENDENCE_SCREEN, GLOBAL_MENU_SCREEN);
 
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);

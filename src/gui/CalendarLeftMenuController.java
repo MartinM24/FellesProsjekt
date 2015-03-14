@@ -17,6 +17,8 @@ import calendarClient.CalendarClient;
 /**
  * Created by Martin on 06.03.15.
  */
+
+
 public class CalendarLeftMenuController implements Initializable, ControlledScreen {
     private MainController myController;
     
@@ -26,12 +28,19 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     @FXML Button addMeetingButton;
     @FXML Button myInvitation;
     @FXML Button notificationButton;
+    @FXML Button changeAttendence;
  
 
     @FXML
     public void chooseCalendarsButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
 		myController.setView(CalendarClient.CHOOSE_CALENDARS_VIEW);
+	}
+    
+    @FXML
+    public void changeAttendenceButtonClick(ActionEvent e){
+		//Move user back to chooseCalendars. 
+		myController.setView(CalendarClient.CHANGE_ATTENDENCE_VIEW);
 	}
     
     @FXML

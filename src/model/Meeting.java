@@ -257,11 +257,6 @@ public class Meeting implements Comparable<Meeting>{
                 + nOfParticipant + ", participants=" + participants + "]";
     }
 
-    public static void main(String[] args) {
-        DatabaseConnection.startCon();
-        System.out.println(new Meeting(2));
-    }
-
 
     @Override
     public int compareTo(Meeting o) {
@@ -274,7 +269,6 @@ public class Meeting implements Comparable<Meeting>{
 
     public boolean doesOverlap(Meeting m) {
         boolean o1 = m.getTimeStart().isBefore(this.getTimeEnd()) && this.getTimeStart().isBefore(m.getTimeEnd()) ;
-        System.out.println("o1 " + o1 + " :" + m + " - " + this);
         //boolean o2 = this.getTimeStart().isBefore(m.getTimeStart()) && this.getTimeEnd().isAfter(m.getTimeStart());
         //boolean o3 = m.getTimeStart().equals(this.getTimeStart());
         //System.out.println("o3 " + o3 + " :" + m + " - " + this);

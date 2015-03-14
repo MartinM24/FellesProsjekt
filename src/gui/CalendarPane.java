@@ -158,8 +158,8 @@ public class CalendarPane extends GridPane {
             int columnIndex = day.getFirstColumnIndex() + column;
             int rowIndex =  getPosFromTime(meeting.getTimeStart().toLocalTime());
             int rowSpan = getPosFromTime(meeting.getTimeEnd().toLocalTime()) - rowIndex;
+            if (rowSpan < 1) rowSpan = 1;
             int columnSpan = 1; //day.getNumberOfColumns() - numOverlaps;
-            System.out.println(meeting + " " + numOverlaps);
             day.addMeetingToColumn(meeting, column);
             this.add(new MeetingPane(meeting), columnIndex, rowIndex, columnSpan, rowSpan);
             break;

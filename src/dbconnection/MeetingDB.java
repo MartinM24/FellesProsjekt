@@ -16,6 +16,7 @@ import model.Invitation;
 import model.InvitationVeiw;
 import model.LoginUser;
 import model.Meeting;
+import model.MeetingVeiw;
 import model.Room;
 import model.User;
 
@@ -49,6 +50,29 @@ public class MeetingDB extends DatabaseConnection{
 			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.attendence = 0");
 			while (myRs.next()){
 				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2),""+myRs.getInt(3)) );
+			};
+			System.out.println("Got all invitations");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return invitationlist;
+	}
+	
+	public static List<InvitationVeiw> getAllInvitationViewsWithAttendence(LoginUser user){
+		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID, participant.attendence FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"'");
+			String temp;
+			while (myRs.next()){
+				if(0>myRs.getInt(4))
+					temp = "Deltar ikke";
+				else if (0 == myRs.getInt(4))
+					temp = "ikke svart";
+				else
+					temp = "Deltar";
+				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2),""+myRs.getInt(3), temp));
 			};
 			System.out.println("Got all invitations");
 		} catch (SQLException e) {
@@ -354,6 +378,29 @@ public class MeetingDB extends DatabaseConnection{
 		
 		return -2;
 	}
+	
+	public static List<MeetingVeiw> getAttendenceForMeeting(Meeting meeting) {
+    	List<MeetingVeiw> attendence = new ArrayList<MeetingVeiw>();
+    	try{
+			Statement sqlSelect = con.createStatement();
+			ResultSet myRs = sqlSelect.executeQuery("SELECT meeting.timestart, meeting.timeend, meeting.mDescription, participant.username, paritcipant.attendence FROM participant INNER JOIN meeting WHERE meetingID='"+ meeting.getMeetingID() +"'");
+			while(myRs.next()){
+				attendence.add(new MeetingVeiw(
+						myRs.getDate(1)+"", 
+						myRs.getTime(1)+"", 
+						myRs.getTime(2)+"", 
+						myRs.getString(3), 
+						myRs.getString(4), 
+						myRs.getString(5), 
+						myRs.getInt(6)+""));
+			}
+    	}
+    	
+    	catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	return attendence;
+	}
     
     public static void resetChanged(User user){
     	List<Meeting> meetings = getAllMeetings(user);
@@ -420,5 +467,6 @@ public class MeetingDB extends DatabaseConnection{
     	str+=" er blitt endret";
     	return str;
 	}
+
 }
 

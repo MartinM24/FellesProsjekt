@@ -40,6 +40,7 @@ import dbconnection.UserDB;
 
 public class AddMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
+
 	public Room room;
 	private List<String> users = new ArrayList<String>();
 	private List<String> groups = new ArrayList<String>();
@@ -56,9 +57,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	@FXML Button removeRoomButton;
 	@FXML ComboBox<String> participantComboBox;
 	@FXML ListView<String> participantListView;
-	
 	private ControlledScreen meetingRoomOverview;
-
 
     @FXML DatePicker fromDatePicker;
 	@FXML Button cancelButton;
@@ -270,14 +269,13 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		return i;
 	}
 	
+
 	private boolean validateText(String value, String regex, TextField textField) {
 		boolean isValid = value.matches(regex);
 		String color = isValid ? "" : "-fx-border-color: red";
 		textField.setStyle(color);
 		return isValid;
 	}
-	
-	
 	
 	@Override
 	public void setScreenParent(MainController screenPage) {
