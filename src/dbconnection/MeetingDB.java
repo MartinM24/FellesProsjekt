@@ -395,18 +395,21 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static List<MeetingVeiw> getAttendenceForMeeting(Meeting meeting) {
     	List<MeetingVeiw> attendence = new ArrayList<MeetingVeiw>();
+    	String temp;
     	try{
 			Statement sqlSelect = con.createStatement();
-			ResultSet myRs = sqlSelect.executeQuery("SELECT meeting.timestart, meeting.timeend, meeting.mDescription, participant.username, paritcipant.attendence FROM participant INNER JOIN meeting WHERE meetingID='"+ meeting.getMeetingID() +"'");
+			ResultSet myRs = sqlSelect.executeQuery("SELECT username, attendence FROM participant WHERE meetingID='"+ meeting.getMeetingID() +"'");
 			while(myRs.next()){
+				User user = UserDB.getUser((myRs.getString(5)));
+				if (myRs.getInt(2) <0)
+					temp = "Deltar ikke";			
+				else if (myRs.getInt(2) == 0)
+					temp = "Ikke svart";
+				else 
+					temp = "deltar";
 				attendence.add(new MeetingVeiw(
-						myRs.getDate(1)+"", 
-						myRs.getTime(1)+"", 
-						myRs.getTime(2)+"", 
-						myRs.getString(3), 
-						myRs.getString(4), 
-						myRs.getString(5), 
-						myRs.getInt(6)+""));
+						user.getFirstname()+" "+user.getLastname(), 
+						temp));
 			}
     	}
     	
