@@ -333,6 +333,11 @@ public class MeetingDB extends DatabaseConnection{
 	
 	}
 	
+	/**
+	 * Adds participants
+	 * @param group
+	 * @param meeting
+	 */
 	public static void addGroup(Group group, Meeting meeting){
 		try {
 			String meetingQuery = "insert into meetinggrouplink (meetingID, groupName)"  + "values(?, ?)";
@@ -349,6 +354,24 @@ public class MeetingDB extends DatabaseConnection{
 		for(User user: group){
 			addParticipant(meeting, user, 0);
 		}
+	}
+	
+	/**
+	 * Does not add Participants
+	 * @param group
+	 * @param meeting
+	 * @param i does fuck all
+	 */
+	public static void addGroup(Group group, Meeting meeting, int i){
+		try {
+			String meetingQuery = "insert into meetinggrouplink (meetingID, groupName)"  + "values(?, ?)";
+			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery);
+			preparedMeetingStmt.setInt (1, meeting.getMeetingID());
+			preparedMeetingStmt.setString(2, group.getName());
+			int res = preparedMeetingStmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	public static void removeGroup(Group group, Meeting meeting){
