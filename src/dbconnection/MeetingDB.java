@@ -58,6 +58,29 @@ public class MeetingDB extends DatabaseConnection{
 		return invitationlist;
 	}
 	
+	public static List<InvitationVeiw> getAllInvitationViewsWithAttendence(LoginUser user){
+		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID, participant.attendence FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"'");
+			String temp;
+			while (myRs.next()){
+				if(0>myRs.getInt(4))
+					temp = "Deltar ikke";
+				else if (0 == myRs.getInt(4))
+					temp = "ikke svart";
+				else
+					temp = "Deltar";
+				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2),""+myRs.getInt(3), temp));
+			};
+			System.out.println("Got all invitations");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return invitationlist;
+	}
+	
 	public static void updateInvitation(String meetingID, int attendence){
 		try {
 			Statement myStatement = con.createStatement(); 
