@@ -13,6 +13,7 @@ import java.util.List;
 
 import model.Group;
 import model.Invitation;
+import model.Group;
 import model.InvitationVeiw;
 import model.LoginUser;
 import model.Meeting;
@@ -348,6 +349,21 @@ public class MeetingDB extends DatabaseConnection{
 		for(User user: group){
 			addParticipant(meeting, user, 0);
 		}
+	}
+	
+	public static List<Group> getAllGroups(Meeting meeting){
+		List<Group> groupList = new ArrayList<Group>();
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName FROM meetinggrouplink WHERE meetingID='"+meeting.getMeetingID()+"'");
+			while (myRs.next()){
+				groupList.add(new Group(myRs.getString(1)));
+			};
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return groupList;
 	}
 	
     public static String getDBTime(LocalDateTime time) {
