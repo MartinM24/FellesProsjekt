@@ -239,7 +239,7 @@ public class MeetingDB extends DatabaseConnection{
 		}
 	}
 		
-	private static boolean removeParticipant(int meetingID, User user) {
+	public static boolean removeParticipant(int meetingID, User user) {
 		try {
 			Statement myStatement = con.createStatement(); 
 			int count = myStatement.executeUpdate("UPDATE participant SET visibility = -1 WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
