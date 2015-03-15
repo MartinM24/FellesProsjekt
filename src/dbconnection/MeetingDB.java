@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import calendarClient.CalendarClient;
 import model.Group;
 import model.Invitation;
 import model.Group;
@@ -153,6 +154,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingDescription(int meetingID, String description){
 		try {
+			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "descriptionChange", true);
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET mDescription='"+description+"' WHERE meetingID='"+meetingID+"'");
 		}
@@ -165,6 +167,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingTimeStart(int meetingID, LocalDateTime timeStart){
 		try {
+			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "timeChange", true);
 			//TODO denne metoden skal booke m�teromet p� nytt. 
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeStart)+"' WHERE meetingID='"+meetingID+"'");
@@ -176,6 +179,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingTimeEnd(int meetingID, LocalDateTime timeEnd){
 		try {
+			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "timeChange", true);
 			//TODO denne metoden skal booke m�teromet p� nytt. 
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeEnd)+"' WHERE meetingID='"+meetingID+"'");
@@ -187,6 +191,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingPlace(int meetingID, String place){
 		try {
+			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "placeChange", true);
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET place='"+place+"' WHERE meetingID='"+meetingID+"'");
 		}
@@ -207,6 +212,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingRoom(int meetingID, Room room){
 		try {
+			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "placeChange", true);
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE meeting SET roomName='"+room.getName()+"' WHERE meetingID='"+meetingID+"'");
 		}
@@ -238,9 +244,24 @@ public class MeetingDB extends DatabaseConnection{
 			e.printStackTrace();
 		}
 	}
+	
+	private static void updateParticipants(int meetingID, User user, String field, boolean value){
+		int sqlBool = 0;
+		if(value){
+			sqlBool = 1;
+		}
+		try {
+			Statement myStatement = con.createStatement(); 
+			myStatement.executeUpdate("UPDATE participant SET "+field+"='"+sqlBool+"' WHERE meetingID='"+meetingID+"' AND username <> '"+user.getUsername()+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 		
 	public static boolean removeParticipant(int meetingID, User user) {
 		try {
+			updateParticipants(meetingID, user, "participantChange", true);
 			Statement myStatement = con.createStatement(); 
 			int count = myStatement.executeUpdate("UPDATE participant SET visibility = -1 WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
 			if (count > 0) {
@@ -272,6 +293,7 @@ public class MeetingDB extends DatabaseConnection{
 			return false;
 		}
 		try {
+			updateParticipants(meeting.getMeetingID(), user, "participantChange", true);
 			String participantQuery = "insert into participant (username, meetingID, attendence, visibility, alarmtid, answered, participantChange, timeChange, placeChange, descriptionChange)"  + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedParticipantStmt = con.prepareStatement(participantQuery);
 			preparedParticipantStmt.setString (1, user.getUsername());
