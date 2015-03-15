@@ -25,7 +25,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class MeetingOverviewController implements ControlledScreen, Initializable {
-	MainController myController;
+	private MainController myController;
 	
 	@FXML TableView<MeetingVeiw> meetingOverviewTableView;
 	@FXML TableColumn<MeetingVeiw, String> dateColumn;
@@ -38,16 +38,28 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     
     @FXML Button okButton;
     @FXML Button seeMoreButton;
+    @FXML Button editButton;
     @FXML Label warning;
     
 	private ObservableList<MeetingVeiw> data = FXCollections.observableArrayList();
 
     @FXML
     public void okButtonClick(ActionEvent e){
-		//Move user back to calendar. 
-		myController.setView(CalendarClient.CALENDAR_VIEW);
-	}
-	
+        //Move user back to calendar.
+        myController.setView(CalendarClient.CALENDAR_VIEW);
+    }
+    @FXML
+    private void editButtonClick(ActionEvent e){
+        //Move user back to calendar.
+        int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
+        Meeting meeting = MeetingDB.getMeeting(meetingID);
+        EditMeetingController editCtrl = (EditMeetingController) myController.getControllerForScreen(CalendarClient.EDIT_MEETING_SCREEN);
+        editCtrl.setMeeting(meeting);
+        myController.setView(CalendarClient.EDIT_MEETING_VIEW);
+    }
+
+
+	@FXML
 	public void seeMoreButtonClick(ActionEvent e){
 		MeetingVeiw meeting = (MeetingVeiw)meetingOverviewTableView.getSelectionModel().getSelectedItem();
 		myController.setView(null);
@@ -61,7 +73,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     		room = meeting.getRoom().getName();
     	}
     	System.out.println(room);
-    	return new MeetingVeiw(meeting.getTimeStart().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+    	return new MeetingVeiw(meeting.getMeetingID(), meeting.getTimeStart().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
     			meeting.getStartString(),
     			meeting.getEndString(),
     			meeting.getDescription(),
@@ -108,4 +120,9 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 		roomColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("room"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("status"));
 	}
+
+    @Override
+    public void clearView() {
+
+    }
 }

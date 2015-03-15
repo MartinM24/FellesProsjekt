@@ -298,8 +298,13 @@ public class NewUserController implements ControlledScreen, Initializable {
 		}
 		return true;
 	}
-	
-	@Override
+
+    @Override
+    public void clearView() {
+
+    }
+
+    @Override
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
 	}

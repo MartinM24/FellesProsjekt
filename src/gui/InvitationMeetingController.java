@@ -90,5 +90,8 @@ public class InvitationMeetingController implements ControlledScreen, Initializa
 		tableSetup();
 	}
 
+    @Override
+    public void clearView() {
 
+    }
 }

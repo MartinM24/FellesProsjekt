@@ -166,4 +166,9 @@ public class CalendarController implements ControlledScreen, Initializable {
         return true;
     }
 
+    @Override
+    public void clearView() {
+
+    }
+
 }

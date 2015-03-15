@@ -11,4 +11,5 @@ public interface ControlledScreen {
      */
     public void viewRefresh();
 
+    public void clearView();
 }

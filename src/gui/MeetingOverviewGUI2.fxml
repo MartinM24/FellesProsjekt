@@ -32,13 +32,14 @@
                <children>
                   <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="70.0" text="OK" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="70.0" text="OK" GridPane.halignment="CENTER" />
                         <Label fx:id="warning" prefHeight="30.0" prefWidth="358.0" textFill="RED">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                         <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" text="Se mer" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" text="Rediger" GridPane.columnIndex="1" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="349.0" />

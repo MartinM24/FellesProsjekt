@@ -293,4 +293,9 @@ public class AddGroupController implements ControlledScreen, Initializable{
 //		memberList.clear();
 		initAll();
 	}
+
+    @Override
+    public void clearView() {
+
+    }
 }

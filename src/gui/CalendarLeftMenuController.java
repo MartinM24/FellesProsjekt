@@ -89,4 +89,9 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
+    @Override
+    public void clearView() {
+
+    }
 }

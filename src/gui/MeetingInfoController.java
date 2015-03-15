@@ -48,4 +48,8 @@ public class MeetingInfoController implements ControlledScreen, Initializable {
 		
 	}
 
+    @Override
+    public void clearView() {
+
+    }
 }
