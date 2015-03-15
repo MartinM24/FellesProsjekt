@@ -97,6 +97,12 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 		groups = GroupDB.getallGroups();
 		System.out.println("Initialize MyGroups");
     }
-// onAction="#newGroupButtonClick"
+
+    @Override
+    public void clearView() {
+
+    }
+
+    // onAction="#newGroupButtonClick"
 
 }

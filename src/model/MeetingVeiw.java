@@ -1,31 +1,41 @@
 package model;
 
 public class MeetingVeiw {
-	String date;
-	String timeFrom;
-	String timeToo;
-	String title;
-	String place; 
-	String room;
-	String status;
-	String user;
+	private String date;
+	private String timeFrom;
+	private String timeToo;
+	private String title;
+	private String place;
+	private String room;
+	private String status;
+	private String user;
+    private int meetingID;
 	
-	public MeetingVeiw(String date, String timeFrom,String timeToo, String title, String place, String room, String status){
-		this.date = date;
-		this.timeFrom = timeFrom;
-		this.timeToo = timeToo;		
-		this.title = title;
-		this.place = place;
-		this.room = room;
-		this.status = status;
+	public MeetingVeiw(int meetingID, String date, String timeFrom,String timeToo, String title, String place, String room, String status){
+		this.setDate(date);
+		this.setTimeFrom(timeFrom);
+		this.setTimeToo(timeToo);
+		this.setTitle(title);
+		this.setPlace(place);
+		this.setRoom(room);
+		this.setStatus(status);
+        this.setMeetingID(meetingID);
 	}
 	
 	public MeetingVeiw(String user, String status){
-		this.user = user;
-		this.status = status;
+		this.setUser(user);
+		this.setStatus(status);
 	}
-	
-	public String getDate() {
+
+    public int getMeetingID() {
+        return meetingID;
+    }
+
+    public void setMeetingID(int meetingID) {
+        this.meetingID = meetingID;
+    }
+
+    public String getDate() {
 		return date;
 	}
 
@@ -56,5 +66,36 @@ public class MeetingVeiw {
 	public String getUser() {
 		return user; 
 	}
-	
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTimeFrom(String timeFrom) {
+        this.timeFrom = timeFrom;
+    }
+
+    public void setTimeToo(String timeToo) {
+        this.timeToo = timeToo;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 }

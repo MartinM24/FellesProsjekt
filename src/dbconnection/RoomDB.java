@@ -95,6 +95,28 @@ public class RoomDB extends DatabaseConnection {
         }
         return null;
     }
+
+    public static ArrayList<ArrayList<LocalDateTime>> getAvailability(String name, Meeting meeting){
+        if (meeting == null) {
+            return getAvailability(name);
+        }
+        ArrayList<ArrayList<LocalDateTime>> availability = new ArrayList<ArrayList<LocalDateTime>>();
+        try{
+            Statement sqlSelect = con.createStatement();
+            ResultSet myRs = sqlSelect.executeQuery("SELECT timeStart, timeEnd FROM meeting WHERE roomName = '"+name+"' AND meetingID <> '" + meeting.getMeetingID() + "'" );
+            while(myRs.next()){
+                ArrayList<LocalDateTime> temp = new ArrayList<LocalDateTime>();
+                temp.add(0, convertStringToDate(myRs.getString(1)));
+                temp.add(1, convertStringToDate(myRs.getString(2)));
+                availability.add(temp);
+            }
+            return availability;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
     
     private static LocalDateTime convertStringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);

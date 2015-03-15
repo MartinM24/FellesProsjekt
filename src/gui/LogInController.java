@@ -116,6 +116,9 @@ public class LogInController implements ControlledScreen, Initializable{
 		loginFeedback.setTextFill(Color.RED);		
 	}
 
+    @Override
+    public void clearView() {
 
+    }
 }
 

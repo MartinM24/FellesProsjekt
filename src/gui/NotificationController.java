@@ -46,7 +46,9 @@ public class NotificationController implements ControlledScreen, Initializable{
 	public void viewRefresh() {
 		notificationListView.setItems(FXCollections.observableArrayList(MeetingDB.getAllChanges(CalendarClient.getCurrentUser())));
 	}
-	
-	
 
+    @Override
+    public void clearView() {
+
+    }
 }

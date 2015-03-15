@@ -108,6 +108,10 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty()){
 			label.setText("Ikke alle verdier er fyllt inn");
 		} else {
+            MeetingRoomOverviewController roomCtrl = (MeetingRoomOverviewController) myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
+            roomCtrl.setCapacity(getCapacity());
+            roomCtrl.setStart(getStartTime());
+            roomCtrl.setEnd(getEndTime());
 			myController.setView(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
 		}
 		
@@ -230,6 +234,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			for(Group group : partakingGroups){
 				MeetingDB.addGroup(group, meeting);
 			}
+			clearView();
 			myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
 		System.out.println("If not true in AddMeetingController");
@@ -238,6 +243,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	@FXML
 	public void cancelButtonClick(ActionEvent e){
+		clearView();
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
 	
@@ -298,11 +304,8 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			System.out.println(i);
 			System.out.println(userList.get(i));
 			userList.get(i).getUsername();
-					
-			if(userList.get(i).getUsername().equals(CalendarClient.getCurrentUser().getUsername())){
-				groups.remove(i);
-			}
-			else{
+
+			if(!userList.get(i).getUsername().equals(CalendarClient.getCurrentUser().getUsername())){
 				users.add(userList.get(i).getUsername());
 			}
 		}
@@ -388,5 +391,25 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		comboBox.setItems(FXCollections.observableArrayList(filteredItems));
 	}
 
+    @Override
+    public void clearView() {
+    	room = null;
+    	users.clear();
+    	groups.clear();
+    	participantNames.clear();
+    	addedParticipants.clear();
+    	cameFromRoomOverview = false;
+    	subjectField.setText("");
+    	fromtimeField.setText(""); 
+    	totimeField.setText("");
+    	placeField.setText("");
+    	nOfParticipantTextField.setText("");
+    	participantComboBox.setItems(null);
+    	participantListView.setItems(null);
 
+        fromDatePicker.setValue(LocalDate.now());
+        label.setText("");
+    	chosenroomLabel.setText("");
+    	
+    }
 }

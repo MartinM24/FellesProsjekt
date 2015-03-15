@@ -69,4 +69,9 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
 		userColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("user"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("status"));
 	}
+
+    @Override
+    public void clearView() {
+
+    }
 }

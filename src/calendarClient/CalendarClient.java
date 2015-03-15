@@ -45,7 +45,11 @@ public class CalendarClient extends Application{
 	private static final String INVITATION_MEETING_SCREEN_FXML = "/gui/InvitationMeetingGUI2.fxml";
 	public static final String CHANGE_ATTENDENCE_SCREEN = "ChangeAttendence";
 	private static final String CHANGE_ATTENDENCE_SCREEN_FXML = "/gui/ChangeAttendenceGUI2.fxml";
-	
+    public static final String EDIT_MEETING_SCREEN = "EditMeeting";
+    private static final String EDIT_MEETING_SCREEN_FXML = "/gui/EditMeetingGUI2.fxml";
+
+
+
 
     public static final String LOG_IN_VIEW = "LogIN";
     public static final String NEW_USER_VIEW = "NewUser";
@@ -60,6 +64,8 @@ public class CalendarClient extends Application{
     public static final String NOTIFICATION_VIEW = "Notification";
     public static final String INVITATION_MEETING_VIEW = "InvitationMeeting";
     public static final String CHANGE_ATTENDENCE_VIEW = "ChangeAttendence";
+    public static final String EDIT_MEETING_VIEW = "EditMeeting";
+
 	private static LoginUser currentUser;
 
 	public static MainController mainController;
@@ -87,7 +93,8 @@ public class CalendarClient extends Application{
         mainController.loadScreen(NOTIFICATION_SCREEN, NOTIFICATION_SCREEN_FXML);
         mainController.loadScreen(INVITATION_MEETING_SCREEN, INVITATION_MEETING_SCREEN_FXML);
         mainController.loadScreen(CHANGE_ATTENDENCE_SCREEN, CHANGE_ATTENDENCE_SCREEN_FXML);
-        
+        mainController.loadScreen(EDIT_MEETING_SCREEN, EDIT_MEETING_SCREEN_FXML);
+
         // Make view form loaded screens
 		System.out.println("Load screens");
 		mainController.makeView(ADD_MEETING_VIEW, ADD_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
@@ -102,6 +109,7 @@ public class CalendarClient extends Application{
         mainController.makeView(NOTIFICATION_VIEW, NOTIFICATION_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(INVITATION_MEETING_VIEW, INVITATION_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(CHANGE_ATTENDENCE_VIEW, CHANGE_ATTENDENCE_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
+        mainController.makeView(EDIT_MEETING_VIEW, EDIT_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
 
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);

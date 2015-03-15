@@ -38,4 +38,9 @@ public class GlobalMenuController implements ControlledScreen, Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
+
+    @Override
+    public void clearView() {
+
+    }
 }

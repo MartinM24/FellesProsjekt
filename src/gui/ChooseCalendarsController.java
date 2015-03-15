@@ -75,28 +75,32 @@ public class ChooseCalendarsController implements ControlledScreen, Initializabl
 	
 		
 
-		@FXML
-		public void okButtonClick(ActionEvent e){
-			//Move user back to calendar. 
-			myController.setView(CalendarClient.CALENDAR_VIEW);
-		}
+    @FXML
+    public void okButtonClick(ActionEvent e){
+        //Move user back to calendar.
+        myController.setView(CalendarClient.CALENDAR_VIEW);
+    }
 
-		@FXML
-		public void cancelButtonClick(ActionEvent e){
-			//Move user back to calendar. 
-			myController.setView(CalendarClient.CALENDAR_VIEW);
-		}
+    @FXML
+    public void cancelButtonClick(ActionEvent e){
+        //Move user back to calendar.
+        myController.setView(CalendarClient.CALENDAR_VIEW);
+    }
 
 
-		@Override
-		public void setScreenParent(MainController screenPage) {
-			this.myController = screenPage;
+    @Override
+    public void setScreenParent(MainController screenPage) {
+        this.myController = screenPage;
 
-		}
+    }
 
-		@Override
-		public void initialize(URL location, ResourceBundle resources) {
-			
-		}
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
-	}
+    }
+
+    @Override
+    public void clearView() {
+
+    }
+}

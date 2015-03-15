@@ -92,5 +92,8 @@ public class ChangeAttendenceController implements ControlledScreen, Initializab
 		tableSetup();
 	}
 
+    @Override
+    public void clearView() {
 
+    }
 }
