@@ -340,12 +340,14 @@ public class EditMeetingController implements ControlledScreen, Initializable {
                  }
             }
             meeting = null;
+            clearView();
 			myController.setView(CalendarClient.CALENDAR_VIEW);
         }
 	}
 	
 	@FXML
 	public void cancelButtonClick(ActionEvent e){
+		clearView();
 		myController.setView(CalendarClient.CALENDAR_VIEW);
         meeting = null;
 	}
@@ -503,6 +505,21 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 
     @Override
     public void clearView() {
+    	room = null;
+    	users.clear();
+    	participantNames.clear();
+    	addedParticipants.clear();
+    	cameFromRoomOverview = false;
+    	subjectField.setText("");
+    	fromtimeField.setText(""); 
+    	totimeField.setText("");
+    	placeField.setText("");
+    	nOfParticipantTextField.setText("");
+    	participantComboBox.setItems(null);
+    	participantListView.setItems(null);
 
+        fromDatePicker.setValue(LocalDate.now());
+        label.setText("");
+    	chosenroomLabel.setText("");
     }
 }

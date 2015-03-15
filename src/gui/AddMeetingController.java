@@ -234,6 +234,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			for(Group group : partakingGroups){
 				MeetingDB.addGroup(group, meeting);
 			}
+			clearView();
 			myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
 		System.out.println("If not true in AddMeetingController");
@@ -242,6 +243,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	
 	@FXML
 	public void cancelButtonClick(ActionEvent e){
+		clearView();
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
 	
@@ -391,6 +393,23 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 
     @Override
     public void clearView() {
+    	room = null;
+    	users.clear();
+    	groups.clear();
+    	participantNames.clear();
+    	addedParticipants.clear();
+    	cameFromRoomOverview = false;
+    	subjectField.setText("");
+    	fromtimeField.setText(""); 
+    	totimeField.setText("");
+    	placeField.setText("");
+    	nOfParticipantTextField.setText("");
+    	participantComboBox.setItems(null);
+    	participantListView.setItems(null);
 
+        fromDatePicker.setValue(LocalDate.now());
+        label.setText("");
+    	chosenroomLabel.setText("");
+    	
     }
 }
