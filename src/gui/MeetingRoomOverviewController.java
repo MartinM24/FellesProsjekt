@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import calendarClient.CalendarClient;
 import dbconnection.RoomDB;
+import model.Meeting;
 import model.Room;
 import model.RoomVeiw;
 import javafx.collections.FXCollections;
@@ -86,9 +87,10 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 		List<Room> roomsDB = RoomDB.getAllRooms();
 		ArrayList<ArrayList<ArrayList<LocalDateTime>>> availability = new ArrayList<ArrayList<ArrayList<LocalDateTime>>>();
 		ArrayList<String> status = new ArrayList<String>();
-		System.out.println(roomsDB.size());
+        EditMeetingController editMeetingController = (EditMeetingController) myController.getControllerForScreen(CalendarClient.EDIT_MEETING_SCREEN);
+        Meeting ignoreMeeting = editMeetingController.getMeeting();
 		for (int i = 0; i<roomsDB.size(); i++){
-			availability.add(RoomDB.getAvailability(roomsDB.get(i).getName()));
+			availability.add(RoomDB.getAvailability(roomsDB.get(i).getName(), ignoreMeeting));
 			status.add(i, "Ledig");
 			for (int j = 0; j<availability.get(i).size(); j++){
 				if (checkAvailability(availability.get(i).get(j))){

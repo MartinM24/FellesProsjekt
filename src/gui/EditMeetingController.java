@@ -15,7 +15,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import model.Group;
 import model.LoginUser;
@@ -42,10 +41,11 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
 
 	public Room room;
-	private List<String> users = new ArrayList<String>();
-	private List<String> groups = new ArrayList<String>();
-	private List<String> participantNames = new ArrayList<String>();
-	private List<String> addedParticipants = new ArrayList<String>();
+    private Meeting meeting;
+
+	private List<String> users = new ArrayList<>();
+    private List<String> participantNames = new ArrayList<>();
+	private List<String> addedParticipants = new ArrayList<>();
 	public boolean cameFromRoomOverview;
 	public static final String TIME_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
@@ -92,9 +92,37 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 		
 		this.meetingRoomOverview = myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
 		if(!cameFromRoomOverview){
-			refreshLists();
+            totimeField.setText(meeting.getEndString());
+            fromtimeField.setText(meeting.getStartString());
+            placeField.setText(meeting.getPlace());
+            fromDatePicker.setValue(meeting.getTimeStart().toLocalDate());
+            chosenroomLabel.setText("");
+            if(meeting.getRoom() != null)
+                chosenroomLabel.setText(meeting.getRoom().getName());
+            subjectField.setText(meeting.getDescription());
+            refreshLists();
+            for(Group group: MeetingDB.getAllGroups(meeting)){
+                String str = "Gruppe: " + group.getName();
+                addedParticipants.add(str);
+                removeName(str);
+            }
+            for(User usr: meeting.getParticipants()) {
+                String str = "Bruker: " + usr.getUsername();
+                addedParticipants.add(str);
+                removeName(str);
+            }
+            participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
 		}
 	}
+
+    private void removeName(String name) {
+        for (int i = 0; i < participantNames.size(); i++) {
+            if(name.equals(participantNames.get(i))){
+                participantNames.remove(i);
+            }
+        }
+    }
+
 	
 	@FXML
 	public void handleMouseClick(MouseEvent e){
@@ -106,7 +134,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	public void findroomButtonClick(ActionEvent e){
 		if (fromDatePicker.getValue().toString().isEmpty() ||
 				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty()){
-			label.setText("Ikke alle verdier er fyllt inn");
+			label.setText("Ikke alle verdier er fylt inn");
 		} else {
 			myController.setView(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
 		}
@@ -219,26 +247,92 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 			room = null; 
 			if (chosenroomLabel.getText().trim().length() > 0)
 				room = RoomDB.getRoom(chosenroomLabel.getText());
-		
-			
 			Meeting meeting = new Meeting(CalendarClient.getCurrentUser(),
 						room , placeField.getText(),
-						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()), 
+						toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()),
 						toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()),
 						subjectField.getText(), getNOfParticipants(), participants);
-			
+
+            // Update time
+            if(!meeting.getTimeStart().equals(toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()))) {
+                MeetingDB.updateMeetingTimeStart(meeting.getMeetingID(), toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()));
+            }
+            if(!meeting.getTimeEnd().equals(toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()))) {
+                MeetingDB.updateMeetingTimeEnd(meeting.getMeetingID(), toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()));
+            }
+
+            //Update room
+            if (room == null && meeting.getRoom() != null) {
+                MeetingDB.updateMeetingRoom(meeting.getMeetingID(), null);
+            }
+            else if (room != null && meeting.getRoom() == null) {
+                MeetingDB.updateMeetingRoom(meeting.getMeetingID(), room);
+            }
+            else if(!meeting.getRoom().getName().equals(room.getName())) {
+                MeetingDB.updateMeetingRoom(meeting.getMeetingID(), room);
+            }
+
+            //Update place
+            if(!meeting.getPlace().equals(placeField.getText())) {
+                MeetingDB.updateMeetingPlace(meeting.getMeetingID(), placeField.getText());
+            }
+
+            //Update description
+            if(!meeting.getDescription().equals(subjectField.getText())) {
+                MeetingDB.updateMeetingDescription(meeting.getMeetingID(), subjectField.getText());
+            }
+
+            //Update noOfParticipant
+            if(meeting.getNOfParticipantSet() != getNOfParticipants() ) {
+                MeetingDB.updateMeetingNofParticipants(meeting.getMeetingID(), getNOfParticipants());
+            }
+
+            //Update Group
+            for (Group g: MeetingDB.getAllGroups(meeting)) {
+                MeetingDB.removeGroup(g, meeting);
+            }
+
 			for(Group group : partakingGroups){
 				MeetingDB.addGroup(group, meeting);
-			}
+            }
+
+            //Update participant
+            List<User> part = meeting.getParticipants();
+            for(User p: part) {
+                String old = p.getUsername();
+                boolean removed = true;
+                for(String ny: addedParticipants) {
+                    if(old.equals(ny)) {
+                        removed = false;
+                    }
+                }
+                if (removed){
+                    MeetingDB.removeParticipant(meeting.getMeetingID(), p);
+                }
+            }
+
+            for(String ny: addedParticipants) {
+                boolean added = true;
+                for(User p: part) {
+                    String old = p.getUsername();
+                    if(old.equals(ny)) {
+                        added = false;
+                    }
+                }
+                if(added){
+                    MeetingDB.addParticipant(meeting, UserDB.getUser(ny), 0);
+                }
+            }
+
 			myController.setView(CalendarClient.CALENDAR_VIEW);
-		}
-		System.out.println("If not true in AddMeetingController");
-			
+            meeting = null;
+        }
 	}
 	
 	@FXML
 	public void cancelButtonClick(ActionEvent e){
 		myController.setView(CalendarClient.CALENDAR_VIEW);
+        meeting = null;
 	}
 	
 	@FXML
@@ -251,7 +345,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	public int getCapacity(){
 		int i = getNOfParticipants();
 		if(i==-1){
-			Set<String> userNames = new HashSet<String>();
+			Set<String> userNames = new HashSet<>();
 			userNames.add(CalendarClient.getCurrentUser().getUsername());
 			for(String str : participantListView.getItems()){
 				String[] parts = str.split(":", 2);
@@ -292,13 +386,11 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	}
 	
 	private void refreshLists(){
-		groups = GroupDB.getallGroups();
+        List<String> groups = GroupDB.getallGroups();
 		List<LoginUser> userList = UserDB.getAllUsers();
 		for(int i = 0 ; i < userList.size() ; i++){
-			System.out.println(i);
-			System.out.println(userList.get(i));
 			userList.get(i).getUsername();
-					
+
 			if(userList.get(i).getUsername().equals(CalendarClient.getCurrentUser().getUsername())){
 				groups.remove(i);
 			}
@@ -348,7 +440,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	              participantComboBox.show();
 	            }
 	          }
-	        });
+        });
 			
 		
 			
@@ -389,4 +481,11 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	}
 
 
+    public Meeting getMeeting() {
+        return meeting;
+    }
+
+    public void setMeeting(Meeting meeting) {
+        this.meeting = meeting;
+    }
 }
