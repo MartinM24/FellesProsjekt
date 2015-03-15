@@ -170,7 +170,7 @@ public class MeetingDB extends DatabaseConnection{
 			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "timeChange", true);
 			//TODO denne metoden skal booke m�teromet p� nytt. 
 			Statement myStatement = con.createStatement(); 
-			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeStart)+"' WHERE meetingID='"+meetingID+"'");
+			myStatement.executeUpdate("UPDATE meeting SET timeStart='"+getDBTime(timeStart)+"' WHERE meetingID='"+meetingID+"'");
 		}
 		catch(Exception e){
 			e.printStackTrace();
