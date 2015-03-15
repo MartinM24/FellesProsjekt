@@ -53,13 +53,14 @@
                   </GridPane>
                   <TableView fx:id="meetingOverviewTableView" onMouseReleased="#meetingOverviewClicked" prefHeight="487.0" prefWidth="446.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="dateColumn" prefWidth="56.0" text="Dato" />
-                        <TableColumn fx:id="timeFromColumn" prefWidth="58.0" text="Start" />
-                        <TableColumn fx:id="timeTooColumn" prefWidth="61.0" text="Slutt" />
-                        <TableColumn fx:id="titleColumn" prefWidth="144.0" text="Tittel" />
-                        <TableColumn fx:id="placeColumn" minWidth="0.0" prefWidth="168.0" text="Sted" />
-                        <TableColumn fx:id="roomColumn" prefWidth="153.0" text="Rom" />
-                        <TableColumn fx:id="statusColumn" prefWidth="82.0" text="Deltagende" />
+                        <TableColumn fx:id="idColumn" prefWidth="40.0" text="ID" />
+                        <TableColumn fx:id="dateColumn" prefWidth="99.0" text="Dato" />
+                        <TableColumn fx:id="timeFromColumn" prefWidth="100.0" text="Start" />
+                        <TableColumn fx:id="timeTooColumn" prefWidth="95.0" text="Slutt" />
+                        <TableColumn fx:id="titleColumn" prefWidth="108.0" text="Tittel" />
+                        <TableColumn fx:id="placeColumn" minWidth="0.0" prefWidth="120.0" text="Sted" />
+                        <TableColumn fx:id="roomColumn" minWidth="0.0" text="Rom" />
+                        <TableColumn fx:id="statusColumn" text="Deltagende" />
                      </columns>
                   </TableView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteoversikt">

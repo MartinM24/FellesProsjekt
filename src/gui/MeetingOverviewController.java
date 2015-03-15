@@ -29,6 +29,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 	private MainController myController;
 	
 	@FXML TableView<MeetingVeiw> meetingOverviewTableView;
+	@FXML TableColumn<MeetingVeiw, String> idColumn;
 	@FXML TableColumn<MeetingVeiw, String> dateColumn;
 	@FXML TableColumn<MeetingVeiw, String> timeFromColumn;
 	@FXML TableColumn<MeetingVeiw, String> timeTooColumn;
@@ -130,6 +131,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 	@Override
 	public void initialize(URL location, ResourceBundle resources) { 
 		meetingOverviewTableView.setEditable(true);
+		idColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("meetingID"));
 		dateColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("date"));
 		timeFromColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("timeFrom"));
 		timeTooColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("timeToo"));
@@ -137,6 +139,10 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 		placeColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("place"));
 		roomColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("room"));
 		statusColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("status"));
+	}
+	
+	public MeetingVeiw getMeetingVeiw (){
+		return meetingOverviewTableView.getSelectionModel().getSelectedItem();
 	}
 
     @Override

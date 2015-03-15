@@ -147,7 +147,6 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 		System.out.println("Capacity = "+capacity);
 		data = FXCollections.observableArrayList();
 		this.addMeetingCtrl = myController.getControllerForScreen(CalendarClient.ADD_MEETING_SCREEN);
-
 		tableSetup();
 	}
 
