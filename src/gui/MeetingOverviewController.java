@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 
 public class MeetingOverviewController implements ControlledScreen, Initializable {
@@ -53,12 +54,29 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
         //Move user back to calendar.
         int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
         Meeting meeting = MeetingDB.getMeeting(meetingID);
-        EditMeetingController editCtrl = (EditMeetingController) myController.getControllerForScreen(CalendarClient.EDIT_MEETING_SCREEN);
-        editCtrl.setMeeting(meeting);
-        myController.setView(CalendarClient.EDIT_MEETING_VIEW);
+        if(meeting.hasAccess(CalendarClient.getCurrentUser())){
+        	EditMeetingController editCtrl = (EditMeetingController) myController.getControllerForScreen(CalendarClient.EDIT_MEETING_SCREEN);
+        	editCtrl.setMeeting(meeting);
+        	myController.setView(CalendarClient.EDIT_MEETING_VIEW);
+        }
+        else{
+        	warning.setText("Har ikke endringstillatelse");
+        }
     }
 
 
+    @FXML
+    private void meetingOverviewClicked(MouseEvent e){
+    	int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
+        Meeting meeting = MeetingDB.getMeeting(meetingID);
+        if(meeting.hasAccess(CalendarClient.getCurrentUser())){
+        	warning.setText("");
+        }
+        else{
+        	warning.setText("Har ikke endringstillatelse");
+        }
+    }
+    
 	@FXML
 	public void seeMoreButtonClick(ActionEvent e){
 		MeetingVeiw meeting = (MeetingVeiw)meetingOverviewTableView.getSelectionModel().getSelectedItem();
