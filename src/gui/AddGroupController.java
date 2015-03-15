@@ -96,6 +96,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	
 	@FXML
 	private void cancelButtonClick(ActionEvent e){
+		clearView();
 		myController.setView(CalendarClient.MY_GROUPS_VIEW);
 	}
 	
@@ -109,6 +110,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 			if (!GroupDB.groupExist(groupName)) {
 				@SuppressWarnings("unused")
 				Group group = new Group(groupName, getParent(), getMembers());
+				clearView();
 				myController.setView(CalendarClient.MY_GROUPS_VIEW);
 				//GroupDB.addGroup(groupName);
 				
@@ -296,6 +298,14 @@ public class AddGroupController implements ControlledScreen, Initializable{
 
     @Override
     public void clearView() {
-
+    	memberList.clear();
+    	usernames.clear();
+    	groupNames.clear();
+    	hasParentCheckBox.setSelected(false);
+    	chooseParentComboBox.setItems(null);
+    	addMemberComboBox.setItems(null);
+    	removeMemberListView.setItems(null);
+    	nameTextField.setText("");
+    	groupNameStatus.setText("");
     }
 }
