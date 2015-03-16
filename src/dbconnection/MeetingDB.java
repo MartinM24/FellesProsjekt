@@ -1,5 +1,8 @@
 package dbconnection;
 
+import calendarClient.CalendarClient;
+import model.*;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,17 +13,6 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import calendarClient.CalendarClient;
-import model.Group;
-import model.Invitation;
-import model.Group;
-import model.InvitationVeiw;
-import model.LoginUser;
-import model.Meeting;
-import model.MeetingVeiw;
-import model.Room;
-import model.User;
 
 public class MeetingDB extends DatabaseConnection{
     private final static String dateFormat = "yyyy-MM-dd HH:mm:ss";

@@ -1,12 +1,12 @@
 package dbconnection;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Random;
-
 import model.LoginUser;
 import model.Meeting;
 import model.User;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class AddTestSet {
 	private static ArrayList<User> users; 
