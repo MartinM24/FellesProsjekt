@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+
 <AnchorPane id="Content" minHeight="-1.0" minWidth="-1.0" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -21,8 +23,9 @@
                </font>
             </Label>
             <Label fx:id="purposeLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="changeButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="Rediger" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="OK" GridPane.rowIndex="2" />
+            <Button fx:id="changeButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="Rediger" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="72.0" text="Lagre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" text="Avbryt" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />

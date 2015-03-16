@@ -1,13 +1,13 @@
 package dbconnection;
 
+import model.LoginUser;
+import model.User;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import model.LoginUser;
-import model.User;
 
 public class UserDB extends DatabaseConnection{
 	
@@ -103,7 +103,7 @@ public class UserDB extends DatabaseConnection{
 			preparedStmt.setString (1, user.getUsername());
 			preparedStmt.setString (2, user.getFirstname());
 			preparedStmt.setString (3, user.getLastname());
-			preparedStmt.setString (4, user.getEmail());
+			preparedStmt.setString(4, user.getEmail());
 			preparedStmt.setBytes(5, user.getDBSalt());
 			preparedStmt.setBytes(6, user.getDBHash());
 			preparedStmt.executeUpdate();

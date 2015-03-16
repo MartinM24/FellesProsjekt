@@ -33,8 +33,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="30.0" prefWidth="60.0" text="Avbryt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="68.0" text="Lagre " GridPane.rowIndex="1" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="65.0" text="Avbryt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="65.0" text="Lagre " GridPane.rowIndex="1" />
             <Label fx:id="label" prefHeight="30.0" prefWidth="60.0" />
          </children>
       </GridPane>

@@ -24,8 +24,8 @@
       <PasswordField fx:id="PasswordField1" onFocusedChange="#Password1FocusChange" onTextChange="#password1TextChange" prefHeight="30.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
       <PasswordField fx:id="PasswordField2" onFocusedChange="#Password2FocusChange" prefHeight="30.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9" />
       <TextField fx:id="MailTextField" onFocusedChange="#MailFocusChange" prefHeight="30.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="11" />
-      <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#CancelButtonClick" prefHeight="30.0" prefWidth="60.0" text="Avbryt" GridPane.columnIndex="2" GridPane.rowIndex="13" />
-      <Button fx:id="OKButton" mnemonicParsing="false" onAction="#OKButtonClick" prefHeight="30.0" prefWidth="60.0" text="Opprett" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="13" />
+      <Button fx:id="CancelButton" mnemonicParsing="false" onAction="#CancelButtonClick" prefHeight="31.0" prefWidth="69.0" text="Avbryt" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
+      <Button fx:id="OKButton" mnemonicParsing="false" onAction="#OKButtonClick" prefHeight="31.0" prefWidth="73.0" text="Opprett" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="13" />
       <Label fx:id="firstnameStatus" prefHeight="50.0" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <font>
             <Font size="11.0" />
@@ -56,7 +56,7 @@
             <Font size="11.0" />
          </font>
       </Label>
-      <Label fx:id="formStatus" prefHeight="32.0" prefWidth="289.0" text="Label" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14" />
+      <Label fx:id="formStatus" prefHeight="30.0" prefWidth="333.0" text="Label" visible="false" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14" />
    </children>
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="135.0" minWidth="10.0" prefWidth="135.0" />
