@@ -33,9 +33,9 @@
                   <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
                         <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="70.0" text="OK" GridPane.halignment="CENTER" />
-                        <Label fx:id="warning" prefHeight="30.0" prefWidth="358.0" textFill="RED">
+                        <Label fx:id="warning" prefHeight="30.0" prefWidth="167.0" textFill="RED" GridPane.columnIndex="1">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="10.0" />
                            </font>
                         </Label>
                         <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" text="Se mer" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
@@ -44,22 +44,24 @@
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="349.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="75.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="73.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="131.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="196.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="78.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <TableView fx:id="meetingOverviewTableView" prefHeight="487.0" prefWidth="446.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView fx:id="meetingOverviewTableView" onMouseReleased="#meetingOverviewClicked" prefHeight="487.0" prefWidth="446.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="dateColumn" prefWidth="56.0" text="Dato" />
-                        <TableColumn fx:id="timeFromColumn" prefWidth="58.0" text="Start" />
-                        <TableColumn fx:id="timeTooColumn" prefWidth="61.0" text="Slutt" />
-                        <TableColumn fx:id="titleColumn" prefWidth="144.0" text="Tittel" />
-                        <TableColumn fx:id="placeColumn" minWidth="0.0" prefWidth="168.0" text="Sted" />
-                        <TableColumn fx:id="roomColumn" prefWidth="153.0" text="Rom" />
-                        <TableColumn fx:id="statusColumn" prefWidth="82.0" text="Deltagende" />
+                        <TableColumn fx:id="idColumn" prefWidth="40.0" text="ID" />
+                        <TableColumn fx:id="dateColumn" prefWidth="99.0" text="Dato" />
+                        <TableColumn fx:id="timeFromColumn" prefWidth="100.0" text="Start" />
+                        <TableColumn fx:id="timeTooColumn" prefWidth="95.0" text="Slutt" />
+                        <TableColumn fx:id="titleColumn" prefWidth="108.0" text="Tittel" />
+                        <TableColumn fx:id="placeColumn" minWidth="0.0" prefWidth="120.0" text="Sted" />
+                        <TableColumn fx:id="roomColumn" minWidth="0.0" text="Rom" />
+                        <TableColumn fx:id="statusColumn" text="Deltagende" />
                      </columns>
                   </TableView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteoversikt">

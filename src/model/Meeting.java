@@ -113,10 +113,8 @@ public class Meeting implements Comparable<Meeting>{
      * @return om bruker har tilgang
      */
     public boolean hasAccess(User user) {
-        if (user == owner) {
-            return true;
-        }
-        return participants.contains(user);
+        return (user.getUsername().equals(owner.getUsername()));
+        
     }
 
     public int getNOfParticipantSet() {

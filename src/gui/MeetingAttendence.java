@@ -24,9 +24,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-
-//TODO must take inn a meeting object. 
-
 public class MeetingAttendence implements ControlledScreen, Initializable {
 	MainController myController;
 	
@@ -36,19 +33,22 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
     
     @FXML Button okButton;
   
-    Meeting meeting;
+    MeetingVeiw meeting;
     
 	private ObservableList<MeetingVeiw> data = FXCollections.observableArrayList();
 
+	private ControlledScreen meetingOverviewController;
+	
+
     @FXML
     public void okButtonClick(ActionEvent e){
-		//Move user back to calendar. 
-		myController.setView(CalendarClient.CALENDAR_VIEW);
+		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
 	}
 		
     private void tableSetup(){
 		meetingAttendence.getSelectionModel().clearSelection();
-    	data.addAll((ArrayList<MeetingVeiw>) MeetingDB.getAttendenceForMeeting(meeting));
+        this.meeting = ((MeetingOverviewController) meetingOverviewController).getMeetingVeiw();
+    	data.addAll((ArrayList<MeetingVeiw>) MeetingDB.getAttendenceForMeeting(MeetingDB.getMeeting(meeting.getMeetingID())));
     	meetingAttendence.setItems(data);
     }
     
@@ -60,6 +60,7 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
 	@Override
 	public void viewRefresh() {
 		data = FXCollections.observableArrayList();
+		this.meetingOverviewController = myController.getControllerForScreen(CalendarClient.MEETING_OVERVIEW_SCREEN);
 		tableSetup();
 	}
 
@@ -70,8 +71,8 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
 		statusColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("status"));
 	}
 
-    @Override
-    public void clearView() {
-
-    }
+	@Override
+	public void clearView() {
+		
+	}
 }
