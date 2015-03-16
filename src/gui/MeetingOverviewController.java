@@ -40,6 +40,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     @FXML Button seeMoreButton;
     @FXML Button editButton;
     @FXML Button deleteButton;
+    @FXML Button alarmButton;
     @FXML Label warning;
     
 	private ObservableList<MeetingVeiw> data = FXCollections.observableArrayList();
@@ -47,6 +48,11 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     @FXML
     public void okButtonClick(ActionEvent e){
         myController.setView(CalendarClient.CALENDAR_VIEW);
+    }
+    
+    @FXML
+    public void alarmButtonClick(ActionEvent e){
+        myController.setView(CalendarClient.ADD_ALARM_VIEW);
     }
     @FXML
     private void editButtonClick(ActionEvent e){
