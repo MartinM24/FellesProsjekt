@@ -103,13 +103,11 @@ public class EditMeetingController implements ControlledScreen, Initializable {
             refreshLists();
             for(Group group: MeetingDB.getAllGroups(meeting)){
                 String str = "Gruppe: " + group.getName();
-                System.out.println(str);
                 addParticipant(str);
             }
             if (meeting.getParticipants() != null) {
                 for(User usr: meeting.getParticipants()) {
                     String str = "Bruker: " + usr.getUsername() + ": " + usr.getFirstname() + " " + usr.getLastname();
-                    System.out.println(str);
                     addParticipant(str);
                 }
             }
@@ -159,7 +157,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 			try{
 				validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField);				
 			} catch (Exception e) {
-				System.out.println("Check is not able to be made");
+                e.printStackTrace();
 			}
 		}
 	}
@@ -197,7 +195,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 					
 				}
 			} catch (Exception e) {
-				System.out.println("Check is not able to be made");
+                e.printStackTrace();
 			}
 		}
 
@@ -268,10 +266,8 @@ public class EditMeetingController implements ControlledScreen, Initializable {
             if(!meeting.getTimeStart().equals(toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()))) {
                 MeetingDB.updateMeetingTimeEnd(meeting.getMeetingID(), toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()));
                 MeetingDB.updateMeetingTimeStart(meeting.getMeetingID(), toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()));
-                System.out.println("StartTime changed");
             }
             if(!meeting.getTimeEnd().equals(toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()))) {
-                System.out.println("EndTime changed");
                 MeetingDB.updateMeetingTimeEnd(meeting.getMeetingID(), toLocalDateTime(fromDatePicker.getValue(), totimeField.getText()));
                 MeetingDB.updateMeetingTimeStart(meeting.getMeetingID(), toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()));
             }
@@ -482,7 +478,6 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	          public void run() {
 	            String selected = participantComboBox.getSelectionModel().getSelectedItem();
 	            if(selected!=null){
-	            	System.out.println("selected = "+selected);
 					addParticipant(selected);
 				}
 	            if (participantComboBox.getItems().size() < participantNames.size()) {

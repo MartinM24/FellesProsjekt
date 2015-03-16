@@ -23,7 +23,6 @@ public class RoomDB extends DatabaseConnection {
     }
 
     public static void addRoom(Room room){
-        //TODO skal ikke kunne legge inn i meeting uten at det blir lagt inn i participant
         try {
             String meetingQuery = "insert into room (roomName, capacity)"  + "values(?, ?)";
             PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery);
@@ -31,8 +30,7 @@ public class RoomDB extends DatabaseConnection {
             preparedMeetingStmt.setInt(2, room.getCapacity());
             int res = preparedMeetingStmt.executeUpdate();
             if (res > 0) {
-                System.out.println("Inserting room worked");
-            }            
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +55,6 @@ public class RoomDB extends DatabaseConnection {
             while (myRs.next()){
                 roomList.add(getRoom(myRs.getString(1)));
             }
-            System.out.println("Everything worked");
         } catch (SQLException e) {
             e.printStackTrace();
         }

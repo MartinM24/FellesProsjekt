@@ -20,10 +20,6 @@ public class GroupDB extends DatabaseConnection{
 			String addGroupQuery = "insert into groups (groupName)"  + "values(?)";
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
 			preparedStmt.setString (1, name);
-			int res = preparedStmt.executeUpdate();
-			if (res > 0) {
-				System.out.println("Inserting Group worked");
-			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,11 +49,6 @@ public class GroupDB extends DatabaseConnection{
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
 			preparedStmt.setString (1, user.getUsername());
 			preparedStmt.setString (2, group.getName());
-			int res = preparedStmt.executeUpdate();
-			if (res > 0) {
-				System.out.println("Inserting Meeting worked");
-			}
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -165,7 +156,7 @@ public class GroupDB extends DatabaseConnection{
 		try {
 			Statement myStatement = con.createStatement(); 
 			ResultSet myRs = myStatement.executeQuery("SELECT username FROM usergrouplink WHERE groupName = '" + groupName + "'");
-			List<User> returnList = new ArrayList<User>();
+			List<User> returnList = new ArrayList<>();
 			while(myRs.next()){
 				returnList.add(UserDB.getUser((myRs.getString(1))));
 			}
@@ -185,7 +176,6 @@ public class GroupDB extends DatabaseConnection{
 			System.out.println(myRs.getInt(1));
 			return (myRs.getInt(1) > 0);
 		} catch (SQLException e) {
-            System.out.println("LOLOLOLOLOLO");
 			e.printStackTrace();
 		}
         return true;

@@ -92,7 +92,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 	private boolean isValidName(TextField nameField, Label nameStatus) {
 		//Checks first if name is long enough
 		if (nameField.getText().length() < 2) {
-			System.out.println("Name is not long enguh");
 			nameField.setStyle(NOT_VALID_FIELD_STYLE);
 			nameStatus.setText("Navnet må være minst 2 tegn langt");
 			nameStatus.setTextFill(Color.RED);
@@ -105,7 +104,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 		nameField.setText(firstletter + value.substring(1));
 		// Check nameFild against regex
 		if(!nameField.getText().matches(NAME_REGEX)){
-			System.out.println("Name is not on a valid format");
 			nameField.setStyle(NOT_VALID_FIELD_STYLE);
 			nameStatus.setText("Du kan kun ha bokstaver og bindestrek i navnet");
 			nameStatus.setTextFill(Color.RED);
@@ -129,7 +127,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 	
 	private boolean isValidEmail() {
 		if (!MailTextField.getText().matches(MAIL_REGEX)) {
-			System.out.println("Email is not valid");
 			mailStatus.setText("Email addressen er ikke gyldig");
 			mailStatus.setTextFill(Color.RED);
 			mailStatus.setVisible(true);
@@ -142,9 +139,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 	public void OKButtonClick(ActionEvent e) throws InstantiationException, IllegalAccessException{
 		// checks if there is some text in all fields
 		// final validation of all fields before adding new user to the database
-		System.out.println("OK - button pressed");
-		if(isValidForm()){ 
-			System.out.println("Form is valid, trying to push user to database");
+		if(isValidForm()){
 			Password pass = new Password(PasswordField1.getText());
 			boolean beenAdded = UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
 			if (beenAdded) {
@@ -210,7 +205,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 	private boolean isValidPassword() {
 		if(PasswordField1.getText().length() < 6) {
 			//Show password too short feedback
-			System.out.println("Password is not in a valid format");
 			password1Status.setText("Passordet må være minst 6 tegn langt");
 			password1Status.setTextFill(Color.RED);
 			password1Status.setVisible(true);
@@ -283,7 +277,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 	 */
 	private boolean isValidUsername() {
 		if (!UsernameTextField.getText().matches(USERNAME_REGEX)) {
-			System.out.println("Username is not in a valid format");
 			usernameStatus.setText("Brukernavn må ha 3-16 tegn og kan bare inneholde bokstaver og tall");
 			usernameStatus.setTextFill(Color.RED);
 			usernameStatus.setVisible(true);
@@ -291,7 +284,6 @@ public class NewUserController implements ControlledScreen, Initializable {
 			return false; 
 		}
 		if (UserDB.checkUser(UsernameTextField.getText())){
-			System.out.println("Username " + UsernameTextField.getText() + " allready exist");
 			usernameStatus.setText("Brukernavnet eksisterer allerede");
 			usernameStatus.setTextFill(Color.RED);
 			usernameStatus.setVisible(true);

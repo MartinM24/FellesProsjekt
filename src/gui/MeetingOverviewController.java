@@ -97,7 +97,6 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     	} else {
     		room = meeting.getRoom().getName();
     	}
-    	System.out.println(room);
     	return new MeetingVeiw(meeting.getMeetingID(), meeting.getTimeStart().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
     			meeting.getStartString(),
     			meeting.getEndString(),
@@ -112,12 +111,9 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     	ArrayList<Meeting> meetingDB = (ArrayList<Meeting>) MeetingDB.getAllMeetings(CalendarClient.getCurrentUser());
     	MeetingVeiw veiw;
     	for (int i = 0; i<meetingDB.size(); i++){
-    		System.out.println(i);
     		if(MeetingDB.getAttendence(CalendarClient.getCurrentUser(), meetingDB.get(i)) >= 0){
-    			System.out.println("ja");
     			veiw = fromMeetingToView(meetingDB.get(i));
     			data.add(veiw);
-    			System.out.println(veiw);
     		}
     	}
     	meetingOverviewTableView.setItems(data);

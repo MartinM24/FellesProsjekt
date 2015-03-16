@@ -43,14 +43,12 @@ public class Group implements Iterable<User>{
 		this.members = new ArrayList<User>();
 		subGroups = new ArrayList<Group>();
 		for(int i = 0 ; i < members.size() ; i++){
-			//System.out.println("Group(name, parent, members) : Member: "+members.get(i).getUsername());
 			addMember(members.get(i));
 		}
 	}
 	
 	public List<User> getAllMembers(){
 		List<User> directMembers = GroupDB.getAllMembers(this.getName());
-		//System.out.println("Group : getAllMembers()"+directMembers);
 		Set<User> directMembersSet = new HashSet<User>();
 		directMembersSet.addAll(directMembers);
 		for(int i = 0 ; i < subGroups.size() ; i++){
@@ -87,7 +85,6 @@ public class Group implements Iterable<User>{
 
 	private void makeChildren(){
 		HashMap<String, List<String>> groupMap = GroupDB.getAllGroupsHash();
-		System.out.println(this.getName()+"groupMap size = "+groupMap.size());
 		List<String> currentParent = new ArrayList<String>();
 		currentParent.add(this.getName());
 		while(!currentParent.isEmpty() && groupMap.containsKey(currentParent.get(0))){
@@ -109,9 +106,7 @@ public class Group implements Iterable<User>{
 
 
 	public void addMember(User member) {
-		System.out.println("Group-addMember : member = "+member.getUsername());
 		if(!this.members.contains(member)){
-			//System.out.println("Group-addMember : In the if");
 			this.members.add(member);
 			GroupDB.addMember(member, this);
 		}
@@ -119,7 +114,6 @@ public class Group implements Iterable<User>{
 	
 	public void removeMember(User member){
 		this.members.remove(member);	
-		//System.out.println("Group-removeMember(member):member = "+member.getUsername());
 		GroupDB.removeMember(member, this);
 	}
 

@@ -105,7 +105,6 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
             if (roomsDB.get(i).getCapacity() < this.capacity) {
                 status.set(i, "For lite");
             }
-            System.out.println(roomsDB.get(i).getCapacity() < this.capacity);
 			for (int j = 0; j<availability.get(i).size(); j++){
 				if (checkAvailability(availability.get(i).get(j))){
 					status.set(i, "Opptatt");
@@ -147,7 +146,6 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	
 	@Override
 	public void viewRefresh() {
-		System.out.println("Capacity = "+ capacity);
 		data = FXCollections.observableArrayList();
 		this.addMeetingCtrl = myController.getControllerForScreen(CalendarClient.ADD_MEETING_SCREEN);
 		tableSetup();

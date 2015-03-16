@@ -34,9 +34,11 @@ public class MeetingPane extends VBox {
         this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                CalendarClient.mainController.setView(CalendarClient.ADD_MEETING_VIEW);
-                AddMeetingController mCtrl = (AddMeetingController) CalendarClient.mainController.getControllerForScreen(CalendarClient.ADD_MEETING_SCREEN);
-                mCtrl.subjectField.setText(m.getDescription());
+                if(m.getOwner().getUsername().equals(CalendarClient.getCurrentUser().getUsername())) {
+                    EditMeetingController editCtrl = (EditMeetingController) CalendarClient.mainController.getControllerForScreen(CalendarClient.EDIT_MEETING_SCREEN);
+                    editCtrl.setMeeting(m);
+                    CalendarClient.mainController.setView(CalendarClient.EDIT_MEETING_VIEW);
+                }
                 event.consume();
             }
         });

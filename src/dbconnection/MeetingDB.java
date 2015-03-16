@@ -38,7 +38,6 @@ public class MeetingDB extends DatabaseConnection{
                 int id = myRs.getInt(1);
 				meetingList.add(getMeeting(id));
 			}
-			System.out.println("Everything worked");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,8 +51,7 @@ public class MeetingDB extends DatabaseConnection{
 			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"' AND participant.attendence = 0");
 			while (myRs.next()){
 				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2),""+myRs.getInt(3)) );
-			};
-			System.out.println("Got all invitations");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -65,7 +63,7 @@ public class MeetingDB extends DatabaseConnection{
 		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID, participant.attendence FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID, participant.attendence FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='" + user.getUsername() + "'");
 			String temp;
 			while (myRs.next()){
 				if(0>myRs.getInt(4))
@@ -75,8 +73,7 @@ public class MeetingDB extends DatabaseConnection{
 				else
 					temp = "Deltar";
 				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2),""+myRs.getInt(3), temp));
-			};
-			System.out.println("Got all invitations");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -131,7 +128,7 @@ public class MeetingDB extends DatabaseConnection{
 	
 	/**
 	 * Deletes 
-	 * @param meetingId
+	 * @param meetingID
 	 * @param user
 	 * @return
 	 */
@@ -184,8 +181,7 @@ public class MeetingDB extends DatabaseConnection{
 	public static void updateMeetingTimeStart(int meetingID, LocalDateTime timeStart){
 		try {
 			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "timeChange", true);
-			//TODO denne metoden skal booke m�teromet p� nytt. 
-			Statement myStatement = con.createStatement(); 
+			Statement myStatement = con.createStatement();
 			myStatement.executeUpdate("UPDATE meeting SET timeStart='"+getDBTime(timeStart)+"' WHERE meetingID='"+meetingID+"'");
 		}
 		catch(Exception e){
@@ -196,8 +192,7 @@ public class MeetingDB extends DatabaseConnection{
 	public static void updateMeetingTimeEnd(int meetingID, LocalDateTime timeEnd){
 		try {
 			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "timeChange", true);
-			//TODO denne metoden skal booke m�teromet p� nytt. 
-			Statement myStatement = con.createStatement(); 
+			Statement myStatement = con.createStatement();
 			myStatement.executeUpdate("UPDATE meeting SET timeEnd='"+getDBTime(timeEnd)+"' WHERE meetingID='"+meetingID+"'");
 		}
 		catch(Exception e){
@@ -324,13 +319,12 @@ public class MeetingDB extends DatabaseConnection{
 			preparedParticipantStmt.setBoolean(10,false);
 			int res = preparedParticipantStmt.executeUpdate();
 			if (res > 0) {
-				System.out.println("Inserting Participant worked");
 				return true;
 			}
 		}
 		catch(Exception e){
-			System.out.println("Feil i insert av participant");
-		}
+            e.printStackTrace();
+   		}
 		return false;
 	}
 	
@@ -352,10 +346,6 @@ public class MeetingDB extends DatabaseConnection{
 				preparedMeetingStmt.setString(6, meeting.getRoom().getName());				
 			}
 			preparedMeetingStmt.setString(7, meeting.getOwner().getUsername());
-			int res = preparedMeetingStmt.executeUpdate();
-			if (res > 0) {
-				System.out.println("Inserting Meeting worked");
-			}
 			
 			ResultSet tableKeys = preparedMeetingStmt.getGeneratedKeys();
 			tableKeys.next();
@@ -382,10 +372,7 @@ public class MeetingDB extends DatabaseConnection{
 			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery);
 			preparedMeetingStmt.setInt (1, meeting.getMeetingID());
 			preparedMeetingStmt.setString(2, group.getName());
-			int res = preparedMeetingStmt.executeUpdate();
-			if (res > 0) {
-				System.out.println("Inserting Meeting worked");
-			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
@@ -422,13 +409,13 @@ public class MeetingDB extends DatabaseConnection{
 	}
 	
 	public static List<Group> getAllGroups(Meeting meeting){
-		List<Group> groupList = new ArrayList<Group>();
+		List<Group> groupList = new ArrayList<>();
 		try{
 			Statement myStatement = con.createStatement();
 			ResultSet myRs = myStatement.executeQuery("SELECT groupName FROM meetinggrouplink WHERE meetingID='"+meeting.getMeetingID()+"'");
 			while (myRs.next()){
 				groupList.add(new Group(myRs.getString(1)));
-			};
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

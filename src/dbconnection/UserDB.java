@@ -26,7 +26,7 @@ public class UserDB extends DatabaseConnection{
 			ResultSet myRs = myStatement.executeQuery("select * from users");
 			while (myRs.next()){
 				userList.add(new LoginUser(myRs.getString(1), myRs.getString(2), myRs.getString(3), myRs.getString(4), myRs.getBytes(5), myRs.getBytes(6)));
-			};
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -74,7 +74,6 @@ public class UserDB extends DatabaseConnection{
 			myRs.first();
 			return (myRs.getInt(1) > 0);
 		} catch (SQLException e) {
-            System.out.println("LOLOLOLOLOLO");
 			e.printStackTrace();
 		}
         return false;
@@ -85,14 +84,12 @@ public class UserDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement();
 			int res = myStatement.executeUpdate("delete from users where username = '"+ username + "'");
 			if (res > 0) {
-				System.out.println("User " + username + "  has been deleted");
 				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("User " + username + " has not been deleted");
-		return false; 
+		return false;
 	}
 
 	/**
@@ -111,14 +108,12 @@ public class UserDB extends DatabaseConnection{
 			preparedStmt.setBytes(6, user.getDBHash());
 			int res = preparedStmt.executeUpdate();
 			if (res > 0) {
-				System.out.println("User " + user.getUsername() + " was added to the database");
-				return true; 
+				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("User " + user.getUsername() + " did not get added to the database");
-		return false; 
+		return false;
 	}
 	
 

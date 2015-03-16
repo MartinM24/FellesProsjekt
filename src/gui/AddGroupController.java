@@ -71,7 +71,6 @@ public class AddGroupController implements ControlledScreen, Initializable{
 			chooseParentComboBox.setValue("");
 			chooseParentComboBox.setVisible(false);
 		}
-		System.out.println("CheckBox: "+hasParentCheckBox.isSelected());
 	}
 	
 	
@@ -102,7 +101,6 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	
 	@FXML
 	private void okButtonClick(ActionEvent event) {
-		System.out.println("OK");
 		String groupName = nameTextField.getText();
 		// Check if groupName is a valid one 
 		if(groupName.matches(GROUPNAME_REGEX)){
@@ -116,11 +114,9 @@ public class AddGroupController implements ControlledScreen, Initializable{
 				
 			} else {
 				//Wrong groupName
-				System.out.println("GroupName " + groupName + " does not exist");
 			}
 		} else {
 			//Wrong groupName format
-			System.out.println("groupName " + groupName + " is in the worng format");
 			//wrongGroupNameFeedback();
 		}
 	}
@@ -132,7 +128,6 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	private List<User> getMembers(){
 		List<User> userList = new ArrayList<User>();
 		for(String str : memberList){
-			System.out.println("AddGroupController-getMembers(): "+UserDB.getUser(str));
 			userList.add(UserDB.getUser(str));
 		}
 		return userList;
@@ -185,9 +180,6 @@ public class AddGroupController implements ControlledScreen, Initializable{
 		addMemberComboBox.setEditable(true);
 		chooseParentComboBox.getSelectionModel().clearSelection();
 		List<LoginUser> users = UserDB.getAllUsers();
-		for(User u: users){
-			System.out.println(u.getUsername());
-		}
 		
 		for (int i = 0 ; i < users.size(); i++){
 			//if(users.get(i).getUsername() == CalendarClient.getCurrentUser().getUsername()){

@@ -42,10 +42,10 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	MainController myController;
 
 	public Room room;
-	private List<String> users = new ArrayList<String>();
-	private List<String> groups = new ArrayList<String>();
-	private List<String> participantNames = new ArrayList<String>();
-	private List<String> addedParticipants = new ArrayList<String>();
+	private List<String> users = new ArrayList<>();
+	private List<String> groups = new ArrayList<>();
+	private List<String> participantNames = new ArrayList<>();
+	private List<String> addedParticipants = new ArrayList<>();
 	public boolean cameFromRoomOverview;
 	public static final String TIME_REGEX = "([0-2])(\\d\\:)([0-5])\\d";
 	@FXML TextField subjectField;
@@ -130,7 +130,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			try{
 				validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField);				
 			} catch (Exception e) {
-				System.out.println("Check is not able to be made");
+                e.printStackTrace();
 			}
 		}
 	}
@@ -168,7 +168,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 					
 				}
 			} catch (Exception e) {
-				System.out.println("Check is not able to be made");
+                e.printStackTrace();
 			}
 		}
 
@@ -246,8 +246,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			clearView();
 			myController.setView(CalendarClient.CALENDAR_VIEW);
 		}
-		System.out.println("If not true in AddMeetingController");
-			
+
 	}
 	
 	@FXML
@@ -312,8 +311,6 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		groups = GroupDB.getallGroups();
 		List<LoginUser> userList = UserDB.getAllUsers();
 		for(int i = 0 ; i < userList.size() ; i++){
-			System.out.println(i);
-			System.out.println(userList.get(i));
 			userList.get(i).getUsername();
 
 			if(!userList.get(i).getUsername().equals(CalendarClient.getCurrentUser().getUsername())){
@@ -378,7 +375,6 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 	          public void run() {
 	            String selected = participantComboBox.getSelectionModel().getSelectedItem();
 	            if(selected!=null){
-	            	System.out.println("selected = "+selected);
 					addParticipant(selected);
 				}
 	            if (participantComboBox.getItems().size() < participantNames.size()) {

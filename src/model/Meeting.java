@@ -270,7 +270,6 @@ public class Meeting implements Comparable<Meeting>{
         boolean o1 = m.getTimeStart().isBefore(this.getTimeEnd()) && this.getTimeStart().isBefore(m.getTimeEnd()) ;
         //boolean o2 = this.getTimeStart().isBefore(m.getTimeStart()) && this.getTimeEnd().isAfter(m.getTimeStart());
         //boolean o3 = m.getTimeStart().equals(this.getTimeStart());
-        //System.out.println("o3 " + o3 + " :" + m + " - " + this);
         return o1;
     }
 

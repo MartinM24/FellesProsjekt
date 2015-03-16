@@ -53,7 +53,6 @@ public class MainController extends BorderPane {
             controller.setScreenParent(this);
             addScreen(name, loadScreen);
             addController(name, controller);
-            System.out.println("Loading " + name + " from " + resource);
             return true;
         }catch(Exception e) {
             System.out.println(e.getMessage());
@@ -86,8 +85,6 @@ public class MainController extends BorderPane {
             setLeftScreen(view.getLeft());
             return true;
 	     } else {
-            System.out.println("View hasn't been loaded!\n");
-            //TODO add fail to load screen?
 	        return false;
 	     }
 	 }

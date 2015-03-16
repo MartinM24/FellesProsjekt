@@ -23,6 +23,7 @@ public class GlobalMenuController implements ControlledScreen, Initializable {
     @FXML
     private void logOutButtonClick(ActionEvent event) {
         myController.setView(CalendarClient.LOG_IN_VIEW);
+        CalendarClient.ClearAllViews();
     }
 
     @Override

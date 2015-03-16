@@ -61,7 +61,6 @@ public class ChooseCalendarsController implements ControlledScreen, Initializabl
         List<LoginUser> users = UserDB.getAllUsers();
 
         for (int i = 0 ; i < users.size(); i++){
-            System.out.println(users.get(i).getUsername());
             usernames.add(users.get(i).getUsername());
         }
 
