@@ -55,6 +55,7 @@ public class LogInController implements ControlledScreen, Initializable{
 				if (user.checkPassword(passwordField.getText())){
 					//Correct password send to calendar screen
 					CalendarClient.setCurrentUser(user);
+					clearView();
 					myController.setView(CalendarClient.CALENDAR_VIEW);
 
 				} else {
@@ -102,6 +103,7 @@ public class LogInController implements ControlledScreen, Initializable{
 	
 	@FXML
 	private void newUserButtonClick(ActionEvent event){
+		clearView();
 		myController.setView(CalendarClient.NEW_USER_VIEW);
 	} 
 	
@@ -118,7 +120,9 @@ public class LogInController implements ControlledScreen, Initializable{
 
     @Override
     public void clearView() {
-
+    	usernameField.setText("");;
+    	passwordField.setText("");;
+    	loginFeedback.setText("");
     }
 }
 
