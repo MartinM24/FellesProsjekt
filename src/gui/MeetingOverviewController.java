@@ -35,7 +35,6 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     @FXML TableColumn<MeetingVeiw, String> titleColumn;
     @FXML TableColumn<MeetingVeiw, String> placeColumn;
     @FXML TableColumn<MeetingVeiw, String> roomColumn;    
-    @FXML TableColumn<MeetingVeiw, String> statusColumn;
     
     @FXML Button okButton;
     @FXML Button seeMoreButton;
@@ -103,7 +102,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     			meeting.getDescription(),
     			meeting.getPlace(),
     			room,
-    			MeetingDB.getParticipants(meeting.getMeetingID()).size()+"");
+    			"penis");
     }
 	
     private void tableSetup(){
@@ -139,7 +138,6 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 		titleColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("title"));
 		placeColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("place"));
 		roomColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("room"));
-		statusColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("status"));
 	}
 	
 	public MeetingVeiw getMeetingVeiw (){
