@@ -27,8 +27,8 @@
                   <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
                         <TableColumn fx:id="dateColumn" prefWidth="98.0" text="Dato" />
-                        <TableColumn fx:id="timeFromColumn" prefWidth="72.0" text="Fra" />
-                        <TableColumn fx:id="timeToColumn" prefWidth="86.0" text="Til" />
+                        <TableColumn fx:id="timeToColumn" prefWidth="86.0" text="Fra" />
+                        <TableColumn fx:id="timeFromColumn" prefWidth="72.0" text="Til" />
                         <TableColumn fx:id="descColumn" minWidth="0.0" prefWidth="303.0" text="Beskrivelse" />
                         <TableColumn fx:id="yourColumn" maxWidth="293.0" minWidth="0.0" prefWidth="96.0" text="Deltagelse" />
                      </columns>
