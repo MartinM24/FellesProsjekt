@@ -36,16 +36,16 @@
             </Text>
             <GridPane alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="101.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="83.0" minWidth="10.0" prefWidth="62.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="106.0" minWidth="10.0" prefWidth="106.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="newGroupButton" mnemonicParsing="false" onAction="#newGroupButtonClick" text="Ny gruppe" />
-                  <Button fx:id="deleteGroupButton" onAction="#deleteGroupAction" mnemonicParsing="false" text="Slett Gruppe" GridPane.columnIndex="2" />
+                  <Button fx:id="deleteGroupButton" mnemonicParsing="false" onAction="#deleteGroupAction" text="Slett Gruppe" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <ListView fx:id="groupsListView" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
