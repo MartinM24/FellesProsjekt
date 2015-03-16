@@ -29,7 +29,6 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 	private MainController myController;
 	
 	@FXML TableView<MeetingVeiw> meetingOverviewTableView;
-	@FXML TableColumn<MeetingVeiw, String> idColumn;
 	@FXML TableColumn<MeetingVeiw, String> dateColumn;
 	@FXML TableColumn<MeetingVeiw, String> timeFromColumn;
 	@FXML TableColumn<MeetingVeiw, String> timeTooColumn;
@@ -47,7 +46,6 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 
     @FXML
     public void okButtonClick(ActionEvent e){
-        //Move user back to calendar.
         myController.setView(CalendarClient.CALENDAR_VIEW);
     }
     @FXML
@@ -81,7 +79,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 	@FXML
 	public void seeMoreButtonClick(ActionEvent e){
 		MeetingVeiw meeting = (MeetingVeiw)meetingOverviewTableView.getSelectionModel().getSelectedItem();
-		myController.setView(null);
+		myController.setView(CalendarClient.MEETING_ATTENDENCE_VIEW);
 	}
 	
     public MeetingVeiw fromMeetingToView(Meeting meeting){
@@ -131,7 +129,6 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 	@Override
 	public void initialize(URL location, ResourceBundle resources) { 
 		meetingOverviewTableView.setEditable(true);
-		idColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("meetingID"));
 		dateColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("date"));
 		timeFromColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("timeFrom"));
 		timeTooColumn.setCellValueFactory(new PropertyValueFactory<MeetingVeiw, String>("timeToo"));
