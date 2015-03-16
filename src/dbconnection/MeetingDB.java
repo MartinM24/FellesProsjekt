@@ -349,7 +349,7 @@ public class MeetingDB extends DatabaseConnection{
 				preparedMeetingStmt.setString(6, meeting.getRoom().getName());				
 			}
 			preparedMeetingStmt.setString(7, meeting.getOwner().getUsername());
-			
+			preparedMeetingStmt.executeUpdate();
 			ResultSet tableKeys = preparedMeetingStmt.getGeneratedKeys();
 			tableKeys.next();
 			meeting.setMeetingID(tableKeys.getInt(1));
@@ -375,6 +375,7 @@ public class MeetingDB extends DatabaseConnection{
 			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery);
 			preparedMeetingStmt.setInt (1, meeting.getMeetingID());
 			preparedMeetingStmt.setString(2, group.getName());
+            preparedMeetingStmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -396,7 +397,7 @@ public class MeetingDB extends DatabaseConnection{
 			PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery);
 			preparedMeetingStmt.setInt (1, meeting.getMeetingID());
 			preparedMeetingStmt.setString(2, group.getName());
-			int res = preparedMeetingStmt.executeUpdate();
+			preparedMeetingStmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 

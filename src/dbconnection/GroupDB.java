@@ -17,9 +17,11 @@ public class GroupDB extends DatabaseConnection{
 
 	public static void addGroup(String name) {
 		try {
+            System.out.println("Try adding " + name);
 			String addGroupQuery = "insert into groups (groupName)"  + "values(?)";
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
-			preparedStmt.setString (1, name);
+			preparedStmt.setString(1, name);
+            preparedStmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,7 +39,9 @@ public class GroupDB extends DatabaseConnection{
 			return myRs.getString(1);
 		}
 			catch (Exception e) {
-			System.out.println(e.getMessage());
+                e.printStackTrace();
+
+                System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -49,6 +53,7 @@ public class GroupDB extends DatabaseConnection{
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
 			preparedStmt.setString (1, user.getUsername());
 			preparedStmt.setString (2, group.getName());
+            preparedStmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,7 +65,9 @@ public class GroupDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE groups SET parentID = '"+parentGroup.getName()+"' WHERE groupName = '" + group.getName() + "'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
@@ -69,7 +76,9 @@ public class GroupDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE groups SET parentID = 'NULL' WHERE groupName = '" + group.getName() + "'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
@@ -78,7 +87,9 @@ public class GroupDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("DELETE FROM usergrouplink WHERE username = '" + user.getUsername() + "' AND groupName =  '"+group.getName()+"'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
@@ -91,13 +102,16 @@ public class GroupDB extends DatabaseConnection{
 			}
 			myStatement.executeUpdate("DELETE FROM groups WHERE groupName = '" + group.getName()+"'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
 	public static List<String> getAllGroups(String user){
-		List<String> rList = getallGroups();
-		for(String str : rList){
+		List<String> allGroups = getallGroups();
+        List<String> res = new ArrayList<>();
+		for(String str : allGroups){
 			boolean isInGroup = false;
 			Group parentGroup = new Group(str);
 			for(User usr: parentGroup.getAllMembers()){
@@ -105,12 +119,12 @@ public class GroupDB extends DatabaseConnection{
 					isInGroup = true;
 				}				
 			}
-			if(!isInGroup){
-				rList.remove(str);
+			if(isInGroup){
+				res.add(str);
 			}
 				
 		}
-		return rList;
+		return res;
 	}
 	
 	public static List<String> getallGroups(){
@@ -123,7 +137,8 @@ public class GroupDB extends DatabaseConnection{
 			} 
 			return rList;
 		}
-			catch (Exception e) {
+		catch (Exception e) {
+            e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		return null;
@@ -147,7 +162,8 @@ public class GroupDB extends DatabaseConnection{
 			return groupMap;
 		}
 			catch (Exception e) {
-			System.out.println(e.getMessage());
+                e.printStackTrace();
+                System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -162,7 +178,9 @@ public class GroupDB extends DatabaseConnection{
 			}
 			return returnList;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -173,7 +191,6 @@ public class GroupDB extends DatabaseConnection{
 			Statement mysStatement = con.createStatement();
 			ResultSet myRs = mysStatement.executeQuery("select count(*) from groups where groupName = '"+ groupName +"'");
 			myRs.first();
-			System.out.println(myRs.getInt(1));
 			return (myRs.getInt(1) > 0);
 		} catch (SQLException e) {
 			e.printStackTrace();

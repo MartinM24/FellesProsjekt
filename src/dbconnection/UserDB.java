@@ -94,7 +94,7 @@ public class UserDB extends DatabaseConnection{
 
 	/**
 	 * Adds a new loginUser to the Database
-	 * @param LoginUser user
+	 * @param user
 	 */
 	public static boolean addUser(LoginUser user) {
 		try {
@@ -106,10 +106,8 @@ public class UserDB extends DatabaseConnection{
 			preparedStmt.setString (4, user.getEmail());
 			preparedStmt.setBytes(5, user.getDBSalt());
 			preparedStmt.setBytes(6, user.getDBHash());
-			int res = preparedStmt.executeUpdate();
-			if (res > 0) {
-				return true;
-			}
+			preparedStmt.executeUpdate();
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
