@@ -2,7 +2,6 @@ package dbconnection;
 
 import model.Meeting;
 import model.Room;
-import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -115,7 +114,6 @@ public class RoomDB extends DatabaseConnection {
     
     private static LocalDateTime convertStringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
-        System.out.println(str);
         return LocalDateTime.parse(str.split("\\.")[0], formatter);
     }
 

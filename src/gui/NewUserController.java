@@ -259,6 +259,7 @@ public class NewUserController implements ControlledScreen, Initializable {
 	public void UsernameFocusChange(ObservableValue<String> o,  boolean oldValue, boolean newValue){
 		// Trim username
 		UsernameTextField.setText(UsernameTextField.getText().trim());
+        UsernameTextField.setText(UsernameTextField.getText().toLowerCase());
 		
 		//Validates only when focus is moved away from field 
 		if (!newValue) {
