@@ -7,11 +7,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 	
-//	public static void main(String[] args) {
-//		LoginUser user = new LoginUser("SivFanNR2","Trine", "Grande", "trine@venstre.hoyre", "JensErBest");
-//		addUser(user);
-//		System.out.println("User added.");
-//	}
+
 	protected DatabaseConnection() {
 		
 	}

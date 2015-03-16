@@ -49,7 +49,6 @@ public class DatabaseSetup extends DatabaseConnection{
 		File[] files = finder(filepath);
 		List<String> queries = new ArrayList<String>();
 		for (int i = 0 ; i  < files.length ; i++){
-			System.out.println(files[i].getAbsolutePath());
 			queries.add(readFile(files[i].getAbsolutePath(),Charset.defaultCharset()));
 		}
 		
@@ -69,7 +68,6 @@ public class DatabaseSetup extends DatabaseConnection{
 		List<String> queries = getQueries();
 		
 		for (String sql : queries){
-			System.out.println(sql);
 			Statement myStatement;
 			try {
 				myStatement = con.createStatement();

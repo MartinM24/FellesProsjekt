@@ -17,7 +17,6 @@ public class GroupDB extends DatabaseConnection{
 
 	public static void addGroup(String name) {
 		try {
-            System.out.println("Try adding " + name);
 			String addGroupQuery = "insert into groups (groupName)"  + "values(?)";
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
 			preparedStmt.setString(1, name);
@@ -48,7 +47,6 @@ public class GroupDB extends DatabaseConnection{
 	
 	public static void addMember(User user, Group group){
 		try {
-			System.out.println("User: "+user.getUsername()+", Group: "+group.getName());
 			String addGroupQuery = "insert into usergrouplink (username, groupName)"  + "values(?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(addGroupQuery);
 			preparedStmt.setString (1, user.getUsername());
