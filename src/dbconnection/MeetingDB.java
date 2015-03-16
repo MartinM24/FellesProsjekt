@@ -86,7 +86,8 @@ public class MeetingDB extends DatabaseConnection{
 				String temp = myRs.getString(2);
 				if(temp!=null){
 					LocalDateTime tid = Meeting.convertStringToDate(temp);
-					if(tid.isAfter(LocalDateTime.now())){
+					System.out.println(tid);
+					if(tid.isBefore(LocalDateTime.now())){
 						rList.add(MeetingDB.getMeeting(myRs.getInt(1)));
 					}
 				}
@@ -112,7 +113,7 @@ public class MeetingDB extends DatabaseConnection{
 	public static void setAlarm(int meetingID, User user){
 		try {
 			Statement myStatement = con.createStatement();
-				myStatement.executeUpdate("UPDATE participant SET alarmtid = 'NULL' WHERE meetingID='"+meetingID+"' AND username = '"+user.getUsername()+"'");
+				myStatement.executeUpdate("UPDATE participant SET alarmtid = NULL WHERE meetingID='"+meetingID+"' AND username = '"+user.getUsername()+"'");
 		}
 		catch(Exception e){
 			e.printStackTrace();

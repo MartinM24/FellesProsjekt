@@ -27,8 +27,7 @@ public class SetAlarmController implements ControlledScreen, Initializable {
 	@FXML DatePicker fromDatePicker;
 	@FXML TextField fromtimeField;
 
-	private Object meetingOverviewController;
-	
+	private ControlledScreen meetingOverviewController;
 	
 	public void saveButtonClick(ActionEvent e){
 		MeetingVeiw meeting = ((MeetingOverviewController) meetingOverviewController).getMeetingVeiw();
@@ -90,14 +89,13 @@ public class SetAlarmController implements ControlledScreen, Initializable {
 
 	@Override
 	public void setScreenParent(MainController screenPage) {
-		// TODO Auto-generated method stub
+		this.myController = screenPage;
 		
 	}
 
 	@Override
 	public void viewRefresh() {
-		this.meetingOverviewController = myController.getControllerForScreen(CalendarClient.ADD_MEETING_SCREEN);
-		
+		this.meetingOverviewController = myController.getControllerForScreen(CalendarClient.MEETING_OVERVIEW_SCREEN);
 	}
 
 	@Override

@@ -102,7 +102,7 @@ public class CalendarClient extends Application{
         mainController.loadScreen(CHANGE_ATTENDENCE_SCREEN, CHANGE_ATTENDENCE_SCREEN_FXML);
         mainController.loadScreen(EDIT_MEETING_SCREEN, EDIT_MEETING_SCREEN_FXML);
         mainController.loadScreen(MEETING_ATTENDENCE_SCREEN, MEETING_ATTENDENCE_FXML);
-        mainController.loadScreen(ADD_GROUP_SCREEN, ADD_ALARM_FXML);
+        mainController.loadScreen(ADD_ALARM_SCREEN, ADD_ALARM_FXML);
 
         // Make view form loaded screens
 		mainController.makeView(ADD_MEETING_VIEW, ADD_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
@@ -120,7 +120,8 @@ public class CalendarClient extends Application{
         mainController.makeView(EDIT_MEETING_VIEW, EDIT_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(MEETING_ATTENDENCE_VIEW, MEETING_ATTENDENCE_SCREEN,GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
-
+        mainController.makeView(ADD_ALARM_VIEW, ADD_ALARM_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
+        
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);
 
