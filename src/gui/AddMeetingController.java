@@ -162,7 +162,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 							Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
 						totimeField.setStyle("-fx-border-color: red");
 						fromtimeField.setStyle("-fx-border-color: red");
-					} else if (Integer.parseInt(tid1[0])>24 || Integer.parseInt(tid2[0])>24){
+					} else if (Integer.parseInt(tid1[0])>23 || Integer.parseInt(tid2[0])>23){
 						totimeField.setStyle("-fx-border-color: red");
 						fromtimeField.setStyle("-fx-border-color: red");
 					} else {
