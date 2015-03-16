@@ -34,8 +34,9 @@ public class ChangeAttendenceController implements ControlledScreen, Initializab
 	@FXML Button agree;
 	
 	@FXML TableView<InvitationVeiw> table;
-	@FXML TableColumn<InvitationVeiw , String> idColumn;
-	@FXML TableColumn<InvitationVeiw , String> sendColumn;
+	@FXML TableColumn<InvitationVeiw , String> dateColumn;
+	@FXML TableColumn<InvitationVeiw , String> timeFromColumn;
+	@FXML TableColumn<InvitationVeiw , String> timeToColumn;
 	@FXML TableColumn<InvitationVeiw , String> descColumn;
 	@FXML TableColumn<InvitationVeiw , String> yourColumn;
 	private InvitationVeiw inv;
@@ -63,8 +64,9 @@ public class ChangeAttendenceController implements ControlledScreen, Initializab
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		table.setEditable(true);
-		idColumn.setCellValueFactory(new PropertyValueFactory<InvitationVeiw, String>("meetingID"));   		
-		sendColumn.setCellValueFactory(new PropertyValueFactory<InvitationVeiw, String>("sender"));   		
+		dateColumn.setCellValueFactory(new PropertyValueFactory<InvitationVeiw, String>("date"));   		
+		timeFromColumn.setCellValueFactory(new PropertyValueFactory<InvitationVeiw, String>("timeFrom"));   		
+		timeToColumn.setCellValueFactory(new PropertyValueFactory<InvitationVeiw, String>("timeTo"));   		
 		descColumn.setCellValueFactory(new PropertyValueFactory<InvitationVeiw, String>("invitationName"));
 		yourColumn.setCellValueFactory(new PropertyValueFactory<InvitationVeiw, String>("yourStatus"));
 	}

@@ -61,20 +61,24 @@ public class MeetingDB extends DatabaseConnection{
 		return invitationlist;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static List<InvitationVeiw> getAllInvitationViewsWithAttendence(LoginUser user){
 		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meeting.owner, meeting.mDescription, meeting.meetingID, participant.attendence FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.mDescription, meeting.meetingID, participant.attendence, meeting.timeStart, meeting.timeEnd FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"'");
 			String temp;
 			while (myRs.next()){
-				if(0>myRs.getInt(4))
+				if(0>myRs.getInt(3))
 					temp = "Deltar ikke";
-				else if (0 == myRs.getInt(4))
+				else if (0 == myRs.getInt(3))
 					temp = "ikke svart";
 				else
 					temp = "Deltar";
-				invitationlist.add(new InvitationVeiw(myRs.getString(1), myRs.getString(2),""+myRs.getInt(3), temp));
+				
+				LocalDateTime tidFra = Meeting.convertStringToDate(myRs.getString(4)); 
+				LocalDateTime tidTil = Meeting.convertStringToDate(myRs.getString(5));
+				invitationlist.add(new InvitationVeiw(myRs.getString(1),""+myRs.getInt(2), temp,tidFra.toLocalTime().toString(), tidTil.toLocalTime().toString(), tidFra.toLocalDate().toString()));
 			};
 			System.out.println("Got all invitations");
 		} catch (SQLException e) {
