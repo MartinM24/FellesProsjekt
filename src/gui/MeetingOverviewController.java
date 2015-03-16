@@ -103,7 +103,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     			meeting.getDescription(),
     			meeting.getPlace(),
     			room,
-    			MeetingDB.getAttendence(CalendarClient.getCurrentUser(), meeting)+"");
+    			MeetingDB.getParticipants(meeting.getMeetingID()).size()+"");
     }
 	
     private void tableSetup(){
