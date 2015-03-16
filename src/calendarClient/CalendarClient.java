@@ -101,7 +101,6 @@ public class CalendarClient extends Application{
         mainController.loadScreen(MEETING_ATTENDENCE_SCREEN, MEETING_ATTENDENCE_FXML);
 
         // Make view form loaded screens
-		System.out.println("Load screens");
 		mainController.makeView(ADD_MEETING_VIEW, ADD_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(LOG_IN_VIEW, LOG_IN_SCREEN);
         mainController.makeView(NEW_USER_VIEW, NEW_USER_SCREEN);

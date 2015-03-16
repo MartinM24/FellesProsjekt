@@ -28,9 +28,7 @@ public class RoomDB extends DatabaseConnection {
             PreparedStatement preparedMeetingStmt = con.prepareStatement(meetingQuery);
             preparedMeetingStmt.setString(1, room.getName());
             preparedMeetingStmt.setInt(2, room.getCapacity());
-            int res = preparedMeetingStmt.executeUpdate();
-            if (res > 0) {
-            }
+            preparedMeetingStmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
