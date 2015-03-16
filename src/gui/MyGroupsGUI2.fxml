@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -48,8 +49,17 @@
                   <Button fx:id="deleteGroupButton" mnemonicParsing="false" onAction="#deleteGroupAction" prefHeight="30.0" prefWidth="90.0" text="Slett Gruppe" GridPane.columnIndex="2" />
                </children>
             </GridPane>
-            <ListView fx:id="groupsListView" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <ListView fx:id="membersListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ListView fx:id="groupsListView" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></ListView>
+            <ListView fx:id="membersListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></ListView>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Medlemmer" GridPane.columnIndex="2" />
             <GridPane alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="2">
               <columnConstraints>
