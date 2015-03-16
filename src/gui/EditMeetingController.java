@@ -113,6 +113,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
                     removeName(str);
                 }
             }
+            cameFromRoomOverview = false;
             participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
 		}
 	}
@@ -142,7 +143,9 @@ public class EditMeetingController implements ControlledScreen, Initializable {
             roomCtrl.setCapacity(getCapacity());
             roomCtrl.setStart(getStartTime());
             roomCtrl.setEnd(getEndTime());
-			myController.setView(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
+            roomCtrl.setCameFromView(CalendarClient.EDIT_MEETING_VIEW);
+            myController.setView(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
+            cameFromRoomOverview = true;
 		}
 		
 	}

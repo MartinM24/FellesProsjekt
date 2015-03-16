@@ -29,6 +29,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	private LocalDateTime start;
 	private LocalDateTime end;
 	private int capacity;
+    private String cameFromView;
 	
 	@FXML TableView<RoomVeiw> roomTable;
 	@FXML TableColumn<RoomVeiw, String> nameColumn;
@@ -56,7 +57,8 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
             EditMeetingController editCtrl = (EditMeetingController) myController.getControllerForScreen(CalendarClient.EDIT_MEETING_SCREEN);
             editCtrl.chosenroomLabel.setText(room.getName());
             editCtrl.cameFromRoomOverview = true;
-            myController.setView(CalendarClient.ADD_MEETING_VIEW);
+
+            myController.setView(cameFromView);
 		} else {
 			if (warning.getText().equals("Venligst velg et ledig rom.")){
 				warning.setText("Ledig rom er rom med status ledig.");
@@ -66,7 +68,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	}
 	
 	public void cancelButtonClick(ActionEvent e){
-		myController.setView(CalendarClient.ADD_MEETING_VIEW);				
+		myController.setView(getCameFromView());
 	}
 	
 	/** 
@@ -100,12 +102,13 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 		for (int i = 0; i<roomsDB.size(); i++){
 			availability.add(RoomDB.getAvailability(roomsDB.get(i).getName(), ignoreMeeting));
 			status.add(i, "Ledig");
+            if (roomsDB.get(i).getCapacity() < this.capacity) {
+                status.set(i, "For lite");
+            }
+            System.out.println(roomsDB.get(i).getCapacity() < this.capacity);
 			for (int j = 0; j<availability.get(i).size(); j++){
 				if (checkAvailability(availability.get(i).get(j))){
 					status.set(i, "Opptatt");
-				}
-				else if(roomsDB.get(i).getCapacity()< this.capacity){
-					status.set(i, "For lite");
 				}
 			}
 			data.add(new RoomVeiw(roomsDB.get(i).getName(), ""+roomsDB.get(i).getCapacity(), status.get(i)));
@@ -144,7 +147,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	
 	@Override
 	public void viewRefresh() {
-		System.out.println("Capacity = "+capacity);
+		System.out.println("Capacity = "+ capacity);
 		data = FXCollections.observableArrayList();
 		this.addMeetingCtrl = myController.getControllerForScreen(CalendarClient.ADD_MEETING_SCREEN);
 
@@ -158,6 +161,14 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 		capacityColumn.setCellValueFactory(new PropertyValueFactory<RoomVeiw, String>("capacityString"));
 		
 	}
+
+    public String getCameFromView() {
+        return cameFromView;
+    }
+
+    public void setCameFromView(String cameFromView) {
+        this.cameFromView = cameFromView;
+    }
 
     @Override
     public void clearView() {

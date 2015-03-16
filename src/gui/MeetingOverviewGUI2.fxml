@@ -40,6 +40,7 @@
                         </Label>
                         <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" text="Se mer" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
                         <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" text="Rediger" GridPane.columnIndex="1" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClick" text="Slett" GridPane.columnIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="349.0" />
