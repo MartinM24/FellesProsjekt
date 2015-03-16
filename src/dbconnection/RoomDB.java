@@ -2,7 +2,6 @@ package dbconnection;
 
 import model.Meeting;
 import model.Room;
-import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
