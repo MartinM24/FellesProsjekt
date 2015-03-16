@@ -24,7 +24,7 @@ public class MeetingPane extends VBox {
     public MeetingPane(Meeting m) {
         this.m = m;
         ((GridPane)this.getParent()).setMargin(this, new Insets(0.5, 2, 0, 2));
-        this.setStyle(m.getFXStyle());
+        this.setStyle(m.getFXStyle() + ";-fx-border-color: white; -fx-border-width: 1");
         Label time = new Label(m.getStartString() + " - " + m.getEndString());
         Label desc = new Label(m.getDescription());
         time.setFont(new Font(10));

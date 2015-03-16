@@ -172,7 +172,7 @@ public class CalendarPane extends GridPane {
             }
             int columnIndex = day.getFirstColumnIndex() + column;
             int rowIndex =  getPosFromTime(meeting.getTimeStart().toLocalTime());
-            int rowSpan = getEndPosFromTime(    meeting.getTimeEnd().toLocalTime()) - rowIndex;
+            int rowSpan = getEndPosFromTime(meeting.getTimeEnd().toLocalTime()) - rowIndex;
             if (rowSpan < 1) rowSpan = 1;
             int columnSpan = day.getNumberOfColumns() - numOverlaps;
             day.addMeetingToColumn(meeting, column);
