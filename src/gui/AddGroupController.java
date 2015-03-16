@@ -68,7 +68,7 @@ public class AddGroupController implements ControlledScreen, Initializable{
 			chooseParentComboBox.setVisible(true);
 		}
 		else{
-			chooseParentComboBox.setValue("");
+			chooseParentComboBox.getSelectionModel().clearSelection();
 			chooseParentComboBox.setVisible(false);
 		}
 	}
@@ -122,7 +122,11 @@ public class AddGroupController implements ControlledScreen, Initializable{
 	}
 
 	private Group getParent(){
-		return new Group(chooseParentComboBox.getValue());
+        if(chooseParentComboBox.getValue() == null)
+            return null;
+        if (chooseParentComboBox.getValue().trim().length() > 0)
+		    return new Group(chooseParentComboBox.getValue());
+        return null;
 	}
 	
 	private List<User> getMembers(){

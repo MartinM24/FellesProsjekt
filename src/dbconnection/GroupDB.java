@@ -39,7 +39,9 @@ public class GroupDB extends DatabaseConnection{
 			return myRs.getString(1);
 		}
 			catch (Exception e) {
-			System.out.println(e.getMessage());
+                e.printStackTrace();
+
+                System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -63,7 +65,9 @@ public class GroupDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE groups SET parentID = '"+parentGroup.getName()+"' WHERE groupName = '" + group.getName() + "'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
@@ -72,7 +76,9 @@ public class GroupDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("UPDATE groups SET parentID = 'NULL' WHERE groupName = '" + group.getName() + "'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
@@ -81,7 +87,9 @@ public class GroupDB extends DatabaseConnection{
 			Statement myStatement = con.createStatement(); 
 			myStatement.executeUpdate("DELETE FROM usergrouplink WHERE username = '" + user.getUsername() + "' AND groupName =  '"+group.getName()+"'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
@@ -94,7 +102,9 @@ public class GroupDB extends DatabaseConnection{
 			}
 			myStatement.executeUpdate("DELETE FROM groups WHERE groupName = '" + group.getName()+"'");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 	}
 	
@@ -127,7 +137,8 @@ public class GroupDB extends DatabaseConnection{
 			} 
 			return rList;
 		}
-			catch (Exception e) {
+		catch (Exception e) {
+            e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 		return null;
@@ -151,7 +162,8 @@ public class GroupDB extends DatabaseConnection{
 			return groupMap;
 		}
 			catch (Exception e) {
-			System.out.println(e.getMessage());
+                e.printStackTrace();
+                System.out.println(e.getMessage());
 		}
 		return null;
 	}
@@ -166,7 +178,9 @@ public class GroupDB extends DatabaseConnection{
 			}
 			return returnList;
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            System.out.println(e.getMessage());
 		}
 		return null;
 	}

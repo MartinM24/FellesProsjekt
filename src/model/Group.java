@@ -23,7 +23,6 @@ public class Group implements Iterable<User>{
 		this.name = name;
 		subGroups = new ArrayList<Group>();
 		makeChildren();
-		
 		members = GroupDB.getAllMembers(name);
 		members.addAll(getAllMembers(this, members));
 	}
