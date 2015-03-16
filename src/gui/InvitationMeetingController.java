@@ -92,6 +92,6 @@ public class InvitationMeetingController implements ControlledScreen, Initializa
 
     @Override
     public void clearView() {
-
+    	table.setItems(null);
     }
 }
