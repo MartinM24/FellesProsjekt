@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
@@ -8,7 +9,7 @@
 
 <GridPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="100.0" prefHeight="56.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.GlobalMenuController">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="297.0" minWidth="10.0" prefWidth="158.0" />
+    <ColumnConstraints hgrow="NEVER" maxWidth="297.0" minWidth="10.0" prefWidth="158.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="470.0" minWidth="10.0" prefWidth="134.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="470.0" minWidth="10.0" prefWidth="141.0" />
       <ColumnConstraints maxWidth="329.0" minWidth="88.0" prefWidth="307.0" />
@@ -17,7 +18,10 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonClick" text="Logg ut" GridPane.columnIndex="1" />
+      <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonClick" prefHeight="30.0" prefWidth="60.0" text="Logg ut" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin></Button>
       <Label fx:id="usernameLabel" prefHeight="16.0" prefWidth="128.0" text="User: Username" />
    </children>
 </GridPane>

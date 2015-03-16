@@ -35,18 +35,17 @@
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.0" minWidth="10.0" prefWidth="400.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="559.0" minWidth="10.0" prefWidth="135.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="120.0" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="130.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="130.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="130.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="120.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="agree" mnemonicParsing="false" onAction="#agreeButtonClick" prefHeight="21.0" prefWidth="72.0" text="Godta" GridPane.columnIndex="1" />
-                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="28.0" prefWidth="66.0" text="Avslå" GridPane.columnIndex="2" />
-                        <Button fx:id="done" mnemonicParsing="false" onAction="#doneButtonClick" prefHeight="31.0" prefWidth="67.0" text="Ferdig" GridPane.columnIndex="4" />
+                        <Button fx:id="agree" mnemonicParsing="false" onAction="#agreeButtonClick" prefHeight="30.0" prefWidth="60.0" text="Godta" GridPane.columnIndex="1" />
+                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="30.0" prefWidth="60.0" text="Avslå" GridPane.columnIndex="2" />
+                        <Button fx:id="done" mnemonicParsing="false" onAction="#doneButtonClick" prefHeight="30.0" prefWidth="60.0" text="Ferdig" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
                </children>

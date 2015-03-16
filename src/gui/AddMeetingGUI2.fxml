@@ -10,11 +10,11 @@
       <TextField fx:id="subjectField" maxWidth="-Infinity" prefHeight="26.0" prefWidth="390.0" promptText="F.eks Møtebeskrivelse" GridPane.columnIndex="3" GridPane.rowIndex="1" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="fromtimeField" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="25.0" prefWidth="115.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <TextField fx:id="fromtimeField" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="30.0" prefWidth="120.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="totimeField" maxWidth="-Infinity" onFocusedChange="#totimeFieldChange" prefHeight="26.0" prefWidth="115.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <TextField fx:id="totimeField" maxWidth="-Infinity" onFocusedChange="#totimeFieldChange" prefHeight="30.0" prefWidth="120.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagere/grupper" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <DatePicker fx:id="fromDatePicker" onFocusedChange="#datePickerChange" prefHeight="25.0" prefWidth="150.0" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <DatePicker fx:id="fromDatePicker" onFocusedChange="#datePickerChange" prefHeight="30.0" prefWidth="120.0" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label text="Legg til møte" GridPane.columnIndex="1">
          <font>
@@ -33,12 +33,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="68.0" text="Avbryt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="68.0" text="OK" GridPane.rowIndex="1" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="30.0" prefWidth="60.0" text="Avbryt" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="30.0" prefWidth="60.0" text="Opprett" GridPane.rowIndex="1" />
             <Label fx:id="label" prefHeight="41.0" prefWidth="90.0" />
          </children>
       </GridPane>
-      <ComboBox fx:id="participantComboBox" prefHeight="26.0" prefWidth="389.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+      <ComboBox fx:id="participantComboBox" prefHeight="30.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
       <ListView fx:id="participantListView" maxWidth="-Infinity" onMouseClicked="#handleMouseClick" prefHeight="100.0" prefWidth="388.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
       <Text layoutX="85.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plass" GridPane.columnIndex="1" GridPane.rowIndex="5" />
       <TextField fx:id="placeField" layoutX="428.0" layoutY="68.0" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="26.0" prefWidth="390.0" promptText="F.eks. Somewhere over the rainbow" GridPane.columnIndex="3" GridPane.rowIndex="5" />
@@ -54,8 +54,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" prefHeight="31.0" prefWidth="119.0" text="Finn Møterom" GridPane.columnIndex="1" />
-            <Button fx:id="removeRoomButton" mnemonicParsing="false" onAction="#removeRoomButtonClick" text="Fjern Møterom" GridPane.columnIndex="2" />
+            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" prefHeight="30.0" prefWidth="120.0" text="Finn Møterom" GridPane.columnIndex="1" />
+            <Button fx:id="removeRoomButton" mnemonicParsing="false" onAction="#removeRoomButtonClick" prefHeight="30.0" prefWidth="120.0" text="Fjern Møterom" GridPane.columnIndex="2" />
             <Label fx:id="chosenroomLabel" text="" />
          </children>
       </GridPane>

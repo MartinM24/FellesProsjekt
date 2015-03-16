@@ -44,8 +44,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="newGroupButton" mnemonicParsing="false" onAction="#newGroupButtonClick" text="Ny gruppe" />
-                  <Button fx:id="deleteGroupButton" mnemonicParsing="false" onAction="#deleteGroupAction" text="Slett Gruppe" GridPane.columnIndex="2" />
+                  <Button fx:id="newGroupButton" mnemonicParsing="false" onAction="#newGroupButtonClick" prefHeight="30.0" prefWidth="90.0" text="Ny gruppe" />
+                  <Button fx:id="deleteGroupButton" mnemonicParsing="false" onAction="#deleteGroupAction" prefHeight="30.0" prefWidth="90.0" text="Slett Gruppe" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <ListView fx:id="groupsListView" onMouseClicked="#handleMouseClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -61,8 +61,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="okButton" alignment="CENTER" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="26.0" prefWidth="65.0" text="OK" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                  <Button fx:id="editGroupButton" mnemonicParsing="false" text="Rediger" />
+                  <Button fx:id="okButton" alignment="CENTER" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="30.0" prefWidth="90.0" text="Tilbake" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="1">

@@ -19,12 +19,12 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="chooseCalendarsButton" mnemonicParsing="false" onAction="#chooseCalendarsButtonClick" prefHeight="31.0" prefWidth="132.0" text="Velg kalender" />
-      <Button fx:id="myGroupsButton" mnemonicParsing="false" onAction="#myGroupsButtonClick" prefHeight="31.0" prefWidth="132.0" text="Mine grupper" GridPane.rowIndex="1" />
-      <Button fx:id="meetingOverviewButton" mnemonicParsing="false" onAction="#meetingOverviewButtonClick" prefHeight="31.0" prefWidth="132.0" text="Møteoversikt" GridPane.rowIndex="2" />
-      <Button fx:id="myInvitation" mnemonicParsing="false" onAction="#myInvitationButtonClick" prefHeight="31.0" prefWidth="132.0" text="Invitasjoner" GridPane.rowIndex="3" />
-      <Button fx:id="changeAttendence" mnemonicParsing="false" onAction="#changeAttendenceButtonClick" prefHeight="31.0" prefWidth="132.0" text="Endre deltagelse" GridPane.rowIndex="4" />
-      <Button fx:id="notificationButton" layoutX="10.0" layoutY="110.0" mnemonicParsing="false" onAction="#notificationButtonClick" prefHeight="31.0" prefWidth="132.0" text="Notifikasjoner" GridPane.rowIndex="5" />
-      <Button fx:id="addMeetingButton" mnemonicParsing="false" onAction="#addMeetingButtonClick" prefHeight="31.0" prefWidth="132.0" text="Nytt møte" GridPane.rowIndex="6" />
+      <Button fx:id="chooseCalendarsButton" mnemonicParsing="false" onAction="#chooseCalendarsButtonClick" prefHeight="30.0" prefWidth="120.0" text="Velg kalender" />
+      <Button fx:id="myGroupsButton" mnemonicParsing="false" onAction="#myGroupsButtonClick" prefHeight="30.0" prefWidth="120.0" text="Mine grupper" GridPane.rowIndex="1" />
+      <Button fx:id="meetingOverviewButton" mnemonicParsing="false" onAction="#meetingOverviewButtonClick" prefHeight="30.0" prefWidth="120.0" text="Møteoversikt" GridPane.rowIndex="2" />
+      <Button fx:id="myInvitation" mnemonicParsing="false" onAction="#myInvitationButtonClick" prefHeight="30.0" prefWidth="120.0" text="Invitasjoner" GridPane.rowIndex="3" />
+      <Button fx:id="changeAttendence" mnemonicParsing="false" onAction="#changeAttendenceButtonClick" prefHeight="30.0" prefWidth="120.0" text="Endre deltagelse" GridPane.rowIndex="4" />
+      <Button fx:id="notificationButton" layoutX="10.0" layoutY="110.0" mnemonicParsing="false" onAction="#notificationButtonClick" prefHeight="30.0" prefWidth="120.0" text="Notifikasjoner" GridPane.rowIndex="5" />
+      <Button fx:id="addMeetingButton" mnemonicParsing="false" onAction="#addMeetingButtonClick" prefHeight="30.0" prefWidth="120.0" text="Nytt møte" GridPane.rowIndex="6" />
    </children>
 </GridPane>

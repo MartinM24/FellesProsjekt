@@ -32,35 +32,35 @@
                <children>
                   <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="70.0" text="OK" GridPane.halignment="CENTER" />
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="30.0" prefWidth="60.0" text="Tilbake" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
                         <Label fx:id="warning" prefHeight="30.0" prefWidth="167.0" textFill="RED" GridPane.columnIndex="1">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" text="Se deltagelse" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" text="Rediger" GridPane.columnIndex="1" />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClick" text="Slett" GridPane.columnIndex="2" />
+                        <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" prefHeight="30.0" prefWidth="120.0" text="Se deltagelse" GridPane.halignment="LEFT" />
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="30.0" prefWidth="60.0" text="Rediger" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClick" prefHeight="30.0" prefWidth="60.0" text="Slett" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                      </children>
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="349.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="131.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="181.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="93.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="186.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="197.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="205.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="120.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <TableView fx:id="meetingOverviewTableView" onMouseReleased="#meetingOverviewClicked" prefHeight="487.0" prefWidth="446.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView fx:id="meetingOverviewTableView" onMouseReleased="#meetingOverviewClicked" prefHeight="487.0" prefWidth="520.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <columns>
-                        <TableColumn fx:id="titleColumn" prefWidth="108.0" text="Tittel" />
+                        <TableColumn fx:id="titleColumn" prefWidth="180.0" text="Tittel" />
                         <TableColumn fx:id="placeColumn" minWidth="0.0" prefWidth="120.0" text="Sted" />
-                        <TableColumn fx:id="roomColumn" minWidth="0.0" text="Rom" />
-                        <TableColumn fx:id="dateColumn" prefWidth="99.0" text="Dato" />
-                        <TableColumn fx:id="timeFromColumn" prefWidth="100.0" text="Start" />
-                        <TableColumn fx:id="timeTooColumn" prefWidth="95.0" text="Slutt" />
-                        <TableColumn fx:id="statusColumn" text="Deltagende" />
+                        <TableColumn fx:id="roomColumn" minWidth="0.0" prefWidth="120.0" text="Rom" />
+                        <TableColumn fx:id="dateColumn" prefWidth="90.0" text="Dato" />
+                        <TableColumn fx:id="timeFromColumn" prefWidth="60.0" text="Start" />
+                        <TableColumn fx:id="timeTooColumn" prefWidth="60.0" text="Slutt" />
+                        <TableColumn fx:id="statusColumn" prefWidth="90.0" text="Deltagende" />
                      </columns>
                   </TableView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteoversikt">
