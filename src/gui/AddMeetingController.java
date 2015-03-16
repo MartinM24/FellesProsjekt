@@ -220,7 +220,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			List<Group> partakingGroups = new ArrayList<Group>();
             if(participantListView.getItems() != null){
                 for(String str : participantListView.getItems()){
-                    String[] parts = str.split(":", 2);
+                    String[] parts = str.split(":");
                     if (parts[0].trim().equalsIgnoreCase("Gruppe")){
                         partakingGroups.add(new Group(parts[1].trim()));
                     }
@@ -270,7 +270,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			userNames.add(CalendarClient.getCurrentUser().getUsername());
             if(participantListView.getItems() != null) {
                 for(String str : participantListView.getItems()){
-                    String[] parts = str.split(":", 2);
+                    String[] parts = str.split(":");
                     if (parts[0].trim().equalsIgnoreCase("Gruppe")){
                         for(User user : GroupDB.getAllMembers(parts[1].trim())){
                             userNames.add(user.getUsername());
