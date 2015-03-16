@@ -85,6 +85,45 @@ public class MeetingDB extends DatabaseConnection{
 		return invitationlist;
 	}
 	
+	public static List<Meeting> getAlarmTriggered(User user){
+		List<Meeting> rList = new ArrayList<Meeting>();
+		try{
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT meetingID, alarmtid FROM participante WHERE username='"+user.getUsername()+"'");
+			while (myRs.next()){
+				LocalDateTime tid = Meeting.convertStringToDate(myRs.getString(2));
+				if(tid.isAfter(LocalDateTime.now())){
+					rList.add(MeetingDB.getMeeting(myRs.getInt(1)));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return rList;
+	}
+	
+	
+	
+	public static void setAlarm(int meetingID, User user, LocalDateTime time){
+		try {
+			Statement myStatement = con.createStatement();
+				myStatement.executeUpdate("UPDATE participant SET alarmtid='"+getDBTime(time)+"' WHERE meetingID='"+meetingID+"' AND username = '"+user.getUsername()+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}	
+	}
+	
+	public static void setAlarm(int meetingID, User user){
+		try {
+			Statement myStatement = con.createStatement();
+				myStatement.executeUpdate("UPDATE participant SET alarmtid = 'NULL' WHERE meetingID='"+meetingID+"' AND username = '"+user.getUsername()+"'");
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}	
+	}
+	
 	public static void updateInvitation(String meetingID, int attendence){
 		try {
 			Statement myStatement = con.createStatement(); 
@@ -504,7 +543,9 @@ public class MeetingDB extends DatabaseConnection{
     		updateParticipant(meeting.getMeetingID(), user, "placeChange", false);
     		updateParticipant(meeting.getMeetingID(), user, "descriptionChange", false);
     	}
-    	
+    	for(Meeting meeting : MeetingDB.getAllMeetings(user)){
+    		MeetingDB.setAlarm(meeting.getMeetingID(), user);
+    	}
     }
     
     public static List<String> getAllChanges(User user){
@@ -528,6 +569,9 @@ public class MeetingDB extends DatabaseConnection{
     		}
     	}
     	List<String> changeMessages = new ArrayList<String>();
+    	for(Meeting meeting : MeetingDB.getAlarmTriggered(user)){
+    		changeMessages.add("Din alarm for "+meeting.getDescription()+" er aktivert");
+    	}
     	for(int i = 0 ; i < changes.size() ; i++){
     		changeMessages.add(getMessage(meetings.get(i), changes.get(i)));
     	}
@@ -549,7 +593,7 @@ public class MeetingDB extends DatabaseConnection{
     		changesString.add("Beskrivelse");
     	}
     	
-    	String str = "M�te "+ meeting.getDescription()+" er endret. ";
+    	String str = meeting.getDescription()+" er endret. ";
     	for(int i = 0 ; i < changesString.size() ; i++){
     		if(i==0){
     			str+=changesString.get(i);
