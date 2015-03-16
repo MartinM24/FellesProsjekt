@@ -15,13 +15,14 @@ public class InvitationVeiw {
 		this.meetingID = meetingID;
 	}
 	
-	public InvitationVeiw(String invitationName, String meetingID, String yourStatus, String timeTo, String timeFrom, String date){
+	public InvitationVeiw(String invitationName, String meetingID, String yourStatus, String timeTo, String timeFrom, String date, String sender){
 		this.invitationName = invitationName;
 		this.meetingID = meetingID;
 		this.yourStatus = yourStatus;
 		this.timeTo = timeTo;
 		this.timeFrom = timeFrom;
 		this.date = date; 
+		this.sender = sender;
 	}
 	
 	

@@ -64,9 +64,12 @@ public class MeetingDB extends DatabaseConnection{
 		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meeting.mDescription, meeting.meetingID, participant.attendence, meeting.timeStart, meeting.timeEnd FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.mDescription, meeting.meetingID, participant.attendence, meeting.timeStart, meeting.timeEnd, meeting.owner FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID WHERE participant.username='"+user.getUsername()+"'");
 			String temp;
 			while (myRs.next()){
+				Statement myStatement2 = con.createStatement();
+				ResultSet myRs2 = myStatement.executeQuery("SELECT firstname, lastname FROM users WHERE username='"+myRs.getString(6)+"'");
+				myRs2.next();
 				if(0>myRs.getInt(3))
 					temp = "Deltar ikke";
 				else if (0 == myRs.getInt(3))
@@ -76,7 +79,7 @@ public class MeetingDB extends DatabaseConnection{
 				
 				LocalDateTime tidFra = Meeting.convertStringToDate(myRs.getString(4)); 
 				LocalDateTime tidTil = Meeting.convertStringToDate(myRs.getString(5));
-				invitationlist.add(new InvitationVeiw(myRs.getString(1),""+myRs.getInt(2), temp,tidFra.toLocalTime().toString(), tidTil.toLocalTime().toString(), tidFra.toLocalDate().toString()));
+				invitationlist.add(new InvitationVeiw(myRs.getString(1),""+myRs.getInt(2), temp,tidFra.toLocalTime().toString(), tidTil.toLocalTime().toString(), tidFra.toLocalDate().toString(), myRs2.getString(1)+" "+myRs2.getInt(2)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
