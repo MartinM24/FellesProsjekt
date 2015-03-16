@@ -18,7 +18,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonClick" prefHeight="30.0" prefWidth="60.0" text="Logg ut" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+      <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutButtonClick" prefHeight="31.0" prefWidth="77.0" text="Logg ut" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
          <GridPane.margin>
             <Insets />
          </GridPane.margin></Button>
