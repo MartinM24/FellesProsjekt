@@ -46,8 +46,19 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 
 	private void update() {
 		groups = GroupDB.getAllGroups(CalendarClient.getCurrentUser().getUsername());
-    	System.out.println(groups);
     	groupsListView.setItems(FXCollections.observableArrayList(groups));
+	}
+	
+	@FXML
+	public void showAllGroupsCheck(ActionEvent e){
+		membersListView.setItems(null);
+		if(showAllGroupsCheckBox.isSelected()){
+			groups = GroupDB.getallGroups();
+		}
+		else{
+			groups = GroupDB.getAllGroups(CalendarClient.getCurrentUser().getUsername());
+		}
+		groupsListView.setItems(FXCollections.observableArrayList(groups));
 	}
 
     @FXML
