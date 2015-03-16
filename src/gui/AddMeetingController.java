@@ -209,6 +209,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		
 	}
 	
+	@FXML
 	public void okButtonClick(ActionEvent e){
 		//
 		//Valider antall participants og place
