@@ -34,51 +34,51 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     @FXML
     public void chooseCalendarsButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
-		myController.setView(CalendarClient.CHOOSE_CALENDARS_VIEW);
         CalendarClient.ClearAllViews();
+		myController.setView(CalendarClient.CHOOSE_CALENDARS_VIEW);
     }
     
     @FXML
     public void changeAttendenceButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
-		myController.setView(CalendarClient.CHANGE_ATTENDENCE_VIEW);
         CalendarClient.ClearAllViews();
+		myController.setView(CalendarClient.CHANGE_ATTENDENCE_VIEW);
     }
     
     @FXML
     public void myInvitationButtonClick(ActionEvent e){
 		//Move user to invitationoverview. 
-		myController.setView(CalendarClient.INVITATION_MEETING_VIEW);
         CalendarClient.ClearAllViews();
+		myController.setView(CalendarClient.INVITATION_MEETING_VIEW);
     }
     
     @FXML
     public void notificationButtonClick(ActionEvent e){
 		//Move user to invitationoverview. 
-		myController.setView(CalendarClient.NOTIFICATION_VIEW);
         CalendarClient.ClearAllViews();
+		myController.setView(CalendarClient.NOTIFICATION_VIEW);
     }
    
     @FXML
     public void myGroupsButtonClick(ActionEvent e){
 		//Move user to myGroups. 
-		myController.setView(CalendarClient.MY_GROUPS_VIEW);
         CalendarClient.ClearAllViews();
+		myController.setView(CalendarClient.MY_GROUPS_VIEW);
     }
     
     @FXML
     public void meetingOverviewButtonClick(ActionEvent e){
 		//Move user back to meetingOverview. 
-		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
         CalendarClient.ClearAllViews();
+		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
     }
    
     
     @FXML
     private void addMeetingButtonClick(ActionEvent e){
 		//Move user back to addMeetign. 
-		myController.setView(CalendarClient.ADD_MEETING_VIEW);
         CalendarClient.ClearAllViews();
+		myController.setView(CalendarClient.ADD_MEETING_VIEW);
 	}
    
     

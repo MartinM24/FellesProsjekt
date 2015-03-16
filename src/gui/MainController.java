@@ -5,8 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainController extends BorderPane {
 	/**
@@ -133,7 +135,8 @@ public class MainController extends BorderPane {
     }
 
     public List<ControlledScreen> getAllControllers() {
-        return (List<ControlledScreen>) controllers.values();
+        List<ControlledScreen> res = controllers.values().stream().collect(Collectors.toList());
+        return res;
     }
 
 }
