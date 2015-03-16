@@ -54,7 +54,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" prefHeight="26.0" prefWidth="110.0" text="Finn Møterom" GridPane.columnIndex="1" />
+            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" prefHeight="31.0" prefWidth="119.0" text="Finn Møterom" GridPane.columnIndex="1" />
             <Button fx:id="removeRoomButton" mnemonicParsing="false" onAction="#removeRoomButtonClick" text="Fjern Møterom" GridPane.columnIndex="2" />
             <Label fx:id="chosenroomLabel" text="" />
          </children>

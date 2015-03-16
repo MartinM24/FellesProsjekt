@@ -38,8 +38,9 @@
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" prefHeight="62.0" prefWidth="86.0" text="Se deltagelse" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
-                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="101.0" prefWidth="57.0" text="Rediger" GridPane.columnIndex="2" />
+                        <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" text="Se deltagelse" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" text="Rediger" GridPane.columnIndex="1" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClick" text="Slett" GridPane.columnIndex="2" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="349.0" />

@@ -40,6 +40,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     @FXML Button okButton;
     @FXML Button seeMoreButton;
     @FXML Button editButton;
+    @FXML Button deleteButton;
     @FXML Label warning;
     
 	private ObservableList<MeetingVeiw> data = FXCollections.observableArrayList();
@@ -63,6 +64,13 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
         }
     }
 
+    @FXML
+    private void deleteButtonClick(ActionEvent e) {
+        int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
+        MeetingDB.deleteMeeting(meetingID, CalendarClient.getCurrentUser());
+        viewRefresh();
+
+    }
 
     @FXML
     private void meetingOverviewClicked(MouseEvent e){
