@@ -324,7 +324,7 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 			participantNames.add("Gruppe: "+str);
 		}
 		for(String str : users){
-			participantNames.add("Bruker: "+str);
+			participantNames.add("Bruker: " + str + ": " + UserDB.getUser(str).getFirstname() + " " + UserDB.getUser(str).getLastname());
 		}
 		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
 	}

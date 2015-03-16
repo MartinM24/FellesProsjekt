@@ -32,7 +32,6 @@ public class MeetingPane extends VBox {
         this.getChildren().addAll(time, desc);
 
         this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
             @Override
             public void handle(MouseEvent event) {
                 CalendarClient.mainController.setView(CalendarClient.ADD_MEETING_VIEW);
