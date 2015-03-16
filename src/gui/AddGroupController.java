@@ -31,9 +31,9 @@ import javafx.scene.input.MouseEvent;
 public class AddGroupController implements ControlledScreen, Initializable{
 
 	private static final String GROUPNAME_REGEX = "^[a-zA-Z0-9_-]{3,16}$";
-	private List<String> memberList = new ArrayList<String>();
-	private List<String> usernames = new ArrayList<String>();
-	private List<String> groupNames = new ArrayList<String>();
+	private List<String> memberList = new ArrayList<>();
+	private List<String> usernames = new ArrayList<>();
+	private List<String> groupNames = new ArrayList<>();
 	MainController myController;
 	
 	//Button

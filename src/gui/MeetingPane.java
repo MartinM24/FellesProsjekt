@@ -16,11 +16,13 @@ import java.time.LocalDateTime;
  * Created by Martin on 11.03.15.
  */
 public class MeetingPane extends VBox {
-    LocalDateTime startTime;
-    LocalDateTime endTime;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private Meeting m;
 
 
     public MeetingPane(Meeting m) {
+        this.m = m;
         ((GridPane)this.getParent()).setMargin(this, new Insets(0.5, 2, 0, 2));
         this.setStyle(m.getFXStyle());
         Label time = new Label(m.getStartString() + " - " + m.getEndString());

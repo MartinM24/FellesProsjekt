@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import model.Meeting;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -145,6 +146,18 @@ public class CalendarPane extends GridPane {
         return kvarter -1;
     }
 
+    public int getEndPosFromTime(LocalTime time) {
+        int kvarter = time.getHour() * 4;
+        if (time.getMinute() < 15)
+            kvarter += 1;
+        else if (time.getMinute() < 30)
+            kvarter += 2;
+        else if (time.getMinute() < 45)
+            kvarter += 3;
+        else kvarter += 4;
+        return kvarter;
+    }
+
     public void addMeeting(Meeting meeting, int numOverlaps){
         int dayOfWeek = meeting.getDayOfWeek()-1;
         Day day = days.get(dayOfWeek);
@@ -157,7 +170,7 @@ public class CalendarPane extends GridPane {
             }
             int columnIndex = day.getFirstColumnIndex() + column;
             int rowIndex =  getPosFromTime(meeting.getTimeStart().toLocalTime());
-            int rowSpan = getPosFromTime(meeting.getTimeEnd().toLocalTime()) - rowIndex;
+            int rowSpan = getEndPosFromTime(    meeting.getTimeEnd().toLocalTime()) - rowIndex;
             if (rowSpan < 1) rowSpan = 1;
             int columnSpan = 1; //day.getNumberOfColumns() - numOverlaps;
             day.addMeetingToColumn(meeting, column);
