@@ -81,11 +81,14 @@ public class MeetingDB extends DatabaseConnection{
 		List<Meeting> rList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meetingID, alarmtid FROM participante WHERE username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meetingID, alarmtid FROM participant WHERE username='"+user.getUsername()+"'");
 			while (myRs.next()){
-				LocalDateTime tid = Meeting.convertStringToDate(myRs.getString(2));
-				if(tid.isAfter(LocalDateTime.now())){
-					rList.add(MeetingDB.getMeeting(myRs.getInt(1)));
+				String temp = myRs.getString(2);
+				if(temp!=null){
+					LocalDateTime tid = Meeting.convertStringToDate(temp);
+					if(tid.isAfter(LocalDateTime.now())){
+						rList.add(MeetingDB.getMeeting(myRs.getInt(1)));
+					}
 				}
 			}
 		} catch (SQLException e) {
