@@ -35,43 +35,50 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     public void chooseCalendarsButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
 		myController.setView(CalendarClient.CHOOSE_CALENDARS_VIEW);
-	}
+        CalendarClient.ClearAllViews();
+    }
     
     @FXML
     public void changeAttendenceButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
 		myController.setView(CalendarClient.CHANGE_ATTENDENCE_VIEW);
-	}
+        CalendarClient.ClearAllViews();
+    }
     
     @FXML
     public void myInvitationButtonClick(ActionEvent e){
 		//Move user to invitationoverview. 
 		myController.setView(CalendarClient.INVITATION_MEETING_VIEW);
-	}
+        CalendarClient.ClearAllViews();
+    }
     
     @FXML
     public void notificationButtonClick(ActionEvent e){
 		//Move user to invitationoverview. 
 		myController.setView(CalendarClient.NOTIFICATION_VIEW);
-	}
+        CalendarClient.ClearAllViews();
+    }
    
     @FXML
     public void myGroupsButtonClick(ActionEvent e){
 		//Move user to myGroups. 
 		myController.setView(CalendarClient.MY_GROUPS_VIEW);
-	}
+        CalendarClient.ClearAllViews();
+    }
     
     @FXML
     public void meetingOverviewButtonClick(ActionEvent e){
 		//Move user back to meetingOverview. 
 		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
-	}
+        CalendarClient.ClearAllViews();
+    }
    
     
     @FXML
     private void addMeetingButtonClick(ActionEvent e){
 		//Move user back to addMeetign. 
 		myController.setView(CalendarClient.ADD_MEETING_VIEW);
+        CalendarClient.ClearAllViews();
 	}
    
     
@@ -79,6 +86,7 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     public void setScreenParent(MainController screenPage) {
         this.myController = screenPage;
     }
+
 
     @Override
     public void viewRefresh() {
