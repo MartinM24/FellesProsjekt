@@ -129,14 +129,17 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	
 	@FXML
 	public void handleMouseClick(MouseEvent e){
-		removeParticipant(participantListView.getSelectionModel().getSelectedItem());
-		participantListView.getSelectionModel().clearSelection();
+        String selected = participantListView.getSelectionModel().getSelectedItem();
+        if(selected != null) {
+            removeParticipant(selected);
+            participantListView.getSelectionModel().clearSelection();
+        }
 	}
 	
 	@FXML
 	public void findroomButtonClick(ActionEvent e){
 		if (fromDatePicker.getValue().toString().isEmpty() ||
-				fromtimeField.getText().isEmpty() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty()){
+				fromtimeField.getText().isEmpty() ||  !validateNOfParticipant() || totimeField.getText().isEmpty() || subjectField.getText().isEmpty()){
 			label.setText("Ikke alle verdier er fylt inn");
 		} else {
             MeetingRoomOverviewController roomCtrl = (MeetingRoomOverviewController) myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
@@ -244,15 +247,17 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 
 			List<User> participants = new ArrayList<User>();
 			List<Group> partakingGroups = new ArrayList<Group>();
-			for(String str : participantListView.getItems()){
-				String[] parts = str.split(":", 2);
-				if (parts[0].trim().equalsIgnoreCase("Gruppe")){
-					partakingGroups.add(new Group(parts[1].trim()));
-				}
-				else{
-					participants.add(UserDB.getUser(parts[1].trim()));
-				}
-			}
+            if(participantListView.getItems() != null){
+                for(String str : participantListView.getItems()){
+                    String[] parts = str.split(":", 2);
+                    if (parts[0].trim().equalsIgnoreCase("Gruppe")){
+                        partakingGroups.add(new Group(parts[1].trim()));
+                    }
+                    else{
+                        participants.add(UserDB.getUser(parts[1].trim()));
+                    }
+                }
+            }
 
             room = null;
 			if (chosenroomLabel.getText().trim().length() > 0)
@@ -367,17 +372,20 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 		if(i==-1){
 			Set<String> userNames = new HashSet<>();
 			userNames.add(CalendarClient.getCurrentUser().getUsername());
-			for(String str : participantListView.getItems()){
-				String[] parts = str.split(":", 2);
-				if (parts[0].trim().equalsIgnoreCase("Gruppe")){
-					for(User user : GroupDB.getAllMembers(parts[1].trim())){
-						userNames.add(user.getUsername());
-					}
-				}
-				else{
-					userNames.add(parts[1].trim());
-				}
-			}
+            if(participantListView.getItems() != null) {
+                for(String str : participantListView.getItems()){
+                    String[] parts = str.split(":", 2);
+                    if (parts[0].trim().equalsIgnoreCase("Gruppe")){
+                        for(User user : GroupDB.getAllMembers(parts[1].trim())){
+                            userNames.add(user.getUsername());
+                        }
+                    }
+                    else{
+                        userNames.add(parts[1].trim());
+                    }
+                }
+                return userNames.size();
+            }
 			return userNames.size();
 		}
 		return i;
@@ -425,20 +433,24 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	}
 
 	private void addParticipant(String name){
-		
-		participantNames.remove(name);
-		addedParticipants.add(name);
-		participantListView.setItems(null);
-		participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
-		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+		if(name.trim().length() > 0) {
+            participantNames.remove(name);
+            addedParticipants.add(name);
+            participantListView.setItems(null);
+            participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
+            participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+
+        }
 	}
 	
 	private void removeParticipant(String name){
-		participantNames.add(name);
-		addedParticipants.remove(name);
-		participantListView.setItems(null);
-		participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
-		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+        if(name.trim().length() > 0) {
+            participantNames.add(name);
+            addedParticipants.remove(name);
+            participantListView.setItems(null);
+            participantListView.setItems(FXCollections.observableArrayList(addedParticipants));
+            participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
+        }
 	}
 	
 	@Override
