@@ -5,7 +5,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainController extends BorderPane {
 	/**
@@ -129,6 +132,11 @@ public class MainController extends BorderPane {
         } else {
             throw new IllegalArgumentException("Screen with string name does't excict");
         }
+    }
+
+    public List<ControlledScreen> getAllControllers() {
+        List<ControlledScreen> res = controllers.values().stream().collect(Collectors.toList());
+        return res;
     }
 
 }

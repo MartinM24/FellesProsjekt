@@ -1,5 +1,6 @@
 package calendarClient;
 
+import gui.ControlledScreen;
 import model.LoginUser;
 import gui.MainController;
 import javafx.application.Application;
@@ -142,4 +143,8 @@ public class CalendarClient extends Application{
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+    public static void ClearAllViews(){
+        mainController.getAllControllers().forEach(gui.ControlledScreen::clearView);
+    }
 }

@@ -94,7 +94,9 @@ public class AddMeetingController implements ControlledScreen, Initializable {
 		if(!cameFromRoomOverview){
 			refreshLists();
 		}
-	}
+        cameFromRoomOverview = false;
+
+    }
 	
 	@FXML
 	public void handleMouseClick(MouseEvent e){
@@ -112,8 +114,10 @@ public class AddMeetingController implements ControlledScreen, Initializable {
             roomCtrl.setCapacity(getCapacity());
             roomCtrl.setStart(getStartTime());
             roomCtrl.setEnd(getEndTime());
-			myController.setView(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
-		}
+            roomCtrl.setCameFromView(CalendarClient.ADD_MEETING_VIEW);
+            myController.setView(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
+            cameFromRoomOverview = true;
+        }
 		
 	}
 	
