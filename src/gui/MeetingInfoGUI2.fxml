@@ -47,8 +47,8 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button fx:id="editButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" text="Rediger" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
-                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="65.0" text="Ferdig" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+                        <Button fx:id="editButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" text="Rediger" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="70.0" text="Tilbake" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
                      </children>
                   </GridPane>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Endret" GridPane.columnIndex="1" GridPane.rowIndex="7" />

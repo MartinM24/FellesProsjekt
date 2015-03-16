@@ -80,8 +80,10 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 	@FXML
 	public void deleteGroupAction(ActionEvent e){
 		String groupName = groupsListView.getSelectionModel().getSelectedItem();
-		GroupDB.deleteGroup(new Group(groupName));
-		update();
+		if(groupName.split(" ").length == 1){
+			GroupDB.deleteGroup(new Group(groupName));
+			update();
+		}
 	}
 	
 	@FXML

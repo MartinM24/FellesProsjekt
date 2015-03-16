@@ -22,7 +22,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="65.0" text="Ferdig" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" text="Tilbake" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="25.0" />
