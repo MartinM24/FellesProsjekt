@@ -31,7 +31,7 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
     @FXML TableColumn<MeetingVeiw, String> userColumn;   
     @FXML TableColumn<MeetingVeiw, String> statusColumn;
     
-    @FXML Button okButton;
+    @FXML Button backButton;
   
     MeetingVeiw meeting;
     
@@ -41,7 +41,7 @@ public class MeetingAttendence implements ControlledScreen, Initializable {
 	
 
     @FXML
-    public void okButtonClick(ActionEvent e){
+    public void backButtonClick(ActionEvent e){
 		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
 	}
 		

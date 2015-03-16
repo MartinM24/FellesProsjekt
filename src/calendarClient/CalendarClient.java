@@ -48,6 +48,8 @@ public class CalendarClient extends Application{
 	private static final String CHANGE_ATTENDENCE_SCREEN_FXML = "/gui/ChangeAttendenceGUI2.fxml";
     public static final String EDIT_MEETING_SCREEN = "EditMeeting";
     private static final String EDIT_MEETING_SCREEN_FXML = "/gui/EditMeetingGUI2.fxml";
+    public static final String MEETING_ATTENDENCE_SCREEN = "MeetingAttendence";
+    private static final String MEETING_ATTENDENCE_FXML = "/gui/MeetingAttendenceGUI2.fxml";
 
 
 
@@ -66,6 +68,7 @@ public class CalendarClient extends Application{
     public static final String INVITATION_MEETING_VIEW = "InvitationMeeting";
     public static final String CHANGE_ATTENDENCE_VIEW = "ChangeAttendence";
     public static final String EDIT_MEETING_VIEW = "EditMeeting";
+    public static final String MEETING_ATTENDENCE_VIEW = "MeetingAttendence	";
 
 	private static LoginUser currentUser;
 
@@ -95,6 +98,7 @@ public class CalendarClient extends Application{
         mainController.loadScreen(INVITATION_MEETING_SCREEN, INVITATION_MEETING_SCREEN_FXML);
         mainController.loadScreen(CHANGE_ATTENDENCE_SCREEN, CHANGE_ATTENDENCE_SCREEN_FXML);
         mainController.loadScreen(EDIT_MEETING_SCREEN, EDIT_MEETING_SCREEN_FXML);
+        mainController.loadScreen(MEETING_ATTENDENCE_SCREEN, MEETING_ATTENDENCE_FXML);
 
         // Make view form loaded screens
 		System.out.println("Load screens");
@@ -111,6 +115,7 @@ public class CalendarClient extends Application{
         mainController.makeView(INVITATION_MEETING_VIEW, INVITATION_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(CHANGE_ATTENDENCE_VIEW, CHANGE_ATTENDENCE_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(EDIT_MEETING_VIEW, EDIT_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
+        mainController.makeView(MEETING_ATTENDENCE_VIEW, MEETING_ATTENDENCE_SCREEN,GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
 
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);
