@@ -470,7 +470,7 @@ public class MeetingDB extends DatabaseConnection{
 			Statement sqlSelect = con.createStatement();
 			ResultSet myRs = sqlSelect.executeQuery("SELECT username, attendence FROM participant WHERE meetingID='"+ meeting.getMeetingID() +"'");
 			while(myRs.next()){
-				User user = UserDB.getUser((myRs.getString(5)));
+				User user = UserDB.getUser((myRs.getString(1)));
 				if (myRs.getInt(2) <0)
 					temp = "Deltar ikke";			
 				else if (myRs.getInt(2) == 0)

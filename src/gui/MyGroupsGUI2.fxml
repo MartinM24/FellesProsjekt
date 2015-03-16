@@ -75,7 +75,7 @@
               </rowConstraints>
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Grupper" />
-                  <CheckBox fx:id="showAllGroupsCheckBox" mnemonicParsing="false" text="Vis alle grupper" GridPane.columnIndex="1" />
+                  <CheckBox fx:id="showAllGroupsCheckBox" mnemonicParsing="false" onAction="#showAllGroupsCheck" text="Vis alle grupper" GridPane.columnIndex="1" />
                </children>
             </GridPane>
          </children>

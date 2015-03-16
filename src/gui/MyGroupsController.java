@@ -46,19 +46,34 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 
 	private void update() {
 		groups = GroupDB.getAllGroups(CalendarClient.getCurrentUser().getUsername());
-    	System.out.println(groups);
     	groupsListView.setItems(FXCollections.observableArrayList(groups));
+	}
+	
+	@FXML
+	public void showAllGroupsCheck(ActionEvent e){
+		membersListView.setItems(null);
+		if(showAllGroupsCheckBox.isSelected()){
+			groups = GroupDB.getallGroups();
+		}
+		else{
+			groups = GroupDB.getAllGroups(CalendarClient.getCurrentUser().getUsername());
+		}
+		groupsListView.setItems(FXCollections.observableArrayList(groups));
+		groupsListView.getSelectionModel().clearSelection();
+    	membersListView.getSelectionModel().clearSelection();
 	}
 
     @FXML
     public void okButtonClick(ActionEvent e){
 		//Move user back to calendars.
+    	clearView();
 		myController.setView(CalendarClient.CALENDAR_VIEW);
 	}
 
 	@FXML
     public void newGroupButtonClick(ActionEvent e){
 		//Move user to new group. 
+		clearView();
 		myController.setView(CalendarClient.ADD_GROUP_VIEW);
 	}
 	
@@ -89,18 +104,21 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 	@Override
 	public void setScreenParent(MainController screenPage) {
 		this.myController = screenPage;
-
 	}
 
 	@Override
     public void initialize(URL location, ResourceBundle resources) {
 		groups = GroupDB.getallGroups();
-		System.out.println("Initialize MyGroups");
     }
 
     @Override
     public void clearView() {
-
+    	groups.clear();
+    	groupsListView.setItems(null);
+    	membersListView.setItems(null);
+    	groupsListView.getSelectionModel().clearSelection();
+    	membersListView.getSelectionModel().clearSelection();
+    	showAllGroupsCheckBox.setSelected(false);
     }
 
     // onAction="#newGroupButtonClick"

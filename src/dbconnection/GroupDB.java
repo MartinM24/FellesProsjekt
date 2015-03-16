@@ -105,28 +105,21 @@ public class GroupDB extends DatabaseConnection{
 	}
 	
 	public static List<String> getAllGroups(String user){
-		Set<String> rSet = new HashSet<String>();
-		try {
-			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT groupName FROM usergrouplink WHERE username = '"+user+"'");
-			while (myRs.next()){
-				rSet.add(myRs.getString(1));
-				Group temp = new Group(myRs.getString(1));
-				List<Group> subGroups = temp.getSubGroup();
-				for(int i = 0; i < subGroups.size() ; i++){
-					if(!rSet.contains(subGroups.get(i).getName())){
-						rSet.add(subGroups.get(i).getName());
-					}
-				}
-			} 
-			List<String> rList = new ArrayList<String>();
-			rList.addAll(rSet);
-			return rList;
+		List<String> rList = getallGroups();
+		for(String str : rList){
+			boolean isInGroup = false;
+			Group parentGroup = new Group(str);
+			for(User usr: parentGroup.getAllMembers()){
+				if(usr.getUsername().equals(user)){
+					isInGroup = true;
+				}				
+			}
+			if(!isInGroup){
+				rList.remove(str);
+			}
+				
 		}
-			catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return null;
+		return rList;
 	}
 	
 	public static List<String> getallGroups(){
