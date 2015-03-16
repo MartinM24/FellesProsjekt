@@ -90,7 +90,6 @@ public class LogInController implements ControlledScreen, Initializable{
 	}
 
 	@FXML public void cancelButtonClick(ActionEvent event) {
-		//TODO check if Platform.exit is the right method. I did get:
 		//Java has been detached already, but someone is still trying to use it at -[GlassRunnable run]:/HUDSON/workspace/8u25/label/macosx-universal-30/rt/modules/graphics/src/main/native-glass/mac/GlassApplication.m:92
 		Platform.exit();
 	}

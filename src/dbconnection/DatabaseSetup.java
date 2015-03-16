@@ -39,7 +39,6 @@ public class DatabaseSetup extends DatabaseConnection{
 			encoded = Files.readAllBytes(Paths.get(path));
 			return new String(encoded, encoding);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return "";
@@ -78,7 +77,6 @@ public class DatabaseSetup extends DatabaseConnection{
 			} catch (SQLTimeoutException e) {
 				DatabaseConnection.startCon();
 			}	catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 		}
@@ -95,7 +93,6 @@ public class DatabaseSetup extends DatabaseConnection{
 				  tables.add(rs.getString(3));
 				}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

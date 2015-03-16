@@ -49,7 +49,6 @@ public class LoginUser extends User {
 			Password d = new Password(loginString); 
 			this.dbSalt = d.getSalt();
 			this.dbHash = d.getHash();
-			//TODO Update database password for user
 		}
 	}
 

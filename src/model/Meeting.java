@@ -11,7 +11,6 @@ import calendarClient.CalendarClient;
 import dbconnection.DatabaseConnection;
 import dbconnection.MeetingDB;
 
-//TODO add constructors
 public class Meeting implements Comparable<Meeting>{
 
     private static final String DATABASE_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
