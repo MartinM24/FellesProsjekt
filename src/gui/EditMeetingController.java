@@ -103,14 +103,14 @@ public class EditMeetingController implements ControlledScreen, Initializable {
             refreshLists();
             for(Group group: MeetingDB.getAllGroups(meeting)){
                 String str = "Gruppe: " + group.getName();
-                addedParticipants.add(str);
-                removeName(str);
+                System.out.println(str);
+                addParticipant(str);
             }
             if (meeting.getParticipants() != null) {
                 for(User usr: meeting.getParticipants()) {
-                    String str = "Bruker: " + usr.getUsername();
-                    addedParticipants.add(str);
-                    removeName(str);
+                    String str = "Bruker: " + usr.getUsername() + ": " + usr.getFirstname() + " " + usr.getLastname();
+                    System.out.println(str);
+                    addParticipant(str);
                 }
             }
             cameFromRoomOverview = false;
@@ -249,7 +249,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 			List<Group> partakingGroups = new ArrayList<Group>();
             if(participantListView.getItems() != null){
                 for(String str : participantListView.getItems()){
-                    String[] parts = str.split(":", 2);
+                    String[] parts = str.split(":");
                     if (parts[0].trim().equalsIgnoreCase("Gruppe")){
                         partakingGroups.add(new Group(parts[1].trim()));
                     }
@@ -374,7 +374,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 			userNames.add(CalendarClient.getCurrentUser().getUsername());
             if(participantListView.getItems() != null) {
                 for(String str : participantListView.getItems()){
-                    String[] parts = str.split(":", 2);
+                    String[] parts = str.split(":");
                     if (parts[0].trim().equalsIgnoreCase("Gruppe")){
                         for(User user : GroupDB.getAllMembers(parts[1].trim())){
                             userNames.add(user.getUsername());
@@ -427,7 +427,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 			participantNames.add("Gruppe: "+str);
 		}
 		for(String str : users){
-			participantNames.add("Bruker: "+str);
+			participantNames.add( "Bruker: " + str + ": " + UserDB.getUser(str).getFirstname() + " " + UserDB.getUser(str).getLastname());
 		}
 		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
 	}
@@ -530,6 +530,11 @@ public class EditMeetingController implements ControlledScreen, Initializable {
     	totimeField.setText("");
     	placeField.setText("");
     	nOfParticipantTextField.setText("");
+    	subjectField.setStyle("");
+    	fromtimeField.setStyle(""); 
+    	totimeField.setStyle("");
+    	placeField.setStyle("");
+    	nOfParticipantTextField.setStyle("");
     	participantComboBox.setItems(null);
     	participantListView.setItems(null);
 
