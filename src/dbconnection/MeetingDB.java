@@ -278,7 +278,7 @@ public class MeetingDB extends DatabaseConnection{
 		try {
 			updateParticipants(meetingID, user, "participantChange", true);
 			Statement myStatement = con.createStatement(); 
-			int count = myStatement.executeUpdate("UPDATE participant SET visibility = -1 WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
+			int count = myStatement.executeUpdate("UPDATE participant SET visibility = -1, attendence = -1 WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
 			if (count > 0) {
 				return true; 
 			}
