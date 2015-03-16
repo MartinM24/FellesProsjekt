@@ -103,14 +103,14 @@ public class EditMeetingController implements ControlledScreen, Initializable {
             refreshLists();
             for(Group group: MeetingDB.getAllGroups(meeting)){
                 String str = "Gruppe: " + group.getName();
-                addedParticipants.add(str);
-                removeName(str);
+                System.out.println(str);
+                addParticipant(str);
             }
             if (meeting.getParticipants() != null) {
                 for(User usr: meeting.getParticipants()) {
-                    String str = "Bruker: " + usr.getUsername();
-                    addedParticipants.add(str);
-                    removeName(str);
+                    String str = "Bruker: " + usr.getUsername() + ": " + usr.getFirstname() + " " + usr.getLastname();
+                    System.out.println(str);
+                    addParticipant(str);
                 }
             }
             cameFromRoomOverview = false;
@@ -427,7 +427,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 			participantNames.add("Gruppe: "+str);
 		}
 		for(String str : users){
-			participantNames.add("Bruker: "+str);
+			participantNames.add( "Bruker: " + str + ": " + UserDB.getUser(str).getFirstname() + " " + UserDB.getUser(str).getLastname());
 		}
 		participantComboBox.setItems(FXCollections.observableArrayList(participantNames));
 	}

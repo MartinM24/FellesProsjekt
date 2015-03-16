@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
+import calendarClient.CalendarClient;
 import dbconnection.DatabaseConnection;
 import dbconnection.MeetingDB;
 
@@ -290,7 +291,10 @@ public class Meeting implements Comparable<Meeting>{
     }
 
     public String getFXStyle() {
-        return "-fx-background-color: #4986e7";
+        if(this.owner.getUsername().equals(CalendarClient.getCurrentUser().getUsername()))
+            return "-fx-background-color: #4986e7";
+        else
+            return "-fx-background-color: #ffb878";
     }
 
 
