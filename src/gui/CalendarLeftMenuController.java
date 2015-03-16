@@ -22,7 +22,7 @@ import calendarClient.CalendarClient;
 public class CalendarLeftMenuController implements Initializable, ControlledScreen {
     private MainController myController;
     
-    @FXML Button chooseCalendarsButton;
+    @FXML Button showCalendarButton;
     @FXML Button myGroupsButton;
     @FXML Button meetingOverviewButton;
     @FXML Button addMeetingButton;
@@ -31,10 +31,10 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
  
 
     @FXML
-    public void chooseCalendarsButtonClick(ActionEvent e){
+    public void showCalendarButtonClick(ActionEvent e){
 		//Move user back to chooseCalendars. 
         CalendarClient.ClearAllViews();
-		myController.setView(CalendarClient.CHOOSE_CALENDARS_VIEW);
+		myController.setView(CalendarClient.CALENDAR_VIEW);
     }
     
     @FXML
