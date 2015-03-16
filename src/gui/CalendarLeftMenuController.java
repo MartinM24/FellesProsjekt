@@ -26,7 +26,6 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
     @FXML Button myGroupsButton;
     @FXML Button meetingOverviewButton;
     @FXML Button addMeetingButton;
-    @FXML Button myInvitation;
     @FXML Button notificationButton;
     @FXML Button changeAttendence;
  
@@ -43,13 +42,6 @@ public class CalendarLeftMenuController implements Initializable, ControlledScre
 		//Move user back to chooseCalendars. 
         CalendarClient.ClearAllViews();
 		myController.setView(CalendarClient.CHANGE_ATTENDENCE_VIEW);
-    }
-    
-    @FXML
-    public void myInvitationButtonClick(ActionEvent e){
-		//Move user to invitationoverview. 
-        CalendarClient.ClearAllViews();
-		myController.setView(CalendarClient.INVITATION_MEETING_VIEW);
     }
     
     @FXML
