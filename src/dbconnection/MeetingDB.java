@@ -94,6 +94,22 @@ public class MeetingDB extends DatabaseConnection{
 		}
 	}
 	
+	public static List<User> getParticipants(int meetingID){
+		List<User> rList = new ArrayList<User>();
+		try{
+			Statement sqlSelect = con.createStatement();
+			ResultSet myRs = sqlSelect.executeQuery("select username from participant WHERE meetingID = '"+meetingID+"'");
+			while(myRs.next()){
+				rList.add(UserDB.getUser(myRs.getString(1)));
+			}
+			return rList;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public static Meeting getMeeting(int meetingID){
 		try{
 			Statement sqlSelect = con.createStatement();
@@ -105,7 +121,7 @@ public class MeetingDB extends DatabaseConnection{
 				room = null;
 			else
 				room = RoomDB.getRoom(roomName);
-			return new Meeting(myRs.getInt(1), UserDB.getUser(myRs.getString(8)), room, myRs.getString(5), myRs.getString(3), myRs.getString(4), myRs.getString(2), myRs.getInt(6), null);
+			return new Meeting(myRs.getInt(1), UserDB.getUser(myRs.getString(8)), room, myRs.getString(5), myRs.getString(3), myRs.getString(4), myRs.getString(2), myRs.getInt(6), getParticipants(myRs.getInt(1)));
 		}
 		catch(Exception e){
 			e.printStackTrace();
