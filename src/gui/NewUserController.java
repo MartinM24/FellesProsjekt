@@ -302,6 +302,13 @@ public class NewUserController implements ControlledScreen, Initializable {
     	PasswordField2.setText("");
     	MailTextField.setText("");
     	
+    	FirstnameTextField.setStyle("");
+    	LastnameTextField.setStyle("");
+    	UsernameTextField.setStyle("");
+    	PasswordField1.setStyle("");
+    	PasswordField2.setStyle("");
+    	MailTextField.setStyle("");
+    	
     	firstnameStatus.setText("");
     	lastnameStatus.setText("");
     	usernameStatus.setText("");

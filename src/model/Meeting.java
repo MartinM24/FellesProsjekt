@@ -100,7 +100,7 @@ public class Meeting implements Comparable<Meeting>{
 
 
 
-    private LocalDateTime convertStringToDate(String str) {
+    static public LocalDateTime convertStringToDate(String str) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATABASE_DATE_FORMAT);
 
         return LocalDateTime.parse(str.split("\\.")[0], formatter);

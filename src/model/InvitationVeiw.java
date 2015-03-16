@@ -5,6 +5,9 @@ public class InvitationVeiw {
 	String sender;
 	String meetingID;
 	String yourStatus;
+	String timeTo;
+	String timeFrom;
+	String date;
 	
 	public InvitationVeiw(String sender, String invitationName, String meetingID){
 		this.sender = sender;
@@ -12,13 +15,29 @@ public class InvitationVeiw {
 		this.meetingID = meetingID;
 	}
 	
-	public InvitationVeiw(String sender, String invitationName, String meetingID, String yourStatus){
-		this.sender = sender;
+	public InvitationVeiw(String invitationName, String meetingID, String yourStatus, String timeTo, String timeFrom, String date){
 		this.invitationName = invitationName;
 		this.meetingID = meetingID;
 		this.yourStatus = yourStatus;
+		this.timeTo = timeTo;
+		this.timeFrom = timeFrom;
+		this.date = date; 
 	}
 	
+	
+	
+	public String getTimeTo() {
+		return timeTo;
+	}
+
+	public String getTimeFrom() {
+		return timeFrom;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
 	public String getInvitationName() {
 		return invitationName;
 	}

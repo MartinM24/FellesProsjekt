@@ -414,6 +414,11 @@ public class AddMeetingController implements ControlledScreen, Initializable {
     	totimeField.setText("");
     	placeField.setText("");
     	nOfParticipantTextField.setText("");
+    	subjectField.setStyle("");
+    	fromtimeField.setStyle(""); 
+    	totimeField.setStyle("");
+    	placeField.setStyle("");
+    	nOfParticipantTextField.setStyle("");
     	participantComboBox.setItems(FXCollections.observableArrayList(new ArrayList<String>()));
     	participantListView.setItems(null);
 
