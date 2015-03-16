@@ -148,7 +148,9 @@ public class CalendarPane extends GridPane {
 
     public int getEndPosFromTime(LocalTime time) {
         int kvarter = time.getHour() * 4;
-        if (time.getMinute() < 15)
+        if (time.getMinute() == 0) 
+        	kvarter += 0;
+        else if (time.getMinute() < 15)
             kvarter += 1;
         else if (time.getMinute() < 30)
             kvarter += 2;
@@ -172,7 +174,7 @@ public class CalendarPane extends GridPane {
             int rowIndex =  getPosFromTime(meeting.getTimeStart().toLocalTime());
             int rowSpan = getEndPosFromTime(    meeting.getTimeEnd().toLocalTime()) - rowIndex;
             if (rowSpan < 1) rowSpan = 1;
-            int columnSpan = 1; //day.getNumberOfColumns() - numOverlaps;
+            int columnSpan = day.getNumberOfColumns() - numOverlaps;
             day.addMeetingToColumn(meeting, column);
             this.add(new MeetingPane(meeting), columnIndex, rowIndex, columnSpan, rowSpan);
             break;
