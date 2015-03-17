@@ -47,10 +47,12 @@ public class Group implements Iterable<User>{
 	}
 	
 	public List<User> getAllMembers(){
+		System.out.println("getAllMembers in Group");
 		List<User> directMembers = GroupDB.getAllMembers(this.getName());
 		Set<User> directMembersSet = new HashSet<User>();
 		directMembersSet.addAll(directMembers);
 		for(int i = 0 ; i < subGroups.size() ; i++){
+			System.out.println(subGroups.get(i).getName());
 			directMembersSet.addAll(subGroups.get(i).getAllMembers());
 		}
 		//directMembers.clear();
@@ -83,6 +85,11 @@ public class Group implements Iterable<User>{
 	}
 
 	private void makeChildren(){
+		List<String> subGroupNames = GroupDB.getSubGroups(this.getName());
+		for(String groupName : subGroupNames){
+			subGroups.add(new Group(groupName));
+		}
+		/*
 		HashMap<String, List<String>> groupMap = GroupDB.getAllGroupsHash();
 		List<String> currentParent = new ArrayList<String>();
 		currentParent.add(this.getName());
@@ -95,7 +102,7 @@ public class Group implements Iterable<User>{
 				}
 			}
 			
-		}
+		}*/
 	}
 	
 	
