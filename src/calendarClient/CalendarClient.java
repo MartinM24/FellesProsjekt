@@ -50,6 +50,8 @@ public class CalendarClient extends Application{
     private static final String EDIT_MEETING_SCREEN_FXML = "/gui/EditMeetingGUI2.fxml";
     public static final String MEETING_ATTENDENCE_SCREEN = "MeetingAttendence";
     private static final String MEETING_ATTENDENCE_FXML = "/gui/MeetingAttendenceGUI2.fxml";
+    public static final String ADD_ALARM_SCREEN = "AddAlarm";
+    private static final String ADD_ALARM_FXML = "/gui/SetAlarmGUI2.fxml";
 
 
 
@@ -69,6 +71,7 @@ public class CalendarClient extends Application{
     public static final String CHANGE_ATTENDENCE_VIEW = "ChangeAttendence";
     public static final String EDIT_MEETING_VIEW = "EditMeeting";
     public static final String MEETING_ATTENDENCE_VIEW = "MeetingAttendence	";
+    public static final String ADD_ALARM_VIEW = "AddAlarm";
 
 	private static LoginUser currentUser;
 
@@ -99,6 +102,7 @@ public class CalendarClient extends Application{
         mainController.loadScreen(CHANGE_ATTENDENCE_SCREEN, CHANGE_ATTENDENCE_SCREEN_FXML);
         mainController.loadScreen(EDIT_MEETING_SCREEN, EDIT_MEETING_SCREEN_FXML);
         mainController.loadScreen(MEETING_ATTENDENCE_SCREEN, MEETING_ATTENDENCE_FXML);
+        mainController.loadScreen(ADD_ALARM_SCREEN, ADD_ALARM_FXML);
 
         // Make view form loaded screens
 		mainController.makeView(ADD_MEETING_VIEW, ADD_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
@@ -115,7 +119,9 @@ public class CalendarClient extends Application{
         mainController.makeView(CHANGE_ATTENDENCE_VIEW, CHANGE_ATTENDENCE_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(EDIT_MEETING_VIEW, EDIT_MEETING_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
         mainController.makeView(MEETING_ATTENDENCE_VIEW, MEETING_ATTENDENCE_SCREEN,GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
-
+        mainController.makeView(ADD_GROUP_VIEW, ADD_GROUP_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
+        mainController.makeView(ADD_ALARM_VIEW, ADD_ALARM_SCREEN, GLOBAL_MENU_SCREEN, CALENDAR_LEFT_MENU_SCREEN);
+        
 		// Set first screen
 		mainController.setView(LOG_IN_VIEW);
 

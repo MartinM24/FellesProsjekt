@@ -32,7 +32,7 @@
                <children>
                   <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="31.0" prefWidth="65.0" text="Ferdig" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClick" prefHeight="31.0" prefWidth="70.0" text="Tilbake" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                         <Label fx:id="warning" prefHeight="30.0" prefWidth="358.0" textFill="RED">
                            <font>
                               <Font size="18.0" />

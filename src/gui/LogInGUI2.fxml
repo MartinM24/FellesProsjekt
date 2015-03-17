@@ -22,9 +22,9 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
       <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
          <children>
-            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="30.0" prefWidth="90.0" text="Logg in" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="69.0" text="Avbryt" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Button fx:id="newUserButton" mnemonicParsing="false" onAction="#newUserButtonClick" prefHeight="30.0" prefWidth="90.0" text="Ny bruker" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="86.0" text="Logg in" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="86.0" text="Avbryt" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Button fx:id="newUserButton" mnemonicParsing="false" onAction="#newUserButtonClick" prefHeight="31.0" prefWidth="86.0" text="Ny bruker" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Label fx:id="loginFeedback" prefHeight="16.0" prefWidth="295.0" text="Label" visible="false" GridPane.columnSpan="3" />
          </children>
          <columnConstraints>

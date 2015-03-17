@@ -45,9 +45,9 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="agree" mnemonicParsing="false" onAction="#agreeButtonClick" prefHeight="31.0" prefWidth="65.0" text="Godta" GridPane.columnIndex="1" />
-                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="65.0" text="Avslå" GridPane.columnIndex="2" />
-                        <Button fx:id="done" mnemonicParsing="false" onAction="#doneButtonClick" prefHeight="31.0" prefWidth="65.0" text="Ferdig" GridPane.columnIndex="3" />
+                        <Button fx:id="agree" mnemonicParsing="false" onAction="#agreeButtonClick" prefHeight="31.0" prefWidth="70.0" text="Godta" GridPane.columnIndex="1" />
+                        <Button fx:id="cancel" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="70.0" text="Avslå" GridPane.columnIndex="2" />
+                        <Button fx:id="done" mnemonicParsing="false" onAction="#doneButtonClick" prefHeight="31.0" prefWidth="70.0" text="Tilbake" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
                </children>

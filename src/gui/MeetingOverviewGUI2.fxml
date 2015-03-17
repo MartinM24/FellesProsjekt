@@ -32,17 +32,19 @@
                <children>
                   <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="75.0" text="Ferdig" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="75.0" text="Tilbake" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
                         <Label fx:id="warning" prefHeight="30.0" prefWidth="167.0" textFill="RED" GridPane.columnIndex="1">
                            <font>
                               <Font size="10.0" />
                            </font>
                         </Label>
                         <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" prefHeight="30.0" prefWidth="120.0" text="Se deltagelse" GridPane.halignment="LEFT" />
-                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="31.0" prefWidth="75.0" text="Rediger" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClick" prefHeight="31.0" prefWidth="75.0" text="Slett" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="31.0" prefWidth="75.0" text="Rediger" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                        <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClick" prefHeight="31.0" prefWidth="75.0" text="Slett" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
+                        <Button fx:id="alarmButton" mnemonicParsing="false" onAction="#alarmButtonClick" prefHeight="30.0" prefWidth="60.0" text="Alarm" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                      </children>
                      <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="186.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="186.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="197.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="205.0" />
