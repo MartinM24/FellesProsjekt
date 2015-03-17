@@ -4,6 +4,6 @@ groupName		VARCHAR(30),
 
 FOREIGN KEY (username) REFERENCES users(username) 		ON DELETE CASCADE
 														ON UPDATE CASCADE,
-FOREIGN KEY (groupName) REFERENCES groups(groupName)	 		ON DELETE CASCADE
+FOREIGN KEY (groupName) REFERENCES groups(groupName)	ON DELETE CASCADE
 														ON UPDATE CASCADE
 );
