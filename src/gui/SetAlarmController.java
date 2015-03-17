@@ -33,12 +33,14 @@ public class SetAlarmController implements ControlledScreen, Initializable {
 		if(isValidTime()){
 			MeetingVeiw meeting = ((MeetingOverviewController) meetingOverviewController).getMeetingVeiw();
 			MeetingDB.setAlarm(meeting.getMeetingID(),CalendarClient.getCurrentUser() , toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()));
+			clearView(); 
 			myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
 		}
 	}
 	
 
 	public void cancelButtonClick(ActionEvent e){
+		clearView() ;
 		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
 	}
 	
@@ -110,7 +112,8 @@ public class SetAlarmController implements ControlledScreen, Initializable {
 
 	@Override
 	public void clearView() {
-		// TODO Auto-generated method stub
+		fromDatePicker.setValue(LocalDate.now());
+		fromtimeField.setText("");
 		
 	}
 
