@@ -95,8 +95,8 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 		members = group.getAllMembers();
 		List<String> memberNames = new ArrayList<String>();
 		for(int i = 0; i < members.size(); i++){
-			if(!memberNames.contains(members.get(i).getUsername())){
-				memberNames.add(members.get(i).getUsername());
+			if(!memberNames.contains(members.get(i).getFirstname()+" "+members.get(i).getLastname()+" : "+members.get(i).getUsername())){
+				memberNames.add(members.get(i).getFirstname()+" "+members.get(i).getLastname()+" : "+members.get(i).getUsername());
 			}
 		}
 		
