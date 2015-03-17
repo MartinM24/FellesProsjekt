@@ -1,7 +1,13 @@
 package dbconnection;
 
 import calendarClient.CalendarClient;
-import model.*;
+import model.Group;
+import model.InvitationVeiw;
+import model.LoginUser;
+import model.Meeting;
+import model.MeetingVeiw;
+import model.Room;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

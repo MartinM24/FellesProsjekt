@@ -6,9 +6,10 @@
 <?import javafx.scene.text.*?>
 
 <?import gui.CalendarPane?>
-<VBox prefHeight="623.0" prefWidth="699.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalendarController">
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CalendarController">
    <children>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="103.0" prefWidth="720.0">
+      <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="103.0" prefWidth="720.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,13 +29,13 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Button fx:id="nextWeekButton" mnemonicParsing="false" onAction="#nextWeekClick" text="Neste uke" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button fx:id="nextWeekButton" mnemonicParsing="false" onAction="#nextWeekClick" text="Neste uke" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <Button fx:id="lastWeekButton" mnemonicParsing="false" onAction="#lastWeekClick" text="Forrige uke" GridPane.rowIndex="3" />
             <Label fx:id="rageLabel" text="" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="todayButton" mnemonicParsing="false" onAction="#thisWeekClick" prefHeight="31.0" prefWidth="58.0" text="I dag" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button fx:id="todayButton" mnemonicParsing="false" onAction="#thisWeekClick" prefHeight="31.0" prefWidth="58.0" text="I dag" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <GridPane>
+      <GridPane maxWidth="1.7976931348623157E308">
         <columnConstraints>
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="185.0" minWidth="10.0" prefWidth="89.0" />
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="84.0" />
