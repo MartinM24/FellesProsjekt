@@ -56,7 +56,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
     }
     @FXML
     private void editButtonClick(ActionEvent e){
-        //Move user back to calendar.
+    	if (!(meetingOverviewTableView.getSelectionModel().isEmpty())){
         int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
         Meeting meeting = MeetingDB.getMeeting(meetingID);
         if(meeting.hasAccess(CalendarClient.getCurrentUser())){
@@ -66,7 +66,7 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
         }
         else{
         	warning.setText("Har ikke endringstillatelse");
-        }
+        }}
     }
 
     @FXML
