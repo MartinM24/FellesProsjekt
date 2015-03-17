@@ -67,8 +67,9 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	@FXML Label chosenroomLabel;
 	
 	@FXML
-	public void initialize() {	
-	}
+	public void initialize() {
+        fromDatePicker.setEditable(false);
+    }
 
 	
 	private void gotoView(){
@@ -472,7 +473,8 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		cameFromRoomOverview = false;
+        fromDatePicker.editableProperty().set(false);
+        cameFromRoomOverview = false;
 		participantComboBox.setEditable(true);
 		participantComboBox.getSelectionModel().clearSelection();
 		//refreshLists();
