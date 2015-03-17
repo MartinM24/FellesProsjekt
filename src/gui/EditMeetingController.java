@@ -174,19 +174,11 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 		}
 	}
 	
-	/**
-	 * Sjekker om verdiene skrevet inn i 
-	 * fromtimeField og totimeField er skrevet
-	 * p� riktig m�te
-	 * @param o
-	 * @param oldValue
-	 * @param newValue
-	 */
-	
+
+	@FXML
 	public void datePickerChange(ObservableValue<Boolean> o, boolean oldValue, boolean newValue){
-		if(!newValue){
-			chosenroomLabel.setText("");
-		}
+		chosenroomLabel.setText("");
+
 	}
 	
 	public void totimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
@@ -333,12 +325,12 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 				MeetingDB.addGroup(group, meeting);
                 for(User gUsr: GroupDB.getAllMembers(group.getName())){
                     part.add(gUsr);
+                    participants.add(gUsr);
                 }
             }
 
 
             //Update participant
-            System.out.println("Part size: " + part.size());
             if (part != null) {
                 for (User p : part) {
                     String old = p.getUsername();
