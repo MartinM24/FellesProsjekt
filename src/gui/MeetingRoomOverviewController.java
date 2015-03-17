@@ -45,6 +45,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 	
 	
 	public void chooseButtonClick(ActionEvent e){
+		if (!(roomTable.getSelectionModel().isEmpty())){
 		this.room = (RoomVeiw)roomTable.getSelectionModel().getSelectedItem();
 		if (room.getAvalibility().equals("Ledig")) {
 
@@ -65,7 +66,7 @@ public class MeetingRoomOverviewController implements ControlledScreen, Initiali
 			}
 			warning.setText("Vennligst velg et ledig / stort nok rom.");
 		}		
-	}
+	}}
 	
 	public void cancelButtonClick(ActionEvent e){
 		myController.setView(getCameFromView());

@@ -50,16 +50,19 @@ public class ChangeAttendenceController implements ControlledScreen, Initializab
 	}
 	
 	public void agreeButtonClick(ActionEvent e){
+		if (!(table.getSelectionModel().isEmpty())){
+    		
 		this.inv = (InvitationVeiw)table.getSelectionModel().getSelectedItem();
 		MeetingDB.updateInvitation(inv.getMeetingID(), 1);
 		tableSetup();
-	}
+	}}
 	
 	public void cancelButtonClick(ActionEvent e){
+		if (!(table.getSelectionModel().isEmpty())){
 		this.inv = (InvitationVeiw)table.getSelectionModel().getSelectedItem();
 		MeetingDB.updateInvitation(inv.getMeetingID(), -1);
 		tableSetup();
-	}
+	}}
 	
 	
 	@Override
