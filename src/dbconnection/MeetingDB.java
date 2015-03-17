@@ -261,9 +261,15 @@ public class MeetingDB extends DatabaseConnection{
 	
 	public static void updateMeetingRoom(int meetingID, Room room){
 		try {
+            String roomName;
+            if (room == null) {
+                roomName = "NULL";
+            } else {
+                roomName = "'" + room.getName() + "'";
+            }
 			updateParticipants(meetingID, CalendarClient.getCurrentUser(), "placeChange", true);
-			Statement myStatement = con.createStatement(); 
-			myStatement.executeUpdate("UPDATE meeting SET roomName='"+room.getName()+"' WHERE meetingID='"+meetingID+"'");
+			Statement myStatement = con.createStatement();
+			myStatement.executeUpdate("UPDATE meeting SET roomName="+ roomName +" WHERE meetingID='"+meetingID+"'");
 		}
 		catch(Exception e){
 			e.printStackTrace();
