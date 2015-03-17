@@ -136,6 +136,7 @@ public class CalendarClient extends Application{
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add("/gui/Template.css");
 		primaryStage.setScene(scene);
+        primaryStage.setTitle("Kalender applikasjon");
 //		primaryStage.setFullScreen(true);
 		primaryStage.show();
 		
