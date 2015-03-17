@@ -1,0 +1,96 @@
+ /* Import Font */
+ /*@font-face {
+    font-family: montserratBold;
+    src: url(montserrat-bold.ttf);
+}
+@font-face {
+    font-family: montserratRegular;
+    src: url(montserrat-regular.ttf);
+}
+ */
+.background {
+    -fx-background-color: #EBECE6;
+}
+
+#Title {
+    -fx-font-size: 20pt;
+    -fx-font-family: "System";
+    -fx-text-fill: #EAA732;
+    -fx-font-weight: bold;
+    -fx-opacity: 1;
+}
+
+#InfoText{
+	-fx-font-size: 13pt;
+    -fx-font-family: "System";
+    -fx-text-fill: Black;  
+}
+
+#actiontarget{
+  -fx-fill: FIREBRICK;
+  -fx-font-weight: bold;
+  -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );  
+}
+
+
+
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 5, 0 , 0 , 1);
+    
+    -fx-pref-height: 27;
+    -fx-pref-width: 83;
+}
+
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+.button:hover {
+    -fx-background-color: #3a3a3a;
+}
+
+#BigBtn{
+	-fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 5, 0 , 0 , 1);
+    -fx-pref-heigth: 31;
+    -fx-pref-width: 131;
+}
+
+.arrow-button{
+	-fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-background-color: #EAA732;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 5, 0 , 0 , 1);
+    
+}
+
+.date-picker > .arrow-button > .arrow {
+    -fx-shape: "M0,0v9h9V0H0z M2,8H1V7h1V8z M2,6H1V5h1V6z M2,4H1V3h1V4z M4,8H3V7h1V8z M4,6H3V5h1V6z M4,4H3V3h1V4z M6,8H5V7h1V8z M6,6H5 V5h1V6z M6,4H5V3h1V4z M8,8H7V7h1V8z M8,6H7V5h1V6z M8,4H7V3h1V4z";
+    -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.416667em 0.416667em 0.333333em 0.333333em; /* 5 5 4 4 */
+    -fx-scale-shape: true;   
+}
+.date-picker-popup > * > .spinner > .button {
+    /*-fx-background-color: -fx-outer-border, -fx-inner-border, -fx-body-color;*/
+    -fx-background-insets: 0, 1, 2;
+    -fx-color: transparent;
+    -fx-background-radius: 0;
+    -fx-pref-heigth: USE_COMPUTED_SIZE;
+    -fx-pref-width: USE_COMPUTED_SIZE;
+}
+
+#DateWeekLabel {
+	-fx-font-size: 16px;
+	-fx-font-family: "Arial Black"
+}
+

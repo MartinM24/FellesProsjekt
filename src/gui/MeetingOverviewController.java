@@ -71,29 +71,32 @@ public class MeetingOverviewController implements ControlledScreen, Initializabl
 
     @FXML
     private void deleteButtonClick(ActionEvent e) {
-        int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
-        MeetingDB.deleteMeeting(meetingID, CalendarClient.getCurrentUser());
-        viewRefresh();
-
+    	if (!(meetingOverviewTableView.getSelectionModel().isEmpty())){
+    		int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
+    		MeetingDB.deleteMeeting(meetingID, CalendarClient.getCurrentUser());
+    		viewRefresh();    		
+    	}
     }
 
     @FXML
     private void meetingOverviewClicked(MouseEvent e){
-    	int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
-        Meeting meeting = MeetingDB.getMeeting(meetingID);
-        if(meeting.hasAccess(CalendarClient.getCurrentUser())){
-        	warning.setText("");
+    	if (!(meetingOverviewTableView.getSelectionModel().isEmpty())){
+    		int meetingID = meetingOverviewTableView.getSelectionModel().getSelectedItem().getMeetingID();
+    		Meeting meeting = MeetingDB.getMeeting(meetingID);
+    		if(meeting.hasAccess(CalendarClient.getCurrentUser())){
+    			warning.setText("");
         }
         else{
         	warning.setText("Har ikke endringstillatelse");
-        }
+        }}
     }
     
 	@FXML
 	public void seeMoreButtonClick(ActionEvent e){
+    	if (!(meetingOverviewTableView.getSelectionModel().isEmpty())){
 		MeetingVeiw meeting = (MeetingVeiw)meetingOverviewTableView.getSelectionModel().getSelectedItem();
 		myController.setView(CalendarClient.MEETING_ATTENDENCE_VIEW);
-	}
+	}}
 	
     public MeetingVeiw fromMeetingToView(Meeting meeting){
     	String room;

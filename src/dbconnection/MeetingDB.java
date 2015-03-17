@@ -56,7 +56,7 @@ public class MeetingDB extends DatabaseConnection{
 		List<InvitationVeiw> invitationlist = new ArrayList<InvitationVeiw>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meeting.mDescription, meeting.meetingID, participant.attendence, meeting.timeStart, meeting.timeEnd, users.firstname, users.lastname FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID INNER JOIN users ON meeting.owner = users.username WHERE participant.username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meeting.mDescription, meeting.meetingID, participant.attendence, meeting.timeStart, meeting.timeEnd, users.firstname, users.lastname FROM participant INNER JOIN meeting ON participant.meetingID = meeting.meetingID INNER JOIN users ON meeting.owner = users.username WHERE participant.username='"+user.getUsername()+"' AND participant.visibility <> '-1'");
 			String temp;
 			while (myRs.next()){
 				if(0>myRs.getInt(3))
@@ -81,7 +81,7 @@ public class MeetingDB extends DatabaseConnection{
 		List<Meeting> rList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meetingID, alarmtid FROM participant WHERE username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meetingID, alarmtid FROM participant WHERE username='"+user.getUsername()+"' AND attendence = 1");
 			while (myRs.next()){
 				String temp = myRs.getString(2);
 				if(temp!=null){

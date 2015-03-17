@@ -84,6 +84,7 @@ public class MyGroupsController implements ControlledScreen, Initializable {
 			GroupDB.deleteGroup(new Group(groupName));
 			update();
 		}
+		showAllGroupsCheck(new ActionEvent());
 	}
 	
 	@FXML

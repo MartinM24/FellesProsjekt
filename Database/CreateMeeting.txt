@@ -8,7 +8,7 @@ place			VARCHAR(30),
 nOfParticipant	INT,
 roomName		VARCHAR(30),
 owner			VARCHAR(30),
-FOREIGN KEY (roomName)	REFERENCES room(roomName) 	ON DELETE CASCADE
+FOREIGN KEY (roomName)	REFERENCES room(roomName) 	ON DELETE SET NULL
 											ON UPDATE CASCADE,	
 FOREIGN KEY (owner)		REFERENCES users(username) 	ON DELETE CASCADE
 											ON UPDATE CASCADE,	
