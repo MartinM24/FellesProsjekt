@@ -30,7 +30,7 @@
                   <RowConstraints maxHeight="218.0" minHeight="10.0" prefHeight="97.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label id="Title" alignment="TOP_LEFT" prefHeight="35.0" prefWidth="115.0" text="Sett alarm">
+                  <Label id="Title" alignment="TOP_LEFT" text="Sett alarm">
                      <font>
                         <Font size="23.0" />
                      </font>
