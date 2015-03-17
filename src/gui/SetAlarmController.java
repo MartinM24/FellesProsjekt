@@ -96,6 +96,7 @@ public class SetAlarmController implements ControlledScreen, Initializable {
 	@Override
 	public void viewRefresh() {
 		this.meetingOverviewController = myController.getControllerForScreen(CalendarClient.MEETING_OVERVIEW_SCREEN);
+		fromDatePicker.setValue(LocalDate.now());
 	}
 
 	@Override
