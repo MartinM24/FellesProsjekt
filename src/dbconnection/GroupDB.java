@@ -140,6 +140,22 @@ public class GroupDB extends DatabaseConnection{
 		return null;
 	}
 	
+	public static List<String> getSubGroups(String parent){
+		List<String> rList = new ArrayList<String>();
+		try {
+			Statement myStatement = con.createStatement();
+			ResultSet myRs = myStatement.executeQuery("SELECT groupName FROM groups WHERE parentID = '"+parent+"'");
+			while (myRs.next()){
+				rList.add(myRs.getString(1));
+			} 
+		}
+		catch (Exception e) {
+            e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+		return rList;
+	}
+	
 	public static HashMap<String, List<String>> getAllGroupsHash(){
 		HashMap<String, List<String>> groupMap = new HashMap<String,List<String>>();
 		try {

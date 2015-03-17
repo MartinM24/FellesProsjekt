@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -60,9 +59,9 @@ public class Group implements Iterable<User>{
 
 	public List<User> getAllMembers(Group group, List<User> listAllMembers){
 		listAllMembers.addAll(GroupDB.getAllMembers(group.getName()));
-		for(int i = 0; i < group.subGroups.size(); i++){
+//		for(int i = 0; i < group.subGroups.size(); i++){
 			//listAllMembers.addAll(getAllMembers(group.subGroups.get(i), listAllMembers));
-		}
+//		}
 		return listAllMembers;
 		
 	}
@@ -83,18 +82,9 @@ public class Group implements Iterable<User>{
 	}
 
 	private void makeChildren(){
-		HashMap<String, List<String>> groupMap = GroupDB.getAllGroupsHash();
-		List<String> currentParent = new ArrayList<String>();
-		currentParent.add(this.getName());
-		while(currentParent != null && currentParent.size() > 1 && groupMap.containsKey(currentParent.get(0))){
-			String tempPar = currentParent.remove(0);
-			if(groupMap.containsKey(tempPar)){
-				for(String s: groupMap.get(tempPar)){
-					subGroups.add( new Group(s));
-					currentParent.add(s);
-				}
-			}
-			
+		List<String> subGroupNames = GroupDB.getSubGroups(this.getName());
+		for(String groupName : subGroupNames){
+			subGroups.add(new Group(groupName));
 		}
 	}
 	
