@@ -50,8 +50,8 @@ public class CalendarController implements ControlledScreen, Initializable {
     public void viewRefresh() {
         this.today = LocalDateTime.now();
         showMeetings(MeetingDB.getAllMeetings(CalendarClient.getCurrentUser()));
-        String start = getStartWeekDate(today).plusWeeks(diffWeeksFromToday).format(DateTimeFormatter.ofPattern("dd.MM"));
-        String end = getEndWeekDate(today).plusWeeks(diffWeeksFromToday).format(DateTimeFormatter.ofPattern("dd.MM"));
+        String start = getStartWeekDate(today).plusWeeks(diffWeeksFromToday).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String end = getEndWeekDate(today).plusWeeks(diffWeeksFromToday).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         rageLabel.setText(start + " - " + end);
         //List<Meeting> meetings = MeetingDB.getAllMeetings(CalendarClient.getCurrentUser());
         //showMeetings(meetings);
