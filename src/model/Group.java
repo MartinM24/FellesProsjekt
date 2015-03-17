@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -47,12 +46,10 @@ public class Group implements Iterable<User>{
 	}
 	
 	public List<User> getAllMembers(){
-		System.out.println("getAllMembers in Group");
 		List<User> directMembers = GroupDB.getAllMembers(this.getName());
 		Set<User> directMembersSet = new HashSet<User>();
 		directMembersSet.addAll(directMembers);
 		for(int i = 0 ; i < subGroups.size() ; i++){
-			System.out.println(subGroups.get(i).getName());
 			directMembersSet.addAll(subGroups.get(i).getAllMembers());
 		}
 		//directMembers.clear();
@@ -62,9 +59,9 @@ public class Group implements Iterable<User>{
 
 	public List<User> getAllMembers(Group group, List<User> listAllMembers){
 		listAllMembers.addAll(GroupDB.getAllMembers(group.getName()));
-		for(int i = 0; i < group.subGroups.size(); i++){
+//		for(int i = 0; i < group.subGroups.size(); i++){
 			//listAllMembers.addAll(getAllMembers(group.subGroups.get(i), listAllMembers));
-		}
+//		}
 		return listAllMembers;
 		
 	}
@@ -89,20 +86,6 @@ public class Group implements Iterable<User>{
 		for(String groupName : subGroupNames){
 			subGroups.add(new Group(groupName));
 		}
-		/*
-		HashMap<String, List<String>> groupMap = GroupDB.getAllGroupsHash();
-		List<String> currentParent = new ArrayList<String>();
-		currentParent.add(this.getName());
-		while(currentParent != null && currentParent.size() > 1 && groupMap.containsKey(currentParent.get(0))){
-			String tempPar = currentParent.remove(0);
-			if(groupMap.containsKey(tempPar)){
-				for(String s: groupMap.get(tempPar)){
-					subGroups.add( new Group(s));
-					currentParent.add(s);
-				}
-			}
-			
-		}*/
 	}
 	
 	
