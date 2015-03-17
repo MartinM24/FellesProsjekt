@@ -30,9 +30,11 @@ public class SetAlarmController implements ControlledScreen, Initializable {
 	private ControlledScreen meetingOverviewController;
 	
 	public void saveButtonClick(ActionEvent e){
-		MeetingVeiw meeting = ((MeetingOverviewController) meetingOverviewController).getMeetingVeiw();
-		MeetingDB.setAlarm(meeting.getMeetingID(),CalendarClient.getCurrentUser() , toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()));
-		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
+		if(isValidTime()){
+			MeetingVeiw meeting = ((MeetingOverviewController) meetingOverviewController).getMeetingVeiw();
+			MeetingDB.setAlarm(meeting.getMeetingID(),CalendarClient.getCurrentUser() , toLocalDateTime(fromDatePicker.getValue(), fromtimeField.getText()));
+			myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
+		}
 	}
 	
 
@@ -40,26 +42,33 @@ public class SetAlarmController implements ControlledScreen, Initializable {
 		myController.setView(CalendarClient.MEETING_OVERVIEW_VIEW);
 	}
 	
+	private boolean isValidTime(){
+		if(validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField)){	
+			String[] tid1 = fromtimeField.getText().split("\\:");
+			String[] tid2 = fromtimeField.getText().split("\\:");
+			if (Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
+					(Integer.parseInt(tid1[0]) == Integer.parseInt(tid2[0]) &&
+					Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
+				fromtimeField.setStyle("-fx-border-color: red");
+				fromtimeField.setStyle("-fx-border-color: red");
+				return false;
+			} else if (Integer.parseInt(tid1[0])>23 || Integer.parseInt(tid2[0])>23){
+				fromtimeField.setStyle("-fx-border-color: red");
+				fromtimeField.setStyle("-fx-border-color: red");
+				return false;
+			} else {
+				fromtimeField.setStyle("");
+				return true;
+			}
+			
+		}
+		return false;
+	}
 	
 	public void fromtimeFieldChange(ObservableValue<Boolean> o,  boolean oldValue, boolean newValue){
 		if (!(newValue)){
 			try{
-				if(validateText(fromtimeField.getText(), TIME_REGEX, fromtimeField)){	
-					String[] tid1 = fromtimeField.getText().split("\\:");
-					String[] tid2 = fromtimeField.getText().split("\\:");
-					if (Integer.parseInt(tid1[0]) > Integer.parseInt(tid2[0]) || 
-							(Integer.parseInt(tid1[0]) == Integer.parseInt(tid2[0]) &&
-							Integer.parseInt(tid1[1]) > Integer.parseInt(tid2[1]))){
-						fromtimeField.setStyle("-fx-border-color: red");
-						fromtimeField.setStyle("-fx-border-color: red");
-					} else if (Integer.parseInt(tid1[0])>23 || Integer.parseInt(tid2[0])>23){
-						fromtimeField.setStyle("-fx-border-color: red");
-						fromtimeField.setStyle("-fx-border-color: red");
-					} else {
-						fromtimeField.setStyle("");
-					}
-					
-				}
+				isValidTime();
 			} catch (Exception e) {
                 e.printStackTrace();
 			}
