@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -25,36 +26,33 @@
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="499.0" minHeight="10.0" prefHeight="480.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="178.0" minHeight="0.0" prefHeight="23.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="18.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="499.0" minHeight="10.0" prefHeight="460.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="178.0" minHeight="0.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="178.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="178.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <GridPane prefHeight="65.0" prefWidth="434.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="75.0" text="Tilbake" GridPane.columnIndex="3" GridPane.halignment="RIGHT" />
-                        <Label fx:id="warning" prefHeight="30.0" prefWidth="167.0" textFill="RED" GridPane.columnIndex="1">
-                           <font>
-                              <Font size="10.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" prefHeight="30.0" prefWidth="120.0" text="Se deltagelse" GridPane.halignment="LEFT" />
+                        <Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="75.0" text="Tilbake" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+                        <Button id="BigBtn" fx:id="seeMoreButton" mnemonicParsing="false" onAction="#seeMoreButtonClick" prefHeight="30.0" prefWidth="120.0" text="Se deltagelse" GridPane.halignment="CENTER" />
                         <Button fx:id="editButton" mnemonicParsing="false" onAction="#editButtonClick" prefHeight="31.0" prefWidth="75.0" text="Rediger" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                         <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteButtonClick" prefHeight="31.0" prefWidth="75.0" text="Slett" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
                         <Button fx:id="alarmButton" mnemonicParsing="false" onAction="#alarmButtonClick" prefHeight="30.0" prefWidth="60.0" text="Alarm" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                      </children>
                      <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="186.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" prefWidth="186.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="363.0" minWidth="10.0" prefWidth="197.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="205.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="120.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="147.0" minWidth="120.0" prefWidth="147.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="204.0" minWidth="92.0" prefWidth="119.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="248.0" minWidth="136.0" prefWidth="146.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="188.0" minWidth="110.0" prefWidth="143.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="141.0" minWidth="102.0" prefWidth="141.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                   </GridPane>
-                  <TableView fx:id="meetingOverviewTableView" onMouseReleased="#meetingOverviewClicked" prefHeight="487.0" prefWidth="520.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TableView fx:id="meetingOverviewTableView" onMouseReleased="#meetingOverviewClicked" prefHeight="487.0" prefWidth="520.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <columns>
                         <TableColumn fx:id="titleColumn" prefWidth="204.0" text="Tittel" />
                         <TableColumn fx:id="placeColumn" minWidth="0.0" prefWidth="154.0" text="Sted" />
@@ -64,11 +62,33 @@
                         <TableColumn fx:id="timeTooColumn" prefWidth="71.0" text="Slutt" />
                      </columns>
                   </TableView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møteoversikt">
+                  <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="Møteoversikt">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
                   </Text>
+                  <GridPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="warning" prefHeight="30.0" prefWidth="167.0" textFill="RED" GridPane.columnIndex="2">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
          </children>

@@ -17,7 +17,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Notifikasjoner">
+      <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="Notifikasjoner">
          <font>
             <Font size="18.0" />
          </font>
@@ -36,7 +36,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="emptyButton" mnemonicParsing="false" onAction="#emptyButtonAction" prefHeight="31.0" prefWidth="145.0" text="Tøm notifikasjoner" GridPane.rowIndex="1" />
+            <Button id="BigBtn" fx:id="emptyButton" mnemonicParsing="false" onAction="#emptyButtonAction" prefHeight="31.0" prefWidth="145.0" text="Tøm notifikasjoner" GridPane.rowIndex="1" />
             <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="31.0" prefWidth="67.0" text="Tilbake" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
          </children>
       </GridPane>

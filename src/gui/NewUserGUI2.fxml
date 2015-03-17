@@ -7,17 +7,17 @@
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.NewUserController">
    <children>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Opprett bruker">
+      <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="Opprett bruker">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn" GridPane.rowIndex="1" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Etternavn" GridPane.rowIndex="3" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" GridPane.rowIndex="5" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" GridPane.rowIndex="7" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bekreft passord" GridPane.rowIndex="9" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Epost" GridPane.rowIndex="11" />
+      <Text id="InforText" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornavn" GridPane.rowIndex="1" />
+      <Text id="InforText" strokeType="OUTSIDE" strokeWidth="0.0" text="Etternavn" GridPane.rowIndex="3" />
+      <Text id="InforText" strokeType="OUTSIDE" strokeWidth="0.0" text="Brukernavn" GridPane.rowIndex="5" />
+      <Text id="InforText" strokeType="OUTSIDE" strokeWidth="0.0" text="Passord" GridPane.rowIndex="7" />
+      <Text id="InforText" strokeType="OUTSIDE" strokeWidth="0.0" text="Bekreft passord" GridPane.rowIndex="9" />
+      <Text id="InforText" strokeType="OUTSIDE" strokeWidth="0.0" text="Epost" GridPane.rowIndex="11" />
       <TextField fx:id="FirstnameTextField" onFocusedChange="#FirstnameFocusChange" prefHeight="30.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
       <TextField fx:id="LastnameTextField" onFocusedChange="#LastnameFocusChange" prefHeight="30.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
       <TextField fx:id="UsernameTextField" onFocusedChange="#UsernameFocusChange" prefHeight="30.0" prefWidth="240.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />

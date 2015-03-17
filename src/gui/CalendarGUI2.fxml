@@ -23,7 +23,7 @@
         </rowConstraints>
          <children>
          	
-            <Label id=Title text="Min kalender" GridPane.rowIndex="1">
+            <Label text="Min kalender" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>

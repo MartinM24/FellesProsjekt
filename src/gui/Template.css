@@ -13,7 +13,7 @@
 }
 
 #Title {
-    -fx-font-size: 22pt;
+    -fx-font-size: 20pt;
     -fx-font-family: "System";
     -fx-text-fill: #EAA732;
     -fx-font-weight: bold;
@@ -21,15 +21,16 @@
 }
 
 #InfoText{
+	-fx-font-size: 13pt;
+    -fx-font-family: "System";
+    -fx-text-fill: Black;  
+}
+/*.own-Class-label{
 	-fx-font-size: 15pt;
     -fx-font-family: "System";
     -fx-text-fill: Black;  
 }
-.own-Class-label{
-	-fx-font-size: 15pt;
-    -fx-font-family: "System";
-    -fx-text-fill: Black;  
-}
+*/
 /* .InfoText{
 	-fx-font-size: 12pt;
     -fx-font-family: "Arial Black";
@@ -63,7 +64,7 @@
 .button:hover {
     -fx-background-color: #3a3a3a;
 }
- 
+
 #BigBtn{
 	-fx-text-fill: white;
     -fx-font-family: "Arial";
