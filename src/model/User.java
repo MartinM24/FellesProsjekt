@@ -62,4 +62,9 @@ public class User {
 	public void removeGroup(Group group){
 		this.groups.remove(group);
 	}
+
+    @Override
+    public boolean equals(Object object) {
+        return this.getUsername().trim().equals(((User) object).getUsername().trim());
+    }
 }

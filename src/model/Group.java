@@ -86,7 +86,7 @@ public class Group implements Iterable<User>{
 		HashMap<String, List<String>> groupMap = GroupDB.getAllGroupsHash();
 		List<String> currentParent = new ArrayList<String>();
 		currentParent.add(this.getName());
-		while(!currentParent.isEmpty() && groupMap.containsKey(currentParent.get(0))){
+		while(currentParent != null && currentParent.size() > 1 && groupMap.containsKey(currentParent.get(0))){
 			String tempPar = currentParent.remove(0);
 			if(groupMap.containsKey(tempPar)){
 				for(String s: groupMap.get(tempPar)){

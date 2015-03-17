@@ -165,10 +165,10 @@ public class GroupDB extends DatabaseConnection{
 	}
 
 	public static List<User> getAllMembers(String groupName) {
-		try {
+        List<User> returnList = new ArrayList<>();
+        try {
 			Statement myStatement = con.createStatement(); 
 			ResultSet myRs = myStatement.executeQuery("SELECT username FROM usergrouplink WHERE groupName = '" + groupName + "'");
-			List<User> returnList = new ArrayList<>();
 			while(myRs.next()){
 				returnList.add(UserDB.getUser((myRs.getString(1))));
 			}
@@ -178,7 +178,7 @@ public class GroupDB extends DatabaseConnection{
 
             System.out.println(e.getMessage());
 		}
-		return null;
+		return returnList;
 	}
 	
 	

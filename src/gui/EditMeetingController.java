@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import dbconnection.GroupDB;
 import dbconnection.MeetingDB;
@@ -89,9 +90,9 @@ public class EditMeetingController implements ControlledScreen, Initializable {
 			placeField.disableProperty().set(false);
 			placeField.setEditable(true);
 		}
-		
 		this.meetingRoomOverview = myController.getControllerForScreen(CalendarClient.MEETING_ROOM_OVERVIEW_SCREEN);
 		if(!cameFromRoomOverview){
+            Set<User> usernamesInGroup = new HashSet<>();
             totimeField.setText(meeting.getEndString());
             fromtimeField.setText(meeting.getStartString());
             placeField.setText(meeting.getPlace());
@@ -103,12 +104,23 @@ public class EditMeetingController implements ControlledScreen, Initializable {
             refreshLists();
             for(Group group: MeetingDB.getAllGroups(meeting)){
                 String str = "Gruppe: " + group.getName();
+                for(User usr: GroupDB.getAllMembers(group.getName())){
+                    usernamesInGroup.add(usr);
+                }
                 addParticipant(str);
             }
             if (meeting.getParticipants() != null) {
                 for(User usr: meeting.getParticipants()) {
-                    String str = "Bruker: " + usr.getUsername() + ": " + usr.getFirstname() + " " + usr.getLastname();
-                    addParticipant(str);
+                    boolean contain = false;
+                    for(User gUsr: usernamesInGroup) {
+                        if (usr.getUsername().equals(gUsr.getUsername())){
+                            contain = true;
+                        }
+                    }
+                    if(!contain && !usr.getUsername().equals(CalendarClient.getCurrentUser().getUsername())) {
+                        String str = "Bruker: " + usr.getUsername() + ": " + usr.getFirstname() + " " + usr.getLastname();
+                        addParticipant(str);
+                    }
                 }
             }
             cameFromRoomOverview = false;
@@ -301,32 +313,49 @@ public class EditMeetingController implements ControlledScreen, Initializable {
                 MeetingDB.updateMeetingNofParticipants(meeting.getMeetingID(), getNOfParticipants());
             }
 
+            List<User> part = meeting.getParticipants();
+
             //Update Group
             for (Group g: MeetingDB.getAllGroups(meeting)) {
                 MeetingDB.removeGroup(g, meeting);
+                for(User gUsr: GroupDB.getAllMembers(g.getName())){
+                    for (int i = 0; i < part.size() ; i++) {
+                        User usr = part.get(i);
+                        if(usr.getUsername().equals(gUsr.getUsername())) {
+                            part.remove(i);
+                            i--;
+                        }
+                    }
+                }
             }
 
 			for(Group group : partakingGroups){
 				MeetingDB.addGroup(group, meeting);
+                for(User gUsr: GroupDB.getAllMembers(group.getName())){
+                    part.add(gUsr);
+                }
             }
 
+
             //Update participant
-            List<User> part = meeting.getParticipants();
+            System.out.println("Part size: " + part.size());
             if (part != null) {
                 for (User p : part) {
                     String old = p.getUsername();
                     boolean removed = true;
-                    for (String ny : addedParticipants) {
-                        if (old.equals(ny.split(":")[1].trim())) {
+                    for (User usr : participants) {
+                        String ny = usr.getUsername().trim();
+                        if (old.equals(ny)) {
                             removed = false;
                         }
                     }
                     if (removed) {
-                        MeetingDB.removeParticipant(meeting.getMeetingID(), p);
+                        MeetingDB.deleteParticipant(meeting.getMeetingID(), p);
                     }
                 }
 
-                for (String ny : addedParticipants) {
+                for (User usr : participants) {
+                    String ny = usr.getUsername().trim();
                     boolean added = true;
                     for (User p : part) {
                         String old = p.getUsername();
@@ -335,12 +364,12 @@ public class EditMeetingController implements ControlledScreen, Initializable {
                         }
                     }
                     if (added) {
-                        MeetingDB.addParticipant(meeting, UserDB.getUser(ny.split(":")[1].trim()), 0);
+                        MeetingDB.addParticipant(meeting, UserDB.getUser(ny), 0);
                     }
                 }
             } else {
                  for (String ny: addedParticipants) {
-                    MeetingDB.addParticipant(meeting, UserDB.getUser(ny.split(":")[1].trim()), 0);
+                     MeetingDB.addParticipant(meeting, UserDB.getUser(ny), 0);
                  }
             }
             meeting = null;
@@ -532,6 +561,7 @@ public class EditMeetingController implements ControlledScreen, Initializable {
     	nOfParticipantTextField.setStyle("");
     	participantComboBox.setItems(null);
     	participantListView.setItems(null);
+        participantListView.getSelectionModel().clearSelection();
 
         fromDatePicker.setValue(LocalDate.now());
         label.setText("");

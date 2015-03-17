@@ -86,7 +86,6 @@ public class MeetingDB extends DatabaseConnection{
 				String temp = myRs.getString(2);
 				if(temp!=null){
 					LocalDateTime tid = Meeting.convertStringToDate(temp);
-					System.out.println(tid);
 					if(tid.isBefore(LocalDateTime.now())){
 						rList.add(MeetingDB.getMeeting(myRs.getInt(1)));
 					}
@@ -311,8 +310,9 @@ public class MeetingDB extends DatabaseConnection{
 		
 	public static boolean removeParticipant(int meetingID, User user) {
 		try {
+
 			updateParticipants(meetingID, user, "participantChange", true);
-			Statement myStatement = con.createStatement(); 
+			Statement myStatement = con.createStatement();
 			int count = myStatement.executeUpdate("UPDATE participant SET visibility = -1, attendence = -1 WHERE meetingID = '" + meetingID + "' AND username= '" + user.getUsername()+"'");
 			if (count > 0) {
 				return true; 
@@ -321,7 +321,21 @@ public class MeetingDB extends DatabaseConnection{
 			System.out.println(e.getMessage());
 		}
 		return false;
-	}	
+	}
+
+    public static boolean deleteParticipant(int meetingID, User user) {
+        try {
+            if(MeetingDB.getMeeting(meetingID).getOwner().getUsername().trim().equals(user.getUsername().trim())){
+                return false;
+            }
+            Statement myStm = con.createStatement();
+            int count = myStm.executeUpdate("DELETE FROM participant WHERE  meetingID = '" + meetingID + "' AND username= '" + user.getUsername() + "'");
+            if (count > 0) return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 	
 
 	public static boolean participantExist(Meeting meeting, User user){
@@ -441,7 +455,10 @@ public class MeetingDB extends DatabaseConnection{
 	public static void removeGroup(Group group, Meeting meeting){
 		try {
 			Statement myStatement = con.createStatement(); 
-			myStatement.executeUpdate("DELETE FROM meetinggrouplink WHERE groupName = '" + group.getName()+"' AND meetingID="+meeting.getMeetingID()+"'");
+			myStatement.executeUpdate("DELETE FROM meetinggrouplink WHERE groupName = '" + group.getName()+"' AND meetingID='"+meeting.getMeetingID()+"'");
+            for(User usr: GroupDB.getAllMembers(group.getName())) {
+                MeetingDB.deleteParticipant(meeting.getMeetingID(), usr);
+            }
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
