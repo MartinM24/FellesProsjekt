@@ -150,11 +150,11 @@ public class CalendarPane extends GridPane {
         int kvarter = time.getHour() * 4;
         if (time.getMinute() == 0) 
         	kvarter += 0;
-        else if (time.getMinute() < 15)
+        else if (time.getMinute() < 16)
             kvarter += 1;
-        else if (time.getMinute() < 30)
+        else if (time.getMinute() < 31)
             kvarter += 2;
-        else if (time.getMinute() < 45)
+        else if (time.getMinute() < 46)
             kvarter += 3;
         else kvarter += 4;
         return kvarter;
