@@ -19,8 +19,8 @@
          <children>
             <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="141.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="539.0" minWidth="10.0" prefWidth="425.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="223.0" minWidth="10.0" prefWidth="36.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="691.0" minWidth="10.0" prefWidth="691.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="158.0" minWidth="2.0" prefWidth="112.0" />
               </columnConstraints>
               <rowConstraints>
@@ -49,8 +49,8 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#chooseButtonClick" prefHeight="31.0" prefWidth="64.0" text="Velg" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="65.0" text="Avbryt" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+                        <Button fx:id="chooseButton" mnemonicParsing="false" onAction="#chooseButtonClick" prefHeight="31.0" prefWidth="64.0" text="Velg" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="65.0" text="Avbryt" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
                      </children>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="416.0" minWidth="10.0" prefWidth="305.0" />

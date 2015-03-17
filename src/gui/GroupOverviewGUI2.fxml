@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -16,17 +17,23 @@
                   <TableColumn fx:id="nameColumn" prefWidth="112.0" text="Navn" />
                   <TableColumn fx:id="membersColumn" prefWidth="279.0" text="Medlemmer" />
                </columns>
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin>
             </TableView>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppeoversikt">
+            <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppeoversikt">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" text="Tilbake" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Button fx:id="okButton" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" text="Tilbake" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></Button>
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="25.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="575.0" minWidth="10.0" prefWidth="575.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="1.0" prefWidth="1.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="699.0" minWidth="10.0" prefWidth="699.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          </columnConstraints>
          <rowConstraints>

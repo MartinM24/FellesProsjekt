@@ -19,7 +19,7 @@
          <children>
             <GridPane layoutX="11.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Deltagelseoversikt">
+                  <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="Deltagelseoversikt">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -52,8 +52,8 @@
                   </GridPane>
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="112.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="656.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="0.0" prefWidth="42.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="842.0" minWidth="10.0" prefWidth="800.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="0.0" prefWidth="34.0" />
                </columnConstraints>
                <rowConstraints>

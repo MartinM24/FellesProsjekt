@@ -7,21 +7,21 @@
 
 <GridPane prefHeight="466.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.EditMeetingController">
    <children>
-      <TextField fx:id="subjectField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="390.0" promptText="F.eks Møtebeskrivelse" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <TextField fx:id="fromtimeField" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="30.0" prefWidth="120.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <TextField fx:id="totimeField" maxWidth="-Infinity" onFocusedChange="#totimeFieldChange" prefHeight="30.0" prefWidth="120.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagere/grupper" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <DatePicker fx:id="fromDatePicker" onFocusedChange="#datePickerChange" prefHeight="30.0" prefWidth="120.0" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label text="Endre møte" GridPane.columnIndex="1">
+      <TextField fx:id="subjectField" maxWidth="-Infinity" prefHeight="30.0" prefWidth="390.0" promptText="F.eks Møtebeskrivelse" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+      <Text id="InfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Emne" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Text id="InfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Fra Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="fromtimeField" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="30.0" prefWidth="120.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+      <Text id="InfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Til Tidspunkt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <TextField fx:id="totimeField" maxWidth="-Infinity" onFocusedChange="#totimeFieldChange" prefHeight="30.0" prefWidth="120.0" promptText="HH:MM" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+      <Text id="InfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltagere/grupper" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <DatePicker fx:id="fromDatePicker" onFocusedChange="#datePickerChange" prefHeight="30.0" prefWidth="120.0" promptText="DD.MM.YYYY" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+      <Text id="InfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Dato" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label id="Title" text="Endre møte" GridPane.columnIndex="1">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <GridPane prefHeight="139.0" prefWidth="236.0" GridPane.columnIndex="3" GridPane.rowIndex="11">
+      <GridPane prefHeight="139.0" prefWidth="236.0" GridPane.columnIndex="3" GridPane.rowIndex="12">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="234.0" minWidth="10.0" prefWidth="82.495849609375" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.0" minWidth="10.0" prefWidth="80.58145141601562" />
@@ -38,13 +38,13 @@
             <Label fx:id="label" prefHeight="30.0" prefWidth="60.0" />
          </children>
       </GridPane>
-      <ComboBox fx:id="participantComboBox" prefHeight="26.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
-      <ListView fx:id="participantListView" maxWidth="-Infinity" onMouseClicked="#handleMouseClick" prefHeight="100.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
-      <Text layoutX="85.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plass" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField fx:id="placeField" layoutX="428.0" layoutY="68.0" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="30.0" prefWidth="390.0" promptText="F.eks. Somewhere over the rainbow" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-      <Text layoutX="85.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antall deltagere" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <TextField fx:id="nOfParticipantTextField" layoutX="428.0" layoutY="143.0" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="30.0" prefWidth="390.0" promptText="Spesifier antall deltagere, hvis tom blir antallet antall som deltar" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-      <GridPane prefHeight="30.0" prefWidth="299.0" GridPane.columnIndex="3" GridPane.rowIndex="9">
+      <ComboBox fx:id="participantComboBox" prefHeight="26.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+      <ListView fx:id="participantListView" maxWidth="-Infinity" onMouseClicked="#handleMouseClick" prefHeight="100.0" prefWidth="390.0" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+      <Text id="InfoText" layoutX="85.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plass" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <TextField fx:id="placeField" layoutX="428.0" layoutY="68.0" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="30.0" prefWidth="390.0" promptText="F.eks. Somewhere over the rainbow" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+      <Text id="InfoText" layoutX="85.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antall deltagere" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <TextField fx:id="nOfParticipantTextField" layoutX="428.0" layoutY="143.0" maxWidth="-Infinity" onFocusedChange="#fromtimeFieldChange" prefHeight="30.0" prefWidth="390.0" promptText="Spesifier antall deltagere, hvis tom blir antallet antall som deltar" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+      <GridPane prefHeight="30.0" prefWidth="299.0" GridPane.columnIndex="3" GridPane.rowIndex="10">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="124.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="368.0" minWidth="10.0" prefWidth="147.0" />
@@ -54,13 +54,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" prefHeight="30.0" prefWidth="120.0" text="Finn Møterom" GridPane.columnIndex="1" />
-            <Button fx:id="removeRoomButton" mnemonicParsing="false" onAction="#removeRoomButtonClick" prefHeight="30.0" prefWidth="120.0" text="Fjern Møterom" GridPane.columnIndex="2" />
+            <Button id="BigBtn" fx:id="findroomButton" mnemonicParsing="false" onAction="#findroomButtonClick" prefHeight="30.0" prefWidth="120.0" text="Finn Møterom" GridPane.columnIndex="1" />
+            <Button id="BigBtn" fx:id="removeRoomButton" mnemonicParsing="false" onAction="#removeRoomButtonClick" prefHeight="30.0" prefWidth="120.0" text="Fjern Møterom" GridPane.columnIndex="2" />
             <Label fx:id="chosenroomLabel" text="" />
          </children>
       </GridPane>
-      <Label text="Valgt rom: " GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Label text="Valgte grupper og deltagere" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label id="InfoText" text="Valgt rom: " GridPane.columnIndex="1" GridPane.rowIndex="10" />
+      <Label id="InfoText" text="Valgte grupper og deltagere" GridPane.columnIndex="1" GridPane.rowIndex="9" />
    </children>
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="153.0" />
@@ -71,17 +71,18 @@
    </columnConstraints>
    <rowConstraints>
       <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="31.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="29.0" minHeight="15.0" prefHeight="27.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="36.0" minHeight="10.0" prefHeight="18.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="42.0" minHeight="15.0" prefHeight="32.0" vgrow="NEVER" />
       <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
       <RowConstraints maxHeight="-Infinity" vgrow="NEVER" />
       <RowConstraints minHeight="10.0" vgrow="NEVER" />
       <RowConstraints minHeight="22.0" vgrow="NEVER" />
       <RowConstraints minHeight="22.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints minHeight="22.0" prefHeight="30.0" vgrow="NEVER" />
-      <RowConstraints maxHeight="102.66703796386719" minHeight="22.0" prefHeight="102.66703796386719" vgrow="NEVER" />
-      <RowConstraints maxHeight="147.38525390625" minHeight="9.0" prefHeight="32.33296203613281" vgrow="NEVER" />
-      <RowConstraints maxHeight="117.5731201171875" minHeight="0.61474609375" prefHeight="43.469696044921875" vgrow="NEVER" />
-      <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="33.4268798828125" vgrow="NEVER" />
-      <RowConstraints maxHeight="215.0" minHeight="0.0" prefHeight="67.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="32.0" minHeight="22.0" prefHeight="32.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="102.66703796386719" minHeight="22.0" prefHeight="85.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="147.38525390625" minHeight="9.0" prefHeight="27.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="117.5731201171875" minHeight="0.61474609375" prefHeight="37.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="37.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="215.0" minHeight="0.0" prefHeight="37.0" vgrow="NEVER" />
    </rowConstraints>
 </GridPane>

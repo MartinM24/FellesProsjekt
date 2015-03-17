@@ -53,7 +53,7 @@
                         <TableColumn fx:id="statusColumn" prefWidth="434.0" text="Deltagelse" />
                      </columns>
                   </TableView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Møtedeltagelse">
+                  <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="Møtedeltagelse">
                      <font>
                         <Font size="18.0" />
                      </font>

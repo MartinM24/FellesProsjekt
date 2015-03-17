@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
@@ -19,7 +20,7 @@
          <children>
             <GridPane layoutX="11.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Invitasjonsoversikt">
+                  <Text id="Title" strokeType="OUTSIDE" strokeWidth="0.0" text="Invitasjonsoversikt">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -30,6 +31,12 @@
                         <TableColumn fx:id="sendColumn" prefWidth="88.0" text="Sender" />
                         <TableColumn fx:id="descColumn" prefWidth="577.0" text="Beskrivelse" />
                      </columns>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <GridPane.margin>
+                        <Insets right="15.0" />
+                     </GridPane.margin>
                   </TableView>
                   <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <columnConstraints>
@@ -49,8 +56,8 @@
                   </GridPane>
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="112.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="656.0" minWidth="10.0" prefWidth="656.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="331.0" minWidth="10.0" prefWidth="23.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="794.0" minWidth="10.0" prefWidth="794.0" />
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="167.0" minWidth="0.0" prefWidth="34.0" />
                </columnConstraints>
                <rowConstraints>
