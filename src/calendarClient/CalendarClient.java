@@ -132,7 +132,7 @@ public class CalendarClient extends Application{
         AnchorPane.setBottomAnchor(mainController, 0.0);
         AnchorPane.setRightAnchor(mainController, 2.0);
         AnchorPane.setLeftAnchor(mainController, 10.0);
-        root.setPrefSize(900,600);
+        root.setPrefSize(1080,600);
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add("/gui/Template.css");
 		primaryStage.setScene(scene);
