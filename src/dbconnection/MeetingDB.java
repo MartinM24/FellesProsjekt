@@ -81,7 +81,7 @@ public class MeetingDB extends DatabaseConnection{
 		List<Meeting> rList = new ArrayList<Meeting>();
 		try{
 			Statement myStatement = con.createStatement();
-			ResultSet myRs = myStatement.executeQuery("SELECT meetingID, alarmtid FROM participant WHERE username='"+user.getUsername()+"'");
+			ResultSet myRs = myStatement.executeQuery("SELECT meetingID, alarmtid FROM participant WHERE username='"+user.getUsername()+"' AND attendence = 1");
 			while (myRs.next()){
 				String temp = myRs.getString(2);
 				if(temp!=null){
