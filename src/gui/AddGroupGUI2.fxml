@@ -16,7 +16,7 @@
 <Text id="InfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Legg til deltaker" GridPane.rowIndex="3" />
 <TextField fx:id="nameTextField" onFocusedChange="#groupNameFocusChange" prefHeight="30.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelButtonClick" prefHeight="31.0" prefWidth="66.0" text="Avbryt" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-<Button fx:id="okButton" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="66.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+<Button fx:id="okButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#okButtonClick" prefHeight="31.0" prefWidth="66.0" text="Save" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
 <Text id="InfoText" strokeType="OUTSIDE" strokeWidth="0.0" text="Parent" GridPane.rowIndex="2" />
 <ComboBox fx:id="chooseParentComboBox" prefHeight="30.0" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 <CheckBox fx:id="hasParentCheckBox" mnemonicParsing="false" onAction="#hasParentChange" text="Har forelder" GridPane.columnIndex="1" GridPane.rowIndex="2" />
