@@ -142,15 +142,9 @@ public class NewUserController implements ControlledScreen, Initializable {
 		if(isValidForm()){
 			Password pass = new Password(PasswordField1.getText());
 			boolean beenAdded = UserDB.addUser(new LoginUser(UsernameTextField.getText(), FirstnameTextField.getText(), LastnameTextField.getText(), MailTextField.getText(), pass.getSalt(), pass.getHash()));
-			if (beenAdded) {
-				emptyForm();
-				clearView();
-				myController.setView(CalendarClient.LOG_IN_VIEW);
-			} else {
-				formStatus.setText("Brukeren kunne ikke blitt lagt til sjekk internett tilkoblingen din og prøv igjen");
-				formStatus.setTextFill(Color.RED);
-				formStatus.setVisible(true);
-			}
+            emptyForm();
+            clearView();
+            myController.setView(CalendarClient.LOG_IN_VIEW);
 		}
 	}
 	
